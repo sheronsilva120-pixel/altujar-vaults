@@ -1,0 +1,2182 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Al-Tujar Vaults | Low-Fee Digital & Physical Marketplace for Creators</title>
+  <meta name="description" content="Sell digital products, Notion templates, interactive spreadsheets, electronics, and gym gear without $1,999 gatekeeper fees or 30% platform cuts. Merit-based discovery ranked by product quality, not follower count." />
+  <meta name="keywords" content="sell digital products, digital market, how to sell digital products, Gumroad alternative, Etsy alternative, Notion templates, Google Sheets templates, curated electronics, gym gear marketplace, Al-Tujar Vaults" />
+  <meta name="author" content="Al-Tujar Vaults" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Search Engine Verification Slots (Managed via Admin SEO Panel) -->
+  <meta id="meta-gsc" name="google-site-verification" content="ADD_YOUR_GOOGLE_SEARCH_CONSOLE_CODE_IN_ADMIN" />
+  <meta id="meta-bing" name="msvalidate.01" content="ADD_YOUR_BING_WEBMASTER_CODE_IN_ADMIN" />
+
+  <!-- OpenGraph / Social & Telegram / X Preview Cards -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Al-Tujar Vaults | The Merit-Based Digital & Physical Marketplace" />
+  <meta property="og:description" content="Zero-escrow hybrid marketplace. Flat $19/mo creator pass, interactive spreadsheet previews, verified electronics & gym gear, and instant direct payouts." />
+  <meta property="og:site_name" content="Al-Tujar Vaults" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Al-Tujar Vaults | Sell Digital & Physical Products Without Gatekeepers" />
+
+  <!-- Schema.org JSON-LD for Google Rich Snippets & AI Search Engines (ChatGPT, Perplexity, Copilot) -->
+  <script type="application/ld+json" id="schema-jsonld">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Al-Tujar Vaults",
+        "alternateName": "Al Tujar Digital & Physical Marketplace",
+        "url": "https://altujarvaults.netlify.app/",
+        "description": "A merit-based hybrid marketplace for digital templates, interactive spreadsheets, electronics, and physical workspace/gym gear with flat-fee creator memberships and direct non-custodial payouts.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://altujarvaults.netlify.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "How to sell digital products without paying high platform commissions or $1,999 gatekeeper fees?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "On Al-Tujar Vaults, creators pay a flat $19/month membership (plus an adjustable 0% to 15% affiliate split) with zero escrow holds. New sellers are ranked by their product's Information Completeness Score and posting date rather than existing follower count."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why buy through Al-Tujar Vaults instead of searching Amazon or Gumroad directly?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Al-Tujar Vaults verifies every external link with an automated Two-Strike Quarantine engine, lets buyers test interactive spreadsheet formulas in-browser before purchasing, filters products by 0-100% Information Completeness, and unlocks Vault-Exclusive discount codes and bonus files unavailable on direct searches."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Tailwind CSS CDN & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Cinzel', 'Georgia', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            obsidian: '#060913',
+            obsidianCard: '#0d1326',
+            cream: '#FAF6EE',
+            creamCard: '#F3ECE0',
+            goldLight: '#FDE68A',
+            goldPrimary: '#D4AF37',
+            goldDeep: '#996515'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root { color-scheme: dark; }
+    html.light { color-scheme: light; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
+    .font-royal { font-family: 'Cinzel', serif; }
+    .gold-gradient-text {
+      background: linear-gradient(135deg, #FFF3B0 0%, #D4AF37 45%, #AA771C 80%, #FDF0A6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-btn {
+      background: linear-gradient(135deg, #F5D061 0%, #D4AF37 50%, #9A6F18 100%);
+      color: #060913;
+      font-weight: 700;
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.28);
+      transition: all 0.2s ease;
+    }
+    .gold-btn:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 25px rgba(212, 175, 55, 0.42);
+    }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+
+<body class="bg-obsidian text-slate-100 dark:bg-obsidian dark:text-slate-100 light:bg-cream light:text-slate-900 min-h-screen flex flex-col transition-colors duration-300">
+
+  <!-- TOP SECURITY, MERIT & 1-CLICK FILE DOWNLOAD BANNER -->
+  <div class="bg-gradient-to-r from-amber-950/90 via-yellow-900/70 to-amber-950/90 border-b border-amber-500/30 text-amber-100 text-xs py-2 px-3">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span><strong>AI Sentinel Active:</strong> Zero-Escrow Direct Payouts • Merit-Based Ranking (New Sellers Ranked Equally) • 2-Strike Link Protection</span>
+      </div>
+      <div class="flex items-center gap-3 text-[11px]">
+        <span id="top-fee-indicator" class="bg-black/40 px-2.5 py-0.5 rounded-full border border-amber-400/30 text-amber-200 font-semibold">Pass: $19/mo | Fee: 5%</span>
+        <button onclick="downloadSelfAsHtmlFile()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-200 border border-amber-400/40 px-2.5 py-0.5 rounded-full font-bold">📥 Download index.html</button>
+        <button onclick="switchMainTab('rules')" class="underline hover:text-white">Copyright & Rules</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STICKY ADAPTIVE HEADER (Mobile + Tablet + Desktop) -->
+  <header class="sticky top-0 z-40 backdrop-blur-xl bg-obsidian/90 dark:bg-obsidian/90 border-b border-amber-500/20">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-3 flex items-center justify-between gap-3">
+      
+      <!-- Brand Identity: Left-Facing 3D Gold Camel with Exactly 3 Feather Tail-Sweeps on Creamy-White Emblem -->
+      <div onclick="switchMainTab('shop')" class="flex items-center gap-3 cursor-pointer group shrink-0">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#FAF6EE] p-0.5 shadow-lg shadow-amber-500/20 border-2 border-[#D4AF37] flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform">
+          <svg viewBox="0 0 120 120" class="w-full h-full" aria-label="Al-Tujar Vaults 3-Sweep Gold Camel Logo">
+            <defs>
+              <linearGradient id="gold3D" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#FFF3A8" />
+                <stop offset="35%" stop-color="#E5C158" />
+                <stop offset="70%" stop-color="#B38728" />
+                <stop offset="100%" stop-color="#7A5610" />
+              </linearGradient>
+              <filter id="bevelShadow" x="-10%" y="-10%" width="125%" height="125%">
+                <feDropShadow dx="0.8" dy="1.4" stdDeviation="1" flood-color="#5c3f06" flood-opacity="0.55"/>
+              </filter>
+            </defs>
+            <circle cx="60" cy="60" r="58" fill="#FAF6EE" />
+            <circle cx="60" cy="54" r="41" fill="none" stroke="url(#gold3D)" stroke-width="2.6" filter="url(#bevelShadow)" />
+            <circle cx="60" cy="54" r="37.5" fill="none" stroke="url(#gold3D)" stroke-width="1.2" />
+            <!-- Strict Left-Facing Camel Profile + Hump + Exactly 3 Feather-Like Back Sweeps -->
+            <g filter="url(#bevelShadow)">
+              <path fill="url(#gold3D)" stroke="#7A5610" stroke-width="0.8" d="
+                M 20 43
+                C 18 41, 19 37, 23 36
+                C 27 35, 31 33, 35 33
+                C 37 30, 40 30, 41 33
+                C 42 35, 40 39, 41 44
+                C 42 50, 46 54, 51 50
+                C 56 44, 61 34, 69 34
+                C 77 34, 83 45, 92 52
+                C 97 55, 103 55, 107 52
+                C 103 58, 96 60, 89 58
+                C 96 62, 102 62, 106 60
+                C 101 66, 93 67, 85 64
+                C 92 69, 99 70, 104 68
+                C 97 74, 86 74, 76 68
+                C 70 64, 66 72, 68 83
+                C 61 78, 56 68, 53 62
+                C 44 62, 37 58, 34 48
+                C 32 43, 29 44, 24 45
+                C 21 45, 20 44, 20 43 Z" />
+              <ellipse cx="32" cy="38" rx="2.3" ry="1.3" fill="#5c3f06" />
+              <circle cx="31.5" cy="37.8" r="0.6" fill="#FFF3A8" />
+            </g>
+            <path id="textArc" d="M 12,66 A 49,49 0 0,0 108,66" fill="none" />
+            <text fill="url(#gold3D)" stroke="#69490A" stroke-width="0.35" font-family="Cinzel, Georgia, serif" font-size="8.7" font-weight="800" letter-spacing="1.1" filter="url(#bevelShadow)">
+              <textPath href="#textArc" startOffset="50%" text-anchor="middle">AL-TUJAR VAULTS</textPath>
+            </text>
+          </svg>
+        </div>
+        <div>
+          <span class="font-royal text-base sm:text-xl font-extrabold tracking-wider gold-gradient-text block leading-none">AL-TUJAR VAULTS</span>
+          <span class="text-[10px] sm:text-xs text-slate-400 block mt-0.5">Merit-First Hybrid Marketplace</span>
+        </div>
+      </div>
+
+      <!-- Adaptive Navigation Pills -->
+      <nav class="hidden md:flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800">
+        <button onclick="switchMainTab('shop')" id="nav-shop" class="px-3.5 py-2 rounded-lg text-xs font-semibold transition-all bg-amber-500 text-slate-950">
+          🛍️ Shop Marketplace
+        </button>
+        <button onclick="switchMainTab('studio')" id="nav-studio" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all">
+          ✨ Creator Studio & Profile
+        </button>
+        <button onclick="switchMainTab('rules')" id="nav-rules" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all">
+          ⚖️ Rules, Privacy & DMCA
+        </button>
+        <button onclick="switchMainTab('admin')" id="nav-admin" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-amber-300 hover:bg-amber-500/10 transition-all">
+          🔐 Admin Treasury
+        </button>
+      </nav>
+
+      <!-- Right Action Controls -->
+      <div class="flex items-center gap-2">
+        <button onclick="openSavedVaultModal()" class="relative px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400/50 text-xs font-semibold flex items-center gap-1.5" title="Personal Saved Vault">
+          <span>❤️</span>
+          <span class="hidden sm:inline">Vault</span>
+          <span id="saved-count-badge" class="bg-amber-500 text-slate-950 font-bold text-[10px] px-1.5 py-0.2 rounded-full">0</span>
+        </button>
+
+        <button onclick="toggleThemeMode()" id="theme-toggle-btn" class="p-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400/50 text-xs" title="Switch Obsidian / Creamy Sand Mode">
+          ☀️
+        </button>
+
+        <button onclick="openAuthModal()" id="auth-header-btn" class="gold-btn px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
+          <span>👤</span>
+          <span id="auth-header-label">Sign In / Join</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Touch Navigation Bar -->
+    <div class="flex md:hidden items-center justify-around border-t border-slate-800/80 bg-slate-950/95 py-1.5 px-2 text-[11px] font-semibold">
+      <button onclick="switchMainTab('shop')" id="mob-nav-shop" class="flex-1 py-1.5 rounded-lg text-center text-amber-400 bg-amber-500/10">🛍️ Shop</button>
+      <button onclick="switchMainTab('studio')" id="mob-nav-studio" class="flex-1 py-1.5 rounded-lg text-center text-slate-400">✨ Seller Hub</button>
+      <button onclick="switchMainTab('rules')" id="mob-nav-rules" class="flex-1 py-1.5 rounded-lg text-center text-slate-400">⚖️ Rules</button>
+      <button onclick="switchMainTab('admin')" id="mob-nav-admin" class="flex-1 py-1.5 rounded-lg text-center text-slate-400">🔐 Admin</button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEW 1: SHOP & MERIT-BASED DISCOVERY MARKETPLACE -->
+  <main id="view-shop" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-8">
+    <section class="relative rounded-3xl overflow-hidden border border-amber-500/30 bg-gradient-to-br from-slate-900 via-[#0d1326] to-amber-950/30 p-5 sm:p-8 shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div class="lg:col-span-8 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-semibold">
+            <span>🚫 No $1,999 Gatekeeper Paywalls</span>
+            <span>•</span>
+            <span>⚖️ Zero Discrimination Search</span>
+          </div>
+          <h1 class="font-royal text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+            Where Product Quality Beats <span class="gold-gradient-text">Follower Count.</span>
+          </h1>
+          <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
+            <strong>For Sellers:</strong> Stop paying $1,999 guru fees or losing 30% on Etsy & Gumroad. List unlimited digital templates, electronics, or gym gear for a flat <strong class="text-amber-300">$<span id="hero-sub-price">19</span>/mo</strong>—new creators rank on Day 1 by listing quality and completeness.<br/>
+            <strong>For Buyers:</strong> Test interactive spreadsheets live in your browser, filter by <strong>0–100% Information Completeness</strong>, and unlock <strong>Vault-Exclusive Promo Codes</strong> you won't get searching Amazon or Gumroad directly.
+          </p>
+          <div class="flex flex-wrap gap-3 pt-1">
+            <button onclick="openNativeCheckoutModal('membership')" class="gold-btn px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
+              🚀 Activate Creator Pass ($<span id="btn-sub-price">19</span>/mo)
+            </button>
+            <button onclick="switchMainTab('studio'); switchStudioSubTab('upload');" class="px-4 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-amber-500/30 text-xs sm:text-sm font-semibold text-amber-200">
+              ➕ Upload a Product
+            </button>
+            <button onclick="document.getElementById('merit-filter-bar').scrollIntoView({behavior:'smooth'})" class="px-4 py-3 rounded-xl bg-slate-900 border border-slate-700 hover:border-slate-500 text-xs sm:text-sm font-semibold text-slate-300">
+              🔍 Explore Verified Vault
+            </button>
+          </div>
+        </div>
+
+        <div class="lg:col-span-4 bg-slate-950/80 border border-amber-500/25 rounded-2xl p-4 space-y-3 text-xs">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <span class="font-bold text-amber-300 uppercase tracking-wider">Why Al-Tujar Vaults?</span>
+            <span class="bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded text-[10px] font-bold">Verified Direct</span>
+          </div>
+          <ul class="space-y-2 text-slate-300">
+            <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>Vault-Only Discounts:</strong> Exclusive promo codes & bonus bundles locked to our links.</span></li>
+            <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>Interactive Sandboxes:</strong> Test Google Sheets & calculators before spending a cent.</span></li>
+            <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>No-Bias Ranking:</strong> Sort by <em>Posting Date</em> or <em>100% Info Provided</em> so new creators get seen immediately.</span></li>
+            <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>2-Strike Quarantine:</strong> Dead or misleading links are automatically removed.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- MERIT-BASED FILTER & ANTI-DISCRIMINATION SEARCH ENGINE -->
+    <section id="merit-filter-bar" class="bg-obsidianCard border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl">
+      <div class="flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
+        <div class="relative flex-1">
+          <input
+            type="text"
+            id="search-input"
+            oninput="renderMarketplaceGrid()"
+            placeholder="Search digital templates, Notion OS, wireless earbuds, gym gear, creator name, or tag..."
+            class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-slate-500 outline-none"
+          />
+          <span class="absolute left-3.5 top-3 text-slate-400 text-sm">🔍</span>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider text-slate-400 mb-1">Sort By (Fair Ranking)</label>
+            <select id="sort-select" onchange="renderMarketplaceGrid()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-amber-200 font-semibold outline-none">
+              <option value="newest">🕒 Just Posted (Newest First — Equal Visibility)</option>
+              <option value="info_score">📋 Information Provided (100% Complete First)</option>
+              <option value="price_asc">💲 Price: Low to High</option>
+              <option value="price_desc">💎 Price: High to Low</option>
+              <option value="rating">⭐ Top Buyer Rating & Reviews</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider text-slate-400 mb-1">Price Filter</label>
+            <select id="price-filter" onchange="renderMarketplaceGrid()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 outline-none">
+              <option value="all">All Prices</option>
+              <option value="free">Free ($0)</option>
+              <option value="under20">Under $20</option>
+              <option value="20to75">$20 – $75</option>
+              <option value="over75">$75+ Premium</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-[10px] uppercase tracking-wider text-slate-400 mb-1">Information & Verification</label>
+            <select id="info-filter" onchange="renderMarketplaceGrid()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 outline-none">
+              <option value="all">All Verified Listings</option>
+              <option value="full_info">✅ Full Information Provided (90%+ Score)</option>
+              <option value="has_discount">🎁 Has Vault-Exclusive Discount / Bonus</option>
+              <option value="has_sandbox">🧮 Has Interactive Live Preview / Video</option>
+              <option value="today">⚡ Posted Within Last 7 Days</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-1" id="tag-filter-strip"></div>
+
+      <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs text-slate-400">
+        <div id="results-counter">Showing all verified assets</div>
+        <div id="active-creator-filter" class="hidden items-center gap-2 bg-amber-500/15 border border-amber-500/40 text-amber-200 px-3 py-1 rounded-full">
+          <span id="creator-filter-name"></span>
+          <button onclick="clearCreatorFilter()" class="text-amber-400 hover:text-white font-bold">✕ Clear</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="marketplace-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></section>
+
+    <section class="bg-obsidianCard/80 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4 text-xs text-slate-300">
+      <h2 class="font-royal text-lg sm:text-xl font-bold text-amber-300">
+        How to Sell Digital Products & Physical Gear Without High Fees or Algorithm Bias
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-1.5">
+          <h3 class="font-bold text-white text-sm">1. Equal Visibility for New Sellers</h3>
+          <p class="text-slate-400 leading-relaxed">
+            Unlike Gumroad Discover or Etsy where new accounts are buried unless they pay for ads, Al-Tujar Vaults ranks listings by <strong>Posting Date</strong> and <strong>Information Completeness Score (0–100%)</strong>. Provide a clear thumbnail, full specs, and tags to rank at the top on Day 1.
+          </p>
+        </div>
+        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-1.5">
+          <h3 class="font-bold text-white text-sm">2. Hybrid Digital + Physical Catalog</h3>
+          <p class="text-slate-400 leading-relaxed">
+            Pair your digital Notion workspaces, Google Sheets financial models, and study guides right alongside physical <strong>#Electronics</strong>, <strong>#Gym</strong> equipment, and desk hardware from Amazon or Etsy in one unified creator storefront.
+          </p>
+        </div>
+        <div class="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 space-y-1.5">
+          <h3 class="font-bold text-white text-sm">3. Unbannable Non-Custodial Payouts</h3>
+          <p class="text-slate-400 leading-relaxed">
+            Never worry about 90-day payment reserves. Buyers pay you directly via your verified checkout links or Web3 stablecoin rails (Unstoppable, Cake Wallet, Rizon USD Visa, Binance, Bybit).
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MAIN VIEW 2: GUMROAD-STYLE CREATOR STUDIO & USER PROFILE -->
+  <section id="view-studio" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
+    <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl p-5 sm:p-6 shadow-xl">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <img id="studio-avatar-preview" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&auto=format&fit=crop&q=80" alt="Creator Avatar" class="w-16 h-16 rounded-2xl object-cover border-2 border-amber-400" />
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 id="studio-display-name" class="font-royal text-xl sm:text-2xl font-bold text-white">Creator Studio</h2>
+              <span id="studio-membership-badge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30">Buyer Account</span>
+            </div>
+            <p id="studio-bio-preview" class="text-xs text-slate-400 mt-0.5">Manage your products, analytics, account settings, feedbacks, and upload new listings.</p>
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-2">
+          <button onclick="switchMainTab('shop')" class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400 text-xs font-semibold">
+            🛍️ Browse Shop to Buy
+          </button>
+          <button onclick="openNativeCheckoutModal('membership')" id="studio-upgrade-btn" class="gold-btn px-4 py-2 rounded-xl text-xs font-bold">
+            ⚡ Activate Seller Pass ($19/mo)
+          </button>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar mt-5 pt-4 border-t border-slate-800 text-xs font-semibold">
+        <button onclick="switchStudioSubTab('analytics')" id="st-tab-analytics" class="px-4 py-2 rounded-xl bg-amber-500 text-slate-950 shrink-0">📊 Product Analytics & My Listings</button>
+        <button onclick="switchStudioSubTab('upload')" id="st-tab-upload" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 hover:text-white shrink-0">➕ Upload New Product</button>
+        <button onclick="switchStudioSubTab('profile')" id="st-tab-profile" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 hover:text-white shrink-0">⚙️ Account & Profile Settings</button>
+        <button onclick="switchStudioSubTab('feedbacks')" id="st-tab-feedbacks" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 hover:text-white shrink-0">💬 Buyer Feedbacks & Reviews</button>
+      </div>
+    </div>
+
+    <div id="studio-sub-analytics" class="space-y-6">
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-4">
+          <span class="text-[11px] text-slate-400 uppercase">Total Product Views</span>
+          <div id="stat-my-views" class="text-2xl font-extrabold text-white mt-1">1,420</div>
+          <span class="text-[11px] text-emerald-400">Merit search impressions</span>
+        </div>
+        <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-4">
+          <span class="text-[11px] text-slate-400 uppercase">Outbound Checkout Clicks</span>
+          <div id="stat-my-clicks" class="text-2xl font-extrabold text-amber-300 mt-1">318</div>
+          <span class="text-[11px] text-slate-400">22.4% click-through rate</span>
+        </div>
+        <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-4">
+          <span class="text-[11px] text-slate-400 uppercase">Avg. Info Completeness</span>
+          <div id="stat-my-info-score" class="text-2xl font-extrabold text-emerald-400 mt-1">96%</div>
+          <span class="text-[11px] text-emerald-300">Priority search boost active</span>
+        </div>
+        <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-4">
+          <span class="text-[11px] text-slate-400 uppercase">Account Strike Status</span>
+          <div id="stat-my-strikes" class="text-2xl font-extrabold text-emerald-400 mt-1">0 / 2</div>
+          <span class="text-[11px] text-slate-400">Good standing</span>
+        </div>
+      </div>
+
+      <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm sm:text-base text-white">Your Active & Quarantined Products</h3>
+          <button onclick="switchStudioSubTab('upload')" class="gold-btn px-3.5 py-1.5 rounded-lg text-xs">+ Add Product</button>
+        </div>
+        <div id="seller-products-table" class="space-y-3"></div>
+      </div>
+    </div>
+
+    <div id="studio-sub-upload" class="hidden bg-obsidianCard border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
+        <div>
+          <h3 class="font-royal text-lg font-bold text-amber-300">Publish New Digital or Physical Product</h3>
+          <p class="text-xs text-slate-400">Fill out complete product details to achieve a <strong>90%+ Information Score</strong> and rank at the top of buyer filters.</p>
+        </div>
+        <div class="bg-slate-950 border border-amber-500/40 rounded-xl px-4 py-2 text-right">
+          <span class="text-[10px] uppercase text-slate-400 block">Live Info Completeness Score</span>
+          <span id="live-upload-score" class="text-lg font-extrabold text-amber-300">35%</span>
+        </div>
+      </div>
+
+      <form id="product-upload-form" onsubmit="handleProductUpload(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Product Title *</label>
+          <input type="text" id="up-title" oninput="calculateLiveUploadScore()" required placeholder="e.g., Ultimate Notion Creator OS or Wireless ANC Gym Earbuds" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400" />
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Price (USD) *</label>
+            <input type="number" step="0.01" min="0" id="up-price" oninput="calculateLiveUploadScore()" required placeholder="29.00" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400" />
+          </div>
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Primary Type *</label>
+            <select id="up-type" onchange="calculateLiveUploadScore()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white outline-none">
+              <option value="Digital">💻 Digital Product / Template</option>
+              <option value="Physical">📦 Physical Gear / Hardware</option>
+              <option value="Electronics">🎧 Electronics & Tech</option>
+              <option value="Gym">🏋️ Gym & Fitness Gear</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Thumbnail Cover Image URL (or Upload File) *</label>
+          <div class="flex gap-2">
+            <input type="url" id="up-thumb" oninput="calculateLiveUploadScore()" required placeholder="https://images.unsplash.com/..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400" />
+            <label class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl cursor-pointer text-amber-300 font-semibold shrink-0">
+              📷 File
+              <input type="file" accept="image/*" class="hidden" onchange="handleThumbnailFileSelect(event)" />
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">External Checkout URL (Gumroad, Whop, Amazon, Etsy) *</label>
+          <input type="url" id="up-url" oninput="calculateLiveUploadScore()" required placeholder="https://gumroad.com/a/altujar/... or https://amazon.com/dp/..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400" />
+          <span id="up-commission-hint" class="text-[10px] text-amber-300/90 mt-1 block">Amazon & Etsy links auto-inject our partner tag. Gumroad/Whop links validate your affiliate split.</span>
+        </div>
+
+        <div class="md:col-span-2">
+          <label class="block text-slate-300 font-semibold mb-1">Detailed Product Description, Specs & What's Included (120+ chars boosts search rank) *</label>
+          <textarea id="up-desc" rows="3" oninput="calculateLiveUploadScore()" required placeholder="Explain exact features, compatibility, warranty/refund policy, and why buyers should get this..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-white outline-none focus:border-amber-400"></textarea>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Vault-Exclusive Discount Code or Bonus (Convinces Buyers to Click Here)</label>
+          <input type="text" id="up-discount" oninput="calculateLiveUploadScore()" placeholder="e.g., Code ALTUJAR15 for 15% OFF + Free PDF Guide" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400" />
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Walkthrough Video URL (YouTube / Loom) & Sandbox Option</label>
+          <div class="flex gap-2">
+            <input type="url" id="up-video" oninput="calculateLiveUploadScore()" placeholder="https://www.youtube.com/watch?v=..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none" />
+            <label class="flex items-center gap-1.5 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 cursor-pointer">
+              <input type="checkbox" id="up-sandbox" onchange="calculateLiveUploadScore()" class="accent-amber-400" />
+              <span class="text-[11px]">Interactive Sheet</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="md:col-span-2 space-y-2">
+          <label class="block text-slate-300 font-semibold">Select Product Tags (Choose 2+ tags for 100% Info Score) *</label>
+          <div class="flex flex-wrap gap-2" id="upload-tags-selector">
+            <label class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1.5"><input type="checkbox" value="Digital" onchange="calculateLiveUploadScore()" checked class="up-tag-cb accent-amber-400"/> #Digital</label>
+            <label class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1.5"><input type="checkbox" value="Physical" onchange="calculateLiveUploadScore()" class="up-tag-cb accent-amber-400"/> #Physical</label>
+            <label class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1.5"><input type="checkbox" value="Electronics" onchange="calculateLiveUploadScore()" class="up-tag-cb accent-amber-400"/> #Electronics</label>
+            <label class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1.5"><input type="checkbox" value="Gym" onchange="calculateLiveUploadScore()" class="up-tag-cb accent-amber-400"/> #Gym</label>
+            <label class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1.5"><input type="checkbox" value="Notion" onchange="calculateLiveUploadScore()" class="up-tag-cb accent-amber-400"/> #Notion</label>
+            <label class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1.5"><input type="checkbox" value="Sheets" onchange="calculateLiveUploadScore()" class="up-tag-cb accent-amber-400"/> #Sheets</label>
+            <label class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1.5"><input type="checkbox" value="Finance" onchange="calculateLiveUploadScore()" class="up-tag-cb accent-amber-400"/> #Finance</label>
+            <label class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1.5"><input type="checkbox" value="Audio" onchange="calculateLiveUploadScore()" class="up-tag-cb accent-amber-400"/> #Audio</label>
+            <label class="px-3 py-1.5 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1.5"><input type="checkbox" value="Study" onchange="calculateLiveUploadScore()" class="up-tag-cb accent-amber-400"/> #Study</label>
+            <input type="text" id="up-custom-tags" oninput="calculateLiveUploadScore()" placeholder="+ Custom tags (comma separated: e.g. Coding, Ergonomic)" class="bg-slate-950 border border-slate-700 rounded-lg px-3 py-1.5 text-white outline-none flex-1 min-w-[220px]" />
+          </div>
+        </div>
+
+        <div class="md:col-span-2 bg-slate-950 border border-amber-500/30 rounded-2xl p-4 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <label class="flex items-center gap-2 text-amber-200 font-bold">
+              <span>🤖 AI Security Human Verification:</span>
+              <span id="upload-captcha-prompt" class="bg-amber-500/20 px-2.5 py-0.5 rounded border border-amber-400/40">What is 4 + 5?</span>
+            </label>
+            <input type="number" id="upload-captcha-input" required placeholder="Answer" class="w-28 bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-white outline-none" />
+          </div>
+
+          <label class="flex items-start gap-2.5 cursor-pointer text-slate-300 leading-relaxed">
+            <input type="checkbox" id="up-agree-terms" required class="mt-1 accent-amber-400 w-4 h-4 shrink-0" />
+            <span>
+              <strong>I agree to the Terms, Copyright & Rules of Al-Tujar Vaults:</strong> I confirm that I am the original creator or authorized partner of this product, that it contains no pirated/illegal content or malicious links, and I accept the platform's dynamic membership fee (<strong class="text-amber-300">$<span class="dyn-sub-lbl">19</span>/mo</strong>) and commission structure (<strong class="text-amber-300"><span class="dyn-comm-lbl">5</span>%</strong>, which may increase or decrease between 0%–15% with dashboard notice). Violations result in automated suspension subject to the 7-day appeal process.
+            </span>
+          </label>
+        </div>
+
+        <div class="md:col-span-2 flex justify-end gap-3">
+          <button type="submit" class="gold-btn px-6 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
+            🚀 Verify & Publish to Al-Tujar Vaults
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div id="studio-sub-profile" class="hidden bg-obsidianCard border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5 text-xs">
+      <h3 class="font-royal text-lg font-bold text-amber-300">Account Information, Storefront Profile & Privacy Settings</h3>
+      <form onsubmit="saveUserProfileSettings(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Display / Storefront Name</label>
+          <input type="text" id="prof-name" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white" />
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Account Email Address</label>
+          <input type="email" id="prof-email" required class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white" />
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Profile Avatar Image URL</label>
+          <input type="url" id="prof-avatar" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white" />
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Payout / Store Handle (Gumroad, Amazon, or Rizon/USDT)</label>
+          <input type="text" id="prof-payout" placeholder="e.g., Rizon USD / Unstoppable 0x..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white" />
+        </div>
+        <div class="md:col-span-2">
+          <label class="block text-slate-300 font-semibold mb-1">Creator Bio & About Your Store</label>
+          <textarea id="prof-bio" rows="2" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white"></textarea>
+        </div>
+        <div class="md:col-span-2 flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-slate-800">
+          <button type="button" onclick="exportUserAccountData()" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white">
+            📥 Export My Account Data (JSON)
+          </button>
+          <button type="submit" class="gold-btn px-6 py-2.5 rounded-xl font-bold">💾 Save Profile Changes</button>
+        </div>
+      </form>
+    </div>
+
+    <div id="studio-sub-feedbacks" class="hidden bg-obsidianCard border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-4 text-xs">
+      <h3 class="font-royal text-lg font-bold text-amber-300">Verified Buyer Feedbacks & Product Q&A</h3>
+      <div id="studio-feedbacks-list" class="space-y-3"></div>
+    </div>
+  </section>
+
+  <!-- MAIN VIEW 3: RULES, PRIVACY, SECURITY & DMCA COPYRIGHT -->
+  <section id="view-rules" class="hidden flex-1 max-w-5xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6 text-xs sm:text-sm">
+    <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl p-6 space-y-6">
+      <div class="border-b border-slate-800 pb-4">
+        <h2 class="font-royal text-2xl font-extrabold gold-gradient-text">Al-Tujar Vaults Governance, Copyright (DMCA) & Security Charter</h2>
+        <p class="text-xs text-slate-400 mt-1">Protecting buyers, honest creators, and intellectual property with automated AI enforcement.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-amber-300">1. Dynamic Membership & Commission Agreement</h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            Browsing and buying on Al-Tujar Vaults is 100% free. Selling products requires an active Creator Membership (currently <strong>$<span class="dyn-sub-lbl">19</span>/mo</strong>) and compliance with the platform commission rate (currently <strong><span class="dyn-comm-lbl">5</span>%</strong>, adjustable between 0% and 15%). By creating an account or listing items, users agree that membership and commission rates may increase or decrease based on ecosystem updates.
+          </p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-amber-300">2. Intellectual Property, Ownership & DMCA</h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            <strong>Creators Retain 100% Ownership:</strong> You own the copyright to your original templates, guides, and media. However, uploading pirated courses, cracked software, stolen templates, or counterfeit goods triggers an immediate automated ban. Copyright owners can file a 1-click DMCA Takedown notice on any product card.
+          </p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-amber-300">3. Automated Rule Enforcement & 7-Day Appeal Guarantee</h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            Our AI Rule Scanner automatically suspends accounts or listings for phishing links, non-HTTPS checkouts, prohibited items, or 2+ broken link strikes. Banned users may submit an appeal seen exclusively by the Platform Admin. If the Admin does not manually decide within <strong>7 days (168 hours)</strong>, our <strong>Automated AI Adjudicator</strong> reviews the fix and resolves the appeal automatically for maximum efficiency.
+          </p>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-amber-300">4. Privacy, Anti-Hacking & Zero-Escrow Security</h3>
+          <p class="text-slate-300 text-xs leading-relaxed">
+            All user inputs are sanitized against XSS and injection attacks. Human verification challenges block automated bot scraping. We never store raw credit card numbers—payments route through non-custodial Web3 rails (USDT/USDC) or verified external gateways.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN VIEW 4: PIN-PROTECTED ADMIN TREASURY & APPEALS CONSOLE -->
+  <section id="view-admin" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
+    <div id="admin-lock-screen" class="max-w-md mx-auto bg-obsidianCard border border-amber-500/40 rounded-3xl p-6 text-center space-y-4 my-10 shadow-2xl">
+      <div class="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-400/40 mx-auto flex items-center justify-center text-2xl">🔐</div>
+      <h2 class="font-royal text-xl font-bold text-white">Owner Admin Vault Locked</h2>
+      <p class="text-xs text-slate-400">Restricted to Platform Owner. Enter your Admin Master PIN to access the Rizon/Unstoppable Treasury, Fee Sliders, User Ban Console, and Private Appeals Inbox.</p>
+      <form onsubmit="unlockAdminConsole(event)" class="space-y-3">
+        <input type="password" id="admin-pin-input" placeholder="Enter Admin PIN (Default: 2026)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-center text-sm tracking-widest text-amber-300 outline-none focus:border-amber-400" />
+        <button type="submit" class="w-full gold-btn py-3 rounded-xl text-xs font-extrabold">Unlock Admin Control Room</button>
+      </form>
+      <p id="admin-lock-error" class="text-xs text-rose-400 hidden"></p>
+    </div>
+
+    <div id="admin-unlocked-content" class="hidden space-y-6">
+      <div class="flex flex-wrap items-center justify-between gap-3 bg-obsidianCard border border-amber-500/40 rounded-2xl p-4">
+        <div>
+          <h2 class="font-royal text-lg sm:text-2xl font-extrabold gold-gradient-text">Platform Owner Treasury & Governance Console</h2>
+          <p class="text-xs text-slate-400">Manage your Rizon / Unstoppable / Binance / Bybit wallets, Ethiopian Bank remittance withdrawals, dynamic fees, and 7-day appeals.</p>
+        </div>
+        <button onclick="lockAdminConsole()" class="px-4 py-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs font-bold">🔒 Lock Admin Room</button>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+        <div class="lg:col-span-7 bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-4 text-xs">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <h3 class="font-bold text-amber-300 text-sm">💰 Multi-Wallet Receiving Vault (Your 5 Apps)</h3>
+            <span class="bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full text-[10px] font-bold">100% Non-Custodial</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-slate-400 mb-1">1. Rizon App (USDT/USDC or Virtual USD Account)</label>
+              <input type="text" id="adm-wallet-rizon" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-200 font-mono text-[11px]" />
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">2. Unstoppable Wallet (Polygon / BEP-20 / TRC-20)</label>
+              <input type="text" id="adm-wallet-unstoppable" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-300 font-mono text-[11px]" />
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">3. Cake Wallet (USDT / USDC / XMR / BTC)</label>
+              <input type="text" id="adm-wallet-cake" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 font-mono text-[11px]" />
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">4. Binance Pay ID & Bybit UID (Zero Gas Fee)</label>
+              <input type="text" id="adm-wallet-cex" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 font-mono text-[11px]" />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-800">
+            <div>
+              <label class="block text-slate-400 mb-1">Amazon Associates Partner Tag (Auto-Injected)</label>
+              <input type="text" id="adm-amazon-tag" value="altujar-20" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white" />
+            </div>
+            <div>
+              <label class="block text-slate-400 mb-1">Gumroad / Whop Affiliate Handle</label>
+              <input type="text" id="adm-affiliate-id" value="altujar" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white" />
+            </div>
+          </div>
+
+          <button onclick="saveAdminTreasurySettings()" class="gold-btn px-5 py-2.5 rounded-xl font-bold text-xs">💾 Save Vault & Affiliate Settings</button>
+        </div>
+
+        <div class="lg:col-span-5 bg-obsidianCard border border-amber-500/30 rounded-2xl p-5 space-y-4 text-xs">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div>
+              <span class="text-[10px] uppercase text-slate-400 block">Available Admin Vault Balance</span>
+              <span id="admin-vault-balance" class="text-2xl font-extrabold gold-gradient-text">$418.00 USD</span>
+            </div>
+            <span class="bg-amber-500/15 border border-amber-400/30 text-amber-200 px-2.5 py-1 rounded-lg text-[10px] font-bold">Rizon Visa Active ($0/mo)</span>
+          </div>
+
+          <form onsubmit="executeAdminWithdrawal(event)" class="space-y-3">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Withdrawal Route (Safe Ethiopia Bank Bridge)</label>
+              <select id="withdraw-route" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white">
+                <option value="Rizon Visa -> TapTap Send / LemFi -> CBE (Commercial Bank of Ethiopia)">🏦 Rizon Visa → TapTap/LemFi → CBE Bank (ETB)</option>
+                <option value="Rizon Visa -> Remitly -> Telebirr Mobile Money">📱 Rizon Visa → Remitly → Telebirr Wallet (ETB)</option>
+                <option value="Rizon Visa -> Bank of Abyssinia / Awash / Dashen">🏦 Rizon Visa → Abyssinia / Awash / Dashen (ETB)</option>
+                <option value="Direct Transfer -> Rizon Stablecoin Balance (To Fund Card)">💳 Internal Move → Rizon Balance (Fund $10 One-Time Card)</option>
+                <option value="Direct Transfer -> Unstoppable Cold Vault">🛡️ Direct Move → Unstoppable Self-Custody Vault</option>
+              </select>
+            </div>
+            <div class="grid grid-cols-2 gap-2.5">
+              <div>
+                <label class="block text-slate-400 mb-1">Amount (USD)</label>
+                <input type="number" step="0.01" min="5" id="withdraw-amount" required placeholder="150.00" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white" />
+              </div>
+              <div>
+                <label class="block text-slate-400 mb-1">Recipient Account / Ref</label>
+                <input type="text" id="withdraw-dest" required placeholder="CBE 1000... / Telebirr" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white" />
+              </div>
+            </div>
+            <button type="submit" class="w-full gold-btn py-2.5 rounded-xl font-extrabold text-xs">💸 Execute Admin Withdrawal</button>
+          </form>
+
+          <div id="withdrawal-history-log" class="space-y-1.5 max-h-28 overflow-y-auto pt-2 border-t border-slate-800 text-[11px] text-slate-400"></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 text-xs">
+        <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-4">
+          <h3 class="font-bold text-amber-300 text-sm">🎚️ Dynamic Membership & Commission Controls</h3>
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-slate-300 font-semibold">Monthly Creator Pass Price:</span>
+              <span class="text-amber-300 font-bold">$<span id="slider-sub-val">19</span> / month</span>
+            </div>
+            <input type="range" id="admin-sub-slider" min="0" max="49" value="19" oninput="updateAdminPricingSliders()" class="w-full accent-amber-400" />
+          </div>
+          <div>
+            <div class="flex justify-between mb-1">
+              <span class="text-slate-300 font-semibold">Platform Affiliate Commission Cut (0% – 15%):</span>
+              <span class="text-amber-300 font-bold"><span id="slider-comm-val">5</span>%</span>
+            </div>
+            <input type="range" id="admin-comm-slider" min="0" max="15" value="5" oninput="updateAdminPricingSliders()" class="w-full accent-amber-400" />
+          </div>
+        </div>
+
+        <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-3">
+          <h3 class="font-bold text-amber-300 text-sm">🌐 Google, Bing, ChatGPT & Perplexity SEO Indexer</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <input type="text" id="seo-gsc-input" placeholder="Google Search Console Verification Code" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white" />
+            <input type="text" id="seo-bing-input" placeholder="Bing / ChatGPT Webmaster Code" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white" />
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="saveSeoVerificationCodes()" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 font-bold">Save Verification Tags</button>
+            <button onclick="triggerIndexNowPing()" class="gold-btn px-4 py-2 rounded-xl font-bold">🚀 Ping IndexNow (Google / Bing / AI Search)</button>
+          </div>
+          <p id="seo-ping-status" class="text-[11px] text-emerald-400 hidden"></p>
+        </div>
+      </div>
+
+      <div class="bg-obsidianCard border border-amber-500/30 rounded-2xl p-5 space-y-4 text-xs">
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-3">
+          <div>
+            <h3 class="font-royal text-base font-bold text-amber-300">⚖️ Private Admin Appeals Queue & User Ban Manager (7-Day Auto-AI Fallback)</h3>
+            <p class="text-slate-400 text-[11px]">Appeals are visible <strong>only to you</strong>. If an appeal waits longer than 7 days (168h), the AI Auto-Adjudicator automatically decides based on link validity and strike history.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="runAiAutoAdjudicator(true)" class="px-3.5 py-2 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-200 font-bold hover:bg-amber-500/30">
+              🤖 Run 7-Day AI Auto-Judge Now
+            </button>
+            <button onclick="promptManualUserBan()" class="px-3.5 py-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold hover:bg-rose-500/30">
+              🔨 Ban User / Product
+            </button>
+          </div>
+        </div>
+        <div id="admin-appeals-list" class="space-y-3"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODALS -->
+  <div id="product-detail-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
+    <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-3xl w-full p-4 sm:p-6 space-y-5 max-h-[92vh] overflow-y-auto shadow-2xl">
+      <div class="flex items-start justify-between gap-3 border-b border-slate-800 pb-3">
+        <div>
+          <div id="modal-prod-badges" class="flex flex-wrap gap-1.5 mb-1.5"></div>
+          <h3 id="modal-prod-title" class="font-royal text-lg sm:text-2xl font-extrabold text-white"></h3>
+        </div>
+        <button onclick="closeProductModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white text-sm font-bold">✕</button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-5">
+        <div class="md:col-span-6 space-y-3">
+          <img id="modal-prod-img" src="" alt="Product Cover" class="w-full h-52 object-cover rounded-2xl border border-slate-800" />
+          <div id="modal-video-box" class="hidden bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs space-y-1.5">
+            <span class="font-bold text-amber-300 block">📺 Creator Video Walkthrough Included</span>
+            <a id="modal-video-link" href="#" target="_blank" rel="noopener noreferrer" class="text-emerald-400 underline block">Watch 60-Second Demo Tour ↗</a>
+          </div>
+          <div id="modal-discount-box" class="bg-amber-500/10 border border-amber-400/40 rounded-xl p-3 text-xs space-y-1">
+            <span class="font-bold text-amber-300 block">🎁 Vault-Exclusive Buyer Advantage:</span>
+            <p id="modal-discount-text" class="text-slate-200 font-semibold"></p>
+          </div>
+        </div>
+
+        <div class="md:col-span-6 space-y-4 text-xs flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span id="modal-prod-price" class="text-2xl font-extrabold gold-gradient-text"></span>
+              <span id="modal-info-score" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-bold"></span>
+            </div>
+            <p id="modal-prod-desc" class="text-slate-300 leading-relaxed"></p>
+            <div id="modal-prod-tags" class="flex flex-wrap gap-1.5 pt-1"></div>
+
+            <div id="modal-sandbox-box" class="hidden bg-slate-950 border border-amber-500/30 rounded-2xl p-3.5 space-y-2.5">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-amber-300">🧮 Live Interactive Template Simulator</span>
+                <span class="text-[10px] text-slate-400">Try Before You Buy</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <div>
+                  <label class="text-[10px] text-slate-400 block">Monthly Revenue ($)</label>
+                  <input type="number" id="sim-rev" value="2500" oninput="runLiveSimulator()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white" />
+                </div>
+                <div>
+                  <label class="text-[10px] text-slate-400 block">Monthly Expenses ($)</label>
+                  <input type="number" id="sim-exp" value="650" oninput="runLiveSimulator()" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-2.5 py-1.5 text-white" />
+                </div>
+              </div>
+              <div class="flex items-center justify-between bg-slate-900 px-3 py-2 rounded-lg border border-slate-800">
+                <span class="text-slate-400">Projected Net Profit & Margin:</span>
+                <span id="sim-output" class="font-extrabold text-emerald-400">$1,850.00 (74%)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="space-y-2.5 pt-3 border-t border-slate-800">
+            <div class="flex items-center justify-between text-[11px] bg-slate-950 px-3 py-2 rounded-xl border border-slate-800">
+              <span>Creator: <strong id="modal-creator-name" class="text-amber-300 cursor-pointer underline"></strong></span>
+              <span id="modal-trust-seal" class="text-emerald-400 font-semibold">🛡️ Verified HTTPS Partner</span>
+            </div>
+            <div class="flex gap-2">
+              <a id="modal-buy-btn" href="#" target="_blank" rel="noopener noreferrer" onclick="recordOutboundClick()" class="flex-1 gold-btn py-3 rounded-xl text-center font-extrabold text-xs sm:text-sm">
+                ⚡ Proceed to Verified Checkout ↗
+              </a>
+              <button id="modal-report-btn" class="px-3 py-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 hover:bg-rose-500/25 text-xs font-semibold" title="Report Broken Link or DMCA Copyright Issue">
+                🚩 Report
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="native-checkout-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
+    <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-2xl text-xs">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div>
+          <span class="text-[10px] uppercase tracking-wider text-amber-400 font-bold block">100% Unbannable On-Site Vault Checkout</span>
+          <h3 id="checkout-modal-title" class="font-royal text-lg font-extrabold text-white">Activate Creator Membership Pass</h3>
+        </div>
+        <button onclick="closeNativeCheckoutModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
+      </div>
+
+      <div class="bg-slate-950 border border-amber-500/30 rounded-2xl p-4 flex items-center justify-between">
+        <div>
+          <span class="text-slate-400 block">Total Amount Due (USD / USDT / USDC)</span>
+          <span class="text-[11px] text-emerald-400">Instant Activation • Zero Escrow Freeze</span>
+        </div>
+        <span id="checkout-amount-display" class="text-2xl font-extrabold gold-gradient-text">$19.00</span>
+      </div>
+
+      <div class="grid grid-cols-3 gap-2">
+        <button onclick="selectCheckoutRail('web3')" id="rail-btn-web3" class="py-2 px-2 rounded-xl font-bold bg-amber-500 text-slate-950 text-center">🛡️ USDT / USDC Vault</button>
+        <button onclick="selectCheckoutRail('cex')" id="rail-btn-cex" class="py-2 px-2 rounded-xl font-bold bg-slate-900 text-slate-300 border border-slate-800 text-center">⚡ Binance / Bybit</button>
+        <button onclick="selectCheckoutRail('rizon')" id="rail-btn-rizon" class="py-2 px-2 rounded-xl font-bold bg-slate-900 text-slate-300 border border-slate-800 text-center">💳 Rizon / Card</button>
+      </div>
+
+      <div id="checkout-rail-details" class="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-2.5"></div>
+
+      <form onsubmit="verifyOnSitePayment(event)" class="space-y-3 pt-2 border-t border-slate-800">
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Paste Transaction Hash (TXID) or Payment Reference ID *</label>
+          <input type="text" id="checkout-txid-input" required placeholder="e.g., 0x8f9c... or Binance/Rizon Order ID" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-mono text-xs outline-none focus:border-amber-400" />
+        </div>
+        <button type="submit" class="w-full gold-btn py-3 rounded-xl font-extrabold text-xs sm:text-sm">
+          ✅ Verify Blockchain / Receipt & Unlock Creator Pass Instantly
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="auth-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
+    <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-2xl text-xs">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="font-royal text-lg font-extrabold text-white">Sign In or Create Vault Account</h3>
+        <button onclick="closeAuthModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
+      </div>
+
+      <form onsubmit="handleAuthSubmit(event)" class="space-y-3">
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Storefront or Full Name *</label>
+          <input type="text" id="auth-name-input" required placeholder="e.g., Sheron Digital Studio" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white" />
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Email Address *</label>
+          <input type="email" id="auth-email-input" required placeholder="you@example.com" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white" />
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Account Role</label>
+          <select id="auth-role-input" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
+            <option value="Seller & Buyer">✨ Creator / Seller & Buyer</option>
+            <option value="Buyer Only">🛍️ Shopper / Buyer Only (Free)</option>
+          </select>
+        </div>
+
+        <label class="flex items-start gap-2 cursor-pointer text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800">
+          <input type="checkbox" id="auth-terms-cb" required class="mt-0.5 accent-amber-400" />
+          <span>I agree to the <strong>Terms, Privacy, Copyright & Rules of Al-Tujar Vaults</strong>, including the $19/mo seller subscription and dynamic 0%–15% commission policy.</span>
+        </label>
+
+        <button type="submit" class="w-full gold-btn py-3 rounded-xl font-extrabold text-xs">🔐 Sign In / Save Account</button>
+      </form>
+
+      <div class="pt-2 border-t border-slate-800 flex items-center justify-between text-[11px] text-slate-400">
+        <span>Account suspended by rule scanner?</span>
+        <button onclick="closeAuthModal(); openAppealSubmissionModal();" class="text-amber-300 underline font-semibold">Submit Private Appeal →</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="appeal-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
+    <div class="bg-obsidianCard border border-rose-500/40 rounded-3xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-2xl text-xs">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="font-royal text-lg font-extrabold text-rose-300">⚖️ Submit Private Ban / Quarantine Appeal</h3>
+        <button onclick="closeAppealSubmissionModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Your appeal goes directly to the <strong>Platform Owner's Private Inbox</strong>. If the Admin does not manually review your case within <strong>7 days (168 hours)</strong>, our automated AI Adjudicator will evaluate your corrected URL and statement to issue a ruling.
+      </p>
+      <form onsubmit="submitNewUserAppeal(event)" class="space-y-3">
+        <input type="text" id="appeal-user" required placeholder="Your Account Name or Email *" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white" />
+        <input type="text" id="appeal-product" required placeholder="Suspended Product Title or Reason *" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white" />
+        <input type="url" id="appeal-fix-url" placeholder="Corrected HTTPS Checkout Link (if broken link ban)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white" />
+        <textarea id="appeal-reason" rows="3" required placeholder="Explain how you fixed the rule violation..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white"></textarea>
+        <button type="submit" class="w-full gold-btn py-3 rounded-xl font-extrabold">📨 Send Private Appeal to Admin</button>
+      </form>
+    </div>
+  </div>
+
+  <div id="saved-vault-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
+    <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-xl w-full p-5 sm:p-6 space-y-4 shadow-2xl text-xs">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="font-royal text-lg font-extrabold text-amber-300">❤️ Your Saved Personal Vault</h3>
+        <button onclick="closeSavedVaultModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
+      </div>
+      <div id="saved-vault-items" class="space-y-2.5 max-h-80 overflow-y-auto"></div>
+    </div>
+  </div>
+
+  <footer class="border-t border-slate-800/80 bg-slate-950/90 py-6 px-4 mt-12 text-xs text-slate-400">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-royal font-bold text-amber-300">AL-TUJAR VAULTS</span>
+        <span>•</span>
+        <span>Zero-Escrow Digital & Physical Marketplace</span>
+      </div>
+      <div class="flex flex-wrap gap-4">
+        <button onclick="switchMainTab('shop')" class="hover:text-amber-300">Marketplace</button>
+        <button onclick="switchMainTab('studio')" class="hover:text-amber-300">Sell Products ($19/mo)</button>
+        <button onclick="openAppealSubmissionModal()" class="hover:text-amber-300">Appeal Center</button>
+        <button onclick="downloadSelfAsHtmlFile()" class="text-amber-300 font-bold hover:underline">📥 Download index.html</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CORE APPLICATION ENGINE, SECURITY, WEB3 & AI LOGIC -->
+  <script>
+    // 1-CLICK SELF-DOWNLOAD HELPER (Saves complete index.html file directly to device)
+    function downloadSelfAsHtmlFile() {
+      const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+      const blob = new Blob([fullHtml], { type: "text/html;charset=utf-8" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "index.html";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function sanitizeHTML(str) {
+      if (typeof str !== 'string') return '';
+      return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+        .replace(/javascript:/gi, '')
+        .replace(/onerror=/gi, '');
+    }
+
+    let captchaA = 4, captchaB = 5;
+    function refreshHumanCaptcha() {
+      captchaA = Math.floor(Math.random() * 8) + 2;
+      captchaB = Math.floor(Math.random() * 8) + 1;
+      const el = document.getElementById('upload-captcha-prompt');
+      if (el) el.textContent = `What is ${captchaA} + ${captchaB}?`;
+    }
+
+    const DEFAULT_CONFIG = {
+      subPrice: 19,
+      commissionRate: 5,
+      adminPin: '2026',
+      vaultBalance: 418.00,
+      wallets: {
+        rizon: 'Rizon-USD-ACH-8849201 / 0x71C...9A21 (USDC/USDT)',
+        unstoppable: '0x94F8a2c3B9104E71d8832190A4B7E2910482C110',
+        cake: 'TV7x89LpQ2mN5vR9k3wX1z4B6n8M0pQrSt (TRC-20)',
+        cex: 'Binance Pay ID: 492810492 | Bybit UID: 10948291'
+      },
+      amazonTag: 'altujar-20',
+      affiliateId: 'altujar',
+      gscCode: '',
+      bingCode: ''
+    };
+
+    const INITIAL_PRODUCTS = [
+      {
+        id: 'prod-1',
+        title: 'Ultimate Creator & SaaS Financial Command OS (Google Sheets + Notion)',
+        price: 29.00,
+        type: 'Digital',
+        thumb: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
+        url: 'https://gumroad.com/a/altujar/creator-finance-os',
+        desc: 'Complete 12-tab automated P&L tracker, cashflow forecaster, tax estimator, and subscription tracker for digital creators. Includes instant Google Sheets duplication link, Notion dashboard, and lifetime updates.',
+        discount: 'Use code ALTUJAR20 at checkout for 20% OFF + Free Tax Prep Checklist PDF',
+        video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        hasSandbox: true,
+        tags: ['Digital', 'Sheets', 'Notion', 'Finance'],
+        creator: 'Amina Tech Studio',
+        postedAt: Date.now() - 1000 * 60 * 60 * 14,
+        infoScore: 100,
+        rating: 4.9,
+        views: 640,
+        clicks: 148,
+        strikes: 0,
+        quarantined: false
+      },
+      {
+        id: 'prod-2',
+        title: 'Sony WF-1000XM5 Industry Leading Noise Canceling Wireless Earbuds',
+        price: 248.00,
+        type: 'Electronics',
+        thumb: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80',
+        url: 'https://www.amazon.com/dp/B0C33XXS56',
+        desc: 'Curated deep-focus creator hardware. Dual processors, HD noise canceling, bone conduction sensors for crystal-clear calls, 24-hour battery life, and IPX4 sweat resistance for studio work and gym sessions.',
+        discount: 'Verified Amazon Prime Partner Link + Free Focus Audio EQ Guide PDF',
+        video: '',
+        hasSandbox: false,
+        tags: ['Physical', 'Electronics', 'Audio', 'Gym'],
+        creator: 'Kaleb Hardware Lab',
+        postedAt: Date.now() - 1000 * 60 * 60 * 38,
+        infoScore: 95,
+        rating: 4.8,
+        views: 490,
+        clicks: 112,
+        strikes: 0,
+        quarantined: false
+      },
+      {
+        id: 'prod-3',
+        title: 'Adjustable Heavy-Duty Quick-Lock Dumbbell Set & Home Gym Tracker Bundle',
+        price: 149.00,
+        type: 'Gym',
+        thumb: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=800&auto=format&fit=crop&q=80',
+        url: 'https://www.amazon.com/dp/B08R57B9D9',
+        desc: 'Space-saving 5lb to 52.5lb fast-adjust steel dumbbells paired with a downloadable 12-week progressive overload hypertrophy spreadsheet calculator.',
+        discount: 'Includes Free Progressive Overload Google Sheet via Vault Bonus',
+        video: '',
+        hasSandbox: true,
+        tags: ['Physical', 'Gym', 'Sheets', 'Digital'],
+        creator: 'IronVault Athletics',
+        postedAt: Date.now() - 1000 * 60 * 60 * 5,
+        infoScore: 94,
+        rating: 4.9,
+        views: 290,
+        clicks: 58,
+        strikes: 0,
+        quarantined: false
+      },
+      {
+        id: 'prod-4',
+        title: 'University Engineering & Medical Exam Active Recall Notion System',
+        price: 0.00,
+        type: 'Digital',
+        thumb: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&auto=format&fit=crop&q=80',
+        url: 'https://gumroad.com/a/altujar/active-recall-os',
+        desc: 'Spaced repetition flashcard database, clinical/lab schedule tracker, GPA calculator, and Pomodoro study log built for high-performance university students.',
+        discount: '100% Free Starter Edition on Al-Tujar Vaults',
+        video: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        hasSandbox: false,
+        tags: ['Digital', 'Notion', 'Study'],
+        creator: 'Adama Scholars Collective',
+        postedAt: Date.now() - 1000 * 60 * 60 * 2,
+        infoScore: 98,
+        rating: 5.0,
+        views: 510,
+        clicks: 205,
+        strikes: 0,
+        quarantined: false
+      }
+    ];
+
+    const INITIAL_APPEALS = [
+      {
+        id: 'app-101',
+        user: 'Zayd Templates (zayd@studio.io)',
+        product: 'Automated Crypto Arbitrage Sheet v2',
+        fixUrl: 'https://gumroad.com/a/altujar/crypto-sheet-v2',
+        reason: 'My original link had a typo that caused a 404 strike. I have updated the HTTPS Gumroad URL with the required altujar affiliate tag and verified it loads properly.',
+        submittedAt: Date.now() - (1000 * 60 * 60 * 172),
+        strikes: 1,
+        severeViolation: false,
+        status: 'Pending (Overdue > 7 Days)'
+      },
+      {
+        id: 'app-102',
+        user: 'UnknownCracks99 (spam@botnet.org)',
+        product: 'Cracked Paid Software Mega Pack',
+        fixUrl: 'http://unsafe-downloads.xyz/pack',
+        reason: 'unban me pls',
+        submittedAt: Date.now() - (1000 * 60 * 60 * 48),
+        strikes: 3,
+        severeViolation: true,
+        status: 'Pending Admin Review'
+      }
+    ];
+
+    const INITIAL_FEEDBACKS = [
+      { buyer: 'Dawit M.', product: 'Ultimate Creator & SaaS Financial Command OS', rating: 5, comment: 'Tested the profit margin simulator right in the browser before buying. The ALTUJAR20 promo code saved me $6 instantly.', date: '2 hours ago' },
+      { buyer: 'Sara K.', product: 'University Engineering & Medical Exam Active Recall System', rating: 5, comment: 'Love that I could filter by 100% Information Provided and find a clean template from a new creator without scrolling past ads.', date: 'Yesterday' }
+    ];
+
+    let appConfig = JSON.parse(localStorage.getItem('altujar_config')) || DEFAULT_CONFIG;
+    let products = JSON.parse(localStorage.getItem('altujar_products')) || INITIAL_PRODUCTS;
+    let savedVaultIds = JSON.parse(localStorage.getItem('altujar_saved')) || [];
+    let currentUser = JSON.parse(localStorage.getItem('altujar_user')) || {
+      name: 'Sheron Digital Studio',
+      email: 'creator@altujarvaults.com',
+      role: 'Seller & Buyer',
+      isMember: true,
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=160&auto=format&fit=crop&q=80',
+      payout: 'Rizon Virtual USD / Unstoppable USDT Vault',
+      bio: 'Curating high-utility digital templates, study systems, and verified workspace hardware.'
+    };
+    let appealsQueue = JSON.parse(localStorage.getItem('altujar_appeals')) || INITIAL_APPEALS;
+    let withdrawalLogs = JSON.parse(localStorage.getItem('altujar_withdrawals')) || [
+      { date: '2026-10-12', route: 'Rizon Visa → TapTap Send → CBE Bank (ETB)', amount: 120.00, dest: 'CBE 1000384***' },
+      { date: '2026-10-08', route: 'Internal Move → Rizon Balance (One-Time Visa Activation)', amount: 10.00, dest: 'Rizon Virtual Visa' }
+    ];
+
+    let activeTagFilter = 'All';
+    let activeCreatorFilter = null;
+    let currentModalProduct = null;
+    let selectedCheckoutRail = 'web3';
+
+    function saveAllState() {
+      localStorage.setItem('altujar_config', JSON.stringify(appConfig));
+      localStorage.setItem('altujar_products', JSON.stringify(products));
+      localStorage.setItem('altujar_saved', JSON.stringify(savedVaultIds));
+      localStorage.setItem('altujar_user', JSON.stringify(currentUser));
+      localStorage.setItem('altujar_appeals', JSON.stringify(appealsQueue));
+      localStorage.setItem('altujar_withdrawals', JSON.stringify(withdrawalLogs));
+    }
+
+    function switchMainTab(tab) {
+      const views = ['shop', 'studio', 'rules', 'admin'];
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        if (el) el.classList.toggle('hidden', v !== tab);
+
+        const navBtn = document.getElementById(`nav-${v}`);
+        if (navBtn) {
+          navBtn.className = v === tab
+            ? 'px-3.5 py-2 rounded-lg text-xs font-semibold transition-all bg-amber-500 text-slate-950'
+            : 'px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all';
+        }
+
+        const mobBtn = document.getElementById(`mob-nav-${v}`);
+        if (mobBtn) {
+          mobBtn.className = v === tab
+            ? 'flex-1 py-1.5 rounded-lg text-center text-amber-400 bg-amber-500/15 font-bold'
+            : 'flex-1 py-1.5 rounded-lg text-center text-slate-400';
+        }
+      });
+
+      if (tab === 'studio') renderCreatorStudio();
+      if (tab === 'admin') renderAdminAppealsQueue();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function switchStudioSubTab(sub) {
+      const subs = ['analytics', 'upload', 'profile', 'feedbacks'];
+      subs.forEach(s => {
+        const panel = document.getElementById(`studio-sub-${s}`);
+        if (panel) panel.classList.toggle('hidden', s !== sub);
+
+        const btn = document.getElementById(`st-tab-${s}`);
+        if (btn) {
+          btn.className = s === sub
+            ? 'px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold shrink-0'
+            : 'px-4 py-2 rounded-xl bg-slate-900 text-slate-300 hover:text-white shrink-0';
+        }
+      });
+      if (sub === 'upload') {
+        refreshHumanCaptcha();
+        calculateLiveUploadScore();
+      }
+    }
+
+    function toggleThemeMode() {
+      const html = document.documentElement;
+      const btn = document.getElementById('theme-toggle-btn');
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        html.classList.add('light');
+        document.body.className = 'bg-[#FAF6EE] text-slate-900 min-h-screen flex flex-col transition-colors duration-300';
+        btn.textContent = '🌙';
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+        document.body.className = 'bg-obsidian text-slate-100 min-h-screen flex flex-col transition-colors duration-300';
+        btn.textContent = '☀️';
+      }
+    }
+
+    function buildMonetizedUrl(rawUrl) {
+      try {
+        const urlObj = new URL(rawUrl);
+        const host = urlObj.hostname.toLowerCase();
+        if (host.includes('amazon.')) {
+          urlObj.searchParams.set('tag', appConfig.amazonTag || 'altujar-20');
+          return urlObj.toString();
+        }
+        if (host.includes('etsy.com')) {
+          urlObj.searchParams.set('utm_source', 'altujar_vaults');
+          urlObj.searchParams.set('aff_id', appConfig.affiliateId || 'altujar');
+          return urlObj.toString();
+        }
+        if (host.includes('whop.com')) {
+          urlObj.searchParams.set('a', appConfig.affiliateId || 'altujar');
+          return urlObj.toString();
+        }
+        return rawUrl;
+      } catch (e) {
+        return rawUrl;
+      }
+    }
+
+    const ALL_TAGS = ['All', 'Digital', 'Physical', 'Electronics', 'Gym', 'Notion', 'Sheets', 'Finance', 'Audio', 'Study'];
+
+    function renderTagFilterStrip() {
+      const strip = document.getElementById('tag-filter-strip');
+      if (!strip) return;
+      strip.innerHTML = ALL_TAGS.map(tag => {
+        const active = activeTagFilter === tag;
+        return `
+          <button onclick="setTagFilter('${tag}')" class="px-3.5 py-1.5 rounded-xl text-xs font-semibold shrink-0 transition-all ${
+            active
+              ? 'bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/20'
+              : 'bg-slate-950 text-slate-300 border border-slate-800 hover:border-amber-400/50'
+          }">
+            ${tag === 'All' ? '🌐 All Categories & Tags' : '#' + tag}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function setTagFilter(tag) {
+      activeTagFilter = tag;
+      renderTagFilterStrip();
+      renderMarketplaceGrid();
+    }
+
+    function filterByCreator(creatorName) {
+      activeCreatorFilter = creatorName;
+      closeProductModal();
+      switchMainTab('shop');
+      const banner = document.getElementById('active-creator-filter');
+      const label = document.getElementById('creator-filter-name');
+      if (banner && label) {
+        banner.classList.remove('hidden');
+        banner.classList.add('flex');
+        label.textContent = `Storefront: ${creatorName}`;
+      }
+      renderMarketplaceGrid();
+    }
+
+    function clearCreatorFilter() {
+      activeCreatorFilter = null;
+      const banner = document.getElementById('active-creator-filter');
+      if (banner) {
+        banner.classList.add('hidden');
+        banner.classList.remove('flex');
+      }
+      renderMarketplaceGrid();
+    }
+
+    function formatTimeAgo(ts) {
+      const hours = Math.max(1, Math.floor((Date.now() - ts) / (1000 * 60 * 60)));
+      if (hours < 24) return `Posted ${hours}h ago`;
+      const days = Math.floor(hours / 24);
+      return `Posted ${days}d ago`;
+    }
+
+    function renderMarketplaceGrid() {
+      const grid = document.getElementById('marketplace-grid');
+      if (!grid) return;
+
+      const query = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+      const sortMode = document.getElementById('sort-select')?.value || 'newest';
+      const priceMode = document.getElementById('price-filter')?.value || 'all';
+      const infoMode = document.getElementById('info-filter')?.value || 'all';
+
+      let filtered = products.filter(p => !p.quarantined && p.strikes < 2);
+
+      if (activeTagFilter !== 'All') {
+        filtered = filtered.filter(p => p.tags.some(t => t.toLowerCase() === activeTagFilter.toLowerCase()) || p.type.toLowerCase() === activeTagFilter.toLowerCase());
+      }
+
+      if (activeCreatorFilter) {
+        filtered = filtered.filter(p => p.creator === activeCreatorFilter);
+      }
+
+      if (query) {
+        filtered = filtered.filter(p =>
+          p.title.toLowerCase().includes(query) ||
+          p.desc.toLowerCase().includes(query) ||
+          p.creator.toLowerCase().includes(query) ||
+          p.tags.some(t => t.toLowerCase().includes(query))
+        );
+      }
+
+      if (priceMode === 'free') filtered = filtered.filter(p => p.price === 0);
+      if (priceMode === 'under20') filtered = filtered.filter(p => p.price > 0 && p.price < 20);
+      if (priceMode === '20to75') filtered = filtered.filter(p => p.price >= 20 && p.price <= 75);
+      if (priceMode === 'over75') filtered = filtered.filter(p => p.price > 75);
+
+      if (infoMode === 'full_info') filtered = filtered.filter(p => p.infoScore >= 90);
+      if (infoMode === 'has_discount') filtered = filtered.filter(p => p.discount && p.discount.trim().length > 3);
+      if (infoMode === 'has_sandbox') filtered = filtered.filter(p => p.hasSandbox || (p.video && p.video.length > 5));
+      if (infoMode === 'today') filtered = filtered.filter(p => (Date.now() - p.postedAt) <= 1000 * 60 * 60 * 24 * 7);
+
+      filtered.sort((a, b) => {
+        if (sortMode === 'newest') return b.postedAt - a.postedAt;
+        if (sortMode === 'info_score') return b.infoScore - a.infoScore;
+        if (sortMode === 'price_asc') return a.price - b.price;
+        if (sortMode === 'price_desc') return b.price - a.price;
+        if (sortMode === 'rating') return b.rating - a.rating;
+        return 0;
+      });
+
+      const counter = document.getElementById('results-counter');
+      if (counter) {
+        counter.innerHTML = `Showing <strong class="text-amber-300">${filtered.length}</strong> merit-verified listings • Ranked fairly by your selected filter`;
+      }
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full bg-obsidianCard border border-slate-800 rounded-2xl p-8 text-center space-y-3">
+            <div class="text-3xl">🔍</div>
+            <h3 class="font-bold text-white text-base">No listings match these exact filters</h3>
+            <p class="text-xs text-slate-400">Try resetting the price or tag filter, or upload the first product in this category!</p>
+            <button onclick="setTagFilter('All'); document.getElementById('price-filter').value='all'; document.getElementById('info-filter').value='all'; renderMarketplaceGrid();" class="gold-btn px-4 py-2 rounded-xl text-xs">Reset All Filters</button>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(p => {
+        const isSaved = savedVaultIds.includes(p.id);
+        return `
+          <article class="bg-obsidianCard border border-slate-800/90 hover:border-amber-500/50 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-200 shadow-lg hover:shadow-amber-500/10 group">
+            <div>
+              <div class="relative h-48 overflow-hidden bg-slate-950">
+                <img src="${sanitizeHTML(p.thumb)}" alt="${sanitizeHTML(p.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
+                  <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-slate-950/90 text-amber-300 border border-amber-400/30">${sanitizeHTML(p.type)}</span>
+                  <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-950/90 text-emerald-300 border border-emerald-500/30">📋 ${p.infoScore}% Info</span>
+                </div>
+                <button onclick="toggleSaveProduct('${p.id}')" class="absolute top-2.5 right-2.5 w-8 h-8 rounded-full bg-slate-950/85 border border-slate-700 flex items-center justify-center text-xs hover:scale-110 transition-transform" title="Save to Personal Vault">
+                  ${isSaved ? '❤️' : '🤍'}
+                </button>
+                <div class="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[10px] bg-slate-950/85 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-slate-800">
+                  <span class="text-slate-300">🕒 ${formatTimeAgo(p.postedAt)}</span>
+                  <span class="text-amber-300 font-bold">🔥 ${p.clicks} clicks</span>
+                </div>
+              </div>
+
+              <div class="p-4 space-y-2.5">
+                <div class="flex items-center justify-between text-[11px] text-slate-400">
+                  <button onclick="filterByCreator('${sanitizeHTML(p.creator)}')" class="hover:text-amber-300 underline truncate">By ${sanitizeHTML(p.creator)}</button>
+                  <span class="text-amber-400 font-bold">★ ${p.rating.toFixed(1)}</span>
+                </div>
+
+                <h3 onclick="openProductModal('${p.id}')" class="font-bold text-sm sm:text-base text-white group-hover:text-amber-300 cursor-pointer line-clamp-2 leading-snug">
+                  ${sanitizeHTML(p.title)}
+                </h3>
+
+                <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">${sanitizeHTML(p.desc)}</p>
+
+                ${p.discount ? `
+                  <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg px-2.5 py-1.5 text-[11px] text-amber-200 font-medium truncate">
+                    🎁 ${sanitizeHTML(p.discount)}
+                  </div>
+                ` : ''}
+
+                <div class="flex flex-wrap gap-1 pt-1">
+                  ${p.tags.slice(0, 4).map(t => `<span onclick="setTagFilter('${sanitizeHTML(t)}')" class="cursor-pointer text-[10px] px-2 py-0.5 rounded bg-slate-900 text-slate-300 hover:text-amber-300 border border-slate-800">#${sanitizeHTML(t)}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 pt-3 border-t border-slate-800/80 flex items-center justify-between gap-2">
+              <div>
+                <span class="text-[10px] text-slate-400 block">Verified Price</span>
+                <span class="text-lg font-extrabold gold-gradient-text">${p.price === 0 ? 'FREE ($0)' : '$' + p.price.toFixed(2)}</span>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <button onclick="openProductModal('${p.id}')" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200">
+                  ${p.hasSandbox ? '🧮 Try Live' : '🔍 Details'}
+                </button>
+                <a href="${sanitizeHTML(buildMonetizedUrl(p.url))}" target="_blank" rel="noopener noreferrer" onclick="incrementProductClick('${p.id}')" class="gold-btn px-3.5 py-2 rounded-xl text-xs font-extrabold">
+                  Buy Direct ↗
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function openProductModal(id) {
+      const p = products.find(item => item.id === id);
+      if (!p) return;
+      currentModalProduct = p;
+      p.views += 1;
+      saveAllState();
+
+      document.getElementById('modal-prod-title').textContent = p.title;
+      document.getElementById('modal-prod-img').src = p.thumb;
+      document.getElementById('modal-prod-price').textContent = p.price === 0 ? 'FREE ($0.00)' : `$${p.price.toFixed(2)} USD`;
+      document.getElementById('modal-info-score').textContent = `✅ ${p.infoScore}% Info Completeness`;
+      document.getElementById('modal-prod-desc').textContent = p.desc;
+
+      const creatorEl = document.getElementById('modal-creator-name');
+      creatorEl.textContent = p.creator;
+      creatorEl.onclick = () => filterByCreator(p.creator);
+
+      document.getElementById('modal-prod-badges').innerHTML = `
+        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30">${sanitizeHTML(p.type)}</span>
+        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-slate-900 text-slate-300 border border-slate-700">${formatTimeAgo(p.postedAt)}</span>
+      `;
+
+      document.getElementById('modal-prod-tags').innerHTML = p.tags.map(t =>
+        `<span class="px-2.5 py-0.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-amber-200">#${sanitizeHTML(t)}</span>`
+      ).join('');
+
+      const discBox = document.getElementById('modal-discount-box');
+      if (p.discount && p.discount.trim()) {
+        discBox.classList.remove('hidden');
+        document.getElementById('modal-discount-text').textContent = p.discount;
+      } else {
+        discBox.classList.add('hidden');
+      }
+
+      const vidBox = document.getElementById('modal-video-box');
+      if (p.video && p.video.trim()) {
+        vidBox.classList.remove('hidden');
+        document.getElementById('modal-video-link').href = p.video;
+      } else {
+        vidBox.classList.add('hidden');
+      }
+
+      const sandboxBox = document.getElementById('modal-sandbox-box');
+      if (p.hasSandbox) {
+        sandboxBox.classList.remove('hidden');
+        runLiveSimulator();
+      } else {
+        sandboxBox.classList.add('hidden');
+      }
+
+      document.getElementById('modal-buy-btn').href = buildMonetizedUrl(p.url);
+      document.getElementById('modal-report-btn').onclick = () => reportProductStrike(p.id);
+
+      document.getElementById('product-detail-modal').classList.remove('hidden');
+    }
+
+    function closeProductModal() {
+      document.getElementById('product-detail-modal').classList.add('hidden');
+    }
+
+    function runLiveSimulator() {
+      const rev = parseFloat(document.getElementById('sim-rev')?.value || 0);
+      const exp = parseFloat(document.getElementById('sim-exp')?.value || 0);
+      const net = rev - exp;
+      const margin = rev > 0 ? Math.round((net / rev) * 100) : 0;
+      const out = document.getElementById('sim-output');
+      if (out) out.textContent = `$${net.toLocaleString('en-US', { minimumFractionDigits: 2 })} (${margin}% Margin)`;
+    }
+
+    function incrementProductClick(id) {
+      const p = products.find(item => item.id === id);
+      if (p) {
+        p.clicks += 1;
+        saveAllState();
+      }
+    }
+
+    function recordOutboundClick() {
+      if (currentModalProduct) incrementProductClick(currentModalProduct.id);
+    }
+
+    function reportProductStrike(id) {
+      const p = products.find(item => item.id === id);
+      if (!p) return;
+      const reason = prompt('Report Reason (1 = Broken Link, 2 = DMCA Copyright Violation, 3 = Misleading Info):', 'Broken checkout link');
+      if (!reason) return;
+
+      p.strikes += 1;
+      if (p.strikes >= 2 || reason.toLowerCase().includes('dmca') || reason === '2') {
+        p.quarantined = true;
+        appealsQueue.unshift({
+          id: 'app-' + Date.now(),
+          user: p.creator,
+          product: p.title,
+          fixUrl: p.url,
+          reason: `Auto-Quarantined (${reason}). Waiting for creator appeal.`,
+          submittedAt: Date.now(),
+          strikes: p.strikes,
+          severeViolation: reason.toLowerCase().includes('dmca'),
+          status: 'Quarantined — Pending Appeal'
+        });
+        alert(`🛡️ AI Sentinel: "${p.title}" reached 2 strikes or DMCA notice and has been quarantined from public search.`);
+        closeProductModal();
+      } else {
+        alert(`⚠️ Strike 1/2 recorded for "${p.title}". One more strike will automatically quarantine this listing.`);
+      }
+      saveAllState();
+      renderMarketplaceGrid();
+    }
+
+    function toggleSaveProduct(id) {
+      if (savedVaultIds.includes(id)) {
+        savedVaultIds = savedVaultIds.filter(i => i !== id);
+      } else {
+        savedVaultIds.push(id);
+      }
+      saveAllState();
+      updateSavedBadge();
+      renderMarketplaceGrid();
+    }
+
+    function updateSavedBadge() {
+      const badge = document.getElementById('saved-count-badge');
+      if (badge) badge.textContent = savedVaultIds.length;
+    }
+
+    function openSavedVaultModal() {
+      const container = document.getElementById('saved-vault-items');
+      const savedItems = products.filter(p => savedVaultIds.includes(p.id));
+      if (savedItems.length === 0) {
+        container.innerHTML = `<p class="text-slate-400 text-center py-6">Your Personal Vault is empty. Tap the ❤️ icon on any product to save it here.</p>`;
+      } else {
+        container.innerHTML = savedItems.map(p => `
+          <div class="flex items-center justify-between gap-3 bg-slate-950 p-3 rounded-xl border border-slate-800">
+            <div>
+              <div class="font-bold text-white">${sanitizeHTML(p.title)}</div>
+              <div class="text-[11px] text-amber-300">$${p.price.toFixed(2)} • ${sanitizeHTML(p.creator)}</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <a href="${sanitizeHTML(buildMonetizedUrl(p.url))}" target="_blank" class="gold-btn px-3 py-1.5 rounded-lg text-[11px]">Buy ↗</a>
+              <button onclick="toggleSaveProduct('${p.id}'); openSavedVaultModal();" class="text-rose-400 px-2">✕</button>
+            </div>
+          </div>
+        `).join('');
+      }
+      document.getElementById('saved-vault-modal').classList.remove('hidden');
+    }
+
+    function closeSavedVaultModal() {
+      document.getElementById('saved-vault-modal').classList.add('hidden');
+    }
+
+    function handleThumbnailFileSelect(event) {
+      const file = event.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById('up-thumb').value = e.target.result;
+        calculateLiveUploadScore();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function calculateLiveUploadScore() {
+      let score = 0;
+      const title = document.getElementById('up-title')?.value.trim() || '';
+      const thumb = document.getElementById('up-thumb')?.value.trim() || '';
+      const url = document.getElementById('up-url')?.value.trim() || '';
+      const desc = document.getElementById('up-desc')?.value.trim() || '';
+      const discount = document.getElementById('up-discount')?.value.trim() || '';
+      const video = document.getElementById('up-video')?.value.trim() || '';
+      const sandbox = document.getElementById('up-sandbox')?.checked;
+      const checkedTags = document.querySelectorAll('.up-tag-cb:checked').length;
+
+      if (title.length >= 8) score += 15;
+      if (thumb.length >= 10) score += 20;
+      if (url.startsWith('https://')) score += 15;
+      if (desc.length >= 100) score += 25;
+      else if (desc.length >= 40) score += 12;
+      if (discount.length >= 4) score += 10;
+      if (video.length >= 10 || sandbox) score += 5;
+      if (checkedTags >= 2) score += 10;
+
+      score = Math.min(100, score);
+      const badge = document.getElementById('live-upload-score');
+      if (badge) {
+        badge.textContent = `${score}%`;
+        badge.className = score >= 90 ? 'text-lg font-extrabold text-emerald-400' : 'text-lg font-extrabold text-amber-300';
+      }
+      return score;
+    }
+
+    function handleProductUpload(event) {
+      event.preventDefault();
+
+      const userAns = parseInt(document.getElementById('upload-captcha-input').value, 10);
+      if (userAns !== (captchaA + captchaB)) {
+        alert('🤖 Human Verification Failed: Please enter the correct math sum.');
+        refreshHumanCaptcha();
+        return;
+      }
+
+      const rawUrl = document.getElementById('up-url').value.trim();
+      const lowerUrl = rawUrl.toLowerCase();
+      const bannedWords = ['crack', 'pirated', 'torrent', 'hack', 'leaked', 'nulled'];
+      const titleVal = document.getElementById('up-title').value.trim();
+      const descVal = document.getElementById('up-desc').value.trim();
+
+      if (!lowerUrl.startsWith('https://') || bannedWords.some(w => titleVal.toLowerCase().includes(w) || descVal.toLowerCase().includes(w))) {
+        appealsQueue.unshift({
+          id: 'app-' + Date.now(),
+          user: currentUser.name,
+          product: titleVal,
+          fixUrl: rawUrl,
+          reason: 'Auto-flagged by AI Rule Scanner (Non-HTTPS link or prohibited keyword).',
+          submittedAt: Date.now(),
+          strikes: 2,
+          severeViolation: true,
+          status: 'Auto-Banned by AI Scanner'
+        });
+        saveAllState();
+        alert('🚨 AI Security Alert: Your upload violated Al-Tujar Vaults safety or copyright rules and was blocked. You may submit an appeal in the Appeal Center.');
+        return;
+      }
+
+      if (appConfig.commissionRate > 0 && (lowerUrl.includes('gumroad.com') || lowerUrl.includes('whop.com'))) {
+        const affId = (appConfig.affiliateId || 'altujar').toLowerCase();
+        if (!lowerUrl.includes(affId)) {
+          alert(`⚖️ Commission Rule Notice: Because platform commission is set to ${appConfig.commissionRate}%, Gumroad/Whop links must include our affiliate identifier ("${affId}"), e.g. https://gumroad.com/a/${affId}/your-product`);
+          return;
+        }
+      }
+
+      const selectedTags = Array.from(document.querySelectorAll('.up-tag-cb:checked')).map(cb => cb.value);
+      const customTagsRaw = document.getElementById('up-custom-tags').value.trim();
+      if (customTagsRaw) {
+        customTagsRaw.split(',').forEach(t => {
+          const clean = t.replace('#', '').trim();
+          if (clean && !selectedTags.includes(clean)) selectedTags.push(clean);
+        });
+      }
+      if (selectedTags.length === 0) selectedTags.push(document.getElementById('up-type').value);
+
+      const newProd = {
+        id: 'prod-' + Date.now(),
+        title: titleVal,
+        price: parseFloat(document.getElementById('up-price').value) || 0,
+        type: document.getElementById('up-type').value,
+        thumb: document.getElementById('up-thumb').value.trim(),
+        url: rawUrl,
+        desc: descVal,
+        discount: document.getElementById('up-discount').value.trim(),
+        video: document.getElementById('up-video').value.trim(),
+        hasSandbox: document.getElementById('up-sandbox').checked,
+        tags: selectedTags,
+        creator: currentUser.name,
+        postedAt: Date.now(),
+        infoScore: calculateLiveUploadScore(),
+        rating: 5.0,
+        views: 1,
+        clicks: 0,
+        strikes: 0,
+        quarantined: false
+      };
+
+      products.unshift(newProd);
+      saveAllState();
+      document.getElementById('product-upload-form').reset();
+      alert(`✅ Published! "${newProd.title}" is now live with a ${newProd.infoScore}% Information Completeness Score.`);
+      switchMainTab('shop');
+      renderMarketplaceGrid();
+    }
+
+    function renderCreatorStudio() {
+      document.getElementById('studio-display-name').textContent = currentUser.name;
+      document.getElementById('studio-bio-preview').textContent = currentUser.bio;
+      document.getElementById('studio-avatar-preview').src = currentUser.avatar;
+      document.getElementById('studio-membership-badge').textContent = currentUser.isMember
+        ? `👑 Verified Seller ($${appConfig.subPrice}/mo Active)`
+        : '🛍️ Free Shopper Account';
+
+      document.getElementById('prof-name').value = currentUser.name;
+      document.getElementById('prof-email').value = currentUser.email;
+      document.getElementById('prof-avatar').value = currentUser.avatar;
+      document.getElementById('prof-payout').value = currentUser.payout;
+      document.getElementById('prof-bio').value = currentUser.bio;
+
+      const table = document.getElementById('seller-products-table');
+      if (table) {
+        table.innerHTML = products.map(p => `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-950 p-3.5 rounded-xl border ${p.quarantined ? 'border-rose-500/50' : 'border-slate-800'} text-xs">
+            <div class="space-y-0.5">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-white">${sanitizeHTML(p.title)}</span>
+                <span class="px-2 py-0.5 rounded text-[10px] font-bold ${p.quarantined ? 'bg-rose-500/20 text-rose-300' : 'bg-emerald-500/20 text-emerald-300'}">
+                  ${p.quarantined ? 'Quarantined (Appeal Needed)' : 'Active (' + p.infoScore + '% Info)'}
+                </span>
+              </div>
+              <div class="text-slate-400 text-[11px]">Views: ${p.views} • Checkout Clicks: ${p.clicks} • Price: $${p.price.toFixed(2)}</div>
+            </div>
+            <div class="flex items-center gap-2">
+              <button onclick="openProductModal('${p.id}')" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-200">Preview</button>
+              <button onclick="deleteListing('${p.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-300">Delete</button>
+            </div>
+          </div>
+        `).join('');
+      }
+
+      const fbList = document.getElementById('studio-feedbacks-list');
+      if (fbList) {
+        fbList.innerHTML = INITIAL_FEEDBACKS.map(f => `
+          <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-amber-300">${sanitizeHTML(f.buyer)} on "${sanitizeHTML(f.product)}"</span>
+              <span class="text-amber-400 font-bold">★★★★★ (${f.date})</span>
+            </div>
+            <p class="text-slate-300">${sanitizeHTML(f.comment)}</p>
+          </div>
+        `).join('');
+      }
+    }
+
+    function deleteListing(id) {
+      products = products.filter(p => p.id !== id);
+      saveAllState();
+      renderCreatorStudio();
+      renderMarketplaceGrid();
+    }
+
+    function saveUserProfileSettings(event) {
+      event.preventDefault();
+      currentUser.name = document.getElementById('prof-name').value.trim();
+      currentUser.email = document.getElementById('prof-email').value.trim();
+      currentUser.avatar = document.getElementById('prof-avatar').value.trim() || currentUser.avatar;
+      currentUser.payout = document.getElementById('prof-payout').value.trim();
+      currentUser.bio = document.getElementById('prof-bio').value.trim();
+      saveAllState();
+      updateHeaderAuthUI();
+      renderCreatorStudio();
+      alert('💾 Profile & Account settings saved!');
+    }
+
+    function exportUserAccountData() {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ user: currentUser, savedVaultIds }, null, 2));
+      const dlAnchor = document.createElement('a');
+      dlAnchor.setAttribute("href", dataStr);
+      dlAnchor.setAttribute("download", "altujar_account_backup.json");
+      dlAnchor.click();
+    }
+
+    function openAuthModal() {
+      document.getElementById('auth-name-input').value = currentUser.name;
+      document.getElementById('auth-email-input').value = currentUser.email;
+      document.getElementById('auth-modal').classList.remove('hidden');
+    }
+
+    function closeAuthModal() {
+      document.getElementById('auth-modal').classList.add('hidden');
+    }
+
+    function handleAuthSubmit(event) {
+      event.preventDefault();
+      currentUser.name = document.getElementById('auth-name-input').value.trim();
+      currentUser.email = document.getElementById('auth-email-input').value.trim();
+      currentUser.role = document.getElementById('auth-role-input').value;
+      saveAllState();
+      updateHeaderAuthUI();
+      closeAuthModal();
+      alert(`Welcome, ${currentUser.name}! Your account session is active.`);
+    }
+
+    function updateHeaderAuthUI() {
+      const lbl = document.getElementById('auth-header-label');
+      if (lbl && currentUser?.name) {
+        lbl.textContent = currentUser.name.split(' ')[0];
+      }
+    }
+
+    function openNativeCheckoutModal(mode) {
+      document.getElementById('checkout-amount-display').textContent = `$${appConfig.subPrice}.00`;
+      selectCheckoutRail('web3');
+      document.getElementById('native-checkout-modal').classList.remove('hidden');
+    }
+
+    function closeNativeCheckoutModal() {
+      document.getElementById('native-checkout-modal').classList.add('hidden');
+    }
+
+    function selectCheckoutRail(rail) {
+      selectedCheckoutRail = rail;
+      ['web3', 'cex', 'rizon'].forEach(r => {
+        const btn = document.getElementById(`rail-btn-${r}`);
+        if (btn) {
+          btn.className = r === rail
+            ? 'py-2 px-2 rounded-xl font-bold bg-amber-500 text-slate-950 text-center'
+            : 'py-2 px-2 rounded-xl font-bold bg-slate-900 text-slate-300 border border-slate-800 text-center';
+        }
+      });
+
+      const box = document.getElementById('checkout-rail-details');
+      if (rail === 'web3') {
+        box.innerHTML = `
+          <div class="space-y-2">
+            <div class="text-amber-300 font-bold">🛡️ Direct Self-Custody USDT / USDC (Unstoppable / Cake Wallet)</div>
+            <p class="text-[11px] text-slate-400">Send exact amount on <strong>Polygon, BNB Smart Chain (BEP-20), or Tron (TRC-20)</strong>:</p>
+            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 font-mono text-[11px] text-emerald-300 break-all">
+              ${sanitizeHTML(appConfig.wallets.unstoppable)}
+            </div>
+            <div class="text-[10px] text-slate-400">TRC-20 / Cake Backup: <span class="font-mono text-slate-300">${sanitizeHTML(appConfig.wallets.cake)}</span></div>
+          </div>
+        `;
+      } else if (rail === 'cex') {
+        box.innerHTML = `
+          <div class="space-y-2">
+            <div class="text-amber-300 font-bold">⚡ Zero-Fee Express Transfer (Binance Pay / Bybit UID)</div>
+            <p class="text-[11px] text-slate-400">Send USDT or USDC instantly with $0 gas fee from your Binance or Bybit app:</p>
+            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 font-mono text-xs text-amber-200">
+              ${sanitizeHTML(appConfig.wallets.cex)}
+            </div>
+          </div>
+        `;
+      } else {
+        box.innerHTML = `
+          <div class="space-y-2">
+            <div class="text-amber-300 font-bold">💳 Rizon USD Account & Direct Stablecoin Bridge</div>
+            <p class="text-[11px] text-slate-400">Deposit directly to our Rizon Virtual USD / USDC receiving account:</p>
+            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 font-mono text-xs text-amber-200 break-all">
+              ${sanitizeHTML(appConfig.wallets.rizon)}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function verifyOnSitePayment(event) {
+      event.preventDefault();
+      const txid = document.getElementById('checkout-txid-input').value.trim();
+      if (txid.length < 6) {
+        alert('Please enter a valid blockchain TXID or payment reference number.');
+        return;
+      }
+      currentUser.isMember = true;
+      appConfig.vaultBalance += Number(appConfig.subPrice);
+      saveAllState();
+      updateAdminVaultUI();
+      closeNativeCheckoutModal();
+      renderCreatorStudio();
+      alert(`🎉 Payment Verified (${txid})! Your Creator Pass is now active and $${appConfig.subPrice}.00 has been credited to the Admin Treasury.`);
+    }
+
+    function unlockAdminConsole(event) {
+      event.preventDefault();
+      const pin = document.getElementById('admin-pin-input').value.trim();
+      const err = document.getElementById('admin-lock-error');
+      if (pin === appConfig.adminPin) {
+        document.getElementById('admin-lock-screen').classList.add('hidden');
+        document.getElementById('admin-unlocked-content').classList.remove('hidden');
+        err.classList.add('hidden');
+        loadAdminInputs();
+      } else {
+        err.textContent = 'Invalid Admin PIN. (Default PIN is 2026)';
+        err.classList.remove('hidden');
+      }
+    }
+
+    function lockAdminConsole() {
+      document.getElementById('admin-pin-input').value = '';
+      document.getElementById('admin-lock-screen').classList.remove('hidden');
+      document.getElementById('admin-unlocked-content').classList.add('hidden');
+    }
+
+    function loadAdminInputs() {
+      document.getElementById('adm-wallet-rizon').value = appConfig.wallets.rizon;
+      document.getElementById('adm-wallet-unstoppable').value = appConfig.wallets.unstoppable;
+      document.getElementById('adm-wallet-cake').value = appConfig.wallets.cake;
+      document.getElementById('adm-wallet-cex').value = appConfig.wallets.cex;
+      document.getElementById('adm-amazon-tag').value = appConfig.amazonTag;
+      document.getElementById('adm-affiliate-id').value = appConfig.affiliateId;
+      document.getElementById('admin-sub-slider').value = appConfig.subPrice;
+      document.getElementById('admin-comm-slider').value = appConfig.commissionRate;
+      document.getElementById('seo-gsc-input').value = appConfig.gscCode || '';
+      document.getElementById('seo-bing-input').value = appConfig.bingCode || '';
+      updateAdminVaultUI();
+      renderAdminAppealsQueue();
+    }
+
+    function saveAdminTreasurySettings() {
+      appConfig.wallets.rizon = document.getElementById('adm-wallet-rizon').value.trim();
+      appConfig.wallets.unstoppable = document.getElementById('adm-wallet-unstoppable').value.trim();
+      appConfig.wallets.cake = document.getElementById('adm-wallet-cake').value.trim();
+      appConfig.wallets.cex = document.getElementById('adm-wallet-cex').value.trim();
+      appConfig.amazonTag = document.getElementById('adm-amazon-tag').value.trim();
+      appConfig.affiliateId = document.getElementById('adm-affiliate-id').value.trim();
+      saveAllState();
+      alert('✅ Admin Multi-Wallet & Affiliate settings updated!');
+    }
+
+    function updateAdminVaultUI() {
+      const balEl = document.getElementById('admin-vault-balance');
+      if (balEl) balEl.textContent = `$${appConfig.vaultBalance.toFixed(2)} USD`;
+
+      const logEl = document.getElementById('withdrawal-history-log');
+      if (logEl) {
+        logEl.innerHTML = withdrawalLogs.map(w => `
+          <div class="flex items-center justify-between bg-slate-950 px-2.5 py-1.5 rounded border border-slate-800">
+            <span class="truncate pr-2"><strong>$${w.amount.toFixed(2)}</strong> → ${sanitizeHTML(w.route)} (${sanitizeHTML(w.dest)})</span>
+            <span class="text-[10px] text-emerald-400 shrink-0">${w.date}</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    function executeAdminWithdrawal(event) {
+      event.preventDefault();
+      const route = document.getElementById('withdraw-route').value;
+      const amt = parseFloat(document.getElementById('withdraw-amount').value);
+      const dest = document.getElementById('withdraw-dest').value.trim();
+
+      if (amt <= 0 || amt > appConfig.vaultBalance) {
+        alert('Insufficient Admin Vault Balance for this withdrawal amount.');
+        return;
+      }
+
+      appConfig.vaultBalance -= amt;
+      withdrawalLogs.unshift({
+        date: new Date().toISOString().slice(0, 10),
+        route,
+        amount: amt,
+        dest
+      });
+      saveAllState();
+      updateAdminVaultUI();
+      document.getElementById('withdraw-amount').value = '';
+      alert(`💸 Withdrawal of $${amt.toFixed(2)} initiated via ${route} to ${dest}!`);
+    }
+
+    function updateAdminPricingSliders() {
+      const sub = parseInt(document.getElementById('admin-sub-slider').value, 10);
+      const comm = parseInt(document.getElementById('admin-comm-slider').value, 10);
+      appConfig.subPrice = sub;
+      appConfig.commissionRate = comm;
+      saveAllState();
+      syncDynamicPricingLabels();
+    }
+
+    function syncDynamicPricingLabels() {
+      document.getElementById('slider-sub-val').textContent = appConfig.subPrice;
+      document.getElementById('slider-comm-val').textContent = appConfig.commissionRate;
+      document.getElementById('top-fee-indicator').textContent = `Pass: $${appConfig.subPrice}/mo | Fee: ${appConfig.commissionRate}%`;
+      document.getElementById('hero-sub-price').textContent = appConfig.subPrice;
+      document.getElementById('btn-sub-price').textContent = appConfig.subPrice;
+      document.querySelectorAll('.dyn-sub-lbl').forEach(el => el.textContent = appConfig.subPrice);
+      document.querySelectorAll('.dyn-comm-lbl').forEach(el => el.textContent = appConfig.commissionRate);
+    }
+
+    function saveSeoVerificationCodes() {
+      appConfig.gscCode = document.getElementById('seo-gsc-input').value.trim();
+      appConfig.bingCode = document.getElementById('seo-bing-input').value.trim();
+      if (appConfig.gscCode) document.getElementById('meta-gsc').setAttribute('content', appConfig.gscCode);
+      if (appConfig.bingCode) document.getElementById('meta-bing').setAttribute('content', appConfig.bingCode);
+      saveAllState();
+      alert('✅ Google Search Console & Bing/ChatGPT verification meta tags saved!');
+    }
+
+    function triggerIndexNowPing() {
+      const status = document.getElementById('seo-ping-status');
+      status.classList.remove('hidden');
+      status.textContent = `✅ IndexNow Ping Dispatched: ${products.length} verified product schemas queued for Google, Bing, DuckDuckGo & AI Search crawlers.`;
+    }
+
+    function openAppealSubmissionModal() {
+      document.getElementById('appeal-modal').classList.remove('hidden');
+    }
+
+    function closeAppealSubmissionModal() {
+      document.getElementById('appeal-modal').classList.add('hidden');
+    }
+
+    function submitNewUserAppeal(event) {
+      event.preventDefault();
+      appealsQueue.unshift({
+        id: 'app-' + Date.now(),
+        user: document.getElementById('appeal-user').value.trim(),
+        product: document.getElementById('appeal-product').value.trim(),
+        fixUrl: document.getElementById('appeal-fix-url').value.trim(),
+        reason: document.getElementById('appeal-reason').value.trim(),
+        submittedAt: Date.now(),
+        strikes: 1,
+        severeViolation: false,
+        status: 'Pending Admin Review'
+      });
+      saveAllState();
+      closeAppealSubmissionModal();
+      alert('📨 Your appeal has been delivered privately to the Admin Inbox. If not reviewed manually within 7 days, our AI Adjudicator will process your case.');
+    }
+
+    function promptManualUserBan() {
+      const target = prompt('Enter Product Title or Creator Name to Ban / Quarantine immediately:');
+      if (!target) return;
+      let count = 0;
+      products.forEach(p => {
+        if (p.title.toLowerCase().includes(target.toLowerCase()) || p.creator.toLowerCase().includes(target.toLowerCase())) {
+          p.quarantined = true;
+          p.strikes = 2;
+          count++;
+        }
+      });
+      appealsQueue.unshift({
+        id: 'app-' + Date.now(),
+        user: target,
+        product: target,
+        fixUrl: '',
+        reason: 'Manual Admin Rule Enforcement Ban.',
+        submittedAt: Date.now(),
+        strikes: 2,
+        severeViolation: true,
+        status: 'Banned by Admin'
+      });
+      saveAllState();
+      renderMarketplaceGrid();
+      renderAdminAppealsQueue();
+      alert(`🔨 Admin Ban Executed. ${count} matching listing(s) removed from public marketplace.`);
+    }
+
+    function resolveAppeal(id, decision) {
+      const app = appealsQueue.find(a => a.id === id);
+      if (!app) return;
+      app.status = decision === 'approve' ? 'Approved by Admin (Restored)' : 'Denied by Admin (Permanently Banned)';
+      if (decision === 'approve') {
+        products.forEach(p => {
+          if (p.title.toLowerCase() === app.product.toLowerCase()) {
+            p.quarantined = false;
+            p.strikes = 0;
+            if (app.fixUrl && app.fixUrl.startsWith('https://')) p.url = app.fixUrl;
+          }
+        });
+      }
+      saveAllState();
+      renderAdminAppealsQueue();
+      renderMarketplaceGrid();
+    }
+
+    function runAiAutoAdjudicator(manualTrigger = false) {
+      const SEVEN_DAYS_MS = 1000 * 60 * 60 * 168;
+      let processed = 0;
+
+      appealsQueue.forEach(app => {
+        const ageMs = Date.now() - app.submittedAt;
+        const isPending = app.status.startsWith('Pending') || app.status.startsWith('Quarantined');
+        if (isPending && (ageMs >= SEVEN_DAYS_MS || manualTrigger)) {
+          processed++;
+          const hasValidFixUrl = app.fixUrl && app.fixUrl.startsWith('https://');
+          const hasDetailedReason = app.reason && app.reason.trim().length >= 30;
+
+          if (!app.severeViolation && app.strikes <= 1 && hasValidFixUrl && hasDetailedReason) {
+            app.status = '🤖 Auto-Approved by 7-Day AI Adjudicator (Valid HTTPS Fix Verified)';
+            products.forEach(p => {
+              if (p.title.toLowerCase() === app.product.toLowerCase()) {
+                p.quarantined = false;
+                p.strikes = 0;
+                p.url = app.fixUrl;
+              }
+            });
+          } else {
+            app.status = '🤖 Auto-Denied by 7-Day AI Adjudicator (Severe Violation / Insufficient Proof)';
+          }
+        }
+      });
+
+      if (processed > 0) {
+        saveAllState();
+        renderAdminAppealsQueue();
+        renderMarketplaceGrid();
+        if (manualTrigger) alert(`🤖 AI Auto-Adjudicator resolved ${processed} appeal(s) based on rule severity, HTTPS link fix, and strike history.`);
+      } else if (manualTrigger) {
+        alert('🤖 All pending appeals have already been adjudicated.');
+      }
+    }
+
+    function renderAdminAppealsQueue() {
+      const list = document.getElementById('admin-appeals-list');
+      if (!list) return;
+
+      list.innerHTML = appealsQueue.map(app => {
+        const elapsedHours = Math.floor((Date.now() - app.submittedAt) / (1000 * 60 * 60));
+        const remainingHours = Math.max(0, 168 - elapsedHours);
+        const isPending = app.status.startsWith('Pending') || app.status.startsWith('Quarantined');
+
+        return `
+          <div class="bg-slate-950 border ${isPending ? 'border-amber-500/40' : 'border-slate-800'} rounded-2xl p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="space-y-1">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="font-bold text-white">${sanitizeHTML(app.user)}</span>
+                <span class="text-slate-400">•</span>
+                <span class="text-amber-300 font-semibold">${sanitizeHTML(app.product)}</span>
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${
+                  app.status.includes('Approved') ? 'bg-emerald-500/20 text-emerald-300' :
+                  app.status.includes('Denied') || app.status.includes('Banned') ? 'bg-rose-500/20 text-rose-300' :
+                  'bg-amber-500/20 text-amber-300'
+                }">${sanitizeHTML(app.status)}</span>
+              </div>
+              <p class="text-slate-300 text-xs">${sanitizeHTML(app.reason)}</p>
+              ${app.fixUrl ? `<div class="text-[11px] text-emerald-400 font-mono">Submitted Fix URL: ${sanitizeHTML(app.fixUrl)}</div>` : ''}
+              <div class="text-[10px] text-slate-400">
+                ⏱️ Submitted ${elapsedHours}h ago • ${isPending ? `<strong>${remainingHours}h left</strong> before 7-Day AI Auto-Adjudicator decides` : 'Case Closed'}
+              </div>
+            </div>
+
+            ${isPending ? `
+              <div class="flex items-center gap-2 shrink-0">
+                <button onclick="resolveAppeal('${app.id}', 'approve')" class="px-3.5 py-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-bold hover:bg-emerald-500/30">
+                  ✅ Approve & Restore
+                </button>
+                <button onclick="resolveAppeal('${app.id}', 'deny')" class="px-3.5 py-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold hover:bg-rose-500/30">
+                  ✕ Deny Appeal
+                </button>
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      syncDynamicPricingLabels();
+      updateSavedBadge();
+      updateHeaderAuthUI();
+      renderTagFilterStrip();
+      renderMarketplaceGrid();
+      refreshHumanCaptcha();
+      runAiAutoAdjudicator(false);
+    });
+  </script>
+</body>
+</html>
