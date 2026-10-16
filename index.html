@@ -898,7 +898,7 @@
       <h2 class="font-royal text-xl font-bold text-white">Owner Admin Vault Locked</h2>
       <p class="text-xs text-slate-400">Restricted to Platform Owner. Enter your Admin Master PIN to access the Rizon/Unstoppable Treasury, Fee Sliders, User Ban Console, and Private Appeals Inbox.</p>
       <form onsubmit="unlockAdminConsole(event)" class="space-y-3">
-        <input type="password" id="admin-pin-input" placeholder="Enter Admin PIN (Default: 2026)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-center text-sm tracking-widest text-amber-300 outline-none focus:border-amber-400">
+        <input type="password" id="admin-pin-input" placeholder="Enter Admin PIN (Authorized Personnel Only)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-center text-sm tracking-widest text-amber-300 outline-none focus:border-amber-400">
         <button type="submit" class="w-full gold-btn py-3 rounded-xl text-xs font-extrabold">Unlock Admin Control Room</button>
       </form>
       <p id="admin-lock-error" class="text-xs text-rose-400 hidden"></p>
@@ -1336,13 +1336,13 @@
     const DEFAULT_CONFIG = {
       subPrice: 19,
       commissionRate: 5,
-      adminPin: '2026',
+      adminPin: 'anshan00',
       vaultBalance: 418.00,
       wallets: {
-        rizon: 'Rizon-USD-ACH-8849201 / 0x71C...9A21 (USDC/USDT)',
-        unstoppable: '0x94F8a2c3B9104E71d8832190A4B7E2910482C110',
-        cake: 'TV7x89LpQ2mN5vR9k3wX1z4B6n8M0pQrSt (TRC-20)',
-        cex: 'Binance Pay ID: 492810492 | Bybit UID: 10948291'
+        rizon: '',
+        unstoppable: 'F4c9TugqAVvePSDhTaZF9TyL7jVabpqpfq9fZtc4zLaH',
+        cake: 'bc1qqy4vpq62fh7w3psmmcs7z3nt82hkmapxst6ge0 (TRC-20)',
+        cex: 'Bybit UID: 587086948'
       },
       amazonTag: 'altujar-20',
       affiliateId: 'altujar',
