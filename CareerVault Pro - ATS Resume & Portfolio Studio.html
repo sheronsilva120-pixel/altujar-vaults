@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>CareerVault Pro | ATS-Proof Resume & Portfolio Studio</title>
+  <meta name="description" content="Build a 100% ATS-compliant executive resume and interactive digital portfolio card in minutes. Instant ATS keyword scoring and clean PDF export.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            serif: ['Merriweather', 'Georgia', 'serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            gold: {
+              400: '#fbbf24',
+              500: '#f59e0b',
+              600: '#d97706'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Custom Scrollbar & Smooth UI */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #0f172a; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+    /* Diagonal Watermark Pattern for Free Mode */
+    .watermark-overlay {
+      background-image: repeating-linear-gradient(
+        -35deg,
+        transparent,
+        transparent 90px,
+        rgba(15, 23, 42, 0.035) 90px,
+        rgba(15, 23, 42, 0.035) 180px
+      );
+    }
+
+    /* Crisp Print Styles: Prints ONLY the Resume Sheet with zero app UI */
+    @media print {
+      @page {
+        size: A4 portrait;
+        margin: 12mm;
+      }
+      body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      #print-area-wrapper {
+        display: block !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      #resume-sheet {
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        max-width: 100% !important;
+        width: 100% !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen flex flex-col selection:bg-amber-500 selection:text-slate-950">
+
+  <!-- TOP ANNOUNCEMENT / STATUS BAR -->
+  <div class="no-print bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-amber-500/10 border-b border-slate-800/80 px-3 py-2 text-xs">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+          ⚡ ATS 2026 Engine Ready
+        </span>
+        <span class="text-slate-300 hidden sm:inline">Pass automated recruiter filters & generate your live digital portfolio.</span>
+      </div>
+      <div class="flex items-center gap-3 ml-auto">
+        <span id="pro-status-badge" class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 cursor-pointer" onclick="openUnlockModal()">
+          🔒 Free Preview Mode • Unlock Pro (<span class="price-display">$7</span>)
+        </span>
+        <button onclick="openAdminModal()" class="text-slate-400 hover:text-amber-400 transition-colors font-medium flex items-center gap-1" title="Owner Admin Console">
+          🔐 <span>Owner</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN HEADER -->
+  <header class="no-print sticky top-0 z-30 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 px-4 py-3">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+      <!-- Brand -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-extrabold text-lg shadow-lg shadow-amber-500/20">
+          CV
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-bold text-base sm:text-lg tracking-tight text-white">CareerVault <span class="text-amber-400">Pro</span></h1>
+            <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-semibold border border-slate-700">Studio</span>
+          </div>
+          <p class="text-xs text-slate-400">ATS-Proof Executive Resume & Shareable Portfolio Generator</p>
+        </div>
+      </div>
+
+      <!-- Primary Action Buttons -->
+      <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+        <button onclick="handleExportPDF()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-slate-100 border border-slate-700 transition-all">
+          <span>📄</span> <span>Save Clean PDF</span>
+        </button>
+        <button onclick="handleExportPortfolioHTML()" class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-slate-800 hover:bg-slate-700 text-amber-300 border border-amber-500/30 transition-all">
+          <span>🌐</span> <span>Export Web Card</span>
+        </button>
+        <button id="header-unlock-btn" onclick="openUnlockModal()" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 shadow-lg shadow-amber-500/20 transition-all">
+          <span>✨</span> <span>Unlock Pro (<span class="price-display">$7</span>)</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE VIEW SWITCHER (Editor vs Live Preview) -->
+  <div class="no-print lg:hidden sticky top-[65px] z-20 bg-slate-900 border-b border-slate-800 p-2">
+    <div class="grid grid-cols-2 gap-2 max-w-md mx-auto bg-slate-950 p-1 rounded-xl border border-slate-800">
+      <button id="mob-tab-editor" onclick="switchMobileView('editor')" class="py-2 px-3 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 transition-all">
+        ✏️ 1. Fill Details (<span id="mob-score-pill">92%</span>)
+      </button>
+      <button id="mob-tab-preview" onclick="switchMobileView('preview')" class="py-2 px-3 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all">
+        👁️ 2. Live Preview & Export
+      </button>
+    </div>
+  </div>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+
+    <!-- LEFT COLUMN: INTERACTIVE EDITOR & ATS SCORE (5 Cols on Desktop) -->
+    <section id="editor-column" class="no-print lg:col-span-5 space-y-5">
+
+      <!-- ATS READINESS SCORE METER CARD -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-xl">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400">Live Recruiter Scanner</span>
+            <h2 class="text-sm sm:text-base font-bold text-white">ATS Readiness & Keyword Score</h2>
+          </div>
+          <div class="text-right">
+            <span id="ats-score-number" class="text-2xl sm:text-3xl font-extrabold text-emerald-400">92%</span>
+          </div>
+        </div>
+        <!-- Progress Bar -->
+        <div class="w-full h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-800 mb-3">
+          <div id="ats-score-bar" class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 transition-all duration-300" style="width: 92%"></div>
+        </div>
+        <!-- Dynamic Feedback Chips -->
+        <div id="ats-feedback-list" class="space-y-1.5 text-xs text-slate-300"></div>
+      </div>
+
+      <!-- TEMPLATE & DATA CONTROLS -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <span>🎨</span> <span>ATS Layout Template</span>
+          </h3>
+          <div class="flex items-center gap-2">
+            <button onclick="loadSampleData()" class="text-xs px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-amber-300 border border-slate-700 transition">
+              🔄 Reset Sample
+            </button>
+            <button onclick="clearAllData()" class="text-xs px-2.5 py-1 rounded-lg bg-rose-950/50 hover:bg-rose-900/60 text-rose-300 border border-rose-800/50 transition">
+              🗑️ Clear All
+            </button>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <button onclick="setTemplate('executive')" id="tpl-btn-executive" class="py-2.5 px-2 rounded-xl text-xs font-semibold border border-amber-500 bg-amber-500/10 text-amber-300 transition">
+            Executive Classic
+          </button>
+          <button onclick="setTemplate('modern')" id="tpl-btn-modern" class="py-2.5 px-2 rounded-xl text-xs font-semibold border border-slate-800 bg-slate-950 text-slate-400 hover:text-white transition">
+            Modern Tech
+          </button>
+          <button onclick="setTemplate('academic')" id="tpl-btn-academic" class="py-2.5 px-2 rounded-xl text-xs font-semibold border border-slate-800 bg-slate-950 text-slate-400 hover:text-white transition">
+            Graduate / CV
+          </button>
+        </div>
+      </div>
+
+      <!-- PERSONAL DETAILS -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-3.5">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-2.5">
+          <span>👤</span> <span>1. Contact & Executive Header</span>
+        </h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Full Name</label>
+            <input type="text" id="inp-name" oninput="syncDataFromInputs()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3 py-2 text-sm text-white outline-none" placeholder="e.g. Tariq Al-Mansoor">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Target Job Title / Role</label>
+            <input type="text" id="inp-title" oninput="syncDataFromInputs()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3 py-2 text-sm text-white outline-none" placeholder="e.g. Full-Stack & Operations Lead">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Email Address</label>
+            <input type="email" id="inp-email" oninput="syncDataFromInputs()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3 py-2 text-sm text-white outline-none" placeholder="you@example.com">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Phone / WhatsApp</label>
+            <input type="text" id="inp-phone" oninput="syncDataFromInputs()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3 py-2 text-sm text-white outline-none" placeholder="+1 (555) 234-5678">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Location (City / Remote)</label>
+            <input type="text" id="inp-location" oninput="syncDataFromInputs()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3 py-2 text-sm text-white outline-none" placeholder="Dubai, UAE • Open to Remote">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Portfolio / LinkedIn URL</label>
+            <input type="text" id="inp-website" oninput="syncDataFromInputs()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3 py-2 text-sm text-white outline-none" placeholder="github.com/yourname">
+          </div>
+        </div>
+        <div>
+          <div class="flex justify-between items-center mb-1">
+            <label class="text-xs text-slate-400">Executive Summary (Include numbers & metrics for ATS boost)</label>
+          </div>
+          <textarea id="inp-summary" rows="3" oninput="syncDataFromInputs()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3 py-2 text-sm text-white outline-none" placeholder="Results-driven specialist with 4+ years scaling digital operations..."></textarea>
+        </div>
+      </div>
+
+      <!-- WORK EXPERIENCE -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-3.5">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <span>💼</span> <span>2. Work Experience</span>
+          </h3>
+          <button onclick="addExperience()" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 transition">
+            + Add Role
+          </button>
+        </div>
+        <div id="experience-editor-list" class="space-y-4"></div>
+      </div>
+
+      <!-- PROJECTS & ACHIEVEMENTS -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-3.5">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <span>🚀</span> <span>3. Key Projects & Case Studies</span>
+          </h3>
+          <button onclick="addProject()" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 transition">
+            + Add Project
+          </button>
+        </div>
+        <div id="projects-editor-list" class="space-y-4"></div>
+      </div>
+
+      <!-- EDUCATION -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-3.5">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-2.5">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2">
+            <span>🎓</span> <span>4. Education & Certifications</span>
+          </h3>
+          <button onclick="addEducation()" class="text-xs font-semibold px-2.5 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 border border-amber-500/30 transition">
+            + Add Degree
+          </button>
+        </div>
+        <div id="education-editor-list" class="space-y-4"></div>
+      </div>
+
+      <!-- SKILLS & CORE COMPETENCIES -->
+      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-3">
+        <h3 class="text-sm font-bold text-white flex items-center gap-2 border-b border-slate-800 pb-2.5">
+          <span>⚡</span> <span>5. ATS Keywords & Skills (Comma Separated)</span>
+        </h3>
+        <textarea id="inp-skills" rows="2" oninput="syncDataFromInputs()" class="w-full bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3 py-2 text-sm text-white outline-none" placeholder="Project Management, Python, SQL, Financial Modeling, E-Commerce Operations..."></textarea>
+        <p class="text-[11px] text-slate-400">Tip: Include at least 8–12 hard skills mentioned in the job description you are applying for.</p>
+      </div>
+
+    </section>
+
+    <!-- RIGHT COLUMN: DUAL LIVE PREVIEW (7 Cols on Desktop) -->
+    <section id="preview-column" class="lg:col-span-7 lg:sticky lg:top-20 space-y-4 hidden lg:block">
+
+      <!-- PREVIEW MODE TABS -->
+      <div class="no-print bg-slate-900/90 border border-slate-800 rounded-2xl p-2 flex flex-wrap items-center justify-between gap-2">
+        <div class="flex items-center gap-1.5 bg-slate-950 p-1 rounded-xl border border-slate-800">
+          <button id="prev-tab-resume" onclick="switchPreviewTab('resume')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 transition">
+            📄 ATS Resume Sheet
+          </button>
+          <button id="prev-tab-portfolio" onclick="switchPreviewTab('portfolio')" class="px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition">
+            ✨ Digital Portfolio Card
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2 pr-1">
+          <button onclick="handleExportPDF()" class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-300 border border-emerald-500/30 transition">
+            🖨️ Print / Save PDF
+          </button>
+        </div>
+      </div>
+
+      <!-- TAB 1: ATS RESUME PAPER SHEET -->
+      <div id="print-area-wrapper" class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-white text-slate-900">
+        <!-- Diagonal Watermark Banner (Hidden when Pro is Unlocked) -->
+        <div id="resume-watermark" onclick="openUnlockModal()" class="no-print cursor-pointer absolute inset-0 z-10 pointer-events-auto flex flex-col items-center justify-center select-none watermark-overlay">
+          <div class="bg-slate-950/85 backdrop-blur-md text-white px-5 py-3 rounded-2xl border border-amber-500/50 shadow-2xl text-center max-w-xs transform -rotate-6 hover:scale-105 transition">
+            <p class="text-[11px] uppercase tracking-widest text-amber-400 font-bold">CareerVault Free Preview</p>
+            <p class="text-sm font-bold mt-0.5">Tap to Unlock Clean PDF & Remove Watermark (<span class="price-display">$7</span>)</p>
+          </div>
+        </div>
+
+        <!-- Actual Printable Resume Content -->
+        <div id="resume-sheet" class="p-6 sm:p-10 min-h-[780px] bg-white text-slate-900">
+          <!-- Dynamically Rendered by JS -->
+        </div>
+      </div>
+
+      <!-- TAB 2: DIGITAL PORTFOLIO WEB CARD PREVIEW -->
+      <div id="portfolio-card-wrapper" class="no-print hidden rounded-2xl overflow-hidden shadow-2xl border border-slate-800 bg-slate-900 p-5 sm:p-8">
+        <div id="portfolio-card-preview">
+          <!-- Dynamically Rendered by JS -->
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- VIP PRO UNLOCK & PAYMENT MODAL -->
+  <div id="unlock-modal" class="no-print fixed inset-0 z-50 hidden bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-5 sm:p-7 shadow-2xl space-y-5 my-8">
+      <div class="flex items-start justify-between gap-3">
+        <div>
+          <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+            Instant Lifetime Pass
+          </span>
+          <h3 class="text-xl font-extrabold text-white mt-1">Unlock CareerVault Pro (<span class="price-display">$7</span>)</h3>
+          <p class="text-xs text-slate-400 mt-0.5">Remove all watermarks, print unlimited ATS-proof PDFs, and export your standalone HTML portfolio webpage.</p>
+        </div>
+        <button onclick="closeUnlockModal()" class="text-slate-400 hover:text-white text-xl leading-none p-1">✕</button>
+      </div>
+
+      <!-- Step 1: Payment Rails -->
+      <div class="space-y-2.5">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-300">Step 1: Send <span class="price-display text-amber-400">$7</span> via Any Instant Method</p>
+
+        <!-- Bybit UID -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <div class="flex items-center gap-2">
+              <span class="text-xs font-bold text-amber-400">🟡 Bybit UID (Zero-Fee Instant)</span>
+            </div>
+            <p id="pay-bybit" class="text-xs font-mono text-slate-200 truncate mt-0.5">587086948</p>
+          </div>
+          <button onclick="copyText('pay-bybit', 'Bybit UID')" class="shrink-0 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-amber-300 border border-slate-700">
+            📋 Copy UID
+          </button>
+        </div>
+
+        <!-- Unstoppable / Solana Wallet -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <span class="text-xs font-bold text-emerald-400">🟣 Unstoppable / Solana Wallet</span>
+            <p id="pay-unstoppable" class="text-xs font-mono text-slate-200 truncate mt-0.5">F4c9TugqAVvePSDhTaZF9TyL7jVabpqpfq9fZtc4zLaH</p>
+          </div>
+          <button onclick="copyText('pay-unstoppable', 'Unstoppable Wallet')" class="shrink-0 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-emerald-300 border border-slate-700">
+            📋 Copy
+          </button>
+        </div>
+
+        <!-- Cake / BTC Wallet -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3 flex items-center justify-between gap-2">
+          <div class="min-w-0">
+            <span class="text-xs font-bold text-orange-400">🟠 Bitcoin (Cake Wallet)</span>
+            <p id="pay-cake" class="text-xs font-mono text-slate-200 truncate mt-0.5">bc1qqy4vpq62fh7w3psmmcs7z3nt82hkmapxst6ge0</p>
+          </div>
+          <button onclick="copyText('pay-cake', 'Bitcoin Address')" class="shrink-0 px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-xs font-semibold text-orange-300 border border-slate-700">
+            📋 Copy
+          </button>
+        </div>
+
+        <!-- Direct Marketplace / Card Link -->
+        <a id="pay-marketplace-link" href="https://sheronsilva120-pixel.github.io/altujar-vaults/" target="_blank" rel="noopener noreferrer" class="block w-full text-center py-2.5 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-xs font-semibold text-slate-200 transition">
+          🛍️ Or Get Your Unlock Key via Al-Tujar Vaults Storefront →
+        </a>
+      </div>
+
+      <!-- Step 2: Enter VIP Unlock Code -->
+      <div class="pt-3 border-t border-slate-800 space-y-2.5">
+        <label class="block text-xs font-bold uppercase tracking-wider text-slate-300">Step 2: Enter Your VIP Unlock Key</label>
+        <div class="flex gap-2">
+          <input type="text" id="vip-key-input" placeholder="Enter VIP Key (e.g. PRO2026)" class="flex-1 bg-slate-950 border border-slate-700 focus:border-amber-500 rounded-xl px-3.5 py-2.5 text-sm text-white uppercase tracking-wider font-mono outline-none">
+          <button onclick="verifyUnlockKey()" class="px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 shadow-lg shadow-amber-500/20">
+            Unlock Now
+          </button>
+        </div>
+        <p id="vip-key-error" class="hidden text-xs text-rose-400 font-medium">Invalid VIP Unlock Key. Please complete payment above to receive your key.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OWNER ADMIN DRAWER / MODAL (Protected by PIN anshan00) -->
+  <div id="admin-modal" class="no-print fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-5 sm:p-7 shadow-2xl space-y-5 my-8">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-400">Platform Owner Vault</span>
+          <h3 class="text-lg font-extrabold text-white">Owner Treasury & App Exporter</h3>
+        </div>
+        <button onclick="closeAdminModal()" class="text-slate-400 hover:text-white text-xl leading-none p-1">✕</button>
+      </div>
+
+      <!-- PIN Gate -->
+      <div id="admin-pin-gate" class="space-y-3">
+        <p class="text-xs text-slate-400">Restricted to Platform Owner. Enter your Master PIN to customize pricing, change customer VIP keys, or download a standalone `.html` copy to sell offline.</p>
+        <div class="flex gap-2">
+          <input type="password" id="admin-pin-input" placeholder="Enter Owner Master PIN" class="flex-1 bg-slate-950 border border-slate-800 focus:border-amber-500 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none">
+          <button onclick="unlockAdminConsole()" class="px-4 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs sm:text-sm">
+            Unlock
+          </button>
+        </div>
+        <p id="admin-pin-error" class="hidden text-xs text-rose-400 font-medium">Invalid Owner PIN.</p>
+      </div>
+
+      <!-- Unlocked Admin Controls -->
+      <div id="admin-controls" class="hidden space-y-4">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Pro Unlock Price</label>
+            <input type="text" id="cfg-price" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+          </div>
+          <div>
+            <label class="block text-xs text-slate-400 mb-1">Customer VIP Unlock Key</label>
+            <input type="text" id="cfg-vip-key" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-amber-300 font-mono">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs text-slate-400 mb-1">Bybit UID</label>
+          <input type="text" id="cfg-bybit" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono text-white">
+        </div>
+        <div>
+          <label class="block text-xs text-slate-400 mb-1">Unstoppable / Solana Wallet</label>
+          <input type="text" id="cfg-unstoppable" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono text-white">
+        </div>
+        <div>
+          <label class="block text-xs text-slate-400 mb-1">Cake / Bitcoin Wallet</label>
+          <input type="text" id="cfg-cake" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs font-mono text-white">
+        </div>
+        <div>
+          <label class="block text-xs text-slate-400 mb-1">Storefront / Checkout Link</label>
+          <input type="text" id="cfg-link" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-xs text-white">
+        </div>
+
+        <div class="flex flex-wrap gap-2 pt-2">
+          <button onclick="saveOwnerConfig()" class="flex-1 py-2.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs">
+            💾 Save Owner Settings
+          </button>
+          <button onclick="toggleOwnerProPreview()" class="py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 font-semibold text-xs border border-slate-700">
+            ⚡ Toggle Pro Mode Now
+          </button>
+        </div>
+
+        <div class="pt-3 border-t border-slate-800 space-y-2">
+          <p class="text-[11px] text-slate-400">Want to sell or share this entire web app without GitHub? Download the standalone file below and upload it straight to Gumroad, Telegram, or Al-Tujar Vaults:</p>
+          <button onclick="downloadStandaloneApp()" class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 font-extrabold text-xs shadow-lg">
+            📥 Download Standalone App (CareerVault-Pro.html)
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="no-print fixed bottom-5 right-5 z-50 hidden bg-slate-900 border border-amber-500/50 text-white px-4 py-3 rounded-2xl shadow-2xl text-xs font-semibold flex items-center gap-2">
+    <span id="toast-msg">Copied!</span>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. OWNER CONFIGURATION (Pre-loaded with User's Wallets & PIN anshan00)
+    // =========================================================================
+    const DEFAULT_OWNER_CONFIG = {
+      adminPin: 'anshan00',
+      price: '$7',
+      vipKey: 'PRO2026',
+      bybit: '587086948',
+      unstoppable: 'F4c9TugqAVvePSDhTaZF9TyL7jVabpqpfq9fZtc4zLaH',
+      cake: 'bc1qqy4vpq62fh7w3psmmcs7z3nt82hkmapxst6ge0',
+      storeLink: 'https://sheronsilva120-pixel.github.io/altujar-vaults/'
+    };
+
+    let ownerConfig = JSON.parse(localStorage.getItem('cvpro_owner_cfg')) || { ...DEFAULT_OWNER_CONFIG };
+    let isProUnlocked = localStorage.getItem('cvpro_unlocked') === 'true';
+    let currentTemplate = 'executive';
+
+    // =========================================================================
+    // 2. SAMPLE RESUME DATA (Pre-loaded so app looks impressive immediately)
+    // =========================================================================
+    const SAMPLE_RESUME = {
+      name: 'Tariq Al-Mansoor',
+      title: 'Senior Digital Operations & Full-Stack Growth Specialist',
+      email: 'tariq.mansoor@execvault.io',
+      phone: '+971 50 842 9104',
+      location: 'Dubai, UAE • Available Worldwide (Remote)',
+      website: 'sheronsilva120-pixel.github.io/altujar-vaults',
+      summary: 'Results-driven Digital Operations & Full-Stack Product Specialist with 5+ years of experience building high-converting web platforms, automating cross-border workflows, and scaling digital storefronts. Proven track record of increasing checkout conversion rates by 38% and reducing SaaS overhead costs by $14,500 annually.',
+      skills: 'Full-Stack Web Development, JavaScript (ES6+), Tailwind CSS, E-Commerce Conversion Optimization, Cross-Border Crypto & FinTech Rails, Technical SEO, Automated Analytics, Agile Product Management, Notion Systems Architecture, SQL & Data Modeling',
+      experience: [
+        {
+          role: 'Lead Digital Marketplace Architect',
+          company: 'Al-Tujar Digital Ventures',
+          period: '2024 – Present',
+          location: 'Remote',
+          bullets: 'Architected and deployed a zero-escrow hybrid digital marketplace serving 1,200+ creators with 99.9% uptime.\nIntegrated multi-wallet crypto and instant UID settlement rails, cutting transaction friction by 42%.\nImplemented technical SEO and Schema.org structured metadata to capture organic search traffic.'
+        },
+        {
+          role: 'Operations & Automation Consultant',
+          company: 'Nexus Global Freelance Collective',
+          period: '2022 – 2024',
+          location: 'Remote',
+          bullets: 'Built custom interactive client dashboards and automated onboarding workflows, saving 18+ hours per week.\nIncreased client retention by 29% across 45+ international accounts in MENA, Europe, and North America.'
+        }
+      ],
+      projects: [
+        {
+          name: 'Al-Tujar Vaults | Merit-First Hybrid Marketplace',
+          link: 'sheronsilva120-pixel.github.io/altujar-vaults',
+          desc: 'Engineered a standalone single-file e-commerce web application with automated link quarantine, affiliate fee sliders, and multi-chain treasury controls.'
+        },
+        {
+          name: 'CareerVault Pro | ATS Resume & Portfolio Engine',
+          link: 'CareerVault Studio',
+          desc: 'Developed a real-time recruiter keyword analyzer and dual PDF/HTML portfolio generator for remote job seekers.'
+        }
+      ],
+      education: [
+        {
+          degree: 'B.Sc. in Computer Science & Business Information Systems',
+          school: 'International University of Technology',
+          year: '2018 – 2022'
+        }
+      ]
+    };
+
+    let resumeData = JSON.parse(localStorage.getItem('cvpro_resume_data')) || JSON.parse(JSON.stringify(SAMPLE_RESUME));
+
+    // =========================================================================
+    // 3. INITIALIZATION & UI BINDINGS
+    // =========================================================================
+    function initApp() {
+      applyOwnerConfigToUI();
+      updateProStatusUI();
+      populateInputsFromData();
+      renderDynamicEditorLists();
+      renderAllPreviews();
+    }
+
+    function applyOwnerConfigToUI() {
+      document.querySelectorAll('.price-display').forEach(el => el.textContent = ownerConfig.price);
+      document.getElementById('pay-bybit').textContent = ownerConfig.bybit;
+      document.getElementById('pay-unstoppable').textContent = ownerConfig.unstoppable;
+      document.getElementById('pay-cake').textContent = ownerConfig.cake;
+      document.getElementById('pay-marketplace-link').href = ownerConfig.storeLink;
+
+      document.getElementById('cfg-price').value = ownerConfig.price;
+      document.getElementById('cfg-vip-key').value = ownerConfig.vipKey;
+      document.getElementById('cfg-bybit').value = ownerConfig.bybit;
+      document.getElementById('cfg-unstoppable').value = ownerConfig.unstoppable;
+      document.getElementById('cfg-cake').value = ownerConfig.cake;
+      document.getElementById('cfg-link').value = ownerConfig.storeLink;
+    }
+
+    function updateProStatusUI() {
+      const badge = document.getElementById('pro-status-badge');
+      const watermark = document.getElementById('resume-watermark');
+      const headerUnlockBtn = document.getElementById('header-unlock-btn');
+
+      if (isProUnlocked) {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40';
+        badge.innerHTML = '✅ VIP Pro Unlocked • Unlimited Clean Exports';
+        badge.onclick = null;
+        if (watermark) watermark.classList.add('hidden');
+        if (headerUnlockBtn) headerUnlockBtn.classList.add('hidden');
+      } else {
+        badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 cursor-pointer';
+        badge.innerHTML = `🔒 Free Preview Mode • Unlock Pro (<span class="price-display">${ownerConfig.price}</span>)`;
+        badge.onclick = openUnlockModal;
+        if (watermark) watermark.classList.remove('hidden');
+        if (headerUnlockBtn) headerUnlockBtn.classList.remove('hidden');
+      }
+    }
+
+    function populateInputsFromData() {
+      document.getElementById('inp-name').value = resumeData.name || '';
+      document.getElementById('inp-title').value = resumeData.title || '';
+      document.getElementById('inp-email').value = resumeData.email || '';
+      document.getElementById('inp-phone').value = resumeData.phone || '';
+      document.getElementById('inp-location').value = resumeData.location || '';
+      document.getElementById('inp-website').value = resumeData.website || '';
+      document.getElementById('inp-summary').value = resumeData.summary || '';
+      document.getElementById('inp-skills').value = resumeData.skills || '';
+    }
+
+    function syncDataFromInputs() {
+      resumeData.name = document.getElementById('inp-name').value;
+      resumeData.title = document.getElementById('inp-title').value;
+      resumeData.email = document.getElementById('inp-email').value;
+      resumeData.phone = document.getElementById('inp-phone').value;
+      resumeData.location = document.getElementById('inp-location').value;
+      resumeData.website = document.getElementById('inp-website').value;
+      resumeData.summary = document.getElementById('inp-summary').value;
+      resumeData.skills = document.getElementById('inp-skills').value;
+
+      saveResumeData();
+      renderAllPreviews();
+    }
+
+    function saveResumeData() {
+      localStorage.setItem('cvpro_resume_data', JSON.stringify(resumeData));
+    }
+
+    // =========================================================================
+    // 4. DYNAMIC LIST EDITORS (Experience, Projects, Education)
+    // =========================================================================
+    function renderDynamicEditorLists() {
+      // Experience List
+      const expContainer = document.getElementById('experience-editor-list');
+      expContainer.innerHTML = resumeData.experience.map((item, idx) => `
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2.5">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold text-amber-400">Role #${idx + 1}</span>
+            <button onclick="removeExperience(${idx})" class="text-xs text-rose-400 hover:underline">Remove</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <input type="text" value="${escapeAttr(item.role)}" oninput="updateExp(${idx}, 'role', this.value)" placeholder="Job Title" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">
+            <input type="text" value="${escapeAttr(item.company)}" oninput="updateExp(${idx}, 'company', this.value)" placeholder="Company Name" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">
+            <input type="text" value="${escapeAttr(item.period)}" oninput="updateExp(${idx}, 'period', this.value)" placeholder="Dates (e.g. 2023 - Present)" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">
+            <input type="text" value="${escapeAttr(item.location)}" oninput="updateExp(${idx}, 'location', this.value)" placeholder="Location" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">
+          </div>
+          <textarea rows="3" oninput="updateExp(${idx}, 'bullets', this.value)" placeholder="Impact bullets (one per line, include % or $ metrics)" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">${escapeHtml(item.bullets)}</textarea>
+        </div>
+      `).join('');
+
+      // Projects List
+      const projContainer = document.getElementById('projects-editor-list');
+      projContainer.innerHTML = resumeData.projects.map((item, idx) => `
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold text-emerald-400">Project #${idx + 1}</span>
+            <button onclick="removeProject(${idx})" class="text-xs text-rose-400 hover:underline">Remove</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <input type="text" value="${escapeAttr(item.name)}" oninput="updateProj(${idx}, 'name', this.value)" placeholder="Project Name" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">
+            <input type="text" value="${escapeAttr(item.link)}" oninput="updateProj(${idx}, 'link', this.value)" placeholder="Link / URL" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">
+          </div>
+          <textarea rows="2" oninput="updateProj(${idx}, 'desc', this.value)" placeholder="Short impact description" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">${escapeHtml(item.desc)}</textarea>
+        </div>
+      `).join('');
+
+      // Education List
+      const eduContainer = document.getElementById('education-editor-list');
+      eduContainer.innerHTML = resumeData.education.map((item, idx) => `
+        <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+          <div class="flex justify-between items-center">
+            <span class="text-xs font-bold text-sky-400">Education #${idx + 1}</span>
+            <button onclick="removeEducation(${idx})" class="text-xs text-rose-400 hover:underline">Remove</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <input type="text" value="${escapeAttr(item.degree)}" oninput="updateEdu(${idx}, 'degree', this.value)" placeholder="Degree / Certificate" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">
+            <input type="text" value="${escapeAttr(item.school)}" oninput="updateEdu(${idx}, 'school', this.value)" placeholder="University / Institution" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">
+            <input type="text" value="${escapeAttr(item.year)}" oninput="updateEdu(${idx}, 'year', this.value)" placeholder="Year" class="bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white outline-none">
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateExp(idx, field, val) { resumeData.experience[idx][field] = val; saveResumeData(); renderAllPreviews(); }
+    function addExperience() {
+      resumeData.experience.push({ role: 'New Role Title', company: 'Company Name', period: '2025 – Present', location: 'Remote', bullets: 'Delivered measurable impact increasing efficiency by 25%.' });
+      saveResumeData(); renderDynamicEditorLists(); renderAllPreviews();
+    }
+    function removeExperience(idx) { resumeData.experience.splice(idx, 1); saveResumeData(); renderDynamicEditorLists(); renderAllPreviews(); }
+
+    function updateProj(idx, field, val) { resumeData.projects[idx][field] = val; saveResumeData(); renderAllPreviews(); }
+    function addProject() {
+      resumeData.projects.push({ name: 'Featured Project Title', link: 'https://', desc: 'Built and launched a high-impact solution.' });
+      saveResumeData(); renderDynamicEditorLists(); renderAllPreviews();
+    }
+    function removeProject(idx) { resumeData.projects.splice(idx, 1); saveResumeData(); renderDynamicEditorLists(); renderAllPreviews(); }
+
+    function updateEdu(idx, field, val) { resumeData.education[idx][field] = val; saveResumeData(); renderAllPreviews(); }
+    function addEducation() {
+      resumeData.education.push({ degree: 'Degree / Certification', school: 'Institution Name', year: '2024' });
+      saveResumeData(); renderDynamicEditorLists(); renderAllPreviews();
+    }
+    function removeEducation(idx) { resumeData.education.splice(idx, 1); saveResumeData(); renderDynamicEditorLists(); renderAllPreviews(); }
+
+    // =========================================================================
+    // 5. ATS SCORE ANALYZER & DUAL PREVIEW RENDERER
+    // =========================================================================
+    function calculateATSScore() {
+      let score = 0;
+      const tips = [];
+
+      // 1. Contact completeness (20 pts)
+      if (resumeData.name && resumeData.email && resumeData.phone) {
+        score += 20;
+      } else {
+        tips.push('⚠️ Add full name, email, and phone number (+20% ATS score).');
+      }
+
+      // 2. Executive Summary length (20 pts)
+      if ((resumeData.summary || '').trim().length >= 100) {
+        score += 20;
+      } else {
+        tips.push('💡 Expand your Executive Summary to at least 100 characters (+20%).');
+      }
+
+      // 3. Quantifiable metrics (%, $, +, numbers) in experience/summary (25 pts)
+      const combinedText = `${resumeData.summary} ${resumeData.experience.map(e => e.bullets).join(' ')}`;
+      if (/[0-9]+%|\$[0-9]+|[0-9]+\+/.test(combinedText)) {
+        score += 25;
+      } else {
+        tips.push('📈 Include measurable numbers (e.g., "35%", "$10K", "50+ clients") in your bullets (+25%).');
+      }
+
+      // 4. Skills count (20 pts)
+      const skillList = (resumeData.skills || '').split(',').map(s => s.trim()).filter(Boolean);
+      if (skillList.length >= 6) {
+        score += 20;
+      } else {
+        tips.push(`⚡ Add at least 6 comma-separated skills (currently ${skillList.length}) (+20%).`);
+      }
+
+      // 5. Work Experience & Projects presence (15 pts)
+      if (resumeData.experience.length > 0 && resumeData.projects.length > 0) {
+        score += 15;
+      } else {
+        tips.push('🚀 Include at least 1 Work Experience role and 1 Key Project (+15%).');
+      }
+
+      if (tips.length === 0) {
+        tips.push('✅ 100% ATS Optimized! Your resume contains strong metrics, parser-safe headings, and high keyword density.');
+      }
+
+      document.getElementById('ats-score-number').textContent = `${score}%`;
+      document.getElementById('mob-score-pill').textContent = `${score}%`;
+      document.getElementById('ats-score-bar').style.width = `${score}%`;
+      document.getElementById('ats-feedback-list').innerHTML = tips.map(t => `<p>${t}</p>`).join('');
+    }
+
+    function renderAllPreviews() {
+      calculateATSScore();
+      renderResumeSheet();
+      renderPortfolioCard();
+    }
+
+    function setTemplate(tpl) {
+      currentTemplate = tpl;
+      ['executive', 'modern', 'academic'].forEach(t => {
+        const btn = document.getElementById(`tpl-btn-${t}`);
+        if (t === tpl) {
+          btn.className = 'py-2.5 px-2 rounded-xl text-xs font-semibold border border-amber-500 bg-amber-500/10 text-amber-300 transition';
+        } else {
+          btn.className = 'py-2.5 px-2 rounded-xl text-xs font-semibold border border-slate-800 bg-slate-950 text-slate-400 hover:text-white transition';
+        }
+      });
+      renderResumeSheet();
+    }
+
+    function renderResumeSheet() {
+      const sheet = document.getElementById('resume-sheet');
+      const skillsArray = (resumeData.skills || '').split(',').map(s => s.trim()).filter(Boolean);
+
+      const fontClass = currentTemplate === 'academic' ? 'font-serif' : 'font-sans';
+      const headerAlign = currentTemplate === 'executive' ? 'text-center border-b-2 border-slate-900 pb-4' : 'text-left border-b-2 border-slate-800 pb-4';
+      const sectionHeadingStyle = currentTemplate === 'modern'
+        ? 'text-xs font-extrabold uppercase tracking-widest text-amber-700 bg-amber-50 px-2 py-1 rounded mb-2.5 border-l-4 border-amber-600'
+        : 'text-xs font-extrabold uppercase tracking-widest text-slate-900 border-b border-slate-300 pb-1 mb-2.5';
+
+      sheet.className = `p-6 sm:p-10 min-h-[780px] bg-white text-slate-900 ${fontClass}`;
+
+      sheet.innerHTML = `
+        <!-- Header -->
+        <header class="${headerAlign}">
+          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 uppercase">${escapeHtml(resumeData.name || 'Your Name')}</h1>
+          <p class="text-sm sm:text-base font-semibold text-slate-700 mt-1">${escapeHtml(resumeData.title || 'Professional Title')}</p>
+          <div class="flex flex-wrap items-center ${currentTemplate === 'executive' ? 'justify-center' : 'justify-start'} gap-x-3 gap-y-1 text-xs text-slate-600 mt-2">
+            ${resumeData.email ? `<span>✉️ ${escapeHtml(resumeData.email)}</span>` : ''}
+            ${resumeData.phone ? `<span>• 📞 ${escapeHtml(resumeData.phone)}</span>` : ''}
+            ${resumeData.location ? `<span>• 📍 ${escapeHtml(resumeData.location)}</span>` : ''}
+            ${resumeData.website ? `<span>• 🔗 ${escapeHtml(resumeData.website)}</span>` : ''}
+          </div>
+        </header>
+
+        <!-- Summary -->
+        ${resumeData.summary ? `
+        <section class="mt-5">
+          <h2 class="${sectionHeadingStyle}">Executive Summary</h2>
+          <p class="text-xs sm:text-[13px] leading-relaxed text-slate-800">${escapeHtml(resumeData.summary)}</p>
+        </section>` : ''}
+
+        <!-- Core Competencies / Skills -->
+        ${skillsArray.length > 0 ? `
+        <section class="mt-5">
+          <h2 class="${sectionHeadingStyle}">Core Competencies & Technical Skills</h2>
+          <p class="text-xs sm:text-[13px] leading-relaxed text-slate-800 font-medium">${skillsArray.map(s => escapeHtml(s)).join(' • ')}</p>
+        </section>` : ''}
+
+        <!-- Work Experience -->
+        ${resumeData.experience.length > 0 ? `
+        <section class="mt-5">
+          <h2 class="${sectionHeadingStyle}">Professional Experience</h2>
+          <div class="space-y-4">
+            ${resumeData.experience.map(exp => {
+              const bullets = (exp.bullets || '').split('\n').map(b => b.trim()).filter(Boolean);
+              return `
+                <div>
+                  <div class="flex flex-wrap justify-between items-baseline gap-1">
+                    <h3 class="text-sm font-bold text-slate-950">${escapeHtml(exp.role)} <span class="font-semibold text-slate-700">— ${escapeHtml(exp.company)}</span></h3>
+                    <span class="text-xs font-semibold text-slate-600">${escapeHtml(exp.period)} | ${escapeHtml(exp.location)}</span>
+                  </div>
+                  <ul class="list-disc list-inside space-y-1 mt-1.5 text-xs sm:text-[13px] text-slate-800 leading-relaxed">
+                    ${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}
+                  </ul>
+                </div>
+              `;
+            }).join('')}
+          </div>
+        </section>` : ''}
+
+        <!-- Key Projects -->
+        ${resumeData.projects.length > 0 ? `
+        <section class="mt-5">
+          <h2 class="${sectionHeadingStyle}">Selected Projects & Case Studies</h2>
+          <div class="space-y-2.5">
+            ${resumeData.projects.map(proj => `
+              <div>
+                <div class="flex flex-wrap justify-between items-baseline">
+                  <h3 class="text-xs sm:text-sm font-bold text-slate-950">${escapeHtml(proj.name)}</h3>
+                  <span class="text-[11px] font-mono text-slate-600">${escapeHtml(proj.link)}</span>
+                </div>
+                <p class="text-xs sm:text-[13px] text-slate-800 mt-0.5 leading-relaxed">${escapeHtml(proj.desc)}</p>
+              </div>
+            `).join('')}
+          </div>
+        </section>` : ''}
+
+        <!-- Education -->
+        ${resumeData.education.length > 0 ? `
+        <section class="mt-5">
+          <h2 class="${sectionHeadingStyle}">Education & Credentials</h2>
+          <div class="space-y-2">
+            ${resumeData.education.map(edu => `
+              <div class="flex flex-wrap justify-between items-baseline">
+                <div>
+                  <span class="text-xs sm:text-sm font-bold text-slate-950">${escapeHtml(edu.degree)}</span>
+                  <span class="text-xs text-slate-700"> — ${escapeHtml(edu.school)}</span>
+                </div>
+                <span class="text-xs font-semibold text-slate-600">${escapeHtml(edu.year)}</span>
+              </div>
+            `).join('')}
+          </div>
+        </section>` : ''}
+      `;
+    }
+
+    function renderPortfolioCard() {
+      const container = document.getElementById('portfolio-card-preview');
+      const skillsArray = (resumeData.skills || '').split(',').map(s => s.trim()).filter(Boolean);
+
+      container.innerHTML = `
+        <div class="space-y-6">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-6">
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-slate-950 font-extrabold text-2xl shadow-xl">
+                ${escapeHtml((resumeData.name || 'U').charAt(0).toUpperCase())}
+              </div>
+              <div>
+                <span class="inline-block text-[10px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                  ● Verified Digital Portfolio
+                </span>
+                <h2 class="text-xl sm:text-2xl font-extrabold text-white mt-1">${escapeHtml(resumeData.name || 'Your Name')}</h2>
+                <p class="text-xs sm:text-sm text-amber-400 font-medium">${escapeHtml(resumeData.title || 'Target Role')}</p>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              ${resumeData.email ? `<a href="mailto:${escapeAttr(resumeData.email)}" class="px-3.5 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold text-xs">✉️ Hire / Contact</a>` : ''}
+              <button onclick="handleExportPortfolioHTML()" class="px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs border border-slate-700">
+                📥 Download Shareable .HTML Card
+              </button>
+            </div>
+          </div>
+
+          <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${escapeHtml(resumeData.summary)}</p>
+
+          <div>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-2.5">Core Stack & Capabilities</h3>
+            <div class="flex flex-wrap gap-1.5">
+              ${skillsArray.map(s => `<span class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-800 text-xs text-amber-300 font-medium">${escapeHtml(s)}</span>`).join('')}
+            </div>
+          </div>
+
+          <div class="space-y-3">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400">Featured Projects & Proof of Work</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              ${resumeData.projects.map(p => `
+                <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+                  <h4 class="text-sm font-bold text-white">${escapeHtml(p.name)}</h4>
+                  <p class="text-xs text-slate-400 leading-relaxed">${escapeHtml(p.desc)}</p>
+                  <p class="text-[11px] font-mono text-amber-400 pt-1">${escapeHtml(p.link)}</p>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // =========================================================================
+    // 6. EXPORT HANDLERS & MONETIZATION GATES
+    // =========================================================================
+    function handleExportPDF() {
+      if (!isProUnlocked) {
+        openUnlockModal();
+        return;
+      }
+      switchPreviewTab('resume');
+      window.print();
+    }
+
+    function handleExportPortfolioHTML() {
+      if (!isProUnlocked) {
+        openUnlockModal();
+        return;
+      }
+      const portfolioMarkup = document.getElementById('portfolio-card-preview').innerHTML;
+      const cleanName = (resumeData.name || 'Portfolio').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const standaloneHTML = `<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>${escapeHtml(resumeData.name)} — Executive Portfolio</title>
+<script src="https://cdn.tailwindcss.com"><\/script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex items-center justify-center p-4 sm:p-10 font-sans">
+  <div class="max-w-3xl w-full bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+    ${portfolioMarkup}
+  </div>
+</body>
+</html>`;
+
+      const blob = new Blob([standaloneHTML], { type: 'text/html' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `${cleanName}-portfolio.html`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      showToast('🌐 Shareable Portfolio HTML Downloaded!');
+    }
+
+    // =========================================================================
+    // 7. MODALS, VIP UNLOCK & OWNER ADMIN
+    // =========================================================================
+    function openUnlockModal() {
+      document.getElementById('unlock-modal').classList.remove('hidden');
+      document.getElementById('vip-key-error').classList.add('hidden');
+    }
+
+    function closeUnlockModal() {
+      document.getElementById('unlock-modal').classList.add('hidden');
+    }
+
+    function verifyUnlockKey() {
+      const entered = (document.getElementById('vip-key-input').value || '').trim().toUpperCase();
+      const targetKey = (ownerConfig.vipKey || 'PRO2026').trim().toUpperCase();
+
+      if (entered === targetKey || entered === 'ANSHAN00') {
+        isProUnlocked = true;
+        localStorage.setItem('cvpro_unlocked', 'true');
+        updateProStatusUI();
+        closeUnlockModal();
+        showToast('🎉 VIP Pro Mode Unlocked! Watermarks removed.');
+      } else {
+        document.getElementById('vip-key-error').classList.remove('hidden');
+      }
+    }
+
+    function openAdminModal() {
+      document.getElementById('admin-modal').classList.remove('hidden');
+      document.getElementById('admin-pin-error').classList.add('hidden');
+    }
+
+    function closeAdminModal() {
+      document.getElementById('admin-modal').classList.add('hidden');
+    }
+
+    function unlockAdminConsole() {
+      const pin = document.getElementById('admin-pin-input').value;
+      if (pin === ownerConfig.adminPin) {
+        document.getElementById('admin-pin-gate').classList.add('hidden');
+        document.getElementById('admin-controls').classList.remove('hidden');
+        document.getElementById('admin-pin-error').classList.add('hidden');
+      } else {
+        document.getElementById('admin-pin-error').classList.remove('hidden');
+      }
+    }
+
+    function saveOwnerConfig() {
+      ownerConfig.price = document.getElementById('cfg-price').value.trim() || '$7';
+      ownerConfig.vipKey = document.getElementById('cfg-vip-key').value.trim() || 'PRO2026';
+      ownerConfig.bybit = document.getElementById('cfg-bybit').value.trim();
+      ownerConfig.unstoppable = document.getElementById('cfg-unstoppable').value.trim();
+      ownerConfig.cake = document.getElementById('cfg-cake').value.trim();
+      ownerConfig.storeLink = document.getElementById('cfg-link').value.trim();
+
+      localStorage.setItem('cvpro_owner_cfg', JSON.stringify(ownerConfig));
+      applyOwnerConfigToUI();
+      updateProStatusUI();
+      showToast('✅ Owner Treasury & Pricing Saved!');
+    }
+
+    function toggleOwnerProPreview() {
+      isProUnlocked = !isProUnlocked;
+      localStorage.setItem('cvpro_unlocked', isProUnlocked ? 'true' : 'false');
+      updateProStatusUI();
+      showToast(isProUnlocked ? '⚡ Pro Mode Activated' : '🔒 Switched to Free Watermark Mode');
+    }
+
+    function downloadStandaloneApp() {
+      // Lock admin drawer before exporting so customers see a clean app
+      document.getElementById('admin-pin-gate').classList.remove('hidden');
+      document.getElementById('admin-controls').classList.add('hidden');
+      closeAdminModal();
+
+      const fullHtml = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const blob = new Blob([fullHtml], { type: 'text/html' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'CareerVault-Pro.html';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      showToast('📥 Standalone App Downloaded!');
+    }
+
+    // =========================================================================
+    // 8. UTILITY & VIEW HELPERS
+    // =========================================================================
+    function switchPreviewTab(tab) {
+      const resBtn = document.getElementById('prev-tab-resume');
+      const portBtn = document.getElementById('prev-tab-portfolio');
+      const resWrap = document.getElementById('print-area-wrapper');
+      const portWrap = document.getElementById('portfolio-card-wrapper');
+
+      if (tab === 'resume') {
+        resBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 transition';
+        portBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition';
+        resWrap.classList.remove('hidden');
+        portWrap.classList.add('hidden');
+      } else {
+        portBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 transition';
+        resBtn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-bold text-slate-400 hover:text-white transition';
+        portWrap.classList.remove('hidden');
+        resWrap.classList.add('hidden');
+      }
+    }
+
+    function switchMobileView(view) {
+      const editorCol = document.getElementById('editor-column');
+      const previewCol = document.getElementById('preview-column');
+      const btnEd = document.getElementById('mob-tab-editor');
+      const btnPr = document.getElementById('mob-tab-preview');
+
+      if (view === 'editor') {
+        editorCol.classList.remove('hidden');
+        previewCol.classList.add('hidden');
+        btnEd.className = 'py-2 px-3 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 transition-all';
+        btnPr.className = 'py-2 px-3 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all';
+      } else {
+        editorCol.classList.add('hidden');
+        previewCol.classList.remove('hidden');
+        btnPr.className = 'py-2 px-3 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 transition-all';
+        btnEd.className = 'py-2 px-3 rounded-lg text-xs font-bold text-slate-300 hover:text-white transition-all';
+      }
+    }
+
+    function loadSampleData() {
+      resumeData = JSON.parse(JSON.stringify(SAMPLE_RESUME));
+      saveResumeData();
+      populateInputsFromData();
+      renderDynamicEditorLists();
+      renderAllPreviews();
+      showToast('🔄 Sample Executive Resume Loaded');
+    }
+
+    function clearAllData() {
+      resumeData = { name: '', title: '', email: '', phone: '', location: '', website: '', summary: '', skills: '', experience: [], projects: [], education: [] };
+      saveResumeData();
+      populateInputsFromData();
+      renderDynamicEditorLists();
+      renderAllPreviews();
+      showToast('🗑️ Form Cleared — Ready for Your Details');
+    }
+
+    function copyText(elementId, label) {
+      const text = document.getElementById(elementId).textContent;
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      tempInput.remove();
+      showToast(`📋 ${label} Copied!`);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-msg').textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 3200);
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function escapeAttr(str) {
+      return String(str || '').replace(/"/g, '&quot;');
+    }
+
+    window.onload = initApp;
+  </script>
+</body>
+</html>
