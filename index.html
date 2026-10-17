@@ -145,7 +145,7 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span><strong>AI Sentinel Active:</strong> Zero-Escrow Direct Payouts • Merit-Based Ranking • 2-Strike Link Protection</span>
+        <span><strong>AI Sentinel Active:</strong> Zero-Escrow Direct Payouts • Merit-Based Ranking • Verified 30-Day Seller Passes</span>
       </div>
       <div class="flex items-center gap-3 text-[11px]">
         <span id="top-fee-indicator" class="bg-black/40 px-2.5 py-0.5 rounded-full border border-amber-400/30 text-amber-200 font-semibold">Pass: $19/mo | Fee: 3%</span>
@@ -198,7 +198,7 @@
         </button>
       </nav>
 
-      <!-- Right Action Controls (Favorites, Cart, Theme, Profile/Logout) -->
+      <!-- Right Action Controls -->
       <div class="flex items-center gap-2">
         <button onclick="openSavedVaultModal('favs')" class="relative px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400/50 text-xs font-semibold flex items-center gap-1" title="Saved Favorites">
           <span>❤️</span>
@@ -271,7 +271,7 @@
           <ul class="space-y-2 text-slate-300">
             <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>Creator Storefronts:</strong> Click any seller's name to view their public catalog and follow them.</span></li>
             <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>Cart & Favorites:</strong> Save products to your cart or favorites list to buy anytime.</span></li>
-            <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>Advanced Sorting:</strong> Sort by Popular Views, Info Completeness, Newest, or Oldest First.</span></li>
+            <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>Owner & Uploader Control:</strong> Only the uploader or Platform Owner can remove a listing.</span></li>
           </ul>
         </div>
       </div>
@@ -380,7 +380,7 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- MAIN VIEW 2: PERSONAL PROFILE & CREATOR STUDIO (Owner Only Edits)     -->
+  <!-- MAIN VIEW 2: PERSONAL PROFILE & CREATOR STUDIO                        -->
   <!-- ===================================================================== -->
   <section id="view-studio" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl overflow-hidden shadow-xl">
@@ -436,7 +436,7 @@
         </div>
         <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-4">
           <span class="text-[11px] text-slate-400 uppercase">30-Day Seller Pass</span>
-          <div id="stat-my-pass-days" class="text-lg font-extrabold text-amber-300 mt-1">Inactive</div>
+          <div id="stat-my-pass-days" class="text-lg font-extrabold text-amber-300 mt-1">Locked</div>
           <span class="text-[11px] text-slate-400">Membership status</span>
         </div>
       </div>
@@ -450,117 +450,133 @@
       </div>
     </div>
 
-    <!-- Upload Form (Locked Behind 30-Day Membership for Non-Owners) -->
+    <!-- Upload Tab (Contains Both Hard Lock Gate for Non-Subscribers AND Form for Verified Subscribers) -->
     <div id="studio-sub-upload" class="hidden bg-obsidianCard border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5">
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
-        <div>
-          <h3 class="font-royal text-lg font-bold text-amber-300">Publish New Product to Marketplace</h3>
-          <p class="text-xs text-slate-400">Complete all fields for a <strong>90%+ Information Score</strong>. Platform commission is currently <strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong>.</p>
-        </div>
-        <div class="bg-slate-950 border border-amber-500/40 rounded-xl px-4 py-2 text-right">
-          <span class="text-[10px] uppercase text-slate-400 block">Info Completeness Score</span>
-          <span id="live-upload-score" class="text-lg font-extrabold text-amber-300">35%</span>
-        </div>
+      
+      <!-- HARD LOCK GATE: Shown if user does NOT have an active 30-day membership -->
+      <div id="upload-locked-gate" class="hidden text-center py-10 px-4 max-w-lg mx-auto space-y-4">
+        <div class="w-16 h-16 rounded-2xl bg-amber-500/15 border border-amber-400/40 mx-auto flex items-center justify-center text-3xl">🔒</div>
+        <h3 class="font-royal text-xl font-extrabold text-white">30-Day Creator Membership Required to Upload</h3>
+        <p class="text-xs text-slate-300 leading-relaxed">
+          Your account (<strong id="locked-gate-email" class="text-amber-300"></strong>) does not have an active 30-Day Seller Pass. To upload products to Al-Tujar Vaults, activate your 1-month membership for <strong class="text-amber-300">$<span class="dyn-sub-lbl">19</span>/mo</strong> (plus <strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong> commission on sales).
+        </p>
+        <button type="button" onclick="openNativeCheckoutModal('membership')" class="gold-btn px-6 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
+          🚀 Pay $<span class="dyn-sub-lbl">19</span> & Verify 30-Day Pass Now
+        </button>
       </div>
 
-      <form id="product-upload-form" onsubmit="handleProductUpload(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-        <div>
-          <label class="block text-slate-300 font-semibold mb-1">Product Title *</label>
-          <input type="text" id="up-title" oninput="calculateLiveUploadScore()" required placeholder="e.g., Cinematic Video Editing LUTs or Notion Study OS" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
+      <!-- ACTUAL UPLOAD FORM: Physically hidden unless hasActiveSellerMembership(currentUser) === true -->
+      <div id="upload-unlocked-container" class="hidden space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
           <div>
-            <label class="block text-slate-300 font-semibold mb-1">Price (USD) *</label>
-            <input type="number" step="0.01" min="0" id="up-price" oninput="calculateLiveUploadScore()" required placeholder="19.00" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
+            <h3 class="font-royal text-lg font-bold text-amber-300">Publish New Product to Marketplace</h3>
+            <p class="text-xs text-slate-400">Complete all fields for a <strong>90%+ Information Score</strong>. Platform commission is currently <strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong>.</p>
           </div>
-          <div>
-            <label class="block text-slate-300 font-semibold mb-1">Primary Category *</label>
-            <select id="up-type" onchange="calculateLiveUploadScore()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white outline-none">
-              <option value="Digital">💻 Digital Product</option>
-              <option value="Amazon">📦 Amazon / Affiliate Gear</option>
-              <option value="Physical">🏋️ Physical Product</option>
-              <option value="Video Editing">🎬 Video Editing</option>
-              <option value="Cooking">🍳 Cooking & Recipes</option>
-              <option value="Electronics">🎧 Electronics & Tech</option>
-              <option value="Gym">💪 Gym & Fitness</option>
-              <option value="Software">⚡ Software / Web App</option>
-            </select>
+          <div class="bg-slate-950 border border-amber-500/40 rounded-xl px-4 py-2 text-right">
+            <span class="text-[10px] uppercase text-slate-400 block">Info Completeness Score</span>
+            <span id="live-upload-score" class="text-lg font-extrabold text-amber-300">35%</span>
           </div>
         </div>
 
-        <div>
-          <label class="block text-slate-300 font-semibold mb-1">Cover Image URL (or Choose File) *</label>
-          <div class="flex gap-2">
-            <input type="url" id="up-thumb" oninput="calculateLiveUploadScore()" required placeholder="https://images.unsplash.com/..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
-            <label class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl cursor-pointer text-amber-300 font-semibold shrink-0">
-              📷 File
-              <input type="file" accept="image/*" class="hidden" onchange="handleThumbnailFileSelect(event, 'up-thumb')">
+        <form id="product-upload-form" onsubmit="handleProductUpload(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Product Title *</label>
+            <input type="text" id="up-title" oninput="calculateLiveUploadScore()" required placeholder="e.g., Cinematic Video Editing LUTs or Notion Study OS" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Price (USD) *</label>
+              <input type="number" step="0.01" min="0" id="up-price" oninput="calculateLiveUploadScore()" required placeholder="19.00" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
+            </div>
+            <div>
+              <label class="block text-slate-300 font-semibold mb-1">Primary Category *</label>
+              <select id="up-type" onchange="calculateLiveUploadScore()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white outline-none">
+                <option value="Digital">💻 Digital Product</option>
+                <option value="Amazon">📦 Amazon / Affiliate Gear</option>
+                <option value="Physical">🏋️ Physical Product</option>
+                <option value="Video Editing">🎬 Video Editing</option>
+                <option value="Cooking">🍳 Cooking & Recipes</option>
+                <option value="Electronics">🎧 Electronics & Tech</option>
+                <option value="Gym">💪 Gym & Fitness</option>
+                <option value="Software">⚡ Software / Web App</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Cover Image URL (or Choose File) *</label>
+            <div class="flex gap-2">
+              <input type="url" id="up-thumb" oninput="calculateLiveUploadScore()" required placeholder="https://images.unsplash.com/..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
+              <label class="px-3 py-2.5 bg-slate-800 hover:bg-slate-700 rounded-xl cursor-pointer text-amber-300 font-semibold shrink-0">
+                📷 File
+                <input type="file" accept="image/*" class="hidden" onchange="handleThumbnailFileSelect(event, 'up-thumb')">
+              </label>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Checkout / Product Link (HTTPS) *</label>
+            <input type="url" id="up-url" oninput="calculateLiveUploadScore()" required placeholder="https://gumroad.com/a/altujar/... or https://amazon.com/..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
+          </div>
+
+          <div class="md:col-span-2">
+            <label class="block text-slate-300 font-semibold mb-1">Full Product Description & Specifications *</label>
+            <textarea id="up-desc" rows="3" oninput="calculateLiveUploadScore()" required placeholder="Describe everything included..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-white outline-none focus:border-amber-400"></textarea>
+          </div>
+
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Vault-Exclusive Discount Code or Bonus</label>
+            <input type="text" id="up-discount" oninput="calculateLiveUploadScore()" placeholder="e.g., Use code ALTUJAR15 for 15% OFF" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none">
+          </div>
+
+          <div>
+            <label class="block text-slate-300 font-semibold mb-1">Demo Video URL & Interactive Preview</label>
+            <div class="flex gap-2">
+              <input type="url" id="up-video" oninput="calculateLiveUploadScore()" placeholder="https://youtube.com/..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none">
+              <label class="flex items-center gap-1.5 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 cursor-pointer">
+                <input type="checkbox" id="up-sandbox" onchange="calculateLiveUploadScore()" class="accent-amber-400">
+                <span class="text-[11px]">Live Simulator</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="md:col-span-2 space-y-2">
+            <label class="block text-slate-300 font-semibold">Select Tags (Choose 2+ tags) *</label>
+            <div class="flex flex-wrap gap-2" id="upload-tags-selector">
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Digital" checked class="up-tag-cb accent-amber-400"> #Digital</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Amazon" class="up-tag-cb accent-amber-400"> #Amazon</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Physical" class="up-tag-cb accent-amber-400"> #Physical</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Video Editing" class="up-tag-cb accent-amber-400"> #Video Editing</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Cooking" class="up-tag-cb accent-amber-400"> #Cooking</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Electronics" class="up-tag-cb accent-amber-400"> #Electronics</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Gym" class="up-tag-cb accent-amber-400"> #Gym</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Notion" class="up-tag-cb accent-amber-400"> #Notion</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Sheets" class="up-tag-cb accent-amber-400"> #Sheets</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Coding" class="up-tag-cb accent-amber-400"> #Coding</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Gaming" class="up-tag-cb accent-amber-400"> #Gaming</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Study" class="up-tag-cb accent-amber-400"> #Study</label>
+              <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Finance" class="up-tag-cb accent-amber-400"> #Finance</label>
+              <input type="text" id="up-custom-tags" placeholder="+ Custom tags (comma separated)" class="bg-slate-950 border border-slate-700 rounded-lg px-3 py-1 text-white outline-none flex-1 min-w-[180px]">
+            </div>
+          </div>
+
+          <div class="md:col-span-2 bg-slate-950 border border-amber-500/30 rounded-2xl p-4 space-y-3">
+            <label class="flex items-start gap-2.5 cursor-pointer text-slate-300 leading-relaxed">
+              <input type="checkbox" required class="mt-1 accent-amber-400 w-4 h-4 shrink-0">
+              <span>
+                <strong>I agree to the Creator Terms:</strong> I confirm this product is legitimate and I accept the current dynamic membership fee (<strong class="text-amber-300">$<span class="dyn-sub-lbl">19</span>/mo</strong>) and platform commission rate (<strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong>).
+              </span>
             </label>
           </div>
-        </div>
 
-        <div>
-          <label class="block text-slate-300 font-semibold mb-1">Checkout / Product Link (HTTPS) *</label>
-          <input type="url" id="up-url" oninput="calculateLiveUploadScore()" required placeholder="https://gumroad.com/a/altujar/... or https://amazon.com/..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
-        </div>
-
-        <div class="md:col-span-2">
-          <label class="block text-slate-300 font-semibold mb-1">Full Product Description & Specifications *</label>
-          <textarea id="up-desc" rows="3" oninput="calculateLiveUploadScore()" required placeholder="Describe everything included..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3.5 text-white outline-none focus:border-amber-400"></textarea>
-        </div>
-
-        <div>
-          <label class="block text-slate-300 font-semibold mb-1">Vault-Exclusive Discount Code or Bonus</label>
-          <input type="text" id="up-discount" oninput="calculateLiveUploadScore()" placeholder="e.g., Use code ALTUJAR15 for 15% OFF" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none">
-        </div>
-
-        <div>
-          <label class="block text-slate-300 font-semibold mb-1">Demo Video URL & Interactive Preview</label>
-          <div class="flex gap-2">
-            <input type="url" id="up-video" oninput="calculateLiveUploadScore()" placeholder="https://youtube.com/..." class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none">
-            <label class="flex items-center gap-1.5 bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 cursor-pointer">
-              <input type="checkbox" id="up-sandbox" onchange="calculateLiveUploadScore()" class="accent-amber-400">
-              <span class="text-[11px]">Live Simulator</span>
-            </label>
+          <div class="md:col-span-2 flex justify-end">
+            <button type="submit" class="gold-btn px-6 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
+              🚀 Publish Product to Marketplace
+            </button>
           </div>
-        </div>
-
-        <div class="md:col-span-2 space-y-2">
-          <label class="block text-slate-300 font-semibold">Select Tags (Choose 2+ tags) *</label>
-          <div class="flex flex-wrap gap-2" id="upload-tags-selector">
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Digital" checked class="up-tag-cb accent-amber-400"> #Digital</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Amazon" class="up-tag-cb accent-amber-400"> #Amazon</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Physical" class="up-tag-cb accent-amber-400"> #Physical</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Video Editing" class="up-tag-cb accent-amber-400"> #Video Editing</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Cooking" class="up-tag-cb accent-amber-400"> #Cooking</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Electronics" class="up-tag-cb accent-amber-400"> #Electronics</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Gym" class="up-tag-cb accent-amber-400"> #Gym</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Notion" class="up-tag-cb accent-amber-400"> #Notion</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Sheets" class="up-tag-cb accent-amber-400"> #Sheets</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Coding" class="up-tag-cb accent-amber-400"> #Coding</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Gaming" class="up-tag-cb accent-amber-400"> #Gaming</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Study" class="up-tag-cb accent-amber-400"> #Study</label>
-            <label class="px-2.5 py-1 rounded-lg bg-slate-950 border border-slate-700 cursor-pointer flex items-center gap-1"><input type="checkbox" value="Finance" class="up-tag-cb accent-amber-400"> #Finance</label>
-            <input type="text" id="up-custom-tags" placeholder="+ Custom tags (comma separated)" class="bg-slate-950 border border-slate-700 rounded-lg px-3 py-1 text-white outline-none flex-1 min-w-[180px]">
-          </div>
-        </div>
-
-        <div class="md:col-span-2 bg-slate-950 border border-amber-500/30 rounded-2xl p-4 space-y-3">
-          <label class="flex items-start gap-2.5 cursor-pointer text-slate-300 leading-relaxed">
-            <input type="checkbox" required class="mt-1 accent-amber-400 w-4 h-4 shrink-0">
-            <span>
-              <strong>I agree to the Creator Terms:</strong> I confirm this product is legitimate and I accept the current dynamic membership fee (<strong class="text-amber-300">$<span class="dyn-sub-lbl">19</span>/mo</strong>) and platform commission rate (<strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong>).
-            </span>
-          </label>
-        </div>
-
-        <div class="md:col-span-2 flex justify-end">
-          <button type="submit" class="gold-btn px-6 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
-            🚀 Publish Product to Marketplace
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
 
     <!-- Custom Profile Designer (Only Editable by Logged-in Email Owner) -->
@@ -628,15 +644,15 @@
       <h2 class="font-royal text-2xl font-extrabold gold-gradient-text">Al-Tujar Vaults Governance, Membership & Commission Charter</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
         <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-          <h3 class="font-bold text-amber-300">1. 30-Day Creator Membership & Dynamic Commission</h3>
+          <h3 class="font-bold text-amber-300">1. Mandatory 30-Day Seller Pass & Dynamic Commission</h3>
           <p class="text-slate-300 text-xs leading-relaxed">
-            Browsing, following creators, and saving products to your cart is free. Uploading products to sell requires an active 30-Day Creator Membership (currently <strong>$<span class="dyn-sub-lbl">19</span>/mo</strong>) and adherence to the current platform commission rate (currently <strong><span class="dyn-comm-lbl">3</span>%</strong>). Both rates dynamically update across the platform whenever adjusted by the Admin Treasury.
+            Browsing, following creators, and saving products to your cart is free. Uploading products to sell strictly requires an active 30-Day Creator Membership (currently <strong>$<span class="dyn-sub-lbl">19</span>/mo</strong>) and adherence to the current platform commission rate (currently <strong><span class="dyn-comm-lbl">3</span>%</strong>). Both rates dynamically update across the platform whenever adjusted by the Admin Treasury.
           </p>
         </div>
         <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-          <h3 class="font-bold text-amber-300">2. Independent Creator Storefronts</h3>
+          <h3 class="font-bold text-amber-300">2. Product Removal & Storefront Ownership</h3>
           <p class="text-slate-300 text-xs leading-relaxed">
-            Every creator designs their own storefront. Visitors can browse a creator's uploads and follow their profile, while profile editing is strictly locked to the verified email owner.
+            Only the original uploader of a product (verified by their signed-in email address) and the Platform Owner can remove an uploaded listing. Visitors can browse a creator's uploads and follow their profile, while profile editing is strictly locked to the verified email owner.
           </p>
         </div>
       </div>
@@ -662,7 +678,7 @@
       <div class="flex flex-wrap items-center justify-between gap-3 bg-obsidianCard border border-amber-500/40 rounded-2xl p-4">
         <div>
           <h2 class="font-royal text-lg sm:text-2xl font-extrabold gold-gradient-text">Owner Treasury, Wallets & 30-Day Pass Generator</h2>
-          <p class="text-xs text-slate-400">Authenticated as <strong>anshansheron@gmail.com</strong>. Wallets saved below automatically appear to all buyers.</p>
+          <p class="text-xs text-slate-400">Authenticated as <strong>anshansheron@gmail.com</strong>. You also have global permission to remove any product upload on the marketplace.</p>
         </div>
         <button onclick="lockAdminConsole()" class="px-4 py-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs font-bold">🔒 Lock Admin Room</button>
       </div>
@@ -672,16 +688,16 @@
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
           <div>
             <h3 class="font-bold text-emerald-300 text-sm">🔑 30-Day Seller Membership Verification & Key Generator</h3>
-            <p class="text-slate-400 text-[11px]">When a seller pays your current membership price ($<span class="dyn-sub-lbl">19</span>) and sends their receipt to your Telegram (@Emty_voi) or WhatsApp (@emty_void), enter their email below to generate their 30-Day Unlock Key or activate them directly.</p>
+            <p class="text-slate-400 text-[11px]">When a seller pays your current membership price ($<span class="dyn-sub-lbl">19</span>) and sends their receipt to your Telegram (@Emty_voi) or WhatsApp (@emty_void), enter their email below to generate their 30-Day Unlock Key or activate/revoke them directly.</p>
           </div>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 items-end">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
           <div>
             <label class="block text-slate-400 mb-1">Seller's Account Email Address</label>
             <input type="email" id="adm-member-email" oninput="generateMemberKeyForEmail()" placeholder="seller@gmail.com" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white font-mono">
           </div>
           <div>
-            <label class="block text-slate-400 mb-1">Generated 30-Day Pass Key (Send to Seller)</label>
+            <label class="block text-slate-400 mb-1">Generated 30-Day Pass Key</label>
             <div class="flex gap-2">
               <input type="text" id="adm-generated-pass" readonly placeholder="PASS-XXXX" class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-3 py-2.5 text-emerald-400 font-mono font-bold">
               <button type="button" onclick="copyAdminMemberKey()" class="px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-amber-300 font-bold">📋 Copy</button>
@@ -689,7 +705,12 @@
           </div>
           <div>
             <button type="button" onclick="directlyApproveSellerEmail()" class="w-full gold-btn py-2.5 rounded-xl font-extrabold">
-              ✅ Directly Activate 30-Day Pass on This Device
+              ✅ Activate 30-Day Pass
+            </button>
+          </div>
+          <div>
+            <button type="button" onclick="revokeSellerEmailMembership()" class="w-full py-2.5 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold hover:bg-rose-500/30">
+              🚫 Revoke Membership
             </button>
           </div>
         </div>
@@ -801,13 +822,17 @@
               <span>Seller: <strong id="modal-creator-name" class="text-amber-300 cursor-pointer underline"></strong></span>
               <button id="modal-follow-btn" class="text-emerald-400 font-bold hover:underline">+ Follow</button>
             </div>
-            <div class="flex gap-2">
+            <div class="flex flex-wrap gap-2">
               <button id="modal-cart-btn" class="px-3.5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-300 font-bold text-xs">
                 🛒 Add to Cart
               </button>
               <a id="modal-buy-btn" href="#" target="_blank" rel="noopener noreferrer" onclick="recordOutboundClick()" class="flex-1 gold-btn py-3 rounded-xl text-center font-extrabold text-xs sm:text-sm">
                 ⚡ Buy Now (<span class="dyn-comm-lbl">3</span>% Vault Fee) ↗
               </a>
+              <!-- STRICT DELETE BUTTON: ONLY VISIBLE TO UPLOADER OR OWNER anshansheron@gmail.com -->
+              <button id="modal-delete-btn" class="hidden px-3.5 py-3 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-bold text-xs">
+                🗑️ Remove Upload
+              </button>
             </div>
           </div>
         </div>
@@ -822,8 +847,8 @@
     <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-2xl text-xs">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <div>
-          <span class="text-[10px] uppercase tracking-wider text-amber-400 font-bold block">30-Day Creator Membership Verification</span>
-          <h3 class="font-royal text-lg font-extrabold text-white">Activate 1-Month Seller Pass</h3>
+          <span class="text-[10px] uppercase tracking-wider text-amber-400 font-bold block">Mandatory Seller Verification</span>
+          <h3 class="font-royal text-lg font-extrabold text-white">Activate 30-Day Creator Membership</h3>
         </div>
         <button onclick="closeNativeCheckoutModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
       </div>
@@ -831,7 +856,7 @@
       <div class="bg-slate-950 border border-amber-500/30 rounded-2xl p-4 flex items-center justify-between">
         <div>
           <span class="text-slate-400 block">Current 30-Day Membership Fee</span>
-          <span class="text-[11px] text-emerald-400">Unlocks Unlimited Uploads for 30 Days • <span class="dyn-comm-lbl">3</span>% Sales Fee</span>
+          <span class="text-[11px] text-emerald-400">Unlocks Product Uploads for 30 Days • <span class="dyn-comm-lbl">3</span>% Sales Fee</span>
         </div>
         <span id="checkout-amount-display" class="text-2xl font-extrabold gold-gradient-text">$19.00</span>
       </div>
@@ -857,7 +882,7 @@
       <form onsubmit="verifyOnSitePayment(event)" class="space-y-2.5 pt-2 border-t border-slate-800">
         <label class="block text-slate-300 font-bold">Step 3: Enter Your 30-Day Membership Key (Received from Admin)</label>
         <div class="flex gap-2">
-          <input type="text" id="checkout-pass-key-input" required placeholder="PASS-XXXX" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-amber-300 font-mono uppercase outline-none">
+          <input type="text" id="checkout-pass-key-input" required placeholder="PASS-XXXXXX" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-amber-300 font-mono uppercase outline-none">
           <button type="submit" class="gold-btn px-5 py-2.5 rounded-xl font-extrabold">
             Unlock 30 Days
           </button>
@@ -1037,6 +1062,7 @@
       }
     ];
 
+    // All non-owner accounts start with membershipExpiresAt: 0 so they CANNOT upload until they pay & verify!
     const DEFAULT_USERS_DB = {
       'amina@techstudio.io': {
         name: 'Amina Tech Studio',
@@ -1046,7 +1072,7 @@
         banner: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
         bio: 'Building automated Google Sheets & Notion financial systems for modern digital founders.',
         payout: 'Gumroad Verified Partner',
-        membershipExpiresAt: Date.now() + THIRTY_DAYS_MS,
+        membershipExpiresAt: 0,
         followersCount: 142,
         following: [],
         favorites: [],
@@ -1060,7 +1086,7 @@
         banner: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=1200&auto=format&fit=crop&q=80',
         bio: 'Testing and curating the highest-rated electronics, audio gear, and workspace hardware.',
         payout: 'Amazon Associates Verified',
-        membershipExpiresAt: Date.now() + THIRTY_DAYS_MS,
+        membershipExpiresAt: 0,
         followersCount: 89,
         following: [],
         favorites: [],
@@ -1074,7 +1100,7 @@
         banner: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&auto=format&fit=crop&q=80',
         bio: 'Filmmaker & colorist creating LUTs, transitions, and editing assets.',
         payout: 'Bybit / Gumroad',
-        membershipExpiresAt: Date.now() + THIRTY_DAYS_MS,
+        membershipExpiresAt: 0,
         followersCount: 215,
         following: [],
         favorites: [],
@@ -1088,7 +1114,7 @@
         banner: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=1200&auto=format&fit=crop&q=80',
         bio: 'High-protein culinary guides and macro spreadsheets for everyday performance.',
         payout: 'Verified Creator',
-        membershipExpiresAt: Date.now() + THIRTY_DAYS_MS,
+        membershipExpiresAt: 0,
         followersCount: 164,
         following: [],
         favorites: [],
@@ -1096,10 +1122,11 @@
       }
     };
 
-    let appConfig = JSON.parse(localStorage.getItem('altujar_v3_config')) || DEFAULT_CONFIG;
-    let products = JSON.parse(localStorage.getItem('altujar_v3_products')) || INITIAL_PRODUCTS;
-    let usersDB = JSON.parse(localStorage.getItem('altujar_v3_users')) || DEFAULT_USERS_DB;
-    let activeUserEmail = localStorage.getItem('altujar_v3_active_email') || null;
+    // Bumped storage key to v4 so any old cached free-upload sessions are wiped clean
+    let appConfig = JSON.parse(localStorage.getItem('altujar_v4_config')) || DEFAULT_CONFIG;
+    let products = JSON.parse(localStorage.getItem('altujar_v4_products')) || INITIAL_PRODUCTS;
+    let usersDB = JSON.parse(localStorage.getItem('altujar_v4_users')) || DEFAULT_USERS_DB;
+    let activeUserEmail = localStorage.getItem('altujar_v4_active_email') || null;
     let currentUser = activeUserEmail && usersDB[activeUserEmail] ? usersDB[activeUserEmail] : null;
 
     let activeTagFilter = 'All';
@@ -1116,13 +1143,13 @@
       if (currentUser && currentUser.email) {
         usersDB[currentUser.email.toLowerCase()] = currentUser;
       }
-      localStorage.setItem('altujar_v3_config', JSON.stringify(appConfig));
-      localStorage.setItem('altujar_v3_products', JSON.stringify(products));
-      localStorage.setItem('altujar_v3_users', JSON.stringify(usersDB));
+      localStorage.setItem('altujar_v4_config', JSON.stringify(appConfig));
+      localStorage.setItem('altujar_v4_products', JSON.stringify(products));
+      localStorage.setItem('altujar_v4_users', JSON.stringify(usersDB));
       if (activeUserEmail) {
-        localStorage.setItem('altujar_v3_active_email', activeUserEmail);
+        localStorage.setItem('altujar_v4_active_email', activeUserEmail);
       } else {
-        localStorage.removeItem('altujar_v3_active_email');
+        localStorage.removeItem('altujar_v4_active_email');
       }
     }
 
@@ -1142,7 +1169,6 @@
       const pass = document.getElementById('login-password').value;
       const err = document.getElementById('login-error-msg');
 
-      // Special Auto-Setup if Owner logs in for the first time
       if (email === OWNER_EMAIL && pass === OWNER_PASS) {
         if (!usersDB[OWNER_EMAIL]) {
           usersDB[OWNER_EMAIL] = {
@@ -1190,11 +1216,11 @@
       const bio = document.getElementById('reg-bio').value.trim() || 'Creator & Member on Al-Tujar Vaults.';
 
       if (email === OWNER_EMAIL && password !== OWNER_PASS) {
-        alert('This email is reserved. Please sign in with the Master Password.');
+        alert('This email is reserved for the Platform Owner. Please sign in with the Master Password.');
         return;
       }
 
-      const isOwner = email === OWNER_EMAIL;
+      const isOwner = (email === OWNER_EMAIL && password === OWNER_PASS);
       usersDB[email] = {
         name,
         email,
@@ -1203,6 +1229,7 @@
         banner: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&auto=format&fit=crop&q=80',
         bio,
         payout: '',
+        // New users strictly get 0 membership time until they pay & verify!
         membershipExpiresAt: isOwner ? Date.now() + (THIRTY_DAYS_MS * 120) : 0,
         followersCount: 0,
         following: [],
@@ -1220,6 +1247,7 @@
       document.getElementById('mandatory-auth-gate').classList.add('hidden');
       updateHeaderAuthUI();
       enforceAdminVisibility();
+      enforceUploadGateUI();
       updateSavedAndCartBadges();
       syncDynamicPricingLabels();
       renderTagFilterStrip();
@@ -1229,17 +1257,26 @@
     function handleLogout() {
       activeUserEmail = null;
       currentUser = null;
-      localStorage.removeItem('altujar_v3_active_email');
+      localStorage.removeItem('altujar_v4_active_email');
       lockAdminConsole();
       switchMainTab('shop');
       document.getElementById('mandatory-auth-gate').classList.remove('hidden');
     }
 
     // =========================================================================
-    // 2. STRICT ADMIN VISIBILITY (ONLY anshansheron@gmail.com)
+    // 2. STRICT ADMIN & PERMISSION CHECKS
     // =========================================================================
     function isOwnerLoggedIn() {
-      return currentUser && currentUser.email.toLowerCase() === OWNER_EMAIL;
+      return Boolean(currentUser && currentUser.email && currentUser.email.toLowerCase() === OWNER_EMAIL);
+    }
+
+    // Checks if current logged-in user is allowed to delete a specific product
+    function canUserDeleteProduct(prod) {
+      if (!currentUser || !prod) return false;
+      if (isOwnerLoggedIn()) return true;
+      const myEmail = currentUser.email.toLowerCase();
+      const uploaderEmail = (prod.creatorEmail || '').toLowerCase();
+      return Boolean(uploaderEmail && myEmail === uploaderEmail);
     }
 
     function enforceAdminVisibility() {
@@ -1281,12 +1318,29 @@
     }
 
     // =========================================================================
-    // 3. 30-DAY MEMBERSHIP VERIFICATION & KEY ENGINE
+    // 3. STRICT 30-DAY MEMBERSHIP VERIFICATION & HARD LOCK ON UPLOADS
     // =========================================================================
     function hasActiveSellerMembership(userObj) {
-      if (!userObj) return false;
+      if (!userObj || !userObj.email) return false;
       if (userObj.email.toLowerCase() === OWNER_EMAIL) return true;
-      return (userObj.membershipExpiresAt || 0) > Date.now();
+      const exp = Number(userObj.membershipExpiresAt || 0);
+      return exp > Date.now();
+    }
+
+    // Physically hides the upload form and shows a Lock Screen if user is not subscribed
+    function enforceUploadGateUI() {
+      const lockedGate = document.getElementById('upload-locked-gate');
+      const unlockedForm = document.getElementById('upload-unlocked-container');
+      const emailLbl = document.getElementById('locked-gate-email');
+      if (emailLbl && currentUser) emailLbl.textContent = currentUser.email;
+
+      if (hasActiveSellerMembership(currentUser)) {
+        lockedGate.classList.add('hidden');
+        unlockedForm.classList.remove('hidden');
+      } else {
+        lockedGate.classList.remove('hidden');
+        unlockedForm.classList.add('hidden');
+      }
     }
 
     function compute30DayKeyForEmail(emailStr) {
@@ -1317,18 +1371,41 @@
     }
 
     function directlyApproveSellerEmail() {
+      if (!isOwnerLoggedIn()) return;
       const email = document.getElementById('adm-member-email').value.trim().toLowerCase();
       if (!email) return;
       if (!usersDB[email]) {
-        alert('User email not registered on this device yet. Send them the generated PASS key above so they can paste it on their device!');
+        alert('User email not registered on this device yet. Copy and send them the generated PASS key so they can unlock their device!');
         return;
       }
       usersDB[email].membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+      if (currentUser && currentUser.email.toLowerCase() === email) {
+        currentUser.membershipExpiresAt = usersDB[email].membershipExpiresAt;
+      }
       saveAllState();
+      enforceUploadGateUI();
       alert(`✅ Activated 30-Day Seller Membership for ${email}!`);
     }
 
+    function revokeSellerEmailMembership() {
+      if (!isOwnerLoggedIn()) return;
+      const email = document.getElementById('adm-member-email').value.trim().toLowerCase();
+      if (!email || email === OWNER_EMAIL) return;
+      if (usersDB[email]) {
+        usersDB[email].membershipExpiresAt = 0;
+        if (currentUser && currentUser.email.toLowerCase() === email) {
+          currentUser.membershipExpiresAt = 0;
+        }
+        saveAllState();
+        enforceUploadGateUI();
+        alert(`🚫 Revoked Seller Membership for ${email}. They can no longer upload products.`);
+      } else {
+        alert('Email not found on this device.');
+      }
+    }
+
     function attemptOpenUploadTab() {
+      enforceUploadGateUI();
       if (!hasActiveSellerMembership(currentUser)) {
         openNativeCheckoutModal('membership');
         return;
@@ -1370,13 +1447,21 @@
     }
 
     function sendMembershipReceiptTelegram() {
-      const tx = document.getElementById('checkout-txid-input').value.trim() || '[Sending Screenshot]';
+      const tx = document.getElementById('checkout-txid-input').value.trim();
+      if (!tx) {
+        alert('Please paste your Payment Receipt / Transaction ID in Step 2 first!');
+        return;
+      }
       const msg = `Hello @Emty_voi! I paid the $${appConfig.subPrice} Monthly Creator Membership Pass.\n\n📧 My Account Email: ${currentUser.email}\n🧾 Receipt / TXID: ${tx}\n\nPlease verify my payment and send my 30-Day PASS Key!`;
       window.open(`https://t.me/Emty_voi?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
     function sendMembershipReceiptWhatsApp() {
-      const tx = document.getElementById('checkout-txid-input').value.trim() || '[Sending Screenshot]';
+      const tx = document.getElementById('checkout-txid-input').value.trim();
+      if (!tx) {
+        alert('Please paste your Payment Receipt / Transaction ID in Step 2 first!');
+        return;
+      }
       const msg = `Hello @emty_void! I paid the $${appConfig.subPrice} Monthly Creator Pass. My Email is ${currentUser.email} and Receipt is: ${tx}. Please send my 30-Day PASS Key!`;
       navigator.clipboard?.writeText(msg);
       alert('Receipt details copied! Opening WhatsApp...');
@@ -1388,15 +1473,17 @@
       const enteredKey = document.getElementById('checkout-pass-key-input').value.trim().toUpperCase();
       const expectedKey = compute30DayKeyForEmail(currentUser.email);
 
-      if (enteredKey === expectedKey || enteredKey === 'ANSHAN00') {
+      // Strictly requires the mathematical PASS-XXXXXX key generated for their exact email and current price
+      if (enteredKey === expectedKey) {
         currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
         saveAllState();
+        enforceUploadGateUI();
         closeNativeCheckoutModal();
         switchMainTab('studio');
         switchStudioSubTab('upload');
-        alert('🎉 30-Day Creator Membership Activated! You can now upload products for the next 30 days.');
+        alert('🎉 30-Day Creator Membership Verified & Activated! You can now upload products for the next 30 days.');
       } else {
-        alert('❌ Invalid Membership Key for ' + currentUser.email + '. Please send your payment receipt to @Emty_voi on Telegram to receive your verified key.');
+        alert('❌ Invalid Membership Key for ' + currentUser.email + '. Please pay the $' + appConfig.subPrice + ' membership fee and send your receipt to @Emty_voi on Telegram to receive your verified key.');
       }
     }
 
@@ -1432,7 +1519,6 @@
       document.getElementById('pub-prof-followers').textContent = targetUser.followersCount || 0;
       document.getElementById('pub-prof-count').textContent = creatorProducts.length;
 
-      // Visitors CANNOT edit someone else's profile; only the logged-in email owner sees Edit button
       const isMyOwnProfile = currentUser && currentUser.email.toLowerCase() === currentViewedProfileEmail;
       document.getElementById('pub-prof-edit-btn').classList.toggle('hidden', !isMyOwnProfile);
       document.getElementById('pub-prof-follow-btn').classList.toggle('hidden', isMyOwnProfile);
@@ -1542,7 +1628,7 @@
     }
 
     // =========================================================================
-    // 5. MARKETPLACE SEARCH, SORTING & RENDERING
+    // 5. MARKETPLACE SEARCH, SORTING & PRODUCT CARDS (WITH DELETE FOR OWNER/UPLOADER)
     // =========================================================================
     function renderTagFilterStrip() {
       const strip = document.getElementById('tag-filter-strip');
@@ -1576,6 +1662,8 @@
     function renderProductCardHTML(p) {
       const isFav = (currentUser?.favorites || []).includes(p.id);
       const inCart = (currentUser?.cart || []).includes(p.id);
+      const allowDelete = canUserDeleteProduct(p);
+
       return `
         <article class="bg-obsidianCard border border-slate-800/90 hover:border-amber-500/50 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-200 shadow-lg group">
           <div>
@@ -1592,6 +1680,10 @@
                 <button onclick="toggleCartProduct('${p.id}')" class="w-8 h-8 rounded-full ${inCart ? 'bg-emerald-500 text-slate-950' : 'bg-slate-950/85 text-white'} border border-slate-700 flex items-center justify-center text-xs hover:scale-110 transition-transform" title="Add to Cart">
                   🛒
                 </button>
+                ${allowDelete ? `
+                <button onclick="deleteListing('${p.id}')" class="w-8 h-8 rounded-full bg-rose-950/90 text-rose-300 border border-rose-500/50 flex items-center justify-center text-xs hover:scale-110 transition-transform" title="Remove Upload (Owner / Uploader Only)">
+                  🗑️
+                </button>` : ''}
               </div>
               <div class="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[10px] bg-slate-950/85 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-slate-800">
                 <span class="text-slate-300">🕒 ${formatTimeAgo(p.postedAt)}</span>
@@ -1623,6 +1715,10 @@
               <span class="text-lg font-extrabold gold-gradient-text">${p.price === 0 ? 'FREE' : '$' + p.price.toFixed(2)}</span>
             </div>
             <div class="flex items-center gap-1.5">
+              ${allowDelete ? `
+              <button onclick="deleteListing('${p.id}')" class="px-2.5 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/30 border border-rose-500/30 text-xs font-bold text-rose-300" title="Remove Upload">
+                🗑️
+              </button>` : ''}
               <button onclick="openProductModal('${p.id}')" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200">
                 Details
               </button>
@@ -1703,6 +1799,8 @@
     // =========================================================================
     function renderCreatorStudio() {
       if (!currentUser) return;
+      enforceUploadGateUI();
+
       document.getElementById('studio-display-name').textContent = currentUser.name;
       document.getElementById('studio-bio-preview').textContent = currentUser.bio;
       document.getElementById('studio-avatar-preview').src = currentUser.avatar;
@@ -1717,7 +1815,7 @@
 
       document.getElementById('studio-membership-badge').textContent = isOwnerLoggedIn()
         ? '👑 Platform Owner'
-        : activePass ? `✅ Active Seller (${daysLeft}d left)` : '🛍️ Shopper (Pass Required to Sell)';
+        : activePass ? `✅ Active Seller (${daysLeft}d left)` : '🔒 Unsubscribed (Pass Required to Upload)';
 
       document.getElementById('stat-my-pass-days').textContent = isOwnerLoggedIn()
         ? 'Lifetime Owner'
@@ -1750,7 +1848,7 @@
             </div>
             <div class="flex items-center gap-2">
               <button onclick="openProductModal('${p.id}')" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-200">Preview</button>
-              <button onclick="deleteListing('${p.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500/15 border border-rose-500/30 text-rose-300">Delete</button>
+              <button onclick="deleteListing('${p.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold">🗑️ Remove Upload</button>
             </div>
           </div>
         `).join('');
@@ -1804,8 +1902,11 @@
 
     function handleProductUpload(event) {
       event.preventDefault();
+      // Hard Backend-Style Check: Rejects immediately if not subscribed
       if (!hasActiveSellerMembership(currentUser)) {
+        enforceUploadGateUI();
         openNativeCheckoutModal('membership');
+        alert('🔒 Upload Blocked: You must activate a 30-Day Creator Membership Pass before uploading products.');
         return;
       }
 
@@ -1831,7 +1932,7 @@
         hasSandbox: document.getElementById('up-sandbox').checked,
         tags: selectedTags,
         creator: currentUser.name,
-        creatorEmail: currentUser.email,
+        creatorEmail: currentUser.email.toLowerCase(),
         postedAt: Date.now(),
         infoScore: calculateLiveUploadScore(),
         rating: 5.0,
@@ -1849,17 +1950,31 @@
       renderMarketplaceGrid();
     }
 
+    // =========================================================================
+    // STRICT DELETE FUNCTION: ONLY THE PRODUCT UPLOADER OR OWNER CAN REMOVE IT
+    // =========================================================================
     function deleteListing(id) {
       const p = products.find(i => i.id === id);
       if (!p) return;
-      if (p.creatorEmail?.toLowerCase() !== currentUser.email.toLowerCase() && !isOwnerLoggedIn()) {
-        alert('You can only delete your own listings.');
+
+      if (!canUserDeleteProduct(p)) {
+        alert('⛔ Permission Denied: Only the creator who uploaded this product or the Platform Owner can remove it.');
         return;
       }
+
+      if (!confirm(`Are you sure you want to permanently remove "${p.title}" from Al-Tujar Vaults?`)) {
+        return;
+      }
+
       products = products.filter(i => i.id !== id);
       saveAllState();
+      closeProductModal();
       renderCreatorStudio();
       renderMarketplaceGrid();
+      if (currentViewedProfileEmail && !document.getElementById('view-public-profile').classList.contains('hidden')) {
+        openPublicCreatorProfile(currentViewedProfileEmail);
+      }
+      alert('🗑️ Product upload removed.');
     }
 
     // =========================================================================
@@ -1935,9 +2050,9 @@
     }
 
     function switchStudioSubTab(sub) {
+      enforceUploadGateUI();
       if (sub === 'upload' && !hasActiveSellerMembership(currentUser)) {
         openNativeCheckoutModal('membership');
-        return;
       }
       ['analytics', 'upload', 'profile', 'following'].forEach(s => {
         document.getElementById(`studio-sub-${s}`)?.classList.toggle('hidden', s !== sub);
@@ -1973,6 +2088,16 @@
 
       const cartBtn = document.getElementById('modal-cart-btn');
       cartBtn.onclick = () => { toggleCartProduct(p.id); alert('Updated Shopping Cart!'); };
+
+      // Show Delete Button inside Modal ONLY if logged-in user is the uploader or Owner
+      const delBtn = document.getElementById('modal-delete-btn');
+      if (canUserDeleteProduct(p)) {
+        delBtn.classList.remove('hidden');
+        delBtn.onclick = () => deleteListing(p.id);
+      } else {
+        delBtn.classList.add('hidden');
+        delBtn.onclick = null;
+      }
 
       document.getElementById('modal-prod-tags').innerHTML = p.tags.map(t =>
         `<span class="px-2.5 py-0.5 rounded-lg bg-slate-900 border border-slate-800 text-[11px] text-amber-200">#${sanitizeHTML(t)}</span>`
@@ -2086,4 +2211,4 @@
     });
   </script>
 </body>
-  </html>
+</html>
