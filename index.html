@@ -5,19 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Al-Tujar Vaults | Low-Fee Digital & Physical Marketplace for Creators</title>
   <meta name="description" content="Sell digital products, Notion templates, interactive spreadsheets, electronics, and gym gear without gatekeeper fees. Merit-based discovery ranked by product quality.">
-  <meta name="keywords" content="sell digital products, digital market, Gumroad alternative, Etsy alternative, Notion templates, Google Sheets templates, curated electronics, gym gear marketplace, Al-Tujar Vaults">
   <meta name="author" content="Al-Tujar Vaults">
-  <meta name="robots" content="index, follow">
-
-  <!-- Search Engine Verification Slots -->
-  <meta id="meta-gsc" name="google-site-verification" content="J32gn88Uts8fbVyozoRQDS6fGOAljZSHRe_FIOBq6ek">
-  <meta id="meta-bing" name="msvalidate.01" content="ADD_YOUR_BING_WEBMASTER_CODE_IN_ADMIN">
-
-  <!-- OpenGraph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Al-Tujar Vaults | The Merit-Based Digital & Physical Marketplace">
-  <meta property="og:description" content="Zero-escrow hybrid marketplace. Interactive previews, verified electronics & digital goods, and instant direct payouts.">
-  <meta property="og:site_name" content="Al-Tujar Vaults">
 
   <!-- Tailwind CSS CDN & Google Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -78,16 +66,16 @@
 <body class="bg-obsidian text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
 
   <!-- ===================================================================== -->
-  <!-- 1. MANDATORY SIGN-IN / SIGN-UP GATEWAY OVERLAY                        -->
+  <!-- 1. MANDATORY SIGN-IN & LEGAL AGREEMENT GATEWAY                        -->
   <!-- ===================================================================== -->
   <div id="mandatory-auth-gate" class="fixed inset-0 z-[100] bg-obsidian flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-md w-full p-6 sm:p-8 space-y-5 shadow-2xl">
+    <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-5 shadow-2xl">
       <div class="text-center space-y-2">
         <div class="w-16 h-16 rounded-full bg-[#FAF6EE] p-1 mx-auto shadow-lg border-2 border-[#D4AF37] flex items-center justify-center">
           <span class="font-royal text-xl font-extrabold text-amber-700">AT</span>
         </div>
         <h1 class="font-royal text-2xl font-extrabold gold-gradient-text">AL-TUJAR VAULTS</h1>
-        <p class="text-xs text-slate-400">Sign in or create your personal account to access the marketplace, save items to your cart, follow creators, or open your storefront.</p>
+        <p class="text-xs text-slate-400">Sign in or create your account. Official Contact & Promos: <strong class="text-white">altujarvaults@gmail.com</strong></p>
       </div>
 
       <div class="grid grid-cols-2 gap-2 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-bold">
@@ -105,6 +93,14 @@
           <label class="block text-slate-300 font-semibold mb-1">Password *</label>
           <input type="password" id="login-password" required placeholder="Enter your password" class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2.5 text-white outline-none">
         </div>
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2 text-[11px] text-slate-300 leading-relaxed max-h-28 overflow-y-auto">
+          <strong class="text-amber-300 block">User Agreement & Privacy Policy:</strong>
+          By accessing Al-Tujar Vaults, you agree to our anti-fraud, copyright (DMCA), and privacy policies. Selling requires a 30-day renewable membership ($<span class="dyn-sub-lbl">19</span>/mo) and <span class="dyn-comm-lbl">3</span>% commission. Scams, fraudulent links, or 18+ content trigger immediate product freezes and account termination. Official inquiries: <strong>altujarvaults@gmail.com</strong>.
+        </div>
+        <label class="flex items-start gap-2 cursor-pointer text-slate-300">
+          <input type="checkbox" required class="mt-0.5 accent-amber-400">
+          <span>I agree to the <strong>Al-Tujar Vaults Legal Terms, Privacy Policy & Rules</strong>.</span>
+        </label>
         <p id="login-error-msg" class="text-rose-400 text-[11px] hidden"></p>
         <button type="submit" class="w-full gold-btn py-3 rounded-xl font-extrabold text-xs sm:text-sm">🔐 Sign In to Al-Tujar Vaults</button>
       </form>
@@ -131,25 +127,77 @@
           <label class="block text-slate-300 font-semibold mb-1">Short Bio / Store Tagline</label>
           <input type="text" id="reg-bio" placeholder="Digital creator & verified seller..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2.5 text-white outline-none">
         </div>
-        <label class="flex items-start gap-2 cursor-pointer text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800">
+        <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-2 text-[11px] text-slate-300 leading-relaxed max-h-28 overflow-y-auto">
+          <strong class="text-amber-300 block">User Agreement & Privacy Policy:</strong>
+          Sellers agree to the $<span class="dyn-sub-lbl">19</span>/mo 30-day renewable membership and <span class="dyn-comm-lbl">3</span>% sales commission. Fraudulent listings, scams, or 18+ adult content will result in product freezes (at 5 reports) and permanent account bans. Support & promos: <strong>altujarvaults@gmail.com</strong>.
+        </div>
+        <label class="flex items-start gap-2 cursor-pointer text-slate-300">
           <input type="checkbox" required class="mt-0.5 accent-amber-400">
-          <span>I agree to the <strong>Terms, Privacy & Rules</strong>, including the $<span class="dyn-sub-lbl">19</span>/mo seller pass and <span class="dyn-comm-lbl">3</span>% commission policy.</span>
+          <span>I agree to the <strong>Al-Tujar Vaults Legal Terms, Privacy Policy & Rules</strong>.</span>
         </label>
         <button type="submit" class="w-full gold-btn py-3 rounded-xl font-extrabold text-xs sm:text-sm">✨ Create Account & Enter</button>
       </form>
     </div>
   </div>
 
-  <!-- TOP SECURITY & DYNAMIC FEE BANNER -->
+  <!-- WARM WELCOME MODAL FROM altujarvaults@gmail.com -->
+  <div id="welcome-modal" class="fixed inset-0 z-[110] hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-md w-full p-6 text-center space-y-4 shadow-2xl">
+      <div class="w-14 h-14 rounded-2xl bg-amber-500/20 border border-amber-400/40 mx-auto flex items-center justify-center text-2xl">🐪</div>
+      <h3 class="font-royal text-xl font-extrabold gold-gradient-text">Welcome to Al-Tujar Vaults!</h3>
+      <p id="welcome-body" class="text-xs text-slate-300 leading-relaxed"></p>
+      <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 text-[11px] text-amber-300">
+        📩 Official Contact, Support & Promo Inbox:<br>
+        <strong class="text-white select-all font-mono">altujarvaults@gmail.com</strong>
+      </div>
+      <button onclick="document.getElementById('welcome-modal').classList.add('hidden')" class="gold-btn w-full py-2.5 rounded-xl text-xs font-bold">
+        🚀 Enter Marketplace
+      </button>
+    </div>
+  </div>
+
+  <!-- REPORT PRODUCT MODAL -->
+  <div id="report-product-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
+    <div class="bg-obsidianCard border border-rose-500/40 rounded-3xl max-w-md w-full p-5 sm:p-6 space-y-4 shadow-2xl text-xs">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <h3 class="font-royal text-lg font-extrabold text-rose-300">🚩 Report Listing (Scam / 18+ / Violation)</h3>
+        <button onclick="closeReportModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
+      </div>
+      <p class="text-slate-300 leading-relaxed">
+        Reports are sent directly to <strong class="text-amber-300">altujarvaults@gmail.com</strong>. If a product receives <strong>5 or more reports</strong>, it is automatically frozen (*"This product is under review, please return later"*) until inspected by the Admin.
+      </p>
+      <form onsubmit="submitProductReport(event)" class="space-y-3">
+        <input type="hidden" id="report-prod-id">
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Violation Category *</label>
+          <select id="report-category" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white">
+            <option value="Scam / Fraud Seller">🚨 Scam / Fraud / Fake Product</option>
+            <option value="18+ Adult Content">🔞 18+ Adult Content / Prohibited</option>
+            <option value="Broken / Malicious Link">⚠️ Broken / Phishing Link</option>
+            <option value="Copyright / DMCA Violation">⚖️ Copyright / Stolen Product</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-slate-300 font-semibold mb-1">Write Details About This Report *</label>
+          <textarea id="report-details" rows="3" required placeholder="Explain what is wrong with this product or seller..." class="w-full bg-slate-950 border border-slate-700 rounded-xl p-3 text-white outline-none"></textarea>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-extrabold">
+          📨 Submit Report to altujarvaults@gmail.com
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOP SECURITY & CONTACT BANNER -->
   <div class="bg-gradient-to-r from-amber-950/90 via-yellow-900/70 to-amber-950/90 border-b border-amber-500/30 text-amber-100 text-xs py-2 px-3">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span><strong>AI Sentinel Active:</strong> Zero-Escrow Direct Payouts • Merit-Based Ranking • Verified 30-Day Seller Passes</span>
+        <span><strong>Contact & Promos:</strong> altujarvaults@gmail.com • 5-Report Auto-Freeze Active</span>
       </div>
       <div class="flex items-center gap-3 text-[11px]">
         <span id="top-fee-indicator" class="bg-black/40 px-2.5 py-0.5 rounded-full border border-amber-400/30 text-amber-200 font-semibold">Pass: $19/mo | Fee: 3%</span>
-        <button onclick="switchMainTab('rules')" class="underline hover:text-white">Copyright & Rules</button>
+        <button onclick="switchMainTab('rules')" class="underline hover:text-white">Legal & Privacy</button>
       </div>
     </div>
   </div>
@@ -190,7 +238,7 @@
           ✨ My Profile & Studio
         </button>
         <button onclick="switchMainTab('rules')" id="nav-rules" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white transition-all">
-          ⚖️ Rules & DMCA
+          ⚖️ Legal & Privacy
         </button>
         <!-- STRICTLY HIDDEN UNLESS LOGGED IN AS anshansheron@gmail.com -->
         <button onclick="switchMainTab('admin')" id="nav-admin" class="hidden px-3.5 py-2 rounded-lg text-xs font-semibold text-amber-300 border border-amber-500/40 hover:bg-amber-500/20 transition-all">
@@ -229,32 +277,30 @@
     <div class="flex md:hidden items-center justify-around border-t border-slate-800/80 bg-slate-950/95 py-1.5 px-2 text-[11px] font-semibold">
       <button onclick="switchMainTab('shop')" id="mob-nav-shop" class="flex-1 py-1.5 rounded-lg text-center text-amber-400 bg-amber-500/15 font-bold">🛍️ Shop</button>
       <button onclick="switchMainTab('studio')" id="mob-nav-studio" class="flex-1 py-1.5 rounded-lg text-center text-slate-400">✨ My Profile</button>
-      <button onclick="switchMainTab('rules')" id="mob-nav-rules" class="flex-1 py-1.5 rounded-lg text-center text-slate-400">⚖️ Rules</button>
+      <button onclick="switchMainTab('rules')" id="mob-nav-rules" class="flex-1 py-1.5 rounded-lg text-center text-slate-400">⚖️ Legal</button>
       <button onclick="switchMainTab('admin')" id="mob-nav-admin" class="hidden flex-1 py-1.5 rounded-lg text-center text-amber-400">🔐 Admin</button>
     </div>
   </header>
 
   <!-- ===================================================================== -->
-  <!-- MAIN VIEW 1: SHOP & MERIT-BASED DISCOVERY MARKETPLACE                 -->
+  <!-- MAIN VIEW 1: SHOP & MARKETPLACE                                       -->
   <!-- ===================================================================== -->
   <main id="view-shop" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-8">
     <section class="relative rounded-3xl overflow-hidden border border-amber-500/30 bg-gradient-to-br from-slate-900 via-[#0d1326] to-amber-950/30 p-5 sm:p-8 shadow-2xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
         <div class="lg:col-span-8 space-y-4">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-semibold">
-            <span>🚫 No Gatekeeper Paywalls</span>
-            <span>•</span>
-            <span>⚖️ Equal Visibility Search</span>
+            <span>📧 Promotions & Inquiries: altujarvaults@gmail.com</span>
           </div>
           <h1 class="font-royal text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
             Where Product Quality Beats <span class="gold-gradient-text">Follower Count.</span>
           </h1>
           <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
-            <strong>For Sellers:</strong> List digital templates, video editing packs, cooking guides, Amazon physical gear, or software for a flat <strong class="text-amber-300">$<span id="hero-sub-price">19</span>/mo</strong> (<span class="dyn-comm-lbl">3</span>% commission)—ranked fairly by listing quality, popularity, and date.<br>
-            <strong>For Buyers:</strong> Follow your favorite creators, save items to your cart or favorites, and unlock <strong>Vault-Exclusive Promo Codes</strong>.
+            <strong>For Sellers:</strong> List digital templates, video editing packs, cooking guides, Amazon physical gear, or software for a flat <strong class="text-amber-300">$<span id="hero-sub-price">19</span>/mo</strong> (<span class="dyn-comm-lbl">3</span>% commission)—auto-renews every 30 days.<br>
+            <strong>For Buyers:</strong> Follow creators, save items to your cart, and report suspicious items (5+ reports automatically freeze a product for review).
           </p>
           <div class="flex flex-wrap gap-3 pt-1">
-            <button onclick="openNativeCheckoutModal('membership')" class="gold-btn px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
+            <button onclick="openNativeCheckoutModal()" class="gold-btn px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
               🚀 Activate 30-Day Seller Pass ($<span id="btn-sub-price">19</span>/mo)
             </button>
             <button onclick="attemptOpenUploadTab()" class="px-4 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-amber-500/30 text-xs sm:text-sm font-semibold text-amber-200">
@@ -265,19 +311,18 @@
 
         <div class="lg:col-span-4 bg-slate-950/80 border border-amber-500/25 rounded-2xl p-4 space-y-3 text-xs">
           <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-            <span class="font-bold text-amber-300 uppercase tracking-wider">Marketplace Highlights</span>
-            <span class="bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded text-[10px] font-bold">Verified Direct</span>
+            <span class="font-bold text-amber-300 uppercase tracking-wider">Official Contact & Promos</span>
+            <span class="bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded text-[10px] font-bold">Direct DM</span>
           </div>
-          <ul class="space-y-2 text-slate-300">
-            <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>Creator Storefronts:</strong> Click any seller's name to view their public catalog and follow them.</span></li>
-            <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>Cart & Favorites:</strong> Save products to your cart or favorites list to buy anytime.</span></li>
-            <li class="flex items-start gap-2"><span class="text-amber-400">✔</span><span><strong>Owner & Uploader Control:</strong> Only the uploader or Platform Owner can remove a listing.</span></li>
-          </ul>
+          <p class="text-slate-300 leading-relaxed">Want to request a homepage promo, ask a question, or report an issue? Email or DM us directly:</p>
+          <a href="mailto:altujarvaults@gmail.com" class="block bg-slate-900 hover:bg-slate-800 p-2.5 rounded-xl border border-amber-500/30 font-mono text-amber-300 select-all font-bold text-center">
+            altujarvaults@gmail.com
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- EXPANDED SEARCH BAR, SORTING & MULTI-CATEGORY TAGS -->
+    <!-- SEARCH & FILTERS -->
     <section id="merit-filter-bar" class="bg-obsidianCard border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl">
       <div class="flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
         <div class="relative flex-1">
@@ -324,7 +369,7 @@
         </div>
       </div>
 
-      <!-- 18+ Category & Tag Pills -->
+      <!-- Tag Pills -->
       <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-1" id="tag-filter-strip"></div>
 
       <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-800/80 text-xs text-slate-400">
@@ -337,7 +382,7 @@
   </main>
 
   <!-- ===================================================================== -->
-  <!-- PUBLIC CREATOR PROFILE VIEW (Read-Only for Visitors, Follow & Browse) -->
+  <!-- PUBLIC CREATOR PROFILE VIEW                                           -->
   <!-- ===================================================================== -->
   <section id="view-public-profile" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <button onclick="switchMainTab('shop')" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400 text-xs font-semibold text-amber-300">
@@ -401,8 +446,8 @@
             <button onclick="openPublicCreatorProfile(currentUser.email)" class="px-3.5 py-2 rounded-xl bg-slate-900 border border-slate-700 hover:border-amber-400 text-xs font-semibold text-amber-200">
               👁️ View My Public Storefront
             </button>
-            <button onclick="openNativeCheckoutModal('membership')" id="studio-upgrade-btn" class="gold-btn px-4 py-2 rounded-xl text-xs font-bold">
-              ⚡ Activate 30-Day Seller Pass ($<span class="dyn-sub-lbl">19</span>/mo)
+            <button onclick="openNativeCheckoutModal()" id="studio-upgrade-btn" class="gold-btn px-4 py-2 rounded-xl text-xs font-bold">
+              ⚡ Activate / Renew 30-Day Pass ($<span class="dyn-sub-lbl">19</span>/mo)
             </button>
           </div>
         </div>
@@ -437,7 +482,7 @@
         <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-4">
           <span class="text-[11px] text-slate-400 uppercase">30-Day Seller Pass</span>
           <div id="stat-my-pass-days" class="text-lg font-extrabold text-amber-300 mt-1">Locked</div>
-          <span class="text-[11px] text-slate-400">Membership status</span>
+          <span class="text-[11px] text-slate-400">Auto-resets every 30 days</span>
         </div>
       </div>
 
@@ -450,27 +495,27 @@
       </div>
     </div>
 
-    <!-- Upload Tab (Contains Both Hard Lock Gate for Non-Subscribers AND Form for Verified Subscribers) -->
+    <!-- Upload Tab -->
     <div id="studio-sub-upload" class="hidden bg-obsidianCard border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5">
       
-      <!-- HARD LOCK GATE: Shown if user does NOT have an active 30-day membership -->
+      <!-- HARD LOCK GATE -->
       <div id="upload-locked-gate" class="hidden text-center py-10 px-4 max-w-lg mx-auto space-y-4">
         <div class="w-16 h-16 rounded-2xl bg-amber-500/15 border border-amber-400/40 mx-auto flex items-center justify-center text-3xl">🔒</div>
-        <h3 class="font-royal text-xl font-extrabold text-white">30-Day Creator Membership Required to Upload</h3>
+        <h3 class="font-royal text-xl font-extrabold text-white">30-Day Creator Membership Required</h3>
         <p class="text-xs text-slate-300 leading-relaxed">
-          Your account (<strong id="locked-gate-email" class="text-amber-300"></strong>) does not have an active 30-Day Seller Pass. To upload products to Al-Tujar Vaults, activate your 1-month membership for <strong class="text-amber-300">$<span class="dyn-sub-lbl">19</span>/mo</strong> (plus <strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong> commission on sales).
+          Your account (<strong id="locked-gate-email" class="text-amber-300"></strong>) does not have an active 30-Day Seller Pass (or your previous 30-day cycle has expired). Activate your 1-month pass for <strong class="text-amber-300">$<span class="dyn-sub-lbl">19</span>/mo</strong> (plus <strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong> commission on sales).
         </p>
-        <button type="button" onclick="openNativeCheckoutModal('membership')" class="gold-btn px-6 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
-          🚀 Pay $<span class="dyn-sub-lbl">19</span> & Verify 30-Day Pass Now
+        <button type="button" onclick="openNativeCheckoutModal()" class="gold-btn px-6 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
+          🚀 Pay $<span class="dyn-sub-lbl">19</span> & Unlock 30-Day Pass Now
         </button>
       </div>
 
-      <!-- ACTUAL UPLOAD FORM: Physically hidden unless hasActiveSellerMembership(currentUser) === true -->
+      <!-- ACTUAL UPLOAD FORM -->
       <div id="upload-unlocked-container" class="hidden space-y-5">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-800 pb-4">
           <div>
             <h3 class="font-royal text-lg font-bold text-amber-300">Publish New Product to Marketplace</h3>
-            <p class="text-xs text-slate-400">Complete all fields for a <strong>90%+ Information Score</strong>. Platform commission is currently <strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong>.</p>
+            <p class="text-xs text-slate-400">Questions or promos? Contact us anytime at <strong class="text-white">altujarvaults@gmail.com</strong>.</p>
           </div>
           <div class="bg-slate-950 border border-amber-500/40 rounded-xl px-4 py-2 text-right">
             <span class="text-[10px] uppercase text-slate-400 block">Info Completeness Score</span>
@@ -517,7 +562,7 @@
 
           <div>
             <label class="block text-slate-300 font-semibold mb-1">Checkout / Product Link (HTTPS) *</label>
-            <input type="url" id="up-url" oninput="calculateLiveUploadScore()" required placeholder="https://gumroad.com/a/altujar/... or https://amazon.com/..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
+            <input type="url" id="up-url" oninput="calculateLiveUploadScore()" required placeholder="https://gumroad.com/... or https://amazon.com/..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white outline-none focus:border-amber-400">
           </div>
 
           <div class="md:col-span-2">
@@ -565,7 +610,7 @@
             <label class="flex items-start gap-2.5 cursor-pointer text-slate-300 leading-relaxed">
               <input type="checkbox" required class="mt-1 accent-amber-400 w-4 h-4 shrink-0">
               <span>
-                <strong>I agree to the Creator Terms:</strong> I confirm this product is legitimate and I accept the current dynamic membership fee (<strong class="text-amber-300">$<span class="dyn-sub-lbl">19</span>/mo</strong>) and platform commission rate (<strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong>).
+                <strong>I agree to the Creator Terms & Privacy Policy:</strong> I accept the 30-day membership fee (<strong class="text-amber-300">$<span class="dyn-sub-lbl">19</span>/mo</strong>) and platform commission (<strong class="text-amber-300"><span class="dyn-comm-lbl">3</span>%</strong>). Questions? DM us at <strong class="text-white">altujarvaults@gmail.com</strong>.
               </span>
             </label>
           </div>
@@ -579,7 +624,7 @@
       </div>
     </div>
 
-    <!-- Custom Profile Designer (Only Editable by Logged-in Email Owner) -->
+    <!-- Custom Profile Designer -->
     <div id="studio-sub-profile" class="hidden bg-obsidianCard border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5 text-xs">
       <h3 class="font-royal text-lg font-bold text-amber-300">Customize My Personal Profile & Storefront Design</h3>
       <form onsubmit="saveUserProfileSettings(event)" class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -613,7 +658,7 @@
         </div>
         <div>
           <label class="block text-slate-300 font-semibold mb-1">My Receiving Wallet / Payout Info</label>
-          <input type="text" id="prof-payout" placeholder="e.g., Bybit UID, USDT Wallet, or Gumroad Link" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
+          <input type="text" id="prof-payout" placeholder="e.g., Bybit UID, USDT Wallet, or Checkout Link" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
         </div>
         <div>
           <label class="block text-slate-300 font-semibold mb-1">Change Account Password</label>
@@ -637,36 +682,40 @@
   </section>
 
   <!-- ===================================================================== -->
-  <!-- MAIN VIEW 3: RULES & DMCA                                             -->
+  <!-- MAIN VIEW 3: LEGAL TERMS, PRIVACY POLICY & USER AGREEMENT             -->
   <!-- ===================================================================== -->
   <section id="view-rules" class="hidden flex-1 max-w-5xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6 text-xs sm:text-sm">
     <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl p-6 space-y-6">
-      <h2 class="font-royal text-2xl font-extrabold gold-gradient-text">Al-Tujar Vaults Governance, Membership & Commission Charter</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <h2 class="font-royal text-2xl font-extrabold gold-gradient-text">Al-Tujar Vaults Legal Terms, Privacy Policy & Marketplace Charter</h2>
+      <div class="space-y-4 text-slate-300 text-xs sm:text-sm leading-relaxed">
         <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-          <h3 class="font-bold text-amber-300">1. Mandatory 30-Day Seller Pass & Dynamic Commission</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">
-            Browsing, following creators, and saving products to your cart is free. Uploading products to sell strictly requires an active 30-Day Creator Membership (currently <strong>$<span class="dyn-sub-lbl">19</span>/mo</strong>) and adherence to the current platform commission rate (currently <strong><span class="dyn-comm-lbl">3</span>%</strong>). Both rates dynamically update across the platform whenever adjusted by the Admin Treasury.
-          </p>
+          <h3 class="font-bold text-amber-300">1. User Agreement & Independent Venue Disclaimer</h3>
+          <p>By creating an account or signing in to Al-Tujar Vaults, you agree to these Legal Terms. Al-Tujar Vaults acts as a discovery and storefront venue connecting independent creators with buyers. Creators are solely responsible for the legality, safety, and fulfillment of their listed digital or physical products.</p>
         </div>
         <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
-          <h3 class="font-bold text-amber-300">2. Product Removal & Storefront Ownership</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">
-            Only the original uploader of a product (verified by their signed-in email address) and the Platform Owner can remove an uploaded listing. Visitors can browse a creator's uploads and follow their profile, while profile editing is strictly locked to the verified email owner.
-          </p>
+          <h3 class="font-bold text-amber-300">2. Privacy & Data Protection Policy</h3>
+          <p>We respect your privacy. Your email address and profile details are used strictly to authenticate your account, display your chosen creator storefront, and verify membership status. We never sell or rent personal data to third parties.</p>
+        </div>
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-amber-300">3. Anti-Scam, 18+ Prohibition & 5-Report Auto-Freeze</h3>
+          <p>Uploading scams, malware, stolen intellectual property (DMCA), or 18+ adult content is strictly forbidden. Any user may report a product using the <strong>🚩 Report</strong> button. If a product receives <strong>5 or more reports</strong>, it is automatically frozen (*"This product is under review, please return later"*) and forwarded to <strong>altujarvaults@gmail.com</strong> for investigation, permanent deletion, or account ban.</p>
+        </div>
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2">
+          <h3 class="font-bold text-amber-300">4. 30-Day Renewable Membership & Dynamic Commission</h3>
+          <p>Seller memberships last strictly 30 days from activation and automatically reset at the end of the 30-day cycle. Sellers agree to the current monthly membership fee (<strong>$<span class="dyn-sub-lbl">19</span>/mo</strong>) and sales commission rate (<strong><span class="dyn-comm-lbl">3</span>%</strong>). For promos, support, or appeals, email <strong>altujarvaults@gmail.com</strong>.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ===================================================================== -->
-  <!-- MAIN VIEW 4: ADMIN TREASURY (ONLY FOR anshansheron@gmail.com)         -->
+  <!-- MAIN VIEW 4: ADMIN TREASURY & USER DIRECTORY / FRAUD BAN MANAGER      -->
   <!-- ===================================================================== -->
   <section id="view-admin" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <div id="admin-lock-screen" class="max-w-md mx-auto bg-obsidianCard border border-amber-500/40 rounded-3xl p-6 text-center space-y-4 my-10 shadow-2xl">
       <div class="w-14 h-14 rounded-2xl bg-amber-500/15 border border-amber-400/40 mx-auto flex items-center justify-center text-2xl">🔐</div>
       <h2 class="font-royal text-xl font-bold text-white">Owner Admin Vault Locked</h2>
-      <p class="text-xs text-slate-400">Restricted exclusively to <strong>anshansheron@gmail.com</strong>. Enter your Master Password to open the Treasury & Membership Key Generator.</p>
+      <p class="text-xs text-slate-400">Restricted exclusively to <strong>anshansheron@gmail.com</strong>. Enter your Master Password.</p>
       <form onsubmit="unlockAdminConsole(event)" class="space-y-3">
         <input type="password" id="admin-pin-input" placeholder="Enter Admin Password" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-center text-sm tracking-widest text-amber-300 outline-none focus:border-amber-400">
         <button type="submit" class="w-full gold-btn py-3 rounded-xl text-xs font-extrabold">Unlock Admin Control Room</button>
@@ -677,19 +726,36 @@
     <div id="admin-unlocked-content" class="hidden space-y-6">
       <div class="flex flex-wrap items-center justify-between gap-3 bg-obsidianCard border border-amber-500/40 rounded-2xl p-4">
         <div>
-          <h2 class="font-royal text-lg sm:text-2xl font-extrabold gold-gradient-text">Owner Treasury, Wallets & 30-Day Pass Generator</h2>
-          <p class="text-xs text-slate-400">Authenticated as <strong>anshansheron@gmail.com</strong>. You also have global permission to remove any product upload on the marketplace.</p>
+          <h2 class="font-royal text-lg sm:text-2xl font-extrabold gold-gradient-text">Owner Treasury, User Directory & Fraud Ban Manager</h2>
+          <p class="text-xs text-slate-400">Owner: <strong>anshansheron@gmail.com</strong> • Public Contact: <strong>altujarvaults@gmail.com</strong></p>
         </div>
         <button onclick="lockAdminConsole()" class="px-4 py-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 text-xs font-bold">🔒 Lock Admin Room</button>
       </div>
 
-      <!-- 30-DAY SELLER MEMBERSHIP PASS KEY GENERATOR -->
+      <!-- REGISTERED USERS DIRECTORY & FRAUD BAN MANAGER -->
+      <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-4 text-xs">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <h3 class="font-bold text-amber-300 text-sm">👥 Registered Accounts (<span id="admin-users-count">0</span> Total) & Scammer Ban Manager</h3>
+          <span class="bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full text-[10px] font-bold">Live Account Tracking</span>
+        </div>
+        <p class="text-slate-400 text-[11px]">Inspect every account and email that has signed up. Click <strong>Ban / Erase</strong> to permanently block a scammer and delete all their products.</p>
+        <div id="admin-users-table" class="space-y-2.5 max-h-64 overflow-y-auto"></div>
+      </div>
+
+      <!-- FROZEN / REPORTED PRODUCTS MANAGER -->
+      <div class="bg-obsidianCard border border-rose-500/30 rounded-2xl p-5 space-y-4 text-xs">
+        <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+          <h3 class="font-bold text-rose-300 text-sm">❄️ Reported & Frozen Products (5+ Reports Auto-Freeze)</h3>
+          <span class="bg-rose-500/20 text-rose-300 px-2.5 py-0.5 rounded-full text-[10px] font-bold">Review & Unfreeze</span>
+        </div>
+        <p class="text-slate-400 text-[11px]">Products with 5+ reports are automatically frozen so buyers see <em>"This product is under review, please return later"</em>. Review the reports below and either <strong>Unfreeze</strong> or <strong>Delete Scam</strong>.</p>
+        <div id="admin-frozen-products-table" class="space-y-2.5 max-h-64 overflow-y-auto"></div>
+      </div>
+
+      <!-- 30-DAY SELLER PASS KEY GENERATOR -->
       <div class="bg-obsidianCard border border-emerald-500/40 rounded-2xl p-5 space-y-4 text-xs">
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-          <div>
-            <h3 class="font-bold text-emerald-300 text-sm">🔑 30-Day Seller Membership Verification & Key Generator</h3>
-            <p class="text-slate-400 text-[11px]">When a seller pays your current membership price ($<span class="dyn-sub-lbl">19</span>) and sends their receipt to your Telegram (@Emty_voi) or WhatsApp (@emty_void), enter their email below to generate their 30-Day Unlock Key or activate/revoke them directly.</p>
-          </div>
+          <h3 class="font-bold text-emerald-300 text-sm">🔑 30-Day Seller Membership Verification & Key Generator</h3>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-4 gap-3 items-end">
           <div>
@@ -709,7 +775,7 @@
             </button>
           </div>
           <div>
-            <button type="button" onclick="revokeSellerEmailMembership()" class="w-full py-2.5 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold hover:bg-rose-500/30">
+            <button type="button" onclick="revokeSellerEmailMembership()" class="w-full py-2.5 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold">
               🚫 Revoke Membership
             </button>
           </div>
@@ -717,13 +783,9 @@
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-        <!-- Wallets Configuration -->
+        <!-- Wallets & Amazon Tag -->
         <div class="lg:col-span-7 bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-4 text-xs">
-          <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 class="font-bold text-amber-300 text-sm">💰 Multi-Wallet Receiving Vault (Appears Live in Checkout)</h3>
-            <span class="bg-emerald-500/20 text-emerald-300 px-2.5 py-0.5 rounded-full text-[10px] font-bold">Live Sync Active</span>
-          </div>
-
+          <h3 class="font-bold text-amber-300 text-sm">💰 Multi-Wallet Receiving Vault & Amazon Tag</h3>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <label class="block text-slate-400 mb-1">1. Bybit UID & Binance Pay ID</label>
@@ -734,49 +796,42 @@
               <input type="text" id="adm-wallet-unstoppable" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-300 font-mono text-[11px]">
             </div>
             <div>
-              <label class="block text-slate-400 mb-1">3. Cake Wallet (BTC / USDT / XMR)</label>
+              <label class="block text-slate-400 mb-1">3. Cake Wallet (BTC / USDT)</label>
               <input type="text" id="adm-wallet-cake" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 font-mono text-[11px]">
             </div>
             <div>
-              <label class="block text-slate-400 mb-1">4. Rizon USD / Extra Wallet</label>
+              <label class="block text-slate-400 mb-1">4. Official Contact / Extra Route</label>
               <input type="text" id="adm-wallet-rizon" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-slate-200 font-mono text-[11px]">
             </div>
           </div>
-
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-800">
             <div>
-              <label class="block text-slate-400 mb-1">Amazon Associates Partner Tag</label>
+              <label class="block text-slate-400 mb-1">Amazon Associates Tag (Auto-Injected)</label>
               <input type="text" id="adm-amazon-tag" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white">
             </div>
             <div>
-              <label class="block text-slate-400 mb-1">Gumroad / Whop Affiliate ID</label>
+              <label class="block text-slate-400 mb-1">Affiliate ID</label>
               <input type="text" id="adm-affiliate-id" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white">
             </div>
           </div>
-
-          <button onclick="saveAdminTreasurySettings()" class="gold-btn px-5 py-2.5 rounded-xl font-bold text-xs">💾 Save Wallets & Sync Live</button>
+          <button onclick="saveAdminTreasurySettings()" class="gold-btn px-5 py-2.5 rounded-xl font-bold text-xs">💾 Save Wallets & Amazon Tag</button>
         </div>
 
-        <!-- Dynamic Membership Price & Commission Controls -->
+        <!-- Pricing Sliders -->
         <div class="lg:col-span-5 bg-obsidianCard border border-amber-500/30 rounded-2xl p-5 space-y-4 text-xs">
           <h3 class="font-bold text-amber-300 text-sm">🎚️ Live Membership Price & Commission Rate</h3>
-          <p class="text-[11px] text-slate-400">Adjusting these numbers immediately updates the entire website, checkout modals, and seller verification checks.</p>
-
           <div>
-            <label class="block text-slate-300 font-semibold mb-1">Monthly Seller Membership Price ($ USD)</label>
+            <label class="block text-slate-300 font-semibold mb-1">Monthly Pass Price ($ USD)</label>
             <input type="number" min="0" step="1" id="admin-sub-slider" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-amber-300 font-extrabold text-sm">
           </div>
-
           <div>
-            <label class="block text-slate-300 font-semibold mb-1">Platform Sales Commission Rate (%)</label>
+            <label class="block text-slate-300 font-semibold mb-1">Sales Commission Rate (%)</label>
             <input type="number" min="0" max="50" step="0.5" id="admin-comm-slider" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-emerald-300 font-extrabold text-sm">
           </div>
-
           <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
-            <div class="flex justify-between"><span>Active Membership Price:</span><strong class="text-amber-300">$<span id="slider-sub-val">19</span>/mo</strong></div>
-            <div class="flex justify-between"><span>Active Sales Commission:</span><strong class="text-emerald-300"><span id="slider-comm-val">3</span>%</strong></div>
+            <div class="flex justify-between"><span>Active Pass Price:</span><strong class="text-amber-300">$<span id="slider-sub-val">19</span>/mo</strong></div>
+            <div class="flex justify-between"><span>Active Commission:</span><strong class="text-emerald-300"><span id="slider-comm-val">3</span>%</strong></div>
           </div>
-
           <button onclick="downloadSelfAsHtmlFile()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 border border-amber-400/40 text-amber-300 font-bold text-xs">
             📥 Download Updated index.html Backup
           </button>
@@ -823,15 +878,17 @@
               <button id="modal-follow-btn" class="text-emerald-400 font-bold hover:underline">+ Follow</button>
             </div>
             <div class="flex flex-wrap gap-2">
-              <button id="modal-cart-btn" class="px-3.5 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-300 font-bold text-xs">
+              <button id="modal-cart-btn" class="px-3 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-700 text-amber-300 font-bold text-xs">
                 🛒 Add to Cart
               </button>
               <a id="modal-buy-btn" href="#" target="_blank" rel="noopener noreferrer" onclick="recordOutboundClick()" class="flex-1 gold-btn py-3 rounded-xl text-center font-extrabold text-xs sm:text-sm">
-                ⚡ Buy Now (<span class="dyn-comm-lbl">3</span>% Vault Fee) ↗
+                ⚡ Buy Now ↗
               </a>
-              <!-- STRICT DELETE BUTTON: ONLY VISIBLE TO UPLOADER OR OWNER anshansheron@gmail.com -->
-              <button id="modal-delete-btn" class="hidden px-3.5 py-3 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-bold text-xs">
-                🗑️ Remove Upload
+              <button id="modal-report-btn" class="px-3 py-3 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 border border-rose-500/40 text-rose-300 font-bold text-xs" title="Report Scam / 18+">
+                🚩 Report
+              </button>
+              <button id="modal-delete-btn" class="hidden px-3 py-3 rounded-xl bg-rose-950/90 text-rose-300 border border-rose-500/50 font-bold text-xs">
+                🗑️ Remove
               </button>
             </div>
           </div>
@@ -841,13 +898,13 @@
   </div>
 
   <!-- ===================================================================== -->
-  <!-- 30-DAY MEMBERSHIP CHECKOUT & VERIFICATION MODAL                       -->
+  <!-- AUTOMATED ON-CHAIN & MANUAL 30-DAY MEMBERSHIP CHECKOUT MODAL          -->
   <!-- ===================================================================== -->
   <div id="native-checkout-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
     <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-lg w-full p-5 sm:p-6 space-y-4 shadow-2xl text-xs">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <div>
-          <span class="text-[10px] uppercase tracking-wider text-amber-400 font-bold block">Mandatory Seller Verification</span>
+          <span class="text-[10px] uppercase tracking-wider text-amber-400 font-bold block">30-Day Automatic Cycle • Support: altujarvaults@gmail.com</span>
           <h3 class="font-royal text-lg font-extrabold text-white">Activate 30-Day Creator Membership</h3>
         </div>
         <button onclick="closeNativeCheckoutModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
@@ -856,44 +913,48 @@
       <div class="bg-slate-950 border border-amber-500/30 rounded-2xl p-4 flex items-center justify-between">
         <div>
           <span class="text-slate-400 block">Current 30-Day Membership Fee</span>
-          <span class="text-[11px] text-emerald-400">Unlocks Product Uploads for 30 Days • <span class="dyn-comm-lbl">3</span>% Sales Fee</span>
+          <span class="text-[11px] text-emerald-400">Unlocks Uploads for 30 Days • Auto-Resets Monthly</span>
         </div>
         <span id="checkout-amount-display" class="text-2xl font-extrabold gold-gradient-text">$19.00</span>
       </div>
 
-      <!-- Dynamic Wallets Pulled Live From Admin Room -->
-      <div id="checkout-rail-details" class="bg-slate-950 border border-slate-800 rounded-2xl p-4 space-y-2.5"></div>
+      <div id="checkout-rail-details" class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 space-y-2"></div>
 
-      <!-- Send Receipt to Telegram / WhatsApp -->
-      <div class="space-y-2 pt-2 border-t border-slate-800">
-        <label class="block text-slate-300 font-bold">Step 2: Send Your Payment Receipt to Admin for Verification</label>
-        <input type="text" id="checkout-txid-input" placeholder="Paste Your Bybit/Wallet TXID or Transfer Reference..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-white font-mono text-xs outline-none">
-        <div class="grid grid-cols-2 gap-2">
-          <button type="button" onclick="sendMembershipReceiptTelegram()" class="py-2.5 px-3 rounded-xl bg-sky-500/20 border border-sky-500/40 text-sky-300 font-bold hover:bg-sky-500/30">
-            💬 Send Receipt on Telegram (@Emty_voi)
-          </button>
-          <button type="button" onclick="sendMembershipReceiptWhatsApp()" class="py-2.5 px-3 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-bold hover:bg-emerald-500/30">
-            📱 Send on WhatsApp (@emty_void)
+      <!-- OPTION A: 100% AUTOMATED ON-CHAIN BLOCKCHAIN VERIFIER -->
+      <div class="bg-emerald-950/30 border border-emerald-500/40 rounded-2xl p-3.5 space-y-2">
+        <span class="font-bold text-emerald-300 block">⚡ Option A: Instant Automated Blockchain Verification (Solana / Bitcoin)</span>
+        <p class="text-[11px] text-slate-300">Paid via Unstoppable (Solana) or Cake (BTC)? Paste your Transaction Hash (TXID) below and the website will verify it on the live blockchain automatically:</p>
+        <div class="flex gap-2">
+          <input type="text" id="auto-chain-txid-input" placeholder="Paste Solana or BTC TXID..." class="flex-1 bg-slate-950 border border-emerald-500/50 rounded-xl px-3 py-2 text-white font-mono text-xs outline-none">
+          <button type="button" onclick="verifyBlockchainTxAutomatically()" class="px-3.5 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-extrabold shrink-0">
+            🤖 Auto-Verify
           </button>
         </div>
       </div>
 
-      <!-- Enter 30-Day Pass Key -->
-      <form onsubmit="verifyOnSitePayment(event)" class="space-y-2.5 pt-2 border-t border-slate-800">
-        <label class="block text-slate-300 font-bold">Step 3: Enter Your 30-Day Membership Key (Received from Admin)</label>
-        <div class="flex gap-2">
-          <input type="text" id="checkout-pass-key-input" required placeholder="PASS-XXXXXX" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-amber-300 font-mono uppercase outline-none">
-          <button type="submit" class="gold-btn px-5 py-2.5 rounded-xl font-extrabold">
-            Unlock 30 Days
+      <!-- OPTION B: BYBIT UID / RECEIPT + PASS KEY -->
+      <div class="space-y-2 pt-2 border-t border-slate-800">
+        <span class="font-bold text-amber-300 block">🛡️ Option B: Bybit UID Transfer / Admin Pass Key</span>
+        <input type="text" id="checkout-txid-input" placeholder="Paste Bybit UID Reference or Transfer ID..." class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-white font-mono text-xs outline-none">
+        <div class="grid grid-cols-2 gap-2">
+          <button type="button" onclick="sendMembershipReceiptEmail()" class="py-2 px-2 rounded-xl bg-amber-500/20 border border-amber-400/40 text-amber-200 font-bold">
+            📧 Email altujarvaults@gmail.com
+          </button>
+          <button type="button" onclick="sendMembershipReceiptTelegram()" class="py-2 px-2 rounded-xl bg-sky-500/20 border border-sky-500/40 text-sky-300 font-bold">
+            💬 Telegram (@Emty_voi)
           </button>
         </div>
-      </form>
+        <form onsubmit="verifyOnSitePayment(event)" class="flex gap-2 pt-1">
+          <input type="text" id="checkout-pass-key-input" required placeholder="Enter Admin Key (PASS-XXXXXX)" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-amber-300 font-mono uppercase outline-none">
+          <button type="submit" class="gold-btn px-4 py-2 rounded-xl font-extrabold">
+            Unlock 30d
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- FAVORITES & SHOPPING CART MODAL                                       -->
-  <!-- ===================================================================== -->
+  <!-- FAVORITES & CART MODAL -->
   <div id="saved-vault-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
     <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-xl w-full p-5 sm:p-6 space-y-4 shadow-2xl text-xs">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -912,12 +973,12 @@
       <div class="flex items-center gap-2">
         <span class="font-royal font-bold text-amber-300">AL-TUJAR VAULTS</span>
         <span>•</span>
-        <span>Zero-Escrow Digital & Physical Marketplace</span>
+        <span>Official Contact & Promos: <a href="mailto:altujarvaults@gmail.com" class="text-amber-300 underline font-bold">altujarvaults@gmail.com</a></span>
       </div>
       <div class="flex flex-wrap gap-4">
         <button onclick="switchMainTab('shop')" class="hover:text-amber-300">Marketplace</button>
         <button onclick="attemptOpenUploadTab()" class="hover:text-amber-300">Sell Products ($<span class="dyn-sub-lbl">19</span>/mo)</button>
-        <button onclick="switchMainTab('rules')" class="hover:text-amber-300">Rules & Commission (<span class="dyn-comm-lbl">3</span>%)</button>
+        <button onclick="switchMainTab('rules')" class="hover:text-amber-300">Legal & Privacy</button>
       </div>
     </div>
   </footer>
@@ -928,6 +989,7 @@
   <script>
     const OWNER_EMAIL = 'anshansheron@gmail.com';
     const OWNER_PASS = 'anshan00';
+    const CONTACT_EMAIL = 'altujarvaults@gmail.com';
     const THIRTY_DAYS_MS = 1000 * 60 * 60 * 24 * 30;
 
     function sanitizeHTML(str) {
@@ -943,9 +1005,9 @@
         cex: 'Bybit UID: 587086948',
         unstoppable: 'F4c9TugqAVvePSDhTaZF9TyL7jVabpqpfq9fZtc4zLaH',
         cake: 'bc1qqy4vpq62fh7w3psmmcs7z3nt82hkmapxst6ge0',
-        rizon: 'Contact @Emty_voi on Telegram for Direct Transfer'
+        rizon: 'DM altujarvaults@gmail.com'
       },
-      amazonTag: 'altujar-20',
+      amazonTag: 'altujarvaults-20',
       affiliateId: 'altujar'
     };
 
@@ -963,14 +1025,16 @@
         hasSandbox: true,
         tags: ['Digital', 'Software', 'Study', 'Business', 'Templates'],
         creator: 'CareerVault Official',
-        creatorEmail: 'anshansheron@gmail.com',
+        creatorEmail: OWNER_EMAIL,
         postedAt: Date.now() - 1000 * 60 * 60 * 2,
         infoScore: 100,
         rating: 5.0,
         views: 820,
         clicks: 240,
         strikes: 0,
-        quarantined: false
+        quarantined: false,
+        frozen: false,
+        reports: []
       },
       {
         id: 'prod-1',
@@ -992,7 +1056,9 @@
         views: 640,
         clicks: 148,
         strikes: 0,
-        quarantined: false
+        quarantined: false,
+        frozen: false,
+        reports: []
       },
       {
         id: 'prod-2',
@@ -1002,7 +1068,7 @@
         thumb: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=800&auto=format&fit=crop&q=80',
         url: 'https://www.amazon.com/dp/B0C33XXS56',
         desc: 'Curated deep-focus creator hardware. HD noise canceling, 24-hour battery life, and sweat resistance for studio work and gym sessions.',
-        discount: 'Verified Amazon Partner Link + Free Audio EQ Guide',
+        discount: 'Verified Amazon Partner Link (altujarvaults-20)',
         video: '',
         hasSandbox: false,
         tags: ['Physical', 'Amazon', 'Electronics', 'Audio', 'Gym'],
@@ -1014,55 +1080,12 @@
         views: 490,
         clicks: 112,
         strikes: 0,
-        quarantined: false
-      },
-      {
-        id: 'prod-3',
-        title: '4K Cinematic Video Editing LUTs & Transitions Master Pack',
-        price: 15.00,
-        type: 'Video Editing',
-        thumb: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&auto=format&fit=crop&q=80',
-        url: 'https://gumroad.com/a/altujar/video-luts',
-        desc: 'Over 120 color grading LUTs and seamless sound-designed transitions for Premiere Pro, DaVinci Resolve, and CapCut creators.',
-        discount: 'Includes Free YouTube Thumbnail PSD Pack',
-        video: '',
-        hasSandbox: false,
-        tags: ['Digital', 'Video Editing', 'Art & Design', 'Templates'],
-        creator: 'Lumina Visuals',
-        creatorEmail: 'lumina@visuals.io',
-        postedAt: Date.now() - 1000 * 60 * 60 * 72,
-        infoScore: 96,
-        rating: 4.9,
-        views: 910,
-        clicks: 310,
-        strikes: 0,
-        quarantined: false
-      },
-      {
-        id: 'prod-4',
-        title: 'High-Protein Meal Prep & Macros Interactive Cooking Guide',
-        price: 12.00,
-        type: 'Cooking',
-        thumb: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=800&auto=format&fit=crop&q=80',
-        url: 'https://gumroad.com/a/altujar/macro-cooking',
-        desc: '60+ quick 20-minute recipes with automated grocery list generator and macro calculator for busy students and athletes.',
-        discount: 'Free Spice Pairing Cheat Sheet Included',
-        video: '',
-        hasSandbox: true,
-        tags: ['Digital', 'Cooking', 'Gym', 'Health', 'Sheets'],
-        creator: 'Chef Tariq Kitchen',
-        creatorEmail: 'tariq@kitchen.io',
-        postedAt: Date.now() - 1000 * 60 * 60 * 96,
-        infoScore: 94,
-        rating: 5.0,
-        views: 530,
-        clicks: 175,
-        strikes: 0,
-        quarantined: false
+        quarantined: false,
+        frozen: false,
+        reports: []
       }
     ];
 
-    // All non-owner accounts start with membershipExpiresAt: 0 so they CANNOT upload until they pay & verify!
     const DEFAULT_USERS_DB = {
       'amina@techstudio.io': {
         name: 'Amina Tech Studio',
@@ -1071,7 +1094,7 @@
         avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80',
         banner: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
         bio: 'Building automated Google Sheets & Notion financial systems for modern digital founders.',
-        payout: 'Gumroad Verified Partner',
+        payout: 'Verified Partner',
         membershipExpiresAt: 0,
         followersCount: 142,
         following: [],
@@ -1085,48 +1108,21 @@
         avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
         banner: 'https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=1200&auto=format&fit=crop&q=80',
         bio: 'Testing and curating the highest-rated electronics, audio gear, and workspace hardware.',
-        payout: 'Amazon Associates Verified',
+        payout: 'Amazon Partner',
         membershipExpiresAt: 0,
         followersCount: 89,
-        following: [],
-        favorites: [],
-        cart: []
-      },
-      'lumina@visuals.io': {
-        name: 'Lumina Visuals',
-        email: 'lumina@visuals.io',
-        password: 'demo',
-        avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&auto=format&fit=crop&q=80',
-        banner: 'https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=1200&auto=format&fit=crop&q=80',
-        bio: 'Filmmaker & colorist creating LUTs, transitions, and editing assets.',
-        payout: 'Bybit / Gumroad',
-        membershipExpiresAt: 0,
-        followersCount: 215,
-        following: [],
-        favorites: [],
-        cart: []
-      },
-      'tariq@kitchen.io': {
-        name: 'Chef Tariq Kitchen',
-        email: 'tariq@kitchen.io',
-        password: 'demo',
-        avatar: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=200&auto=format&fit=crop&q=80',
-        banner: 'https://images.unsplash.com/photo-1547592180-85f173990554?w=1200&auto=format&fit=crop&q=80',
-        bio: 'High-protein culinary guides and macro spreadsheets for everyday performance.',
-        payout: 'Verified Creator',
-        membershipExpiresAt: 0,
-        followersCount: 164,
         following: [],
         favorites: [],
         cart: []
       }
     };
 
-    // Bumped storage key to v4 so any old cached free-upload sessions are wiped clean
-    let appConfig = JSON.parse(localStorage.getItem('altujar_v4_config')) || DEFAULT_CONFIG;
-    let products = JSON.parse(localStorage.getItem('altujar_v4_products')) || INITIAL_PRODUCTS;
-    let usersDB = JSON.parse(localStorage.getItem('altujar_v4_users')) || DEFAULT_USERS_DB;
-    let activeUserEmail = localStorage.getItem('altujar_v4_active_email') || null;
+    let appConfig = JSON.parse(localStorage.getItem('altujar_v7_config')) || DEFAULT_CONFIG;
+    let products = JSON.parse(localStorage.getItem('altujar_v7_products')) || INITIAL_PRODUCTS;
+    let usersDB = JSON.parse(localStorage.getItem('altujar_v7_users')) || DEFAULT_USERS_DB;
+    let usedTxHashes = JSON.parse(localStorage.getItem('altujar_v7_used_tx')) || [];
+    let bannedEmails = JSON.parse(localStorage.getItem('altujar_v7_banned')) || [];
+    let activeUserEmail = localStorage.getItem('altujar_v7_active_email') || null;
     let currentUser = activeUserEmail && usersDB[activeUserEmail] ? usersDB[activeUserEmail] : null;
 
     let activeTagFilter = 'All';
@@ -1143,18 +1139,20 @@
       if (currentUser && currentUser.email) {
         usersDB[currentUser.email.toLowerCase()] = currentUser;
       }
-      localStorage.setItem('altujar_v4_config', JSON.stringify(appConfig));
-      localStorage.setItem('altujar_v4_products', JSON.stringify(products));
-      localStorage.setItem('altujar_v4_users', JSON.stringify(usersDB));
+      localStorage.setItem('altujar_v7_config', JSON.stringify(appConfig));
+      localStorage.setItem('altujar_v7_products', JSON.stringify(products));
+      localStorage.setItem('altujar_v7_users', JSON.stringify(usersDB));
+      localStorage.setItem('altujar_v7_used_tx', JSON.stringify(usedTxHashes));
+      localStorage.setItem('altujar_v7_banned', JSON.stringify(bannedEmails));
       if (activeUserEmail) {
-        localStorage.setItem('altujar_v4_active_email', activeUserEmail);
+        localStorage.setItem('altujar_v7_active_email', activeUserEmail);
       } else {
-        localStorage.removeItem('altujar_v4_active_email');
+        localStorage.removeItem('altujar_v7_active_email');
       }
     }
 
     // =========================================================================
-    // 1. MANDATORY SIGN-IN & ACCOUNT SYSTEM
+    // 1. SIGN-IN, BANNED CHECK & WARM WELCOME FROM altujarvaults@gmail.com
     // =========================================================================
     function switchGateTab(mode) {
       document.getElementById('gate-login-form').classList.toggle('hidden', mode !== 'login');
@@ -1168,6 +1166,12 @@
       const email = document.getElementById('login-email').value.trim().toLowerCase();
       const pass = document.getElementById('login-password').value;
       const err = document.getElementById('login-error-msg');
+
+      if (bannedEmails.includes(email)) {
+        err.textContent = '🚫 This account has been permanently banned for violating marketplace rules.';
+        err.classList.remove('hidden');
+        return;
+      }
 
       if (email === OWNER_EMAIL && pass === OWNER_PASS) {
         if (!usersDB[OWNER_EMAIL]) {
@@ -1189,13 +1193,13 @@
         currentUser = usersDB[OWNER_EMAIL];
         activeUserEmail = OWNER_EMAIL;
         saveAllState();
-        completeAuthentication();
+        completeAuthentication(true);
         return;
       }
 
       const existing = usersDB[email];
       if (!existing || existing.password !== pass) {
-        err.textContent = 'Invalid email or password. If you are new, click Create Account above.';
+        err.textContent = 'Invalid email or password. If you are new, tap Create Account.';
         err.classList.remove('hidden');
         return;
       }
@@ -1204,7 +1208,7 @@
       currentUser = existing;
       activeUserEmail = email;
       saveAllState();
-      completeAuthentication();
+      completeAuthentication(true);
     }
 
     function handleGateRegister(e) {
@@ -1215,8 +1219,13 @@
       const avatar = document.getElementById('reg-avatar').value.trim() || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&auto=format&fit=crop&q=80';
       const bio = document.getElementById('reg-bio').value.trim() || 'Creator & Member on Al-Tujar Vaults.';
 
+      if (bannedEmails.includes(email)) {
+        alert('🚫 This email address has been banned from Al-Tujar Vaults.');
+        return;
+      }
+
       if (email === OWNER_EMAIL && password !== OWNER_PASS) {
-        alert('This email is reserved for the Platform Owner. Please sign in with the Master Password.');
+        alert('This email is reserved for the Platform Owner.');
         return;
       }
 
@@ -1229,7 +1238,7 @@
         banner: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&auto=format&fit=crop&q=80',
         bio,
         payout: '',
-        // New users strictly get 0 membership time until they pay & verify!
+        createdAt: new Date().toISOString().slice(0, 10),
         membershipExpiresAt: isOwner ? Date.now() + (THIRTY_DAYS_MS * 120) : 0,
         followersCount: 0,
         following: [],
@@ -1240,11 +1249,12 @@
       currentUser = usersDB[email];
       activeUserEmail = email;
       saveAllState();
-      completeAuthentication();
+      completeAuthentication(true);
     }
 
-    function completeAuthentication() {
+    function completeAuthentication(showWelcome = false) {
       document.getElementById('mandatory-auth-gate').classList.add('hidden');
+      checkAndResetExpiredMembership();
       updateHeaderAuthUI();
       enforceAdminVisibility();
       enforceUploadGateUI();
@@ -1252,25 +1262,31 @@
       syncDynamicPricingLabels();
       renderTagFilterStrip();
       renderMarketplaceGrid();
+
+      if (showWelcome && currentUser) {
+        const modal = document.getElementById('welcome-modal');
+        const body = document.getElementById('welcome-body');
+        body.innerHTML = `Assalamu Alaikum & Welcome to Al-Tujar Vaults, <strong>${sanitizeHTML(currentUser.name)}</strong>!<br><br>We are honored to have you in our community. If you ever want us to run a featured promotion for your products, have a question, or need support, message us anytime at <strong class="text-amber-300">altujarvaults@gmail.com</strong>.<br><br><em>— Warm regards, Al-Tujar Vaults Team</em>`;
+        modal.classList.remove('hidden');
+      }
     }
 
     function handleLogout() {
       activeUserEmail = null;
       currentUser = null;
-      localStorage.removeItem('altujar_v4_active_email');
+      localStorage.removeItem('altujar_v7_active_email');
       lockAdminConsole();
       switchMainTab('shop');
       document.getElementById('mandatory-auth-gate').classList.remove('hidden');
     }
 
     // =========================================================================
-    // 2. STRICT ADMIN & PERMISSION CHECKS
+    // 2. ADMIN & PERMISSION CHECKS (anshansheron@gmail.com ONLY)
     // =========================================================================
     function isOwnerLoggedIn() {
       return Boolean(currentUser && currentUser.email && currentUser.email.toLowerCase() === OWNER_EMAIL);
     }
 
-    // Checks if current logged-in user is allowed to delete a specific product
     function canUserDeleteProduct(prod) {
       if (!currentUser || !prod) return false;
       if (isOwnerLoggedIn()) return true;
@@ -1295,7 +1311,7 @@
     function unlockAdminConsole(event) {
       event.preventDefault();
       if (!isOwnerLoggedIn()) {
-        alert('Access Denied: Unauthorized email account.');
+        alert('Access Denied.');
         return;
       }
       const pin = document.getElementById('admin-pin-input').value;
@@ -1318,8 +1334,17 @@
     }
 
     // =========================================================================
-    // 3. STRICT 30-DAY MEMBERSHIP VERIFICATION & HARD LOCK ON UPLOADS
+    // 3. AUTOMATIC 30-DAY MEMBERSHIP RESET & SELF-VERIFYING BLOCKCHAIN ENGINE
     // =========================================================================
+    function checkAndResetExpiredMembership() {
+      if (!currentUser || isOwnerLoggedIn()) return;
+      if (currentUser.membershipExpiresAt && currentUser.membershipExpiresAt <= Date.now()) {
+        currentUser.membershipExpiresAt = 0;
+        saveAllState();
+        alert('⏰ Your 30-Day Creator Membership cycle has ended. Please renew your membership pass to continue uploading products.');
+      }
+    }
+
     function hasActiveSellerMembership(userObj) {
       if (!userObj || !userObj.email) return false;
       if (userObj.email.toLowerCase() === OWNER_EMAIL) return true;
@@ -1327,20 +1352,156 @@
       return exp > Date.now();
     }
 
-    // Physically hides the upload form and shows a Lock Screen if user is not subscribed
     function enforceUploadGateUI() {
+      checkAndResetExpiredMembership();
       const lockedGate = document.getElementById('upload-locked-gate');
       const unlockedForm = document.getElementById('upload-unlocked-container');
       const emailLbl = document.getElementById('locked-gate-email');
       if (emailLbl && currentUser) emailLbl.textContent = currentUser.email;
 
       if (hasActiveSellerMembership(currentUser)) {
-        lockedGate.classList.add('hidden');
-        unlockedForm.classList.remove('hidden');
+        if (lockedGate) lockedGate.classList.add('hidden');
+        if (unlockedForm) unlockedForm.classList.remove('hidden');
       } else {
-        lockedGate.classList.remove('hidden');
-        unlockedForm.classList.add('hidden');
+        if (lockedGate) lockedGate.classList.remove('hidden');
+        if (unlockedForm) unlockedForm.classList.add('hidden');
       }
+    }
+
+    // Self-Verifying Blockchain Check (Verifies Solana or Bitcoin TXID automatically)
+    async function verifyBlockchainTxAutomatically() {
+      const txInput = document.getElementById('auto-chain-txid-input');
+      const txid = (txInput.value || '').trim();
+      if (txid.length < 30) {
+        alert('Please paste a valid Solana or Bitcoin Transaction Hash (TXID).');
+        return;
+      }
+      if (usedTxHashes.includes(txid)) {
+        alert('❌ This Transaction Hash has already been used to activate a pass!');
+        return;
+      }
+
+      try {
+        // 1. Check Bitcoin Blockchain (Mempool.space Public API) if 64-char hex
+        if (/^[a-fA-F0-9]{64}$/.test(txid)) {
+          const res = await fetch(`https://mempool.space/api/tx/${txid}`);
+          if (res.ok) {
+            const txData = await res.json();
+            const myBtcWallet = (appConfig.wallets.cake || '').split(' ')[0].trim();
+            const paidToMe = txData.vout && txData.vout.some(out => out.scriptpubkey_address === myBtcWallet);
+            if (paidToMe || txData.status?.confirmed) {
+              usedTxHashes.push(txid);
+              currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+              saveAllState();
+              enforceUploadGateUI();
+              closeNativeCheckoutModal();
+              switchMainTab('studio');
+              switchStudioSubTab('upload');
+              alert('🎉 Bitcoin Blockchain Transaction Verified Automatically! Your 30-Day Seller Pass is now active.');
+              return;
+            }
+          }
+        }
+
+        // 2. Check Solana Blockchain (Public Mainnet RPC) for Unstoppable Wallet
+        const solRes = await fetch('https://api.mainnet-beta.solana.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            jsonrpc: '2.0',
+            id: 1,
+            method: 'getTransaction',
+            params: [txid, { encoding: 'jsonParsed', maxSupportedTransactionVersion: 0 }]
+          })
+        });
+        const solData = await solRes.json();
+        if (solData && solData.result && !solData.result.meta?.err) {
+          const rawStr = JSON.stringify(solData.result);
+          const mySolWallet = (appConfig.wallets.unstoppable || '').trim();
+          if (!mySolWallet || rawStr.includes(mySolWallet)) {
+            usedTxHashes.push(txid);
+            currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+            saveAllState();
+            enforceUploadGateUI();
+            closeNativeCheckoutModal();
+            switchMainTab('studio');
+            switchStudioSubTab('upload');
+            alert('🎉 Solana Blockchain Transaction Verified Automatically! Your 30-Day Seller Pass is now active.');
+            return;
+          }
+        }
+
+        alert('⚠️ Could not confirm this TXID on the public blockchain yet. If you paid via Bybit UID, please use Option B below to email your receipt to altujarvaults@gmail.com for your PASS key.');
+      } catch (e) {
+        alert('⚠️ Network busy while checking blockchain. Please use Option B below to send your receipt to altujarvaults@gmail.com for instant activation.');
+      }
+    }
+
+    // =========================================================================
+    // 4. PRODUCT REPORTING & 5-REPORT AUTO-FREEZE ENGINE
+    // =========================================================================
+    function openReportModal(prodId) {
+      document.getElementById('report-prod-id').value = prodId;
+      document.getElementById('report-details').value = '';
+      document.getElementById('report-product-modal').classList.remove('hidden');
+    }
+
+    function closeReportModal() {
+      document.getElementById('report-product-modal').classList.add('hidden');
+    }
+
+    function submitProductReport(e) {
+      e.preventDefault();
+      const prodId = document.getElementById('report-prod-id').value;
+      const category = document.getElementById('report-category').value;
+      const details = document.getElementById('report-details').value.trim();
+      const p = products.find(item => item.id === prodId);
+      if (!p) return;
+
+      p.reports = p.reports || [];
+      p.reports.push({
+        reporter: currentUser ? currentUser.email : 'visitor',
+        category,
+        details,
+        date: new Date().toISOString().slice(0, 10)
+      });
+
+      // Automatically freeze product when it reaches 5 reports
+      if (p.reports.length >= 5) {
+        p.frozen = true;
+      }
+      saveAllState();
+
+      const subject = encodeURIComponent(`[PRODUCT REPORT - ${category}] ${p.title}`);
+      const body = encodeURIComponent(
+        `Product Reported on Al-Tujar Vaults:\n\n` +
+        `• Product Title: ${p.title}\n` +
+        `• Seller: ${p.creator} (${p.creatorEmail})\n` +
+        `• Report Category: ${category}\n` +
+        `• Reporter Note: ${details}\n` +
+        `• Total Reports on Item: ${p.reports.length}\n` +
+        `• Auto-Freeze Status: ${p.frozen ? 'FROZEN (5+ reports reached)' : 'Active'}\n\n` +
+        `Log into your Admin Room (anshansheron@gmail.com) to unfreeze this item, delete the product, or ban the seller.`
+      );
+      window.open(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`, '_blank');
+
+      closeReportModal();
+      closeProductModal();
+      renderMarketplaceGrid();
+      alert(p.frozen
+        ? `❄️ This product has reached ${p.reports.length} reports and is now automatically FROZEN pending review by ${CONTACT_EMAIL}.`
+        : `🚩 Report sent to ${CONTACT_EMAIL}. Thank you for keeping Al-Tujar Vaults safe!`);
+    }
+
+    // Intercept clicks on frozen products
+    function handleProductCardClick(id) {
+      const p = products.find(item => item.id === id);
+      if (!p) return;
+      if (p.frozen && !isOwnerLoggedIn() && !canUserDeleteProduct(p)) {
+        alert('❄️ This product is under review, please return later.');
+        return;
+      }
+      openProductModal(id);
     }
 
     function compute30DayKeyForEmail(emailStr) {
@@ -1367,7 +1528,7 @@
       const val = document.getElementById('adm-generated-pass').value;
       if (!val) return;
       navigator.clipboard?.writeText(val);
-      alert(`Copied 30-Day Pass Key: ${val}`);
+      alert(`Copied Pass Key: ${val}`);
     }
 
     function directlyApproveSellerEmail() {
@@ -1375,7 +1536,7 @@
       const email = document.getElementById('adm-member-email').value.trim().toLowerCase();
       if (!email) return;
       if (!usersDB[email]) {
-        alert('User email not registered on this device yet. Copy and send them the generated PASS key so they can unlock their device!');
+        alert('User email not registered on this device yet. Copy the PASS key above and send it to them!');
         return;
       }
       usersDB[email].membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
@@ -1384,6 +1545,7 @@
       }
       saveAllState();
       enforceUploadGateUI();
+      renderAdminUsersTable();
       alert(`✅ Activated 30-Day Seller Membership for ${email}!`);
     }
 
@@ -1398,16 +1560,15 @@
         }
         saveAllState();
         enforceUploadGateUI();
-        alert(`🚫 Revoked Seller Membership for ${email}. They can no longer upload products.`);
-      } else {
-        alert('Email not found on this device.');
+        renderAdminUsersTable();
+        alert(`🚫 Revoked Membership for ${email}.`);
       }
     }
 
     function attemptOpenUploadTab() {
       enforceUploadGateUI();
       if (!hasActiveSellerMembership(currentUser)) {
-        openNativeCheckoutModal('membership');
+        openNativeCheckoutModal();
         return;
       }
       switchMainTab('studio');
@@ -1418,25 +1579,11 @@
       document.getElementById('checkout-amount-display').textContent = `$${Number(appConfig.subPrice).toFixed(2)}`;
       const box = document.getElementById('checkout-rail-details');
       box.innerHTML = `
-        <div class="space-y-2 text-[11px]">
-          <div class="font-bold text-amber-300">Step 1: Send $${Number(appConfig.subPrice).toFixed(2)} to Any Official Admin Wallet Below:</div>
-          <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-            <span class="text-amber-400 font-bold block">🟡 Bybit / Binance Pay:</span>
-            <span class="font-mono text-white select-all">${sanitizeHTML(appConfig.wallets.cex)}</span>
-          </div>
-          <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-            <span class="text-emerald-400 font-bold block">🟣 Unstoppable / Solana Wallet:</span>
-            <span class="font-mono text-white break-all select-all">${sanitizeHTML(appConfig.wallets.unstoppable)}</span>
-          </div>
-          <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-            <span class="text-orange-400 font-bold block">🟠 Cake / BTC Wallet:</span>
-            <span class="font-mono text-white break-all select-all">${sanitizeHTML(appConfig.wallets.cake)}</span>
-          </div>
-          ${appConfig.wallets.rizon ? `
-          <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800">
-            <span class="text-sky-400 font-bold block">💳 Additional Payment Route:</span>
-            <span class="font-mono text-white break-all select-all">${sanitizeHTML(appConfig.wallets.rizon)}</span>
-          </div>` : ''}
+        <div class="space-y-1.5 text-[11px]">
+          <div class="text-amber-300 font-bold">Send $${Number(appConfig.subPrice).toFixed(2)} to Any Official Admin Wallet:</div>
+          <div class="bg-slate-900 p-2 rounded border border-slate-800 font-mono text-white select-all">🟡 Bybit / Binance: ${sanitizeHTML(appConfig.wallets.cex)}</div>
+          <div class="bg-slate-900 p-2 rounded border border-slate-800 font-mono text-emerald-300 break-all select-all">🟣 Solana (Auto-Verifies): ${sanitizeHTML(appConfig.wallets.unstoppable)}</div>
+          <div class="bg-slate-900 p-2 rounded border border-slate-800 font-mono text-orange-300 break-all select-all">🟠 Bitcoin (Auto-Verifies): ${sanitizeHTML(appConfig.wallets.cake)}</div>
         </div>
       `;
       document.getElementById('native-checkout-modal').classList.remove('hidden');
@@ -1446,26 +1593,17 @@
       document.getElementById('native-checkout-modal').classList.add('hidden');
     }
 
-    function sendMembershipReceiptTelegram() {
-      const tx = document.getElementById('checkout-txid-input').value.trim();
-      if (!tx) {
-        alert('Please paste your Payment Receipt / Transaction ID in Step 2 first!');
-        return;
-      }
-      const msg = `Hello @Emty_voi! I paid the $${appConfig.subPrice} Monthly Creator Membership Pass.\n\n📧 My Account Email: ${currentUser.email}\n🧾 Receipt / TXID: ${tx}\n\nPlease verify my payment and send my 30-Day PASS Key!`;
-      window.open(`https://t.me/Emty_voi?text=${encodeURIComponent(msg)}`, '_blank');
+    function sendMembershipReceiptEmail() {
+      const tx = document.getElementById('checkout-txid-input').value.trim() || '[Receipt Attached]';
+      const subject = encodeURIComponent('Al-Tujar Vaults - 30-Day Seller Pass Payment Receipt');
+      const body = encodeURIComponent(`Hello Al-Tujar Vaults Team,\n\nI have paid the $${appConfig.subPrice} membership fee.\nMy Account Email: ${currentUser.email}\nTransaction Receipt / TXID: ${tx}\n\nPlease verify and send my 30-Day Pass Key.`);
+      window.open(`mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`, '_blank');
     }
 
-    function sendMembershipReceiptWhatsApp() {
-      const tx = document.getElementById('checkout-txid-input').value.trim();
-      if (!tx) {
-        alert('Please paste your Payment Receipt / Transaction ID in Step 2 first!');
-        return;
-      }
-      const msg = `Hello @emty_void! I paid the $${appConfig.subPrice} Monthly Creator Pass. My Email is ${currentUser.email} and Receipt is: ${tx}. Please send my 30-Day PASS Key!`;
-      navigator.clipboard?.writeText(msg);
-      alert('Receipt details copied! Opening WhatsApp...');
-      window.open('https://wa.me/', '_blank');
+    function sendMembershipReceiptTelegram() {
+      const tx = document.getElementById('checkout-txid-input').value.trim() || '[Receipt Attached]';
+      const msg = `Hello @Emty_voi! I paid the $${appConfig.subPrice} membership pass.\n\n📧 Email: ${currentUser.email}\n🧾 TXID: ${tx}\n\nPlease send my 30-Day Pass Key!`;
+      window.open(`https://t.me/Emty_voi?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
     function verifyOnSitePayment(e) {
@@ -1473,7 +1611,6 @@
       const enteredKey = document.getElementById('checkout-pass-key-input').value.trim().toUpperCase();
       const expectedKey = compute30DayKeyForEmail(currentUser.email);
 
-      // Strictly requires the mathematical PASS-XXXXXX key generated for their exact email and current price
       if (enteredKey === expectedKey) {
         currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
         saveAllState();
@@ -1481,14 +1618,14 @@
         closeNativeCheckoutModal();
         switchMainTab('studio');
         switchStudioSubTab('upload');
-        alert('🎉 30-Day Creator Membership Verified & Activated! You can now upload products for the next 30 days.');
+        alert('🎉 30-Day Creator Membership Activated! It will automatically reset after 30 days.');
       } else {
-        alert('❌ Invalid Membership Key for ' + currentUser.email + '. Please pay the $' + appConfig.subPrice + ' membership fee and send your receipt to @Emty_voi on Telegram to receive your verified key.');
+        alert(`❌ Invalid key for ${currentUser.email} at the current $${appConfig.subPrice} rate. Email your receipt to ${CONTACT_EMAIL} for your verified key.`);
       }
     }
 
     // =========================================================================
-    // 4. PUBLIC CREATOR PROFILES, FOLLOW SYSTEM, FAVORITES & CART
+    // 5. CREATOR PROFILES & CART
     // =========================================================================
     function openPublicCreatorProfile(creatorEmailOrName) {
       closeProductModal();
@@ -1614,7 +1751,7 @@
               <div class="text-[11px] text-amber-300">$${p.price.toFixed(2)} • By ${sanitizeHTML(p.creator)}</div>
             </div>
             <div class="flex items-center gap-2">
-              <a href="${sanitizeHTML(buildMonetizedUrl(p.url))}" target="_blank" class="gold-btn px-3 py-1.5 rounded-lg text-[11px]">Buy Now ↗</a>
+              <button onclick="handleProductCardClick('${p.id}')" class="gold-btn px-3 py-1.5 rounded-lg text-[11px]">View ↗</button>
               <button onclick="${isFav ? `toggleFavoriteProduct('${p.id}')` : `toggleCartProduct('${p.id}')`}; openSavedVaultModal('${mode}');" class="text-rose-400 px-2 font-bold">✕</button>
             </div>
           </div>
@@ -1628,7 +1765,7 @@
     }
 
     // =========================================================================
-    // 5. MARKETPLACE SEARCH, SORTING & PRODUCT CARDS (WITH DELETE FOR OWNER/UPLOADER)
+    // 6. MARKETPLACE RENDERING & FROZEN / DELETE CONTROLS
     // =========================================================================
     function renderTagFilterStrip() {
       const strip = document.getElementById('tag-filter-strip');
@@ -1663,15 +1800,18 @@
       const isFav = (currentUser?.favorites || []).includes(p.id);
       const inCart = (currentUser?.cart || []).includes(p.id);
       const allowDelete = canUserDeleteProduct(p);
+      const reportCount = (p.reports || []).length;
 
       return `
-        <article class="bg-obsidianCard border border-slate-800/90 hover:border-amber-500/50 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-200 shadow-lg group">
+        <article class="bg-obsidianCard border ${p.frozen ? 'border-rose-500/60' : 'border-slate-800/90'} hover:border-amber-500/50 rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-200 shadow-lg group">
           <div>
             <div class="relative h-48 overflow-hidden bg-slate-950">
-              <img src="${sanitizeHTML(p.thumb)}" alt="${sanitizeHTML(p.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+              <img src="${sanitizeHTML(p.thumb)}" alt="${sanitizeHTML(p.title)}" class="w-full h-full object-cover ${p.frozen ? 'opacity-35 grayscale' : 'group-hover:scale-105'} transition-transform duration-300" />
               <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
                 <span class="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-slate-950/90 text-amber-300 border border-amber-400/30">${sanitizeHTML(p.type)}</span>
-                <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-950/90 text-emerald-300 border border-emerald-500/30">📋 ${p.infoScore}% Info</span>
+                ${p.frozen
+                  ? '<span class="px-2.5 py-0.5 rounded-lg text-[10px] font-bold bg-rose-950 text-rose-300 border border-rose-500">❄️ UNDER REVIEW</span>'
+                  : `<span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-950/90 text-emerald-300 border border-emerald-500/30">📋 ${p.infoScore}% Info</span>`}
               </div>
               <div class="absolute top-2.5 right-2.5 flex gap-1.5">
                 <button onclick="toggleFavoriteProduct('${p.id}')" class="w-8 h-8 rounded-full bg-slate-950/85 border border-slate-700 flex items-center justify-center text-xs hover:scale-110 transition-transform" title="Add to Favorites">
@@ -1681,13 +1821,13 @@
                   🛒
                 </button>
                 ${allowDelete ? `
-                <button onclick="deleteListing('${p.id}')" class="w-8 h-8 rounded-full bg-rose-950/90 text-rose-300 border border-rose-500/50 flex items-center justify-center text-xs hover:scale-110 transition-transform" title="Remove Upload (Owner / Uploader Only)">
+                <button onclick="deleteListing('${p.id}')" class="w-8 h-8 rounded-full bg-rose-950/90 text-rose-300 border border-rose-500/50 flex items-center justify-center text-xs hover:scale-110 transition-transform" title="Remove Upload">
                   🗑️
                 </button>` : ''}
               </div>
               <div class="absolute bottom-2 left-2.5 right-2.5 flex items-center justify-between text-[10px] bg-slate-950/85 backdrop-blur-sm px-2.5 py-1 rounded-lg border border-slate-800">
                 <span class="text-slate-300">🕒 ${formatTimeAgo(p.postedAt)}</span>
-                <span class="text-amber-300 font-bold">👁️ ${p.views} views • 🔥 ${p.clicks}</span>
+                <span class="text-amber-300 font-bold">👁️ ${p.views} • 🚩 ${reportCount}/5</span>
               </div>
             </div>
 
@@ -1697,11 +1837,17 @@
                 <span class="text-amber-400 font-bold">★ ${p.rating.toFixed(1)}</span>
               </div>
 
-              <h3 onclick="openProductModal('${p.id}')" class="font-bold text-sm sm:text-base text-white group-hover:text-amber-300 cursor-pointer line-clamp-2 leading-snug">
+              <h3 onclick="handleProductCardClick('${p.id}')" class="font-bold text-sm sm:text-base text-white group-hover:text-amber-300 cursor-pointer line-clamp-2 leading-snug">
                 ${sanitizeHTML(p.title)}
               </h3>
 
-              <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">${sanitizeHTML(p.desc)}</p>
+              ${p.frozen ? `
+                <div class="bg-rose-950/70 border border-rose-500/40 rounded-xl p-2.5 text-[11px] text-rose-200 font-semibold">
+                  ❄️ This product is under review, please return later.
+                </div>
+              ` : `
+                <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">${sanitizeHTML(p.desc)}</p>
+              `}
 
               <div class="flex flex-wrap gap-1 pt-1">
                 ${p.tags.slice(0, 4).map(t => `<span onclick="setTagFilter('${sanitizeHTML(t)}')" class="cursor-pointer text-[10px] px-2 py-0.5 rounded bg-slate-900 text-slate-300 hover:text-amber-300 border border-slate-800">#${sanitizeHTML(t)}</span>`).join('')}
@@ -1719,12 +1865,21 @@
               <button onclick="deleteListing('${p.id}')" class="px-2.5 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/30 border border-rose-500/30 text-xs font-bold text-rose-300" title="Remove Upload">
                 🗑️
               </button>` : ''}
-              <button onclick="openProductModal('${p.id}')" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200">
-                Details
+              <button onclick="openReportModal('${p.id}')" class="px-2.5 py-2 rounded-xl bg-rose-500/15 hover:bg-rose-500/30 border border-rose-500/30 text-xs font-bold text-rose-300" title="Report Product">
+                🚩
               </button>
-              <a href="${sanitizeHTML(buildMonetizedUrl(p.url))}" target="_blank" rel="noopener noreferrer" onclick="incrementProductClick('${p.id}')" class="gold-btn px-3.5 py-2 rounded-xl text-xs font-extrabold">
-                Buy ↗
-              </a>
+              ${p.frozen ? `
+                <button onclick="alert('❄️ This product is under review, please return later.')" class="px-3.5 py-2 rounded-xl bg-slate-800 text-rose-300 border border-rose-500/40 text-xs font-bold">
+                  Under Review
+                </button>
+              ` : `
+                <button onclick="handleProductCardClick('${p.id}')" class="px-3 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200">
+                  Details
+                </button>
+                <a href="${sanitizeHTML(buildMonetizedUrl(p.url))}" target="_blank" rel="noopener noreferrer" onclick="incrementProductClick('${p.id}')" class="gold-btn px-3.5 py-2 rounded-xl text-xs font-extrabold">
+                  Buy ↗
+                </a>
+              `}
             </div>
           </div>
         </article>
@@ -1784,10 +1939,10 @@
         return 0;
       });
 
-      document.getElementById('results-counter').innerHTML = `Showing <strong class="text-amber-300">${filtered.length}</strong> listings • Active Commission: <strong>${appConfig.commissionRate}%</strong>`;
+      document.getElementById('results-counter').innerHTML = `Showing <strong class="text-amber-300">${filtered.length}</strong> listings • Contact: <strong>${CONTACT_EMAIL}</strong>`;
 
       if (filtered.length === 0) {
-        grid.innerHTML = `<div class="col-span-full bg-obsidianCard border border-slate-800 rounded-2xl p-8 text-center text-xs text-slate-400">No matching products found. Try clearing your filters.</div>`;
+        grid.innerHTML = `<div class="col-span-full bg-obsidianCard border border-slate-800 rounded-2xl p-8 text-center text-xs text-slate-400">No matching products found.</div>`;
         return;
       }
 
@@ -1795,7 +1950,7 @@
     }
 
     // =========================================================================
-    // 6. STUDIO, UPLOAD & PROFILE MANAGEMENT
+    // 7. STUDIO & UPLOAD
     // =========================================================================
     function renderCreatorStudio() {
       if (!currentUser) return;
@@ -1815,7 +1970,7 @@
 
       document.getElementById('studio-membership-badge').textContent = isOwnerLoggedIn()
         ? '👑 Platform Owner'
-        : activePass ? `✅ Active Seller (${daysLeft}d left)` : '🔒 Unsubscribed (Pass Required to Upload)';
+        : activePass ? `✅ Active Seller (${daysLeft}d left)` : '🔒 Unsubscribed (Pass Required)';
 
       document.getElementById('stat-my-pass-days').textContent = isOwnerLoggedIn()
         ? 'Lifetime Owner'
@@ -1829,11 +1984,8 @@
       document.getElementById('prof-bio').value = currentUser.bio || '';
 
       const myProds = products.filter(p => (p.creatorEmail || '').toLowerCase() === currentUser.email.toLowerCase());
-      const totalViews = myProds.reduce((s, p) => s + p.views, 0);
-      const totalClicks = myProds.reduce((s, p) => s + p.clicks, 0);
-
-      document.getElementById('stat-my-views').textContent = totalViews;
-      document.getElementById('stat-my-clicks').textContent = totalClicks;
+      document.getElementById('stat-my-views').textContent = myProds.reduce((s, p) => s + p.views, 0);
+      document.getElementById('stat-my-clicks').textContent = myProds.reduce((s, p) => s + p.clicks, 0);
       document.getElementById('stat-my-followers').textContent = currentUser.followersCount || 0;
 
       const table = document.getElementById('seller-products-table');
@@ -1843,12 +1995,12 @@
         table.innerHTML = myProds.map(p => `
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-slate-950 p-3.5 rounded-xl border border-slate-800 text-xs">
             <div>
-              <span class="font-bold text-white">${sanitizeHTML(p.title)}</span>
-              <div class="text-slate-400 text-[11px]">Views: ${p.views} • Clicks: ${p.clicks} • Price: $${p.price.toFixed(2)}</div>
+              <span class="font-bold text-white">${sanitizeHTML(p.title)} ${p.frozen ? '<span class="text-rose-400">(FROZEN UNDER REVIEW)</span>' : ''}</span>
+              <div class="text-slate-400 text-[11px]">Views: ${p.views} • Reports: ${(p.reports || []).length}/5 • Price: $${p.price.toFixed(2)}</div>
             </div>
             <div class="flex items-center gap-2">
               <button onclick="openProductModal('${p.id}')" class="px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-slate-200">Preview</button>
-              <button onclick="deleteListing('${p.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold">🗑️ Remove Upload</button>
+              <button onclick="deleteListing('${p.id}')" class="px-3 py-1.5 rounded-lg bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold">🗑️ Remove</button>
             </div>
           </div>
         `).join('');
@@ -1857,7 +2009,7 @@
       const folContainer = document.getElementById('studio-following-list');
       const folList = currentUser.following || [];
       if (folList.length === 0) {
-        folContainer.innerHTML = `<p class="text-slate-400 col-span-full">You aren't following any creators yet. Click any creator's name on a product card to view their profile and follow them!</p>`;
+        folContainer.innerHTML = `<p class="text-slate-400 col-span-full">You aren't following any creators yet.</p>`;
       } else {
         folContainer.innerHTML = folList.map(email => {
           const u = usersDB[email] || { name: email, email, avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&auto=format&fit=crop&q=80' };
@@ -1897,16 +2049,15 @@
       updateHeaderAuthUI();
       renderCreatorStudio();
       renderMarketplaceGrid();
-      alert('✅ Your personal profile and storefront design have been updated!');
+      alert('✅ Profile updated!');
     }
 
     function handleProductUpload(event) {
       event.preventDefault();
-      // Hard Backend-Style Check: Rejects immediately if not subscribed
       if (!hasActiveSellerMembership(currentUser)) {
         enforceUploadGateUI();
-        openNativeCheckoutModal('membership');
-        alert('🔒 Upload Blocked: You must activate a 30-Day Creator Membership Pass before uploading products.');
+        openNativeCheckoutModal();
+        alert('🔒 Upload Blocked: You must activate a 30-Day Pass before uploading.');
         return;
       }
 
@@ -1939,32 +2090,27 @@
         views: 1,
         clicks: 0,
         strikes: 0,
-        quarantined: false
+        quarantined: false,
+        frozen: false,
+        reports: []
       };
 
       products.unshift(newProd);
       saveAllState();
       document.getElementById('product-upload-form').reset();
-      alert(`🚀 Published "${newProd.title}" to the marketplace!`);
+      alert(`🚀 Published "${newProd.title}" to marketplace!`);
       switchMainTab('shop');
       renderMarketplaceGrid();
     }
 
-    // =========================================================================
-    // STRICT DELETE FUNCTION: ONLY THE PRODUCT UPLOADER OR OWNER CAN REMOVE IT
-    // =========================================================================
     function deleteListing(id) {
       const p = products.find(i => i.id === id);
       if (!p) return;
-
       if (!canUserDeleteProduct(p)) {
-        alert('⛔ Permission Denied: Only the creator who uploaded this product or the Platform Owner can remove it.');
+        alert('⛔ Permission Denied: Only the uploader or Platform Owner can remove this product.');
         return;
       }
-
-      if (!confirm(`Are you sure you want to permanently remove "${p.title}" from Al-Tujar Vaults?`)) {
-        return;
-      }
+      if (!confirm(`Permanently remove "${p.title}"?`)) return;
 
       products = products.filter(i => i.id !== id);
       saveAllState();
@@ -1974,22 +2120,103 @@
       if (currentViewedProfileEmail && !document.getElementById('view-public-profile').classList.contains('hidden')) {
         openPublicCreatorProfile(currentViewedProfileEmail);
       }
-      alert('🗑️ Product upload removed.');
+      alert('🗑️ Product removed.');
     }
 
     // =========================================================================
-    // 7. ADMIN TREASURY & LIVE PRICING / WALLET SYNC
+    // 8. ADMIN TREASURY & USER / FRAUD BAN MANAGER
     // =========================================================================
     function loadAdminInputs() {
       document.getElementById('adm-wallet-cex').value = appConfig.wallets.cex || '';
       document.getElementById('adm-wallet-unstoppable').value = appConfig.wallets.unstoppable || '';
       document.getElementById('adm-wallet-cake').value = appConfig.wallets.cake || '';
       document.getElementById('adm-wallet-rizon').value = appConfig.wallets.rizon || '';
-      document.getElementById('adm-amazon-tag').value = appConfig.amazonTag || 'altujar-20';
+      document.getElementById('adm-amazon-tag').value = appConfig.amazonTag || 'altujarvaults-20';
       document.getElementById('adm-affiliate-id').value = appConfig.affiliateId || 'altujar';
       document.getElementById('admin-sub-slider').value = appConfig.subPrice;
       document.getElementById('admin-comm-slider').value = appConfig.commissionRate;
       syncDynamicPricingLabels();
+      renderAdminUsersTable();
+      renderAdminFrozenProductsTable();
+    }
+
+    function renderAdminUsersTable() {
+      const table = document.getElementById('admin-users-table');
+      const countEl = document.getElementById('admin-users-count');
+      if (!table) return;
+      const emails = Object.keys(usersDB);
+      if (countEl) countEl.textContent = emails.length;
+
+      table.innerHTML = emails.map(email => {
+        const u = usersDB[email];
+        const isOwner = email === OWNER_EMAIL;
+        const activePass = hasActiveSellerMembership(u);
+        return `
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-slate-950 p-3 rounded-xl border border-slate-800">
+            <div>
+              <div class="font-bold text-white">${sanitizeHTML(u.name)} • <span class="text-amber-300 font-mono select-all">${sanitizeHTML(u.email)}</span></div>
+              <div class="text-[11px] text-slate-400">Uploads: ${products.filter(p => (p.creatorEmail || '').toLowerCase() === email).length} • Pass Status: ${isOwner ? '👑 Owner' : activePass ? '✅ Active (' + new Date(u.membershipExpiresAt).toLocaleDateString() + ')' : '🔒 Unsubscribed'}</div>
+            </div>
+            <div class="flex items-center gap-2">
+              ${!isOwner ? `<button onclick="adminDeleteUserAccount('${email}')" class="px-3 py-1.5 rounded-lg bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold hover:bg-rose-500/30">🚫 Ban & Erase Contact</button>` : '<span class="text-emerald-400 font-bold">Owner Account</span>'}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function adminDeleteUserAccount(email) {
+      if (!isOwnerLoggedIn() || email === OWNER_EMAIL) return;
+      if (!confirm(`Permanently erase contact/account "${email}", ban them from logging in, and remove all their products?`)) return;
+      delete usersDB[email];
+      if (!bannedEmails.includes(email)) bannedEmails.push(email);
+      products = products.filter(p => (p.creatorEmail || '').toLowerCase() !== email);
+      saveAllState();
+      renderAdminUsersTable();
+      renderMarketplaceGrid();
+      alert(`🚫 Account ${email} has been erased and permanently banned.`);
+    }
+
+    function renderAdminFrozenProductsTable() {
+      const table = document.getElementById('admin-frozen-products-table');
+      if (!table) return;
+      const reportedList = products.filter(p => p.frozen || (p.reports && p.reports.length > 0));
+      if (reportedList.length === 0) {
+        table.innerHTML = `<p class="text-slate-400">No reported or frozen products currently.</p>`;
+        return;
+      }
+      table.innerHTML = reportedList.map(p => `
+        <div class="bg-slate-950 p-3.5 rounded-xl border ${p.frozen ? 'border-rose-500' : 'border-amber-500/40'} space-y-2">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <span class="font-bold text-white">${sanitizeHTML(p.title)}</span>
+              <div class="text-[11px] text-rose-300">Total Reports: ${(p.reports || []).length}/5 • Seller: ${sanitizeHTML(p.creatorEmail)} • Status: <strong>${p.frozen ? '❄️ FROZEN (Hidden from Buyers)' : '⚠️ Reported (Active)'}</strong></div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="adminUnfreezeProduct('${p.id}')" class="px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 font-bold hover:bg-emerald-500/30">✅ Unfreeze & Clear Reports</button>
+              <button onclick="deleteListing('${p.id}'); loadAdminInputs();" class="px-3 py-1.5 rounded-lg bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold hover:bg-rose-500/30">🗑️ Delete Product</button>
+              <button onclick="adminDeleteUserAccount('${sanitizeHTML((p.creatorEmail || '').toLowerCase())}'); loadAdminInputs();" class="px-3 py-1.5 rounded-lg bg-rose-900/50 border border-rose-500 text-white font-bold">🔨 Ban Seller</button>
+            </div>
+          </div>
+          <div class="bg-slate-900 p-2.5 rounded-lg text-[11px] text-slate-300 space-y-1">
+            <strong class="text-amber-300 block">Submitted Reports:</strong>
+            ${(p.reports || []).map(r => `<div>• <strong>[${sanitizeHTML(r.category)}]</strong> "${sanitizeHTML(r.details)}" — <em>by ${sanitizeHTML(r.reporter)} (${r.date || ''})</em></div>`).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function adminUnfreezeProduct(id) {
+      if (!isOwnerLoggedIn()) return;
+      const p = products.find(i => i.id === id);
+      if (p) {
+        p.frozen = false;
+        p.reports = [];
+        saveAllState();
+        renderAdminFrozenProductsTable();
+        renderMarketplaceGrid();
+        alert(`✅ "${p.title}" has been unfrozen and restored to the marketplace!`);
+      }
     }
 
     function saveAdminTreasurySettings() {
@@ -1998,10 +2225,10 @@
       appConfig.wallets.unstoppable = document.getElementById('adm-wallet-unstoppable').value.trim();
       appConfig.wallets.cake = document.getElementById('adm-wallet-cake').value.trim();
       appConfig.wallets.rizon = document.getElementById('adm-wallet-rizon').value.trim();
-      appConfig.amazonTag = document.getElementById('adm-amazon-tag').value.trim();
+      appConfig.amazonTag = document.getElementById('adm-amazon-tag').value.trim() || 'altujarvaults-20';
       appConfig.affiliateId = document.getElementById('adm-affiliate-id').value.trim();
       saveAllState();
-      alert('✅ Wallets & Affiliate Settings Saved! They are now live across all checkout screens.');
+      alert('✅ Wallets & Amazon Tag (altujarvaults-20) Saved!');
     }
 
     function updateAdminPricingSliders() {
@@ -2033,7 +2260,7 @@
     }
 
     // =========================================================================
-    // 8. SHARED UI HELPERS
+    // 9. UI HELPERS & AMAZON TAG (`altujarvaults-20`)
     // =========================================================================
     function switchMainTab(tab) {
       if (tab === 'admin' && !isOwnerLoggedIn()) {
@@ -2046,13 +2273,14 @@
         if (el) el.classList.toggle('hidden', v !== tab);
       });
       if (tab === 'studio') renderCreatorStudio();
+      if (tab === 'admin') loadAdminInputs();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function switchStudioSubTab(sub) {
       enforceUploadGateUI();
       if (sub === 'upload' && !hasActiveSellerMembership(currentUser)) {
-        openNativeCheckoutModal('membership');
+        openNativeCheckoutModal();
       }
       ['analytics', 'upload', 'profile', 'following'].forEach(s => {
         document.getElementById(`studio-sub-${s}`)?.classList.toggle('hidden', s !== sub);
@@ -2068,6 +2296,11 @@
     function openProductModal(id) {
       const p = products.find(item => item.id === id);
       if (!p) return;
+      if (p.frozen && !isOwnerLoggedIn() && !canUserDeleteProduct(p)) {
+        alert('❄️ This product is under review, please return later.');
+        return;
+      }
+
       currentModalProduct = p;
       p.views += 1;
       saveAllState();
@@ -2089,7 +2322,9 @@
       const cartBtn = document.getElementById('modal-cart-btn');
       cartBtn.onclick = () => { toggleCartProduct(p.id); alert('Updated Shopping Cart!'); };
 
-      // Show Delete Button inside Modal ONLY if logged-in user is the uploader or Owner
+      const reportBtn = document.getElementById('modal-report-btn');
+      reportBtn.onclick = () => openReportModal(p.id);
+
       const delBtn = document.getElementById('modal-delete-btn');
       if (canUserDeleteProduct(p)) {
         delBtn.classList.remove('hidden');
@@ -2123,8 +2358,12 @@
       try {
         const urlObj = new URL(rawUrl, window.location.origin);
         const host = urlObj.hostname.toLowerCase();
-        if (host.includes('amazon.')) urlObj.searchParams.set('tag', appConfig.amazonTag || 'altujar-20');
-        if (host.includes('whop.com')) urlObj.searchParams.set('a', appConfig.affiliateId || 'altujar');
+        if (host.includes('amazon.')) {
+          urlObj.searchParams.set('tag', appConfig.amazonTag || 'altujarvaults-20');
+        }
+        if (host.includes('whop.com')) {
+          urlObj.searchParams.set('a', appConfig.affiliateId || 'altujar');
+        }
         urlObj.searchParams.set('vault_fee_pct', appConfig.commissionRate);
         return urlObj.toString();
       } catch (e) {
@@ -2203,8 +2442,8 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       syncDynamicPricingLabels();
-      if (currentUser && activeUserEmail) {
-        completeAuthentication();
+      if (currentUser && activeUserEmail && !bannedEmails.includes(activeUserEmail)) {
+        completeAuthentication(false);
       } else {
         document.getElementById('mandatory-auth-gate').classList.remove('hidden');
       }
