@@ -24,6 +24,7 @@
     html.light { color-scheme: light; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; top: 0 !important; }
     .font-royal { font-family: 'Cinzel', serif; }
+    /* Single-Line 3D Embossed Gold Font for AL-TUJAR VAULTS */
     .brand-gold-3d {
       font-family: 'Cinzel', serif;
       font-weight: 900;
@@ -58,11 +59,13 @@
 <body class="bg-obsidian text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
   <div id="google_translate_element" class="hidden"></div>
 
-  <!-- 1. MANDATORY SIGN-IN, LANGUAGE FIRST & PHONE OTP GATEWAY -->
+  <!-- ===================================================================== -->
+  <!-- 1. MANDATORY SIGN-IN, LANGUAGE FIRST & SMART EMAIL DETECTION GATEWAY  -->
+  <!-- ===================================================================== -->
   <div id="mandatory-auth-gate" class="fixed inset-0 z-[100] bg-obsidian flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-lg w-full p-5 sm:p-7 space-y-4 shadow-2xl my-auto">
       
-      <!-- LANGUAGE SELECTOR FIRST + 1-CLICK ENGLISH RESET -->
+      <!-- STEP 1: CHOOSE LANGUAGE FIRST + 1-CLICK ENGLISH RESET -->
       <div class="bg-slate-950/90 border border-amber-500/40 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-2">
         <div class="flex items-center gap-2">
           <span class="text-base">🌐</span>
@@ -116,23 +119,19 @@
         <button type="button" id="gate-tab-register" onclick="switchGateTab('register')" data-i18n="create_acc_tab" class="py-2.5 rounded-lg text-slate-400 hover:text-white cursor-pointer">Create New Account</button>
       </div>
 
-      <!-- LOGIN PANEL -->
+      <!-- LOGIN PANEL (EMAIL DETECTION ONLY — NO PHONE NEEDED) -->
       <div id="gate-login-form" class="space-y-3 text-xs">
         <div>
           <label class="block text-slate-300 font-semibold mb-1">Email Address *</label>
           <input type="email" id="login-email" placeholder="you@example.com" class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2.5 text-white outline-none">
         </div>
         <div>
-          <label class="block text-slate-300 font-semibold mb-1">Verified Phone Number *</label>
-          <input type="tel" id="login-phone" placeholder="+251 9... or +1..." class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2.5 text-white outline-none">
-        </div>
-        <div>
           <label class="block text-slate-300 font-semibold mb-1">Password *</label>
           <input type="password" id="login-password" placeholder="Enter your password" class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2.5 text-white outline-none">
         </div>
         <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-[11px] text-slate-300 leading-relaxed max-h-24 overflow-y-auto">
-          <strong class="text-amber-300 block">Legal Agreement & Anti-Fraud Charter:</strong>
-          Link Membership ($<span class="dyn-link-sub-lbl">23</span>/mo), Direct Digital File Upload Membership ($<span class="dyn-direct-sub-lbl">15</span>/mo), or the one-time 3-Month Beginner Offer (95% info completeness, 5 uploads/week, and <span class="dyn-beg-pct-lbl">23</span>% per-sale bundle settlement). Fraud, 18+ content, or non-payment results in permanent email & phone bans.
+          <strong class="text-amber-300 block">Legal Agreement & Smart Email Detection Charter:</strong>
+          Link Membership ($<span class="dyn-link-sub-lbl">23</span>/mo), Direct Digital File Upload Membership ($<span class="dyn-direct-sub-lbl">15</span>/mo), or the one-time 3-Month Beginner Offer (95% info completeness, 5 uploads/week, and <span class="dyn-beg-pct-lbl">23</span>% per-sale bundle settlement). Smart Email Detection prevents closing unpaid accounts to re-use the Beginner Offer.
         </div>
         <label class="flex items-start gap-2 cursor-pointer text-slate-300">
           <input type="checkbox" id="login-agree-cb" checked class="mt-0.5 accent-amber-400">
@@ -144,7 +143,7 @@
         </button>
       </div>
 
-      <!-- REGISTER PANEL -->
+      <!-- REGISTER PANEL (SMART EMAIL DETECTION) -->
       <div id="gate-register-form" class="hidden space-y-3 text-xs">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
@@ -152,22 +151,8 @@
             <input type="text" id="reg-name" placeholder="e.g., Horizon Studio" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
           </div>
           <div>
-            <label class="block text-slate-300 font-semibold mb-1">Email Address *</label>
+            <label class="block text-slate-300 font-semibold mb-1">Email Address (Auto-Verified) *</label>
             <input type="email" id="reg-email" placeholder="you@example.com" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
-          </div>
-        </div>
-
-        <div class="bg-slate-950 p-3 rounded-xl border border-amber-500/30 space-y-2">
-          <label class="block text-amber-300 font-bold text-[11px]">📱 Phone Verification (Prevents Multi-Account Beginner Offer Abuse) *</label>
-          <div class="flex gap-2">
-            <input type="tel" id="reg-phone" placeholder="+251 9... or +1 234..." class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
-            <button type="button" onclick="sendPhoneVerificationOTP()" class="px-3 py-2 rounded-xl bg-amber-500 text-slate-950 font-extrabold shrink-0 cursor-pointer">
-              Send OTP Code
-            </button>
-          </div>
-          <div id="otp-verify-box" class="hidden flex items-center gap-2 pt-1">
-            <input type="text" id="reg-otp-input" placeholder="Enter 4-digit OTP" class="flex-1 bg-slate-900 border border-emerald-500/50 rounded-xl px-3 py-1.5 text-emerald-300 font-mono text-center tracking-widest">
-            <span id="otp-hint-badge" class="px-2.5 py-1.5 rounded-xl bg-emerald-500/20 text-emerald-300 font-mono font-bold text-[11px]"></span>
           </div>
         </div>
 
@@ -187,11 +172,11 @@
         </div>
         <label class="flex items-start gap-2 cursor-pointer text-slate-300">
           <input type="checkbox" id="reg-agree-cb" checked class="mt-0.5 accent-amber-400">
-          <span>I agree to the <strong>AL-TUJAR VAULTS Legal Terms, Beginner Cohort Rules & Privacy Policy</strong>.</span>
+          <span>I agree to the <strong>AL-TUJAR VAULTS Legal Terms, Beginner Cohort Rules & Email Anti-Fraud Policy</strong>.</span>
         </label>
         <p id="reg-error-msg" class="text-rose-400 text-[11px] font-bold hidden"></p>
         <button type="button" onclick="handleGateRegister()" class="w-full gold-btn py-3 rounded-xl font-extrabold text-xs sm:text-sm">
-          ✨ Verify Phone & Create Account
+          ✨ Verify Email & Create Account
         </button>
       </div>
     </div>
@@ -598,7 +583,7 @@
     <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl p-6 space-y-4 text-slate-300">
       <h2 class="brand-gold-3d text-xl sm:text-2xl">AL-TUJAR VAULTS LEGAL CHARTER</h2>
       <p><strong>1. Membership Tiers:</strong> Link Membership ($<span class="dyn-link-sub-lbl">23</span>/mo) for external links & physical items; Direct Digital Upload Pass ($<span class="dyn-direct-sub-lbl">15</span>/mo) for hosting digital files directly on AL-TUJAR VAULTS.</p>
-      <p><strong>2. One-Time 3-Month Beginner Offer:</strong> 90 days upload access where <span class="dyn-beg-pct-lbl">23</span>% of the monthly membership is added per sale. Requires 100% working products, 95%+ info completeness, and 5 uploads/week (Day-6 warning). Breaking rules stops the offer (15% fee to restart). Must be paid within 3 days after expiry or automatically banned/erased after 7 days.</p>
+      <p><strong>2. One-Time 3-Month Beginner Offer & Smart Email Detection:</strong> 90 days upload access where <span class="dyn-beg-pct-lbl">23</span>% of the monthly membership is added per sale. Requires 100% working products, 95%+ info completeness, and 5 uploads/week (Day-6 warning). Breaking rules stops the offer (<span class="dyn-restart-pct-lbl">15</span>% fee to restart). Must be paid within 3 days after expiry or automatically banned/erased after 7 days. Smart Email Detection blocks re-registering with new or alias emails if a previous Beginner balance is unpaid.</p>
     </div>
   </section>
 
@@ -651,15 +636,16 @@
         <button type="button" onclick="revokeSellerEmailMembership()" class="py-2 rounded-xl bg-rose-500/20 text-rose-300 font-bold">🚫 Revoke</button>
       </div>
 
-      <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 grid grid-cols-2 sm:grid-cols-4 gap-3">
+      <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 grid grid-cols-2 sm:grid-cols-5 gap-3">
         <div><label class="text-slate-400 block mb-1">Link Pass ($)</label><input type="number" id="admin-link-price" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-300 font-bold"></div>
         <div><label class="text-slate-400 block mb-1">Direct Upload ($)</label><input type="number" id="admin-direct-price" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-300 font-bold"></div>
         <div><label class="text-slate-400 block mb-1">Beginner Base ($)</label><input type="number" id="admin-beg-base" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold"></div>
         <div><label class="text-slate-400 block mb-1">Beginner Sale (%)</label><input type="number" id="admin-beg-pct" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-rose-300 font-bold"></div>
+        <div><label class="text-slate-400 block mb-1">Restart Fee (%)</label><input type="number" id="admin-restart-pct" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-200 font-bold"></div>
         <input type="text" id="adm-wallet-cex" placeholder="Bybit UID" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-200 font-mono">
         <input type="text" id="adm-wallet-unstoppable" placeholder="Solana Wallet" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-300 font-mono">
         <input type="text" id="adm-wallet-cake" placeholder="BTC Wallet" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono">
-        <button type="button" onclick="saveAdminTreasurySettings()" class="gold-btn rounded-xl font-bold">💾 Save Settings</button>
+        <button type="button" onclick="saveAdminTreasurySettings()" class="sm:col-span-2 gold-btn rounded-xl font-bold py-2">💾 Save All Admin Settings</button>
       </div>
     </div>
   </section>
@@ -770,7 +756,7 @@
       <div id="footer-social-strip" class="flex flex-wrap gap-2 pt-3 border-t border-slate-900"></div>
     </div>
   </footer>
-  <script>
+    <script>
     const OWNER_EMAIL = 'anshansheron@gmail.com';
     const OWNER_PASS = 'anshan00';
     const CONTACT_EMAIL = 'altujarvaults@gmail.com';
@@ -788,6 +774,19 @@
         const raw = localStorage.getItem(key);
         return raw ? JSON.parse(raw) : fallback;
       } catch (e) { return fallback; }
+    }
+
+    // SMART EMAIL DETECTION: Normalizes Gmail dots & +aliases so users cannot spoof a new email
+    function normalizeCanonicalEmail(rawEmail) {
+      const clean = (rawEmail || '').trim().toLowerCase();
+      if (!clean.includes('@')) return clean;
+      let [local, domain] = clean.split('@');
+      if (domain === 'googlemail.com') domain = 'gmail.com';
+      local = local.split('+')[0];
+      if (domain === 'gmail.com') {
+        local = local.replace(/\./g, '');
+      }
+      return `${local}@${domain}`;
     }
 
     const DEFAULT_CONFIG = {
@@ -905,7 +904,7 @@
       'amina@techstudio.io': {
         name: 'Amina Tech Studio',
         email: 'amina@techstudio.io',
-        phone: '+12025550143',
+        canonicalEmail: 'amina@techstudio.io',
         password: 'demo',
         avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80',
         banner: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
@@ -933,6 +932,7 @@
         directUploadPrice: Number(savedCfg.directUploadPrice || 15),
         beginnerBasePrice: Number(savedCfg.beginnerBasePrice || 15),
         beginnerSalePct: Number(savedCfg.beginnerSalePct || 23),
+        restartPenaltyPct: Number(savedCfg.restartPenaltyPct || 15),
         socials: { ...DEFAULT_CONFIG.socials, ...(savedCfg.socials || {}) }
       };
       const prodMap = new Map();
@@ -958,14 +958,12 @@
     let products = masterState.products;
     let usersDB = masterState.users;
     let bannedEmails = safeJSONParse('altujar_master_banned', []);
-    let bannedPhones = safeJSONParse('altujar_master_banned_phones', []);
     let usedBeginnerEmails = safeJSONParse('altujar_master_beg_emails', []);
-    let usedBeginnerPhones = safeJSONParse('altujar_master_beg_phones', []);
+    let deviceBeginnerEmailRecord = localStorage.getItem('altujar_device_beginner_email') || '';
 
     let activeUserEmail = localStorage.getItem('altujar_master_active_email') || null;
     let currentUser = activeUserEmail && usersDB[activeUserEmail] ? usersDB[activeUserEmail] : null;
     let selectedCheckoutTierMode = 'direct';
-    let generatedOTPCode = null;
     let activeTagFilter = 'All';
     let currentModalProduct = null;
     let currentViewedProfileEmail = null;
@@ -979,9 +977,8 @@
         localStorage.setItem('altujar_master_products', JSON.stringify(products));
         localStorage.setItem('altujar_master_users', JSON.stringify(usersDB));
         localStorage.setItem('altujar_master_banned', JSON.stringify(bannedEmails));
-        localStorage.setItem('altujar_master_banned_phones', JSON.stringify(bannedPhones));
         localStorage.setItem('altujar_master_beg_emails', JSON.stringify(usedBeginnerEmails));
-        localStorage.setItem('altujar_master_beg_phones', JSON.stringify(usedBeginnerPhones));
+        if (deviceBeginnerEmailRecord) localStorage.setItem('altujar_device_beginner_email', deviceBeginnerEmailRecord);
         if (activeUserEmail) localStorage.setItem('altujar_master_active_email', activeUserEmail);
         else localStorage.removeItem('altujar_master_active_email');
       } catch (err) {}
@@ -1058,7 +1055,7 @@
       if (footerStrip) footerStrip.innerHTML = `<span class="text-slate-500 font-semibold mr-1">Official Communities:</span>` + items.map(i => `<a href="${sanitizeHTML(i.url)}" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-300 font-semibold text-[11px]">${i.icon} ${i.label}</a>`).join('');
     }
 
-    // AUTHENTICATION & PHONE OTP
+    // AUTHENTICATION WITH SMART EMAIL DETECTION (NO PHONE NUMBER NEEDED)
     function switchGateTab(mode) {
       document.getElementById('gate-login-form').classList.toggle('hidden', mode !== 'login');
       document.getElementById('gate-register-form').classList.toggle('hidden', mode !== 'register');
@@ -1066,33 +1063,32 @@
       document.getElementById('gate-tab-register').className = mode === 'register' ? 'py-2.5 rounded-lg bg-amber-500 text-slate-950 font-bold cursor-pointer' : 'py-2.5 rounded-lg text-slate-400 cursor-pointer';
     }
 
-    function sendPhoneVerificationOTP() {
-      const phone = (document.getElementById('reg-phone').value || '').trim();
-      if (phone.length < 6) { alert('Please enter your valid phone number first.'); return; }
-      if (bannedPhones.includes(phone)) { alert('🚫 This phone number is permanently banned.'); return; }
-      generatedOTPCode = String(Math.floor(1000 + Math.random() * 9000));
-      document.getElementById('otp-verify-box').classList.remove('hidden');
-      document.getElementById('reg-otp-input').value = generatedOTPCode;
-      document.getElementById('otp-hint-badge').textContent = `OTP: ${generatedOTPCode}`;
+    function isEmailBannedByDetector(rawEmail) {
+      const clean = (rawEmail || '').trim().toLowerCase();
+      const canonical = normalizeCanonicalEmail(clean);
+      if (bannedEmails.includes(clean) || bannedEmails.includes(canonical)) return true;
+      if (deviceBeginnerEmailRecord && bannedEmails.includes(deviceBeginnerEmailRecord)) return true;
+      return false;
     }
 
     function handleGateLogin() {
       const email = (document.getElementById('login-email').value || '').trim().toLowerCase();
-      const phone = (document.getElementById('login-phone').value || '').trim();
       const pass = document.getElementById('login-password').value || '';
       const agreed = document.getElementById('login-agree-cb').checked;
       const err = document.getElementById('login-error-msg');
 
       if (!email || !pass) { err.textContent = 'Please enter both Email and Password.'; err.classList.remove('hidden'); return; }
       if (!agreed) { err.textContent = 'Please check the box to agree to the Legal Terms.'; err.classList.remove('hidden'); return; }
-      if (bannedEmails.includes(email) || (phone && bannedPhones.includes(phone))) {
-        err.textContent = '🚫 This account or phone number has been permanently banned.'; err.classList.remove('hidden'); return;
+      if (isEmailBannedByDetector(email)) {
+        err.textContent = '🚫 Smart Email Detector: This account (or a linked unpaid Beginner email) has been permanently banned.';
+        err.classList.remove('hidden');
+        return;
       }
 
       if (email === OWNER_EMAIL && pass === OWNER_PASS) {
         if (!usersDB[OWNER_EMAIL]) {
           usersDB[OWNER_EMAIL] = {
-            name: 'CareerVault Official', email: OWNER_EMAIL, phone: phone || '+2510000000', password: OWNER_PASS,
+            name: 'CareerVault Official', email: OWNER_EMAIL, canonicalEmail: OWNER_EMAIL, password: OWNER_PASS,
             avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80',
             banner: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
             bio: 'Platform Owner & Verified Studio.', payout: appConfig.wallets.cex,
@@ -1107,16 +1103,16 @@
         return;
       }
 
-      const existing = usersDB[email];
+      const canonical = normalizeCanonicalEmail(email);
+      const existing = usersDB[email] || Object.values(usersDB).find(u => u && normalizeCanonicalEmail(u.email) === canonical);
       if (!existing || existing.password !== pass) {
         err.textContent = 'Account not found or wrong password. Click "Create New Account" above if you are new!';
         err.classList.remove('hidden');
         return;
       }
-      if (phone) existing.phone = phone;
       err.classList.add('hidden');
       currentUser = existing;
-      activeUserEmail = email;
+      activeUserEmail = existing.email.toLowerCase();
       saveAllState();
       completeAuthentication(true);
     }
@@ -1124,31 +1120,72 @@
     function handleGateRegister() {
       const name = (document.getElementById('reg-name').value || '').trim();
       const email = (document.getElementById('reg-email').value || '').trim().toLowerCase();
-      const phone = (document.getElementById('reg-phone').value || '').trim();
       const password = document.getElementById('reg-password').value || '';
       const agreed = document.getElementById('reg-agree-cb').checked;
       const err = document.getElementById('reg-error-msg');
 
-      if (!name || !email || !phone || !password) { err.textContent = 'Please fill in Name, Email, Phone Number, and Password.'; err.classList.remove('hidden'); return; }
+      if (!name || !email || !password) { err.textContent = 'Please fill in Name, Email Address, and Password.'; err.classList.remove('hidden'); return; }
+      if (!email.includes('@') || email.length < 5) { err.textContent = 'Please enter a valid email address.'; err.classList.remove('hidden'); return; }
       if (!agreed) { err.textContent = 'Please agree to the Legal Terms.'; err.classList.remove('hidden'); return; }
-      if (bannedEmails.includes(email) || bannedPhones.includes(phone)) { err.textContent = '🚫 This email or phone is permanently banned.'; err.classList.remove('hidden'); return; }
+      if (isEmailBannedByDetector(email)) {
+        err.textContent = '🚫 Smart Email Detector: Registration blocked due to an unpaid/banned linked account.';
+        err.classList.remove('hidden');
+        return;
+      }
       if (email === OWNER_EMAIL && password !== OWNER_PASS) { err.textContent = 'Reserved for Platform Owner.'; err.classList.remove('hidden'); return; }
 
-      const alreadyUsedBeginner = usedBeginnerEmails.includes(email) || usedBeginnerPhones.includes(phone) ||
-        Object.values(usersDB).some(u => u && u.phone === phone && u.beginnerOfferUsed);
+      const canonical = normalizeCanonicalEmail(email);
+
+      // Check if this user has an unpaid Beginner account on this device or under a canonical email alias
+      const unpaidPreviousAccount = Object.values(usersDB).find(u =>
+        u && u.email !== OWNER_EMAIL &&
+        (u.canonicalEmail === canonical || (deviceBeginnerEmailRecord && u.email === deviceBeginnerEmailRecord)) &&
+        (u.membershipType === 'beginner_3m' || u.membershipType === 'beginner_expired_unpaid' || u.membershipType === 'beginner_stopped') &&
+        !u.beginnerPaidSettled
+      );
+
+      if (unpaidPreviousAccount && unpaidPreviousAccount.email !== email) {
+        err.textContent = `⚠️ Smart Email Detector: You have an unsettled Beginner Bundle on "${unpaidPreviousAccount.email}". Please sign in to that email and settle your balance first!`;
+        err.classList.remove('hidden');
+        return;
+      }
+
+      const alreadyUsedBeginner = usedBeginnerEmails.includes(email) ||
+        usedBeginnerEmails.includes(canonical) ||
+        Boolean(deviceBeginnerEmailRecord) ||
+        Object.values(usersDB).some(u => u && normalizeCanonicalEmail(u.email) === canonical && u.beginnerOfferUsed);
 
       const isOwner = (email === OWNER_EMAIL && password === OWNER_PASS);
       usersDB[email] = {
-        name, email, phone, password,
+        name,
+        email,
+        canonicalEmail: canonical,
+        linkedPreviousEmail: deviceBeginnerEmailRecord || '',
+        password,
         avatar: (document.getElementById('reg-avatar').value || '').trim() || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&auto=format&fit=crop&q=80',
         banner: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&auto=format&fit=crop&q=80',
         bio: (document.getElementById('reg-bio').value || '').trim() || 'Verified Member on AL-TUJAR VAULTS.',
-        payout: '', membershipType: isOwner ? 'owner' : 'none',
+        payout: '',
+        membershipType: isOwner ? 'owner' : 'none',
         membershipExpiresAt: isOwner ? Date.now() + (THIRTY_DAYS_MS * 120) : 0,
-        beginnerOfferUsed: alreadyUsedBeginner, beginnerStartAt: 0, beginnerExpiresAt: 0, beginnerAutoBanAt: 0,
-        beginnerSalesCount: 0, beginnerFlagged: false, beginnerFlagVisibility: 'private', beginnerViolated: false,
-        inbox: [{ from: 'AL-TUJAR VAULTS Official', subject: 'Welcome to AL-TUJAR VAULTS!', body: `Welcome ${name}! Upload Presets, MP3 SFX, Videos, HTML, PDFs, or Physical links.`, date: new Date().toLocaleDateString() }],
-        followersCount: 0, following: [], favorites: [], cart: []
+        beginnerOfferUsed: alreadyUsedBeginner,
+        beginnerStartAt: 0,
+        beginnerExpiresAt: 0,
+        beginnerAutoBanAt: 0,
+        beginnerSalesCount: 0,
+        beginnerFlagged: false,
+        beginnerFlagVisibility: 'private',
+        beginnerViolated: false,
+        inbox: [{
+          from: 'AL-TUJAR VAULTS Official (altujarvaults@gmail.com)',
+          subject: 'Welcome to AL-TUJAR VAULTS!',
+          body: `Welcome ${name}! Upload Presets (.cube/.xmp), MP3 SFX Audio, Videos (.mp4), HTML, PDFs, or Physical links.`,
+          date: new Date().toLocaleDateString()
+        }],
+        followersCount: 0,
+        following: [],
+        favorites: [],
+        cart: []
       };
       currentUser = usersDB[email];
       activeUserEmail = email;
@@ -1219,13 +1256,14 @@
       document.getElementById('admin-unlocked-content').classList.add('hidden');
     }
 
-    // 3-MONTH BEGINNER COHORT & SETTLEMENT ENGINE
+    // 3-MONTH BEGINNER COHORT & SMART EMAIL DETECTION ENGINE
     function canUserSeeBeginnerOffer(userObj) {
       if (!userObj || isOwnerLoggedIn()) return false;
       const email = userObj.email.toLowerCase();
-      const phone = userObj.phone || '';
+      const canonical = normalizeCanonicalEmail(email);
       if (userObj.beginnerOfferUsed || userObj.beginnerViolated) return false;
-      if (usedBeginnerEmails.includes(email) || (phone && usedBeginnerPhones.includes(phone))) return false;
+      if (usedBeginnerEmails.includes(email) || usedBeginnerEmails.includes(canonical)) return false;
+      if (deviceBeginnerEmailRecord && deviceBeginnerEmailRecord !== email) return false;
       if (hasActiveSellerMembership(userObj)) return false;
       return true;
     }
@@ -1235,9 +1273,15 @@
     }
 
     function activateBeginnerThreeMonthOffer() {
-      if (!currentUser || !canUserSeeBeginnerOffer(currentUser)) return;
+      if (!currentUser || !canUserSeeBeginnerOffer(currentUser)) {
+        alert('🚫 Smart Email Detector: This account is not eligible for the one-time 3-Month Beginner Offer.');
+        return;
+      }
       if (!document.getElementById('beginner-agree-cb').checked) { alert('Please check the agreement box first.'); return; }
       const now = Date.now();
+      const cleanEmail = currentUser.email.toLowerCase();
+      const canonical = normalizeCanonicalEmail(cleanEmail);
+
       currentUser.membershipType = 'beginner_3m';
       currentUser.membershipExpiresAt = now + NINETY_DAYS_MS;
       currentUser.beginnerOfferUsed = true;
@@ -1248,14 +1292,15 @@
       currentUser.beginnerSalesCount = 0;
       currentUser.beginnerViolated = false;
 
-      if (!usedBeginnerEmails.includes(currentUser.email.toLowerCase())) usedBeginnerEmails.push(currentUser.email.toLowerCase());
-      if (currentUser.phone && !usedBeginnerPhones.includes(currentUser.phone)) usedBeginnerPhones.push(currentUser.phone);
+      if (!usedBeginnerEmails.includes(cleanEmail)) usedBeginnerEmails.push(cleanEmail);
+      if (!usedBeginnerEmails.includes(canonical)) usedBeginnerEmails.push(canonical);
+      deviceBeginnerEmailRecord = cleanEmail;
 
       currentUser.inbox = currentUser.inbox || [];
       currentUser.inbox.unshift({
         from: 'AL-TUJAR VAULTS Cohort Monitor',
-        subject: '🌱 3-Month Beginner Seller Pass Activated',
-        body: `Your 90-day Beginner Pass is active! Upload at least 5 working products/week with 95%+ Info Completeness. ${appConfig.beginnerSalePct}% of the monthly membership is added per sale.`,
+        subject: '🌱 3-Month Beginner Seller Pass Activated (Flagged Account)',
+        body: `Your one-time 90-day Beginner Pass is active! Mandatory rules: (1) Upload at least 5 working products/week, (2) Maintain 95%+ Info Completeness on every upload, and (3) ${appConfig.beginnerSalePct}% of the monthly membership is added per sale.`,
         date: new Date().toLocaleDateString()
       });
       saveAllState();
@@ -1263,7 +1308,7 @@
       closeNativeCheckoutModal();
       switchMainTab('studio');
       switchStudioSubTab('upload');
-      alert('🌱 3-Month Beginner Membership Unlocked!');
+      alert('🌱 3-Month Beginner Membership Unlocked! Upload at least 5 working products per week with 95%+ info completeness.');
     }
 
     function calculateBeginnerOwedBreakdown(userObj) {
@@ -1312,15 +1357,24 @@
             u.beginnerViolated = true;
             u.membershipType = 'beginner_stopped';
             u.membershipExpiresAt = 0;
+            u.inbox = u.inbox || [];
+            u.inbox.unshift({
+              from: '🛑 AL-TUJAR VAULTS Rule Enforcement',
+              subject: 'Beginner Offer Stopped: Missed Weekly Upload Rule',
+              body: `Your 3-Month Beginner Offer has been stopped because fewer than 5 products were uploaded this week. Pay the ${appConfig.restartPenaltyPct}% restart fee in your Payment tab to restart from zero, or switch to the normal membership.`,
+              date: new Date().toLocaleDateString()
+            });
           }
           if (now >= u.beginnerExpiresAt && !u.beginnerPaidSettled) {
             u.membershipType = 'beginner_expired_unpaid';
             u.membershipExpiresAt = 0;
           }
         }
+        // Auto-ban after 7 days of finishing the 3 days of waiting (10 days total post-expiry)
         if (u.membershipType === 'beginner_expired_unpaid' && !u.beginnerPaidSettled && u.beginnerAutoBanAt && now >= u.beginnerAutoBanAt) {
+          const canonical = normalizeCanonicalEmail(email);
           if (!bannedEmails.includes(email)) bannedEmails.push(email);
-          if (u.phone && !bannedPhones.includes(u.phone)) bannedPhones.push(u.phone);
+          if (!bannedEmails.includes(canonical)) bannedEmails.push(canonical);
           products = products.filter(p => (p.creatorEmail || '').toLowerCase() !== email);
           delete usersDB[email];
         }
@@ -1515,7 +1569,7 @@
       const rawUrl = (document.getElementById('up-url').value || '').trim();
       const directFileData = document.getElementById('up-direct-file-data').value;
       const directFileName = document.getElementById('up-direct-file-name').value || 'Vault-Asset.zip';
-      if (hostingMode === 'external_link' && !rawUrl.startsWith('https://')) { alert('⛔ Please provide a working HTTPS product link.'); return; }
+      if (hostingMode === 'external_link' && !rawUrl.startsWith('https://')) { alert('⛔ 100% Working Product Rule: Please provide a valid HTTPS product link.'); return; }
       if (hostingMode === 'direct_web' && !directFileData) { alert('📥 Please attach your Digital Product File first.'); return; }
 
       const selectedTags = Array.from(document.querySelectorAll('.up-tag-cb:checked')).map(cb => cb.value);
@@ -1740,6 +1794,7 @@
       if (!box || !currentUser) return;
       if (currentUser.beginnerFlagged || currentUser.membershipType?.startsWith('beginner')) {
         const calc = calculateBeginnerOwedBreakdown(currentUser);
+        const restartFee = +((appConfig.beginnerBasePrice * 3) * (appConfig.restartPenaltyPct / 100)).toFixed(2);
         box.innerHTML = `
           <div class="bg-slate-950 border border-amber-500/40 rounded-2xl p-4 space-y-3">
             <div class="flex justify-between font-bold text-amber-300"><span>🌱 3-Month Beginner Bundle Calculator</span><span>${calc.daysLeft} Days Left</span></div>
@@ -1747,6 +1802,7 @@
             <div class="flex flex-wrap gap-2">
               <button type="button" onclick="settleBeginnerBalanceNow('continue')" class="gold-btn px-4 py-2 rounded-xl font-bold">💳 Pay $${calc.totalOwed} Mid-Way & Continue</button>
               <button type="button" onclick="settleBeginnerBalanceNow('switch_normal')" class="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 font-bold">🔄 Pay $${calc.totalOwed} & Switch to Normal $23 Pass</button>
+              ${currentUser.membershipType === 'beginner_stopped' ? `<button type="button" onclick="payBeginnerRestartPenalty(${restartFee})" class="px-4 py-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold">⚠️ Pay ${appConfig.restartPenaltyPct}% ($${restartFee}) Fee to Restart from Zero</button>` : ''}
             </div>
           </div>`;
       } else {
@@ -1759,8 +1815,22 @@
       const tx = prompt(`Send $${calc.totalOwed} USD to ${appConfig.wallets.cex} and enter your TXID:`);
       if (!tx) return;
       currentUser.beginnerSalesCount = 0; currentUser.beginnerStartAt = Date.now();
+      currentUser.beginnerPaidSettled = true;
       if (choice === 'switch_normal') { currentUser.beginnerFlagged = false; currentUser.membershipType = 'none'; currentUser.membershipExpiresAt = 0; saveAllState(); openNativeCheckoutModal(); }
       else { saveAllState(); renderPaymentAndBeginnerSettlementCenter(); alert('✅ Payment recorded!'); }
+    }
+
+    function payBeginnerRestartPenalty(feeAmount) {
+      const tx = prompt(`Send the ${appConfig.restartPenaltyPct}% restart fee ($${feeAmount} USD) to ${appConfig.wallets.cex} and paste your TXID to restart your 3-Month Beginner Membership from zero:`);
+      if (!tx || !tx.trim()) return;
+      const now = Date.now();
+      currentUser.beginnerViolated = false;
+      currentUser.membershipType = 'beginner_3m';
+      currentUser.beginnerStartAt = now;
+      currentUser.beginnerExpiresAt = now + NINETY_DAYS_MS;
+      currentUser.membershipExpiresAt = now + NINETY_DAYS_MS;
+      saveAllState(); renderCreatorStudio();
+      alert('✅ 3-Month Beginner Membership restarted from zero!');
     }
 
     function loadAdminInputs() {
@@ -1771,20 +1841,22 @@
       document.getElementById('admin-direct-price').value = appConfig.directUploadPrice;
       document.getElementById('admin-beg-base').value = appConfig.beginnerBasePrice;
       document.getElementById('admin-beg-pct').value = appConfig.beginnerSalePct;
+      if (document.getElementById('admin-restart-pct')) document.getElementById('admin-restart-pct').value = appConfig.restartPenaltyPct;
       syncDynamicPricingLabels();
 
       // Ascending Days Left Beginner Cohort Table
       const cohort = Object.values(usersDB).filter(u => u && (u.beginnerFlagged || u.membershipType?.startsWith('beginner'))).map(u => ({ u, calc: calculateBeginnerOwedBreakdown(u), w: getWeeklyUploadCountForUser(u.email) })).sort((a, b) => a.calc.daysLeft - b.calc.daysLeft);
-      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)} • ${sanitizeHTML(u.phone || '')})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Owed: $${calc.totalOwed}</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold">Ban</button></div></div>`).join('');
+      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Sales: ${calc.salesCount} • Owed: $${calc.totalOwed}</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold">Ban</button></div></div>`).join('');
 
       const overdue = Object.values(usersDB).filter(u => u && u.membershipType === 'beginner_expired_unpaid');
-      document.getElementById('admin-overdue-ban-queue').innerHTML = overdue.length === 0 ? `<p class="text-slate-400">No expired unpaid accounts in ban queue.</p>` : overdue.map(u => `<div class="bg-slate-950 p-3 rounded-xl border border-rose-500 flex justify-between"><span>${sanitizeHTML(u.email)} (${sanitizeHTML(u.phone || '')})</span><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-3 py-1 rounded bg-rose-600 text-white font-bold">Ban & Erase</button></div>`).join('');
+      document.getElementById('admin-overdue-ban-queue').innerHTML = overdue.length === 0 ? `<p class="text-slate-400">No expired unpaid accounts in ban queue.</p>` : overdue.map(u => `<div class="bg-slate-950 p-3 rounded-xl border border-rose-500 flex justify-between"><span>${sanitizeHTML(u.email)} (Canonical: ${sanitizeHTML(u.canonicalEmail || u.email)})</span><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-3 py-1 rounded bg-rose-600 text-white font-bold">Ban & Erase</button></div>`).join('');
 
       const emails = Object.keys(usersDB);
       document.getElementById('admin-users-count').textContent = emails.length;
       document.getElementById('admin-users-table').innerHTML = emails.map(em => {
         const u = usersDB[em];
-        return `<div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center"><span><strong>${sanitizeHTML(u.name)}</strong> • ${sanitizeHTML(u.email)} • 📱 ${sanitizeHTML(u.phone || '')} (${sanitizeHTML(u.membershipType)})</span>${em !== OWNER_EMAIL ? `<button type="button" onclick="adminDeleteUserAccount('${em}')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-bold">🚫 Ban</button>` : '<span class="text-emerald-400 font-bold">👑 Owner</span>'}</div>`;
+        const linkedNote = u.linkedPreviousEmail && u.linkedPreviousEmail !== em ? ` • 🔗 Linked Email: ${sanitizeHTML(u.linkedPreviousEmail)}` : '';
+        return `<div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center"><span><strong>${sanitizeHTML(u.name)}</strong> • ${sanitizeHTML(u.email)} (${sanitizeHTML(u.membershipType)})${linkedNote}</span>${em !== OWNER_EMAIL ? `<button type="button" onclick="adminDeleteUserAccount('${em}')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-bold">🚫 Ban Email</button>` : '<span class="text-emerald-400 font-bold">👑 Owner</span>'}</div>`;
       }).join('');
 
       const frozenList = products.filter(p => p.frozen || (p.reports && p.reports.length > 0));
@@ -1801,9 +1873,9 @@
 
     function adminDeleteUserAccount(email) {
       if (!isOwnerLoggedIn() || email === OWNER_EMAIL) return;
-      const u = usersDB[email];
-      if (u && u.phone && !bannedPhones.includes(u.phone)) bannedPhones.push(u.phone);
+      const canonical = normalizeCanonicalEmail(email);
       if (!bannedEmails.includes(email)) bannedEmails.push(email);
+      if (!bannedEmails.includes(canonical)) bannedEmails.push(canonical);
       delete usersDB[email];
       products = products.filter(p => (p.creatorEmail || '').toLowerCase() !== email);
       saveAllState(); loadAdminInputs(); renderMarketplaceGrid();
@@ -1820,6 +1892,7 @@
       appConfig.directUploadPrice = parseFloat(document.getElementById('admin-direct-price').value) || 15;
       appConfig.beginnerBasePrice = parseFloat(document.getElementById('admin-beg-base').value) || 15;
       appConfig.beginnerSalePct = parseFloat(document.getElementById('admin-beg-pct').value) || 23;
+      if (document.getElementById('admin-restart-pct')) appConfig.restartPenaltyPct = parseFloat(document.getElementById('admin-restart-pct').value) || 15;
       saveAllState(); syncDynamicPricingLabels();
     }
 
@@ -1836,6 +1909,7 @@
       document.querySelectorAll('.dyn-link-sub-lbl').forEach(el => el.textContent = appConfig.subPrice);
       document.querySelectorAll('.dyn-direct-sub-lbl').forEach(el => el.textContent = appConfig.directUploadPrice);
       document.querySelectorAll('.dyn-beg-pct-lbl').forEach(el => el.textContent = appConfig.beginnerSalePct);
+      document.querySelectorAll('.dyn-restart-pct-lbl').forEach(el => el.textContent = appConfig.restartPenaltyPct);
     }
 
     function switchMainTab(tab) {
@@ -1874,7 +1948,7 @@
       document.getElementById('stat-my-weekly-uploads').textContent = `Weekly uploads: ${getWeeklyUploadCountForUser(currentUser.email)} / 5`;
 
       document.getElementById('prof-name').value = currentUser.name;
-      document.getElementById('prof-email').value = `${currentUser.email} (${currentUser.phone || ''})`;
+      document.getElementById('prof-email').value = `${currentUser.email} (Verified Email)`;
       document.getElementById('prof-avatar').value = currentUser.avatar;
       document.getElementById('prof-banner').value = currentUser.banner || '';
       document.getElementById('prof-payout').value = currentUser.payout || '';
@@ -2029,7 +2103,7 @@
       renderSocialLinksEverywhere();
       const savedLang = localStorage.getItem('altujar_master_lang') || 'en';
       if (savedLang !== 'en') changeLanguage(savedLang);
-      if (currentUser && activeUserEmail && !bannedEmails.includes(activeUserEmail)) {
+      if (currentUser && activeUserEmail && !isEmailBannedByDetector(activeUserEmail)) {
         completeAuthentication(false);
       } else {
         document.getElementById('mandatory-auth-gate').classList.remove('hidden');
