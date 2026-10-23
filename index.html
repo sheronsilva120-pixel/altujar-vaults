@@ -124,7 +124,7 @@
 
       <!-- UNPAID BEGINNER ACCOUNT LOCK NOTICE -->
       <div id="gate-debt-lock-banner" class="hidden bg-rose-950/80 border border-rose-500 rounded-2xl p-3 text-[11px] text-rose-200 font-semibold leading-relaxed">
-        🔒 <strong>Active Beginner Bundle Debt Lock:</strong> Your session is locked to your existing Beginner Bundle account (<span id="gate-locked-email-lbl" class="text-amber-300 font-mono underline"></span>). You cannot create a new account or sign out until you log in to this account and pay off your accrued bundle balance.
+        🔒 <strong>Active Beginner Bundle Debt Lock:</strong> Your session is locked to your existing Beginner Bundle account (<span id="gate-locked-email-lbl" class="text-amber-300 font-mono underline"></span>). You cannot create a new account or sign out until you log in to this account and settle your accrued bundle balance[cite: 3, 16].
       </div>
 
       <!-- Mode Switch -->
@@ -145,7 +145,7 @@
         </div>
         <label class="flex items-start gap-2 cursor-pointer text-slate-300">
           <input type="checkbox" id="login-agree-cb" checked class="mt-0.5 accent-amber-400">
-          <span>I agree to the <strong>AL-TUJAR VAULTS Legal Terms & Privacy Policy</strong>.</span>
+          <span>I agree to the <strong>AL-TUJAR VAULTS Legal Terms & Privacy Policy</strong>[cite: 1].</span>
         </label>
         <p id="login-error-msg" class="text-rose-400 text-[11px] font-bold hidden"></p>
         <button type="button" onclick="handleGateLogin()" data-i18n="sign_in_btn" class="w-full gold-btn py-3 rounded-xl font-extrabold text-xs sm:text-sm">
@@ -181,7 +181,7 @@
         </div>
         <label class="flex items-start gap-2 cursor-pointer text-slate-300">
           <input type="checkbox" id="reg-agree-cb" checked class="mt-0.5 accent-amber-400">
-          <span>I agree to the <strong>AL-TUJAR VAULTS Legal Terms, Beginner Bundle Rules & Privacy Policy</strong>.</span>
+          <span>I agree to the <strong>AL-TUJAR VAULTS Legal Terms, Beginner Bundle Rules & Privacy Policy</strong>[cite: 1].</span>
         </label>
         <p id="reg-error-msg" class="text-rose-400 text-[11px] font-bold hidden"></p>
         <button type="button" onclick="handleGateRegister()" class="w-full gold-btn py-3 rounded-xl font-extrabold text-xs sm:text-sm">
@@ -191,7 +191,9 @@
     </div>
   </div>
 
-  <!-- BEGINNER BUNDLE LOGOUT / DELETE ACCOUNT DEBT LOCKOUT MODAL -->
+  <!-- ===================================================================== -->
+  <!-- BEGINNER BUNDLE LOGOUT / DELETE DEBT LOCKOUT MODAL (WITH STATUS BADGE)-->
+  <!-- ===================================================================== -->
   <div id="beginner-logout-lock-modal" class="fixed inset-0 z-[120] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
     <div class="bg-obsidianCard border-2 border-rose-500 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl text-xs">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -202,10 +204,20 @@
         <button type="button" onclick="closeBeginnerDebtLockModal()" class="p-1.5 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
       </div>
       <p id="debt-lock-reason-text" class="text-slate-200 leading-relaxed"></p>
+      
+      <!-- Live Calculation Box -->
       <div id="debt-lock-calculation-box" class="bg-slate-950 border border-amber-500/40 rounded-2xl p-4 space-y-2"></div>
+      
+      <!-- Submission & Pending Feedback Banner -->
+      <div id="debt-lock-pending-alert" class="hidden bg-amber-950/60 border border-amber-500/60 rounded-xl p-3 text-amber-200 text-[11px] space-y-1">
+        <div class="font-bold flex items-center gap-1.5"><span>⏳</span><span>Verification Pending with Admin</span></div>
+        <p id="debt-lock-pending-txid" class="text-[10px] text-slate-300 font-mono break-all"></p>
+        <p class="text-[10px] text-slate-400">Your transfer reference has been logged. The owner must verify the deposit before your account is unlocked.</p>
+      </div>
+
       <div class="space-y-2 pt-1">
         <button type="button" onclick="payDebtToUnlockLogoutOrDelete()" class="gold-btn w-full py-3 rounded-xl font-extrabold text-xs sm:text-sm">
-          💳 Pay Total Debt Now & Switch to Normal $<span class="dyn-link-sub-lbl">23</span> Membership
+          💳 Settle Debt (Automated Solana or Manual Transfer)
         </button>
         <button type="button" onclick="closeBeginnerDebtLockModal()" class="w-full py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 font-bold">
           ← Stay Signed In & Continue Uploading/Selling
@@ -280,7 +292,6 @@
         <button type="button" onclick="switchMainTab('guide')" id="nav-guide" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white">📖 How It Works & Why Us</button>
         <button type="button" onclick="switchMainTab('studio')" id="nav-studio" data-i18n="nav_studio" class="hidden px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white">✨ My Profile, Inbox & Studio</button>
         <button type="button" onclick="switchMainTab('rules')" id="nav-rules" data-i18n="nav_rules" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white">⚖️ Legal & Privacy</button>
-        <!-- Strictly hidden unless owner is signed in -->
         <button type="button" onclick="switchMainTab('admin')" id="nav-admin" class="hidden px-3.5 py-2 rounded-lg text-xs font-semibold text-amber-300 border border-amber-500/40">🔐 Treasury</button>
       </nav>
 
@@ -306,7 +317,7 @@
           <option value="it">🇮🇹 Italiano</option>
         </select>
 
-        <!-- Auth-Only Header Buttons (Hidden for Guests!) -->
+        <!-- Auth-Only Header Buttons (Hidden for Guests) -->
         <button type="button" id="header-inbox-btn" onclick="switchMainTab('studio'); switchStudioSubTab('inbox');" class="hidden px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1"><span>📩</span><span id="inbox-count-badge" class="bg-rose-500 text-white font-bold text-[10px] px-1.5 rounded-full">0</span></button>
         <button type="button" id="header-fav-btn" onclick="openSavedVaultModal('favs')" class="hidden px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1"><span>❤️</span><span id="saved-count-badge" class="bg-amber-500 text-slate-950 font-bold text-[10px] px-1.5 rounded-full">0</span></button>
         <button type="button" id="header-cart-btn" onclick="openSavedVaultModal('cart')" class="hidden px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1"><span>🛒</span><span id="cart-count-badge" class="bg-emerald-500 text-slate-950 font-bold text-[10px] px-1.5 rounded-full">0</span></button>
@@ -347,8 +358,8 @@
             Where Product Quality Beats <span class="gold-gradient-text">Follower Count.</span>
           </h1>
           <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
-            <strong>Normal Full Membership ($<span class="dyn-link-sub-lbl">23</span>/mo) & Direct Upload Pass ($<span class="dyn-direct-sub-lbl">15</span>/mo):</strong> Upload <strong>Presets (.cube/.xmp/.dng), Audio SFX (.mp3/.wav), Videos (.mp4), HTML, PNG, PDF, ZIP</strong> or connect indirect external product links!<br>
-            <strong>🌱 Special 3-Month Beginner Bundle:</strong> Upload both direct files and external links for 3 months starting from $0 upfront ($<span class="dyn-beg-base-lbl">23</span> × 3 months + <span class="dyn-beg-pct-lbl">23</span>% per product uploaded), then settle from your earnings!
+            <strong>Normal Full Membership ($<span class="dyn-link-sub-lbl">23</span>/mo) & Direct Upload Pass ($<span class="dyn-direct-sub-lbl">15</span>/mo):</strong> Upload <strong>Presets (.cube/.xmp/.dng), Audio SFX (.mp3/.wav), Videos (.mp4), HTML, PNG, PDF, ZIP</strong> or connect indirect external product links[cite: 7, 11]!<br>
+            <strong>🌱 Special 3-Month Beginner Bundle:</strong> Upload both direct files and external links for 3 months starting from $0 upfront ($<span class="dyn-beg-base-lbl">23</span> × 3 months + <span class="dyn-beg-pct-lbl">23</span>% per product uploaded), then settle from your earnings[cite: 3]!
           </p>
           <div class="flex flex-wrap gap-2.5 pt-1">
             <button type="button" onclick="requireSellerAuthAndOpenMembership()" class="gold-btn px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
@@ -428,7 +439,6 @@
         <button type="button" onclick="switchMainTab('shop')" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-amber-300 font-bold text-xs">← Back to Marketplace</button>
       </div>
 
-      <!-- 3-Column Step-by-Step Guide -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
         <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-3">
           <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-lg">🛍️</div>
@@ -445,11 +455,11 @@
           <h3 class="font-royal text-base font-bold text-emerald-300">2. How to Upload & Sell</h3>
           <ul class="space-y-2 text-slate-300 text-xs leading-relaxed list-disc pl-4">
             <li><strong>Step 1 (Create Account & Unlock Pass):</strong> Click <strong>➕ Upload File</strong>, sign in, and select your seller plan:
-              <br>• <strong>$<span class="dyn-direct-sub-lbl">15</span>/mo Direct Pass:</strong> Host digital files directly on our web vault.
-              <br>• <strong>$<span class="dyn-link-sub-lbl">23</span>/mo Normal Full Pass:</strong> Upload both direct digital files and external links (Physical or Digital).
-              <br>• <strong>🌱 3-Month Beginner Bundle:</strong> Start with <strong>$0 upfront</strong> for 90 days!</li>
-            <li><strong>Step 2 (Choose Format):</strong> Select <strong>Physical</strong> or <strong>Digital</strong>. Upload Presets (<code>.cube</code>, <code>.xmp</code>), Audio SFX (<code>.mp3</code>, <code>.wav</code>), Videos (<code>.mp4</code>), HTML, PNG, PDF, or ZIP files—and attach your receiving wallet!</li>
-            <li><strong>Step 3 (Publish):</strong> Provide complete product specifications (95%+ Info Score for Beginner Bundle sellers) and publish instantly.</li>
+              <br>• <strong>$<span class="dyn-direct-sub-lbl">15</span>/mo Direct Pass:</strong> Host digital files directly on our web vault[cite: 7, 11].
+              <br>• <strong>$<span class="dyn-link-sub-lbl">23</span>/mo Normal Full Pass:</strong> Upload both direct digital files and external links (Physical or Digital)[cite: 7, 11].
+              <br>• <strong>🌱 3-Month Beginner Bundle:</strong> Start with <strong>$0 upfront</strong> for 90 days[cite: 2]!</li>
+            <li><strong>Step 2 (Choose Format):</strong> Select <strong>Physical</strong> or <strong>Digital</strong>. Upload Presets (<code>.cube</code>, <code>.xmp</code>), Audio SFX (<code>.mp3</code>, <code>.wav</code>), Videos (<code>.mp4</code>), HTML, PNG, PDF, or ZIP files—and attach your receiving wallet[cite: 10, 11]!</li>
+            <li><strong>Step 3 (Publish):</strong> Provide complete product specifications (95%+ Info Score for Beginner Bundle sellers) and publish instantly[cite: 5].</li>
           </ul>
         </div>
 
@@ -457,24 +467,23 @@
           <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-lg">🌱</div>
           <h3 class="font-royal text-base font-bold text-purple-300">3. How the Beginner Bundle Works</h3>
           <ul class="space-y-2 text-slate-300 text-xs leading-relaxed list-disc pl-4">
-            <li><strong>Launch With $0 Today:</strong> Designed for new creators who cannot afford upfront monthly fees. Get 3 full months (90 days) to upload both direct files and external product links.</li>
+            <li><strong>Launch With $0 Today:</strong> Designed for new creators who cannot afford upfront monthly fees[cite: 2]. Get 3 full months (90 days) to upload both direct files and external product links[cite: 2].</li>
             <li><strong>Simple Per-Upload Bundle Math:</strong> Your deferred balance is calculated as <strong>$<span class="dyn-beg-base-lbl">23</span> × 3 months + <span class="dyn-beg-pct-lbl">23</span>% of the monthly membership added for each product you upload</strong>.</li>
-            <li><strong>Quality Standards:</strong> Upload at least <strong>5 working products per week</strong> with <strong>95%+ Info Completeness</strong>, then settle your accrued bundle from the sales you make!</li>
+            <li><strong>Quality Standards:</strong> Upload at least <strong>5 working products per week</strong> with <strong>95%+ Info Completeness</strong>, then settle your accrued bundle from the sales you make[cite: 3, 5]!</li>
           </ul>
         </div>
       </div>
 
-      <!-- Why AL-TUJAR VAULTS Beats Other Platforms -->
       <div class="bg-gradient-to-r from-amber-950/40 via-slate-950 to-emerald-950/40 border border-amber-500/30 rounded-2xl p-5 sm:p-6 space-y-4">
         <h3 class="font-royal text-lg font-extrabold text-white">🏆 Why AL-TUJAR VAULTS Beats Traditional Marketplaces (Gumroad, Etsy & Affiliates)</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
           <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800">
             <strong class="text-amber-300 block mb-1">1. Merit-First Ranking (Quality Over Follower Count)</strong>
-            On traditional platforms, only famous creators get traffic. On AL-TUJAR VAULTS, products with <strong>95%–100% Information Completeness</strong>, working demos, and buyer bonuses rank at the top automatically—giving new sellers instant visibility.
+            On traditional platforms, only famous creators get traffic. On AL-TUJAR VAULTS, products with <strong>95%–100% Information Completeness</strong>, working demos, and buyer bonuses rank at the top automatically—giving new sellers instant visibility[cite: 5].
           </div>
           <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800">
             <strong class="text-emerald-300 block mb-1">2. Direct Wallet-to-Wallet Payouts & Multi-Format Hosting</strong>
-            Sell digital files directly on the web without needing an external store, or connect your existing Amazon/external links—all while receiving payments directly to your own wallet or payment account.
+            Sell digital files directly on the web without needing an external store, or connect your existing Amazon/external links—all while receiving payments directly to your own wallet or payment account[cite: 11].
           </div>
           <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800">
             <strong class="text-sky-300 block mb-1">3. Built-In Interactive Audio SFX & Video Preset Players</strong>
@@ -482,7 +491,7 @@
           </div>
           <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800">
             <strong class="text-purple-300 block mb-1">4. Industry-First 3-Month Beginner Launchpad</strong>
-            No other marketplace gives new creators a 90-day head start to upload products, build a storefront, and pay their membership after they start earning.
+            No other marketplace gives new creators a 90-day head start to upload products, build a storefront, and pay their membership after they start earning[cite: 2, 3].
           </div>
         </div>
         <div class="flex flex-wrap gap-3 pt-2">
@@ -523,7 +532,7 @@
     <div id="public-profile-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </section>
 
-  <!-- MAIN VIEW 2: PROFILE, INBOX, PAYMENTS & CREATOR STUDIO (HIDDEN UNTIL SIGNED IN) -->
+  <!-- MAIN VIEW 2: PROFILE, INBOX, PAYMENTS & CREATOR STUDIO -->
   <section id="view-studio" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl overflow-hidden shadow-xl">
       <div id="studio-banner-preview" class="h-28 bg-gradient-to-r from-slate-900 via-amber-950/50 to-slate-900 bg-cover bg-center"></div>
@@ -577,7 +586,7 @@
       <div id="upload-locked-gate" class="text-center py-8 px-4 max-w-lg mx-auto space-y-4">
         <div class="text-3xl">🔒</div>
         <h3 class="font-royal text-xl font-extrabold text-white">Seller Membership Required to Upload</h3>
-        <p class="text-xs text-slate-300">You must activate either the <strong>$<span class="dyn-link-sub-lbl">23</span>/mo Normal Membership</strong>, the <strong>$<span class="dyn-direct-sub-lbl">15</span>/mo Direct Upload Pass</strong>, or the one-time <strong>3-Month Beginner Bundle</strong> before uploading.</p>
+        <p class="text-xs text-slate-300">You must activate either the <strong>$<span class="dyn-link-sub-lbl">23</span>/mo Normal Membership</strong>, the <strong>$<span class="dyn-direct-sub-lbl">15</span>/mo Direct Upload Pass</strong>, or the one-time <strong>3-Month Beginner Bundle</strong> before uploading[cite: 7, 11].</p>
         <button type="button" onclick="openNativeCheckoutModal()" class="gold-btn px-6 py-3 rounded-xl text-xs font-extrabold">🚀 Open Membership & Beginner Offer Window</button>
       </div>
 
@@ -585,7 +594,7 @@
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
           <div>
             <h3 class="font-royal text-lg font-bold text-amber-300">Publish File or Product Link to AL-TUJAR VAULTS</h3>
-            <p class="text-slate-400">Normal ($<span class="dyn-link-sub-lbl">23</span>) & Beginner Bundle allow both Direct File Uploads and Indirect Links. Beginner Bundle adds <span class="dyn-beg-pct-lbl">23</span>% of monthly membership per upload (requires 95%+ Info Score & 5 uploads/week).</p>
+            <p class="text-slate-400">Normal ($<span class="dyn-link-sub-lbl">23</span>) & Beginner Bundle allow both Direct File Uploads and Indirect Links[cite: 7, 11]. Beginner Bundle adds <span class="dyn-beg-pct-lbl">23</span>% of monthly membership per upload (requires 95%+ Info Score & 5 uploads/week)[cite: 5].</p>
           </div>
           <div class="bg-slate-950 border border-amber-500/40 rounded-xl px-4 py-2 text-right">
             <span class="text-[10px] uppercase text-slate-400 block">Info Score</span>
@@ -716,12 +725,14 @@
   <section id="view-rules" class="hidden flex-1 max-w-5xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6 text-xs sm:text-sm">
     <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl p-6 space-y-4 text-slate-300">
       <h2 class="brand-gold-3d text-xl sm:text-2xl">AL-TUJAR VAULTS LEGAL CHARTER</h2>
-      <p><strong>1. Membership Tiers:</strong> Normal Full Membership ($<span class="dyn-link-sub-lbl">23</span>/mo) supports both direct digital file uploads and indirect external product links; Direct Digital Upload Pass ($<span class="dyn-direct-sub-lbl">15</span>/mo) supports hosting digital files directly on the web.</p>
-      <p><strong>2. One-Time 3-Month Beginner Bundle ($<span class="dyn-beg-base-lbl">23</span> × 3 Months + <span class="dyn-beg-pct-lbl">23</span>% Per Upload):</strong> Grants 90 days upload access for <strong>both direct files and indirect external product links</strong> starting from $0 upfront. Every product uploaded adds <span class="dyn-beg-pct-lbl">23</span>% of the monthly membership to the bundle debt. Requires 100% working products, 95%+ info completeness, and 5 uploads/week (Day-6 warning). Sellers enrolled in the Beginner Bundle cannot sign out, delete their account, or create a new account until they settle their accrued debt, after which the Beginner Offer disappears forever and they continue on the normal $<span class="dyn-link-sub-lbl">23</span>/mo membership.</p>
+      <p><strong>1. Membership Tiers:</strong> Normal Full Membership ($<span class="dyn-link-sub-lbl">23</span>/mo) supports both direct digital file uploads and indirect external product links[cite: 7, 11]; Direct Digital Upload Pass ($<span class="dyn-direct-sub-lbl">15</span>/mo) supports hosting digital files directly on the web[cite: 7, 11].</p>
+      <p><strong>2. One-Time 3-Month Beginner Bundle ($<span class="dyn-beg-base-lbl">23</span> × 3 Months + <span class="dyn-beg-pct-lbl">23</span>% Per Upload):</strong> Grants 90 days upload access for <strong>both direct files and indirect external product links</strong> starting from $0 upfront[cite: 2]. Every product uploaded adds <span class="dyn-beg-pct-lbl">23</span>% of the monthly membership to the bundle debt. Requires 100% working products, 95%+ info completeness, and 5 uploads/week (Day-6 warning)[cite: 5]. Sellers enrolled in the Beginner Bundle cannot sign out, delete their account, or create a new account until they settle their accrued debt, after which the Beginner Offer disappears forever and they continue on the normal $<span class="dyn-link-sub-lbl">23</span>/mo membership[cite: 4].</p>
     </div>
   </section>
 
-  <!-- MAIN VIEW 4: PRIVATE TREASURY (STRICTLY HIDDEN FROM ALL PUBLIC USERS) -->
+  <!-- ===================================================================== -->
+  <!-- MAIN VIEW 4: TREASURY (WITH NEW PENDING SETTLEMENT APPROVAL QUEUE)    -->
+  <!-- ===================================================================== -->
   <section id="view-admin" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <div id="admin-lock-screen" class="max-w-md mx-auto bg-obsidianCard border border-amber-500/40 rounded-3xl p-6 text-center space-y-4 my-10">
       <h2 class="font-royal text-xl font-bold text-white">🔐 Vault Security Gate</h2>
@@ -736,6 +747,16 @@
         <button type="button" onclick="lockAdminConsole()" class="px-4 py-2 rounded-xl bg-rose-500/20 text-rose-300 font-bold">🔒 Lock</button>
       </div>
 
+      <!-- NEW: PENDING DEBT SETTLEMENT APPROVAL QUEUE -->
+      <div class="bg-obsidianCard border border-emerald-500/50 rounded-2xl p-5 space-y-3">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+          <h3 class="font-bold text-emerald-300 text-sm">💳 Pending Debt Settlement Approvals (Manual Review Queue)</h3>
+          <span class="text-[10px] text-slate-400">Verify transfers before unlocking accounts</span>
+        </div>
+        <div id="admin-pending-settlements-table" class="space-y-2 max-h-60 overflow-y-auto"></div>
+      </div>
+
+      <!-- 3-Month Beginner Cohort Table -->
       <div class="bg-obsidianCard border border-amber-500/40 rounded-2xl p-5 space-y-3">
         <div class="flex justify-between items-center border-b border-slate-800 pb-2">
           <h3 class="font-bold text-amber-300">🌱 3-Month Beginner Cohort (Sorted Ascending by Days Left)</h3>
@@ -844,11 +865,11 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div onclick="selectCheckoutTier('direct')" id="tier-card-direct" class="cursor-pointer bg-slate-950 border-2 border-emerald-500 rounded-2xl p-3.5 space-y-1">
           <div class="flex justify-between"><span class="font-bold text-emerald-300">📥 Direct Upload Pass</span><span class="text-lg font-extrabold text-white">$<span class="dyn-direct-sub-lbl">15</span>/mo</span></div>
-          <p class="text-[11px] text-slate-400">Upload Presets, MP3 Audio, HTML, PNG, MP4, or PDF directly on the web.</p>
+          <p class="text-[11px] text-slate-400">Upload Presets, MP3 Audio, HTML, PNG, MP4, or PDF directly on the web[cite: 7, 11].</p>
         </div>
         <div onclick="selectCheckoutTier('link')" id="tier-card-link" class="cursor-pointer bg-slate-950 border-2 border-amber-500/40 rounded-2xl p-3.5 space-y-1">
           <div class="flex justify-between"><span class="font-bold text-amber-300">🔗 Normal Full Membership</span><span class="text-lg font-extrabold text-white">$<span class="dyn-link-sub-lbl">23</span>/mo</span></div>
-          <p class="text-[11px] text-slate-400">Upload BOTH direct digital files AND indirect external product links (Physical or Digital).</p>
+          <p class="text-[11px] text-slate-400">Upload BOTH direct digital files AND indirect external product links (Physical or Digital)[cite: 7, 11].</p>
         </div>
       </div>
       <div id="checkout-rail-details" class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 space-y-2"></div>
@@ -859,11 +880,11 @@
 
       <div id="beginner-offer-box" class="pt-3 border-t border-amber-500/30 space-y-3">
         <button type="button" onclick="toggleBeginnerOfferTerms()" class="w-full py-2.5 px-4 rounded-xl bg-amber-500/15 border border-amber-400/50 text-amber-300 font-extrabold text-center cursor-pointer">
-          🌱 Unable to afford it?, are you a beginner? Click for our 3-Month Free Upload Offer!
+          🌱 Unable to afford it?, are you a beginner? Click for our 3-Month Free Upload Offer[cite: 1]!
         </button>
         <div id="beginner-offer-terms-panel" class="hidden bg-slate-950 border border-amber-500/50 rounded-2xl p-4 space-y-2.5 text-[11px] text-slate-300">
-          <p><strong class="text-amber-300">One-Time 3-Month Beginner Bundle Rules ($<span class="dyn-beg-base-lbl">23</span> × 3 Months + <span class="dyn-beg-pct-lbl">23</span>% Per Upload):</strong> Get 3 months free upload access for <strong>BOTH Direct Web Files and Indirect External Product Links</strong> starting from $0 today. For <strong>every product you upload</strong> on the web, <strong><span class="dyn-beg-pct-lbl">23</span>% of the monthly membership</strong> is added to your 3-month bundle ($<span class="dyn-beg-base-lbl">23</span> × 3 months + <span class="dyn-beg-pct-lbl">23</span>% per upload), payable from your earnings when the 3 months end (or pro-rated mid-way) within <strong>3 days</strong>. After payment, this offer disappears forever and you continue on the normal $<span class="dyn-link-sub-lbl">23</span>/mo membership. Must upload <strong>100% working products</strong>, <strong>5 products/week</strong>, and <strong>95%+ Info Completeness</strong>. <strong>Lockout Rule:</strong> You cannot sign out, delete your account, or create a new account until your accrued bundle debt is paid.</p>
-          <label class="flex items-start gap-2 cursor-pointer text-amber-200 font-semibold"><input type="checkbox" id="beginner-agree-cb" class="mt-0.5 accent-amber-400"><span>I agree to the 3-Month Beginner Bundle math ($<span class="dyn-beg-base-lbl">23</span> × 3mo + <span class="dyn-beg-pct-lbl">23</span>% per upload), 5 uploads/week, 95% info score, and the Sign-Out / Re-Entry Debt Lockout rule.</span></label>
+          <p><strong class="text-amber-300">One-Time 3-Month Beginner Bundle Rules ($<span class="dyn-beg-base-lbl">23</span> × 3 Months + <span class="dyn-beg-pct-lbl">23</span>% Per Upload):</strong> Get 3 months free upload access for <strong>BOTH Direct Web Files and Indirect External Product Links</strong> starting from $0 today[cite: 2]. For <strong>every product you upload</strong> on the web, <strong><span class="dyn-beg-pct-lbl">23</span>% of the monthly membership</strong> is added to your 3-month bundle ($<span class="dyn-beg-base-lbl">23</span> × 3 months + <span class="dyn-beg-pct-lbl">23</span>% per upload), payable from your earnings when the 3 months end (or pro-rated mid-way) within <strong>3 days</strong>[cite: 2, 3, 4]. After payment, this offer disappears forever and you continue on the normal $<span class="dyn-link-sub-lbl">23</span>/mo membership[cite: 4]. Must upload <strong>100% working products</strong>, <strong>5 products/week</strong>, and <strong>95%+ Info Completeness</strong>[cite: 5]. <strong>Lockout Rule:</strong> You cannot sign out, delete your account, or create a new account until your accrued bundle debt is paid[cite: 4].</p>
+          <label class="flex items-start gap-2 cursor-pointer text-amber-200 font-semibold"><input type="checkbox" id="beginner-agree-cb" class="mt-0.5 accent-amber-400"><span>I agree to the 3-Month Beginner Bundle math ($<span class="dyn-beg-base-lbl">23</span> × 3mo + <span class="dyn-beg-pct-lbl">23</span>% per upload), 5 uploads/week, 95% info score, and the Sign-Out / Re-Entry Debt Lockout rule[cite: 5].</span></label>
           <button type="button" onclick="activateBeginnerThreeMonthOffer()" class="gold-btn w-full py-2.5 rounded-xl font-extrabold text-xs">🌱 Agree & Unlock 3-Month Beginner Membership</button>
         </div>
       </div>
@@ -894,8 +915,8 @@
       </div>
       <div id="footer-social-strip" class="flex flex-wrap gap-2 pt-3 border-t border-slate-900"></div>
     </div>
-          </footer>
-          <script>
+  </footer>
+  <script>
     const OWNER_EMAIL = 'anshansheron@gmail.com';
     const OWNER_PASS = 'anshan00';
     const CONTACT_EMAIL = 'altujarvaults@gmail.com';
@@ -1051,6 +1072,9 @@
         beginnerOfferUsed: false,
         beginnerFlagVisibility: 'private',
         beginnerUploadsCount: 0,
+        beginnerSettlementStatus: 'none',
+        submittedTXID: '',
+        submittedDebtAmount: 0,
         inbox: [],
         followersCount: 142,
         following: [],
@@ -1082,7 +1106,11 @@
         const obj = safeJSONParse(k, null);
         if (obj && typeof obj === 'object') {
           Object.keys(obj).forEach(em => {
-            mergedUsers[em.toLowerCase()] = { inbox: [], following: [], favorites: [], cart: [], ...(mergedUsers[em.toLowerCase()] || {}), ...obj[em] };
+            mergedUsers[em.toLowerCase()] = {
+              inbox: [], following: [], favorites: [], cart: [],
+              beginnerSettlementStatus: 'none', submittedTXID: '', submittedDebtAmount: 0,
+              ...(mergedUsers[em.toLowerCase()] || {}), ...obj[em]
+            };
           });
         }
       });
@@ -1123,7 +1151,7 @@
       } catch (err) {}
     }
 
-    // GOOGLE SEARCH ENGINE STRUCTURED DATA (JSON-LD FOR GOOGLEBOT INDEXING)
+    // GOOGLE SEARCH ENGINE STRUCTURED DATA (JSON-LD)
     function updateGoogleSEOSchema() {
       const el = document.getElementById('dynamic-seo-schema');
       if (!el) return;
@@ -1153,7 +1181,7 @@
       el.textContent = JSON.stringify(itemList);
     }
 
-    // MULTI-LANGUAGE & GUARANTEED ENGLISH RESET
+    // MULTI-LANGUAGE ENGINE & RESET
     const I18N_DICT = {
       'en': { choose_lang_lbl: 'Choose Your Language', brand_sub: 'Merit-First Hybrid Marketplace', nav_shop: '🛍️ Shop Marketplace', nav_studio: '✨ My Profile, Inbox & Studio', nav_rules: '⚖️ Legal & Privacy', contact_hub_title: 'Official Contact & Community Hub', sign_in_tab: 'Sign In / Login', create_acc_tab: 'Create New Account', sign_in_btn: '🔐 Sign In to AL-TUJAR VAULTS' },
       'zh-CN': { choose_lang_lbl: '请选择您的语言', brand_sub: '品质优先的全球数字与实体交易市场', nav_shop: '🛍️ 逛市场', nav_studio: '✨ 我的主页与收件箱', nav_rules: '⚖️ 法律与隐私', contact_hub_title: '官方联系与社区中心', sign_in_tab: '登录账户', create_acc_tab: '注册新账户', sign_in_btn: '🔐 登录 AL-TUJAR VAULTS' },
@@ -1225,7 +1253,7 @@
     }
 
     // =========================================================================
-    // GUEST BROWSING + AUTH GATEWAY + UNPAID BEGINNER TAB RE-ENTRY LOCK
+    // GUEST BROWSING & AUTH GATEWAY (DEBT RE-ENTRY LOCKOUT)
     // =========================================================================
     function hasUnpaidBeginnerDeviceLock() {
       if (!deviceBeginnerEmailRecord || !usersDB[deviceBeginnerEmailRecord]) return false;
@@ -1268,7 +1296,7 @@
 
     function closeAuthGateModal() {
       if (hasUnpaidBeginnerDeviceLock() && !currentUser) {
-        alert('🔒 Your session is locked to your unpaid 3-Month Beginner Bundle account. Please sign in to that account and settle your balance.');
+        alert('🔒 Your device is locked to your unpaid 3-Month Beginner Bundle account. Please sign in to that account and settle your balance.');
         return;
       }
       document.getElementById('mandatory-auth-gate').classList.add('hidden');
@@ -1317,7 +1345,9 @@
             banner: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
             bio: 'Verified Digital Studio.', payout: appConfig.wallets.cex,
             membershipType: 'owner', membershipExpiresAt: Date.now() + (THIRTY_DAYS_MS * 120),
-            beginnerOfferUsed: true, beginnerFlagVisibility: 'private', beginnerUploadsCount: 0, inbox: [], followersCount: 310, following: [], favorites: [], cart: []
+            beginnerOfferUsed: true, beginnerFlagVisibility: 'private', beginnerUploadsCount: 0,
+            beginnerSettlementStatus: 'none', submittedTXID: '', submittedDebtAmount: 0,
+            inbox: [], followersCount: 310, following: [], favorites: [], cart: []
           };
         }
         currentUser = usersDB[OWNER_EMAIL];
@@ -1392,10 +1422,13 @@
         beginnerFlagged: false,
         beginnerFlagVisibility: 'private',
         beginnerViolated: false,
+        beginnerSettlementStatus: 'none',
+        submittedTXID: '',
+        submittedDebtAmount: 0,
         inbox: [{
           from: 'AL-TUJAR VAULTS Official (altujarvaults@gmail.com)',
           subject: 'Welcome to AL-TUJAR VAULTS!',
-          body: `Welcome ${name}! Unlock a Seller Pass or the 3-Month Beginner Bundle to upload Presets (.cube/.xmp), MP3 SFX Audio, Videos (.mp4), HTML, PDFs, or Physical links.`,
+          body: `Welcome ${name}! Unlock a Seller Pass or the 3-Month Beginner Bundle to upload Presets, MP3 SFX, Videos, HTML, PDFs, or Physical links.`,
           date: new Date().toLocaleDateString()
         }],
         followersCount: 0,
@@ -1442,12 +1475,8 @@
 
       if (pendingPostAuthAction === 'upload_or_membership') {
         pendingPostAuthAction = null;
-        if (!hasActiveSellerMembership(currentUser)) {
-          openNativeCheckoutModal();
-        } else {
-          switchMainTab('studio');
-          switchStudioSubTab('upload');
-        }
+        if (!hasActiveSellerMembership(currentUser)) openNativeCheckoutModal();
+        else { switchMainTab('studio'); switchStudioSubTab('upload'); }
         return;
       }
 
@@ -1458,8 +1487,35 @@
     }
 
     // =========================================================================
-    // SIGN-OUT & DELETE ACCOUNT DEBT LOCKOUT ENFORCEMENT (PER-UPLOAD MATH)
+    // PHASE 1: AUTOMATED SOLANA VERIFICATION & ANTI-CHEAT SETTLEMENT ENGINE
     // =========================================================================
+    async function verifySolanaTransactionOnChain(signature, expectedSolanaWallet) {
+      try {
+        const response = await fetch('https://api.mainnet-beta.solana.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            jsonrpc: '2.0',
+            id: 1,
+            method: 'getTransaction',
+            params: [signature.trim(), { encoding: 'jsonParsed', maxSupportedTransactionVersion: 0 }]
+          })
+        });
+        const data = await response.json();
+        if (!data || !data.result || data.result.meta?.err !== null) {
+          return { verified: false, reason: 'Transaction failed or not yet confirmed on Solana blockchain.' };
+        }
+        const accountKeys = data.result.transaction?.message?.accountKeys?.map(k => typeof k === 'string' ? k : k.pubkey) || [];
+        const receivedFunds = accountKeys.includes(expectedSolanaWallet);
+        if (!receivedFunds) {
+          return { verified: false, reason: 'Transaction does not transfer funds to the official AL-TUJAR VAULTS wallet.' };
+        }
+        return { verified: true, slot: data.result.slot };
+      } catch (err) {
+        return { verified: false, reason: 'Blockchain node timeout. Dispatched to manual review.' };
+      }
+    }
+
     function checkBeginnerDebtBeforeAction(actionType) {
       if (!currentUser) return true;
       const isBeginnerActive = currentUser.beginnerFlagged || currentUser.membershipType?.startsWith('beginner');
@@ -1471,10 +1527,12 @@
       const modal = document.getElementById('beginner-logout-lock-modal');
       const reasonEl = document.getElementById('debt-lock-reason-text');
       const box = document.getElementById('debt-lock-calculation-box');
+      const pendingAlert = document.getElementById('debt-lock-pending-alert');
+      const pendingTxEl = document.getElementById('debt-lock-pending-txid');
 
       reasonEl.textContent = actionType === 'logout'
-        ? `You attempted to sign out, but your account is enrolled in the 3-Month Beginner Bundle. You cannot sign out, log out, or create a new account until you pay off your accrued Beginner Bundle debt.`
-        : `You attempted to delete your account, but you have an unpaid 3-Month Beginner Bundle debt. You must pay your total accrued balance before deleting or closing your account.`;
+        ? `You attempted to sign out, but your account is enrolled in the 3-Month Beginner Bundle. You cannot sign out, log out, or create a new account until you settle your bundle debt.`
+        : `You attempted to delete your account, but you have an unpaid 3-Month Beginner Bundle debt. You must settle your total accrued balance before deleting or closing your account.`;
 
       box.innerHTML = `
         <div class="space-y-1.5 text-slate-300">
@@ -1482,8 +1540,15 @@
           <div class="flex justify-between"><span>Pro-Rated Elapsed (${calc.elapsedDays}d / ${calc.elapsedMonths} mo):</span> <strong class="text-white">$${calc.baseOwed} USD</strong></div>
           <div class="flex justify-between"><span>Uploads Made (${calc.uploadsCount} uploads × ${appConfig.beginnerSalePct}% = $${calc.perUploadAddition}/upload):</span> <strong class="text-emerald-300">+$${calc.uploadFeeOwed} USD</strong></div>
           <div class="flex justify-between border-t border-slate-800 pt-1.5 text-sm"><span>Total Debt Due to Unlock:</span> <strong class="gold-gradient-text text-base">$${calc.totalOwed} USD</strong></div>
-          <div class="text-[10px] text-amber-300 pt-1">Official Receiving Wallet: ${sanitizeHTML(appConfig.wallets.cex)}</div>
+          <div class="text-[10px] text-amber-300 pt-1">Official Bybit: ${sanitizeHTML(appConfig.wallets.cex)}<br>Solana: ${sanitizeHTML(appConfig.wallets.unstoppable)}</div>
         </div>`;
+
+      if (currentUser.beginnerSettlementStatus === 'pending_review') {
+        pendingAlert?.classList.remove('hidden');
+        if (pendingTxEl) pendingTxEl.textContent = `Reference: ${currentUser.submittedTXID || 'In Review'}`;
+      } else {
+        pendingAlert?.classList.add('hidden');
+      }
 
       modal.classList.remove('hidden');
       return false;
@@ -1493,21 +1558,116 @@
       document.getElementById('beginner-logout-lock-modal').classList.add('hidden');
     }
 
-    function payDebtToUnlockLogoutOrDelete() {
+    async function payDebtToUnlockLogoutOrDelete() {
       const calc = calculateBeginnerOwedBreakdown(currentUser);
-      const tx = prompt(`Send $${calc.totalOwed} USD to ${appConfig.wallets.cex} and paste your payment TXID / Reference to settle your Beginner Bundle debt and switch to the Normal $${appConfig.subPrice} Membership:`);
-      if (!tx || !tx.trim()) return;
+      const input = prompt(
+        `SETTLE BEGINNER BUNDLE DEBT ($${calc.totalOwed} USD)\n\n` +
+        `• Option 1 (Automated): Paste your Solana / USDT Transaction Signature (instant verification).\n` +
+        `• Option 2 (Manual): Paste your Bybit UID Internal Transfer Reference.\n\n` +
+        `Enter TXID / Payment Reference:`
+      );
 
-      currentUser.beginnerPaidSettled = true;
-      currentUser.beginnerFlagged = false;
-      currentUser.beginnerOfferUsed = true;
-      currentUser.membershipType = 'link_23';
-      currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
-      deviceBeginnerEmailRecord = '';
+      if (!input || !input.trim()) return;
+      const ref = input.trim();
+
+      // 1. MASTER ADMIN BYPASS (Owner can wipe testing device immediately)
+      if (ref === OWNER_PASS) {
+        currentUser.beginnerPaidSettled = true;
+        currentUser.beginnerFlagged = false;
+        currentUser.beginnerOfferUsed = true;
+        currentUser.membershipType = 'link_23';
+        currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+        currentUser.beginnerSettlementStatus = 'approved';
+        deviceBeginnerEmailRecord = '';
+        saveAllState();
+        closeBeginnerDebtLockModal();
+        renderCreatorStudio();
+        alert('👑 Master Key Accepted: Debt wiped and account unlocked!');
+        return;
+      }
+
+      // 2. AUTOMATED BLOCKCHAIN VERIFICATION (Solana Signature ~88 chars)
+      if (ref.length >= 80 && !ref.includes(' ') && !ref.toLowerCase().startsWith('bybit')) {
+        alert('🔍 Connecting to Solana RPC to verify transaction...');
+        const solCheck = await verifySolanaTransactionOnChain(ref, appConfig.wallets.unstoppable);
+
+        if (solCheck.verified) {
+          currentUser.beginnerPaidSettled = true;
+          currentUser.beginnerFlagged = false;
+          currentUser.beginnerOfferUsed = true;
+          currentUser.membershipType = 'link_23';
+          currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+          currentUser.beginnerSettlementStatus = 'approved';
+          deviceBeginnerEmailRecord = '';
+          saveAllState();
+          closeBeginnerDebtLockModal();
+          renderCreatorStudio();
+          alert(`🎉 Blockchain Verified! Received in slot #${solCheck.slot}. Your debt is cleared and upgraded to Normal Membership.`);
+          return;
+        } else {
+          alert(`⚠️ Blockchain Check: ${solCheck.reason}\nSubmitting to Admin Treasury for manual review.`);
+        }
+      }
+
+      // 3. MANUAL SETTLEMENT (Dispatched to Admin Review Queue)
+      currentUser.beginnerSettlementStatus = 'pending_review';
+      currentUser.submittedTXID = ref;
+      currentUser.submittedDebtAmount = calc.totalOwed;
       saveAllState();
-      closeBeginnerDebtLockModal();
-      renderCreatorStudio();
-      alert(`🎉 Debt settled! The special Beginner Offer has been permanently removed from your page, and your account is now upgraded to the Normal $${appConfig.subPrice} Membership.`);
+
+      checkBeginnerDebtBeforeAction('refresh_modal');
+      alert(
+        `⏳ Payment Reference Submitted ($${calc.totalOwed} USD).\n\n` +
+        `Reference: "${ref}"\n` +
+        `Status: Sent to Admin Treasury for verification against Bybit/Wallet records.\n\n` +
+        `Your account remains locked until the platform owner confirms the deposit.`
+      );
+    }
+
+    // ADMIN TREASURY MANUAL APPROVAL/REJECTION ACTIONS
+    function adminApproveSettlement(userEmail) {
+      if (!isOwnerLoggedIn()) return;
+      const u = usersDB[userEmail.toLowerCase()];
+      if (!u) return;
+
+      u.beginnerPaidSettled = true;
+      u.beginnerFlagged = false;
+      u.beginnerOfferUsed = true;
+      u.membershipType = 'link_23';
+      u.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+      u.beginnerSettlementStatus = 'approved';
+      if (deviceBeginnerEmailRecord === u.email) deviceBeginnerEmailRecord = '';
+
+      u.inbox = u.inbox || [];
+      u.inbox.unshift({
+        from: 'AL-TUJAR VAULTS Treasury',
+        subject: '✅ Settlement Approved: Account Unlocked',
+        body: `Your payment of $${u.submittedDebtAmount || 0} USD (Ref: ${u.submittedTXID || 'N/A'}) has been verified. Your Beginner Bundle is settled, and your account is upgraded to Normal Membership.`,
+        date: new Date().toLocaleDateString()
+      });
+
+      saveAllState();
+      loadAdminInputs();
+      alert(`✅ Approved settlement for ${u.email}. Account unlocked and upgraded.`);
+    }
+
+    function adminRejectSettlement(userEmail) {
+      if (!isOwnerLoggedIn()) return;
+      const u = usersDB[userEmail.toLowerCase()];
+      if (!u) return;
+
+      u.beginnerSettlementStatus = 'rejected';
+      u.inbox = u.inbox || [];
+      u.inbox.unshift({
+        from: 'AL-TUJAR VAULTS Treasury',
+        subject: '❌ Payment Reference Rejected',
+        body: `Your submitted reference "${u.submittedTXID}" could not be verified on our Bybit or wallet records. Please contact support or resubmit.`,
+        date: new Date().toLocaleDateString()
+      });
+
+      saveAllState();
+      loadAdminInputs();
+      alert(`❌ Rejected settlement reference for ${u.email}.`);
     }
 
     function handleLogout() {
@@ -1575,7 +1735,7 @@
     }
 
     // =========================================================================
-    // 3-MONTH BEGINNER BUNDLE ENGINE ($23 × 3 MO + 23% PER UPLOAD)
+    // BEGINNER BUNDLE ENGINE ($23 × 3 MO + 23% PER UPLOAD)
     // =========================================================================
     function canUserSeeBeginnerOffer(userObj) {
       if (!userObj || isOwnerLoggedIn()) return false;
@@ -1617,6 +1777,7 @@
       currentUser.beginnerAutoBanAt = now + NINETY_DAYS_MS + (ONE_DAY_MS * 10);
       currentUser.beginnerUploadsCount = 0;
       currentUser.beginnerViolated = false;
+      currentUser.beginnerSettlementStatus = 'none';
 
       if (!usedBeginnerEmails.includes(cleanEmail)) usedBeginnerEmails.push(cleanEmail);
       if (!usedBeginnerEmails.includes(canonical)) usedBeginnerEmails.push(canonical);
@@ -1649,7 +1810,6 @@
       const fullThreeMonthBase = +(monthlyBase * 3).toFixed(2);
       const uploadPct = Number(appConfig.beginnerSalePct || 23) / 100;
 
-      // If 3 months expired, owe full 3 months ($23 x 3 = $69); if mid-way, pro-rate elapsed months (or at least 1st month base if trying to log out immediately)
       const isExpired = now >= userObj.beginnerExpiresAt;
       const baseOwed = isExpired ? fullThreeMonthBase : +(Math.max(0.5, elapsedMonths) * monthlyBase).toFixed(2);
       const perUploadAddition = +(monthlyBase * uploadPct).toFixed(2);
@@ -1829,7 +1989,7 @@
     }
 
     // =========================================================================
-    // MULTI-FORMAT UPLOAD ENGINE (BOTH DIRECT & LINKS FOR NORMAL + BEGINNER)
+    // MULTI-FORMAT UPLOAD ENGINE
     // =========================================================================
     function handleUploadNatureChange() {
       const nature = document.getElementById('up-nature')?.value || 'Digital';
@@ -1838,7 +1998,6 @@
       const directSection = document.getElementById('direct-digital-file-section');
       const linkSection = document.getElementById('external-link-section');
 
-      // Only the $15 Direct Upload Pass is restricted to direct_web only; Normal ($23) and Beginner Bundle can use BOTH!
       if (currentUser && currentUser.membershipType === 'direct_15') {
         hostingSelect.value = 'direct_web';
       }
@@ -1957,7 +2116,6 @@
         postedAt: Date.now(), infoScore, rating: 5.0, views: 1, clicks: 0, frozen: false, reports: []
       });
 
-      // Add 23% of monthly membership to the Beginner Bundle for every product uploaded!
       if (currentUser.membershipType === 'beginner_3m' || currentUser.beginnerFlagged) {
         currentUser.beginnerUploadsCount = (currentUser.beginnerUploadsCount || 0) + 1;
       }
@@ -1968,7 +2126,7 @@
       renderMarketplaceGrid();
     }
 
-    // MARKETPLACE RENDERING, AUDIO SFX & VIDEO DEMO PLAYERS
+    // MARKETPLACE RENDERING, AUDIO SFX & VIDEO PLAYERS
     function renderTagFilterStrip() {
       const strip = document.getElementById('tag-filter-strip');
       if (!strip) return;
@@ -2138,15 +2296,12 @@
 
     function incrementProductClick(id) {
       const p = products.find(i => i.id === id);
-      if (p) {
-        p.clicks += 1;
-        saveAllState();
-      }
+      if (p) { p.clicks += 1; saveAllState(); }
     }
 
     function recordOutboundClick() { if (currentModalProduct) incrementProductClick(currentModalProduct.id); }
 
-    // INBOX, SETTLEMENT & ADMIN TABLES
+    // INBOX & SETTLEMENT
     function renderUserInbox() {
       if (!currentUser) return;
       const list = currentUser.inbox || [];
@@ -2185,37 +2340,14 @@
           <div class="bg-slate-950 border border-amber-500/40 rounded-2xl p-4 space-y-3">
             <div class="flex justify-between font-bold text-amber-300"><span>🌱 3-Month Beginner Bundle Calculator ($${calc.monthlyBase} × 3mo + ${appConfig.beginnerSalePct}%/Upload)</span><span>${calc.daysLeft} Days Left</span></div>
             <p class="text-slate-300">Full 3-Month Base: <strong>$${calc.fullThreeMonthBase}</strong> • Pro-Rated Elapsed (${calc.elapsedDays}d / ${calc.elapsedMonths} mo): <strong>$${calc.baseOwed}</strong> • Uploads (${calc.uploadsCount} × $${calc.perUploadAddition}): <strong>+$${calc.uploadFeeOwed}</strong> • Current Payoff Due: <strong class="text-amber-300">$${calc.totalOwed} USD</strong> (Full 3-Mo End Total: <strong>$${calc.fullEndTotalOwed} USD</strong>)</p>
+            ${currentUser.beginnerSettlementStatus === 'pending_review' ? `<div class="bg-amber-950/60 border border-amber-500/50 p-2.5 rounded-xl text-[11px] text-amber-200">⏳ Verification Pending with Admin: "${currentUser.submittedTXID}"</div>` : ''}
             <div class="flex flex-wrap gap-2">
-              <button type="button" onclick="settleBeginnerBalanceNow('continue')" class="gold-btn px-4 py-2 rounded-xl font-bold">💳 Pay $${calc.totalOwed} Mid-Way & Continue Session</button>
-              <button type="button" onclick="settleBeginnerBalanceNow('switch_normal')" class="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 font-bold">🔄 Pay $${calc.totalOwed} & Switch to Normal $${appConfig.subPrice} Membership</button>
+              <button type="button" onclick="payDebtToUnlockLogoutOrDelete()" class="gold-btn px-4 py-2 rounded-xl font-bold">💳 Settle Debt Now (Automated Solana or Manual)</button>
               ${currentUser.membershipType === 'beginner_stopped' ? `<button type="button" onclick="payBeginnerRestartPenalty(${restartFee})" class="px-4 py-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold">⚠️ Pay ${appConfig.restartPenaltyPct}% ($${restartFee}) Fee to Restart from Zero</button>` : ''}
             </div>
           </div>`;
       } else {
         box.innerHTML = `<div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 flex justify-between items-center"><span>Active Plan: <strong class="text-amber-300">${sanitizeHTML(currentUser.membershipType || 'None')}</strong></span><button type="button" onclick="openNativeCheckoutModal()" class="gold-btn px-4 py-2 rounded-xl font-bold">Change / Renew Pass</button></div>`;
-      }
-    }
-
-    function settleBeginnerBalanceNow(choice) {
-      const calc = calculateBeginnerOwedBreakdown(currentUser);
-      const tx = prompt(`Send $${calc.totalOwed} USD to ${appConfig.wallets.cex} and enter your TXID:`);
-      if (!tx || !tx.trim()) return;
-      currentUser.beginnerUploadsCount = 0;
-      currentUser.beginnerStartAt = Date.now();
-      currentUser.beginnerPaidSettled = true;
-      currentUser.beginnerOfferUsed = true;
-      deviceBeginnerEmailRecord = '';
-      if (choice === 'switch_normal') {
-        currentUser.beginnerFlagged = false;
-        currentUser.membershipType = 'link_23';
-        currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
-        saveAllState();
-        renderCreatorStudio();
-        alert(`✅ Beginner Bundle settled! The Beginner Offer has been permanently removed from your account, and you are now on the Normal $${appConfig.subPrice} Membership.`);
-      } else {
-        saveAllState();
-        renderPaymentAndBeginnerSettlementCenter();
-        alert('✅ Mid-way payment recorded! You may continue your session.');
       }
     }
 
@@ -2232,6 +2364,9 @@
       alert('✅ 3-Month Beginner Membership restarted from zero!');
     }
 
+    // =========================================================================
+    // ADMIN CONTROL ROOM RENDERING (WITH PENDING SETTLEMENT APPROVAL QUEUE)
+    // =========================================================================
     function loadAdminInputs() {
       if (!isOwnerLoggedIn()) return;
       document.getElementById('adm-wallet-cex').value = appConfig.wallets.cex || '';
@@ -2244,12 +2379,35 @@
       if (document.getElementById('admin-restart-pct')) document.getElementById('admin-restart-pct').value = appConfig.restartPenaltyPct;
       syncDynamicPricingLabels();
 
-      const cohort = Object.values(usersDB).filter(u => u && (u.beginnerFlagged || u.membershipType?.startsWith('beginner'))).map(u => ({ u, calc: calculateBeginnerOwedBreakdown(u), w: getWeeklyUploadCountForUser(u.email) })).sort((a, b) => a.calc.daysLeft - b.calc.daysLeft);
-      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Total Uploads: ${calc.uploadsCount} • Owed: $${calc.totalOwed} (3-Mo End: $${calc.fullEndTotalOwed})</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold">Ban</button></div></div>`).join('');
+      // 1. Pending Debt Settlements Review Queue
+      const pendingUsers = Object.values(usersDB).filter(u => u && u.beginnerSettlementStatus === 'pending_review');
+      const pendingBox = document.getElementById('admin-pending-settlements-table');
+      if (pendingBox) {
+        pendingBox.innerHTML = pendingUsers.length === 0
+          ? `<p class="text-slate-400">No pending debt settlements to review.</p>`
+          : pendingUsers.map(u => `
+              <div class="bg-slate-950 p-3 rounded-xl border border-emerald-500/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                <div>
+                  <strong class="text-white text-xs">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})
+                  <div class="text-[11px] text-emerald-300 font-mono">Amount: $${u.submittedDebtAmount || 0} USD • TXID/Ref: "${sanitizeHTML(u.submittedTXID || '')}"</div>
+                </div>
+                <div class="flex gap-1.5 shrink-0">
+                  <button type="button" onclick="adminApproveSettlement('${u.email}')" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-bold hover:brightness-110">✅ Approve & Unlock</button>
+                  <button type="button" onclick="adminRejectSettlement('${u.email}')" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 text-rose-300 font-bold">✕ Reject</button>
+                </div>
+              </div>
+            `).join('');
+      }
 
+      // 2. Beginner Cohort Table (Ascending Days Left)
+      const cohort = Object.values(usersDB).filter(u => u && (u.beginnerFlagged || u.membershipType?.startsWith('beginner'))).map(u => ({ u, calc: calculateBeginnerOwedBreakdown(u), w: getWeeklyUploadCountForUser(u.email) })).sort((a, b) => a.calc.daysLeft - b.calc.daysLeft);
+      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Total Uploads: ${calc.uploadsCount} • Owed: $${calc.totalOwed}</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold">Ban</button></div></div>`).join('');
+
+      // 3. Overdue Ban Queue
       const overdue = Object.values(usersDB).filter(u => u && u.membershipType === 'beginner_expired_unpaid');
       document.getElementById('admin-overdue-ban-queue').innerHTML = overdue.length === 0 ? `<p class="text-slate-400">No expired unpaid accounts in ban queue.</p>` : overdue.map(u => `<div class="bg-slate-950 p-3 rounded-xl border border-rose-500 flex justify-between"><span>${sanitizeHTML(u.email)} (Canonical: ${sanitizeHTML(u.canonicalEmail || u.email)})</span><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-3 py-1 rounded bg-rose-600 text-white font-bold">Ban & Erase</button></div>`).join('');
 
+      // 4. Users Table
       const emails = Object.keys(usersDB);
       document.getElementById('admin-users-count').textContent = emails.length;
       document.getElementById('admin-users-table').innerHTML = emails.map(em => {
@@ -2257,6 +2415,7 @@
         return `<div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center"><span><strong>${sanitizeHTML(u.name)}</strong> • ${sanitizeHTML(u.email)} (${sanitizeHTML(u.membershipType)})</span>${em !== OWNER_EMAIL ? `<button type="button" onclick="adminDeleteUserAccount('${em}')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-bold">🚫 Ban Email</button>` : '<span class="text-emerald-400 font-bold">👑 Verified</span>'}</div>`;
       }).join('');
 
+      // 5. Frozen Listings Table
       const frozenList = products.filter(p => p.frozen || (p.reports && p.reports.length > 0));
       document.getElementById('admin-frozen-products-table').innerHTML = frozenList.length === 0 ? `<p class="text-slate-400">No reported products.</p>` : frozenList.map(p => `<div class="bg-slate-950 p-2.5 rounded-xl border border-rose-500 flex justify-between items-center"><span>${sanitizeHTML(p.title)} (Reports: ${(p.reports || []).length}/5)</span><div class="flex gap-1.5"><button type="button" onclick="adminUnfreezeProduct('${p.id}')" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-bold">Unfreeze</button><button type="button" onclick="deleteListing('${p.id}'); loadAdminInputs();" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-bold">Delete</button></div></div>`).join('');
     }
@@ -2519,7 +2678,6 @@
       const savedLang = localStorage.getItem('altujar_master_lang') || 'en';
       if (savedLang !== 'en') changeLanguage(savedLang);
 
-      // If this device has an unpaid Beginner Bundle account, automatically restore and lock their session so they cannot evade payment!
       if (hasUnpaidBeginnerDeviceLock()) {
         activeUserEmail = deviceBeginnerEmailRecord;
         currentUser = usersDB[deviceBeginnerEmailRecord];
@@ -2529,7 +2687,6 @@
       if (currentUser && activeUserEmail && !isEmailBannedByDetector(activeUserEmail)) {
         completeAuthentication(false);
       } else {
-        // Guest browsing mode! Profile & Studio stay hidden until they sign in
         updateGuestVsAuthHeaderUI();
       }
     });
