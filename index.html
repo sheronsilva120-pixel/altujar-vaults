@@ -619,8 +619,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input type="text" id="up-title" oninput="calculateLiveUploadScore()" placeholder="Product Title (e.g., Cinematic LUT Preset Pack or Trap SFX Kit) *" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
           <div class="grid grid-cols-2 gap-2">
-            <input type="number" step="0.01" min="0" id="up-price" oninput="calculateLiveUploadScore()" placeholder="Price USD (15.00) *" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white">
-            <select id="up-type" onchange="calculateLiveUploadScore()" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white">
+            <input type="number" step="0.01" min="0" id="up-price" oninput="calculateLiveUploadScore()" placeholder="Price USD (15.00) *" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
+            <select id="up-type" onchange="calculateLiveUploadScore()" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
               <option value="Presets">🎨 Video / Photo Presets (.cube, .xmp, .dng)</option>
               <option value="Audio & SFX">🔊 Audio, SFX & Beats (.mp3, .wav)</option>
               <option value="HTML & Code">💻 HTML, Web Templates & Code (.html, .zip)</option>
@@ -859,7 +859,7 @@
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <div>
           <h3 class="font-royal text-lg font-extrabold text-white">Select Your Seller Membership Plan</h3>
-          <p class="text-[11px] text-slate-400">⚡ Instant on-chain Solana verification or Bybit transfer</p>
+          <p class="text-[11px] text-slate-400">⚡ Instant on-chain Solana verification (amount checked) or Bybit transfer</p>
         </div>
         <button type="button" onclick="closeNativeCheckoutModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400">✕</button>
       </div>
@@ -888,7 +888,7 @@
           </button>
         </div>
         <p class="text-[10px] text-slate-400">
-          • <strong>Solana / USDT on Solana:</strong> Automatically verified on the blockchain in seconds.<br>
+          • <strong>Solana / USDT on Solana:</strong> Automatically verified on-chain (including deposit amount check).<br>
           • <strong>Bybit UID:</strong> Dispatched to Treasury for owner confirmation.
         </p>
       </div>
@@ -930,8 +930,8 @@
       </div>
       <div id="footer-social-strip" class="flex flex-wrap gap-2 pt-3 border-t border-slate-900"></div>
     </div>
-            </footer>
-            <script>
+      </footer>
+        <script>
     const SUPABASE_URL = 'https://szhywytficsfkgcktkxl.supabase.co';
     const SUPABASE_ANON_KEY = 'sb_publishable_8BzCV3ZKHCWYS6EOiCdv4g_SVT6HKwo';
     const supabaseClient = window.supabase ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
@@ -1001,7 +1001,7 @@
         url: 'resume.html',
         directFileData: '',
         directFileName: 'CareerVault-Pro-Studio.html',
-        sellerWallet: 'Bybit UID: 587086948',
+        sellerWallet: 'F4c9TugqAVvePSDhTaZF9TyL7jVabpqpfq9fZtc4zLaH',
         desc: 'Build a 100% ATS-compliant executive resume with live keyword scoring, 3 templates, and export a shareable portfolio web card.',
         discount: 'Instant Access Inside App',
         video: '',
@@ -1029,7 +1029,7 @@
         url: '#direct-vault-download',
         directFileData: 'data:text/plain;base64,Q2luZW1hdGljIExVVCBQYWNr',
         directFileName: 'Obsidian-Gold-Presets-Pack.zip',
-        sellerWallet: 'Bybit UID: 587086948',
+        sellerWallet: 'F4c9TugqAVvePSDhTaZF9TyL7jVabpqpfq9fZtc4zLaH',
         desc: '25 pro color grading .CUBE LUTs and .XMP/.DNG mobile presets for Premiere Pro, CapCut, DaVinci Resolve, and Lightroom.',
         discount: 'Free Before/After Video Grading Guide',
         video: 'https://www.w3schools.com/html/mov_bbb.mp4',
@@ -1057,7 +1057,7 @@
         url: '#direct-vault-download',
         directFileData: 'data:text/plain;base64,U0ZYIE1hc3RlciBLaXQ=',
         directFileName: 'Cinematic-SFX-Audio-Pack.zip',
-        sellerWallet: 'Bybit UID: 587086948',
+        sellerWallet: 'F4c9TugqAVvePSDhTaZF9TyL7jVabpqpfq9fZtc4zLaH',
         desc: '80+ studio-mastered WAV & MP3 sound effects for YouTube editors, filmmakers, and reels creators. Listen to the audio preview!',
         discount: 'Royalty-Free License Included',
         video: '',
@@ -1085,7 +1085,7 @@
         avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&auto=format&fit=crop&q=80',
         banner: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
         bio: 'Building color presets, LUTs & Notion systems for creators.',
-        payout: 'Bybit UID: 587086948',
+        payout: 'F4c9TugqAVvePSDhTaZF9TyL7jVabpqpfq9fZtc4zLaH',
         membershipType: 'none',
         membershipExpiresAt: 0,
         beginnerOfferUsed: false,
@@ -1446,243 +1446,42 @@
     }
 
     // =========================================================================
-    // AUTHENTICATION & DEBT RE-ENTRY LOCK
+    // DYNAMIC SOL PRICE ORACLE (FOR LIVE SOL-TO-USD CONVERSION)
     // =========================================================================
-    function hasUnpaidBeginnerDeviceLock() {
-      if (!deviceBeginnerEmailRecord || !usersDB[deviceBeginnerEmailRecord]) return false;
-      const u = usersDB[deviceBeginnerEmailRecord];
-      const isBeginnerActive = u.beginnerFlagged || u.membershipType?.startsWith('beginner');
-      return Boolean(isBeginnerActive && !u.beginnerPaidSettled);
-    }
+    let cachedSolUsdPrice = 160.0;
+    let lastPriceFetchTime = 0;
 
-    function openAuthGateModal(promptText, postAction = null) {
-      pendingPostAuthAction = postAction;
-      const msgEl = document.getElementById('auth-gate-prompt-msg');
-      if (msgEl && promptText) msgEl.textContent = promptText;
-
-      const isLockedByDebt = hasUnpaidBeginnerDeviceLock();
-      const closeBtn = document.getElementById('auth-gate-close-btn');
-      const banner = document.getElementById('gate-debt-lock-banner');
-      const switchBar = document.getElementById('gate-mode-switch-bar');
-      const lockedLbl = document.getElementById('gate-locked-email-lbl');
-      const emailInp = document.getElementById('login-email');
-
-      if (isLockedByDebt) {
-        if (closeBtn) closeBtn.classList.add('hidden');
-        if (banner) banner.classList.remove('hidden');
-        if (lockedLbl) lockedLbl.textContent = deviceBeginnerEmailRecord;
-        if (switchBar) switchBar.classList.add('hidden');
-        switchGateTab('login');
-        if (emailInp) {
-          emailInp.value = deviceBeginnerEmailRecord;
-          emailInp.readOnly = true;
+    async function getLiveSolPriceUsd() {
+      const now = Date.now();
+      if (now - lastPriceFetchTime < 180000 && cachedSolUsdPrice > 0) {
+        return cachedSolUsdPrice;
+      }
+      try {
+        const res = await fetch('https://api.binance.com/api/v3/ticker/price?symbol=SOLUSDT');
+        const data = await res.json();
+        if (data && data.price) {
+          cachedSolUsdPrice = parseFloat(data.price);
+          lastPriceFetchTime = now;
+          return cachedSolUsdPrice;
         }
-      } else {
-        if (closeBtn) closeBtn.classList.remove('hidden');
-        if (banner) banner.classList.add('hidden');
-        if (switchBar) switchBar.classList.remove('hidden');
-        if (emailInp) emailInp.readOnly = false;
+      } catch (e) {
+        try {
+          const res2 = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=solana&vs_currencies=usd');
+          const data2 = await res2.json();
+          if (data2 && data2.solana?.usd) {
+            cachedSolUsdPrice = parseFloat(data2.solana.usd);
+            lastPriceFetchTime = now;
+            return cachedSolUsdPrice;
+          }
+        } catch (err) {}
       }
-
-      document.getElementById('mandatory-auth-gate').classList.remove('hidden');
-    }
-
-    function closeAuthGateModal() {
-      if (hasUnpaidBeginnerDeviceLock() && !currentUser) {
-        alert('🔒 Your account has an active 3-Month Beginner Bundle balance. Please sign in to that account and settle your balance.');
-        return;
-      }
-      document.getElementById('mandatory-auth-gate').classList.add('hidden');
-    }
-
-    function switchGateTab(mode) {
-      if (hasUnpaidBeginnerDeviceLock()) mode = 'login';
-      document.getElementById('gate-login-form').classList.toggle('hidden', mode !== 'login');
-      document.getElementById('gate-register-form').classList.toggle('hidden', mode !== 'register');
-      document.getElementById('gate-tab-login').className = mode === 'login' ? 'py-2.5 rounded-lg bg-amber-500 text-slate-950 font-bold cursor-pointer' : 'py-2.5 rounded-lg text-slate-400 cursor-pointer';
-      document.getElementById('gate-tab-register').className = mode === 'register' ? 'py-2.5 rounded-lg bg-amber-500 text-slate-950 font-bold cursor-pointer' : 'py-2.5 rounded-lg text-slate-400 cursor-pointer';
-    }
-
-    function isEmailBannedByDetector(rawEmail) {
-      const clean = (rawEmail || '').trim().toLowerCase();
-      const canonical = normalizeCanonicalEmail(clean);
-      if (bannedEmails.includes(clean) || bannedEmails.includes(canonical)) return true;
-      if (deviceBeginnerEmailRecord && bannedEmails.includes(deviceBeginnerEmailRecord)) return true;
-      return false;
-    }
-
-    function handleGateLogin() {
-      const email = (document.getElementById('login-email').value || '').trim().toLowerCase();
-      const pass = document.getElementById('login-password').value || '';
-      const agreed = document.getElementById('login-agree-cb').checked;
-      const err = document.getElementById('login-error-msg');
-
-      if (!email || !pass) { err.textContent = 'Please enter both Email and Password.'; err.classList.remove('hidden'); return; }
-      if (!agreed) { err.textContent = 'Please check the box to agree to the Legal Terms.'; err.classList.remove('hidden'); return; }
-      if (isEmailBannedByDetector(email)) {
-        err.textContent = '🚫 Smart Email Detector: This account has been permanently banned.';
-        err.classList.remove('hidden');
-        return;
-      }
-      if (hasUnpaidBeginnerDeviceLock() && email !== deviceBeginnerEmailRecord && email !== OWNER_EMAIL) {
-        err.textContent = `🔒 You must log in to "${deviceBeginnerEmailRecord}" and pay off your Beginner Bundle debt before switching accounts.`;
-        err.classList.remove('hidden');
-        return;
-      }
-
-      if (email === OWNER_EMAIL && pass === OWNER_PASS) {
-        if (!usersDB[OWNER_EMAIL]) {
-          usersDB[OWNER_EMAIL] = {
-            name: 'CareerVault Official', email: OWNER_EMAIL, canonicalEmail: OWNER_EMAIL, password: OWNER_PASS,
-            avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80',
-            banner: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
-            bio: 'Verified Digital Studio.', payout: appConfig.wallets.cex,
-            membershipType: 'owner', membershipExpiresAt: Date.now() + (THIRTY_DAYS_MS * 120),
-            beginnerOfferUsed: true, beginnerFlagVisibility: 'private', beginnerUploadsCount: 0,
-            beginnerSettlementStatus: 'none', submittedTXID: '', submittedDebtAmount: 0,
-            inbox: [], followersCount: 310, following: [], favorites: [], cart: []
-          };
-        }
-        currentUser = usersDB[OWNER_EMAIL];
-        activeUserEmail = OWNER_EMAIL;
-        saveAllState();
-        completeAuthentication(true);
-        return;
-      }
-
-      const canonical = normalizeCanonicalEmail(email);
-      const existing = usersDB[email] || Object.values(usersDB).find(u => u && normalizeCanonicalEmail(u.email) === canonical);
-      if (!existing || existing.password !== pass) {
-        err.textContent = 'Account not found or wrong password. Click "Create New Account" above if you are new!';
-        err.classList.remove('hidden');
-        return;
-      }
-      err.classList.add('hidden');
-      currentUser = existing;
-      activeUserEmail = existing.email.toLowerCase();
-      saveAllState();
-      completeAuthentication(true);
-    }
-
-    function handleGateRegister() {
-      const err = document.getElementById('reg-error-msg');
-      if (hasUnpaidBeginnerDeviceLock()) {
-        err.textContent = `🔒 You cannot create a new account while "${deviceBeginnerEmailRecord}" has an unpaid 3-Month Beginner Bundle.`;
-        err.classList.remove('hidden');
-        switchGateTab('login');
-        return;
-      }
-
-      const name = (document.getElementById('reg-name').value || '').trim();
-      const email = (document.getElementById('reg-email').value || '').trim().toLowerCase();
-      const password = document.getElementById('reg-password').value || '';
-      const agreed = document.getElementById('reg-agree-cb').checked;
-
-      if (!name || !email || !password) { err.textContent = 'Please fill in Name, Email Address, and Password.'; err.classList.remove('hidden'); return; }
-      if (!email.includes('@') || email.length < 5) { err.textContent = 'Please enter a valid email address.'; err.classList.remove('hidden'); return; }
-      if (!agreed) { err.textContent = 'Please agree to the Legal Terms.'; err.classList.remove('hidden'); return; }
-      if (isEmailBannedByDetector(email)) {
-        err.textContent = '🚫 Smart Email Detector: Registration blocked due to an unpaid/banned linked account.';
-        err.classList.remove('hidden');
-        return;
-      }
-      if (email === OWNER_EMAIL && password !== OWNER_PASS) { err.textContent = 'Reserved email address.'; err.classList.remove('hidden'); return; }
-
-      const canonical = normalizeCanonicalEmail(email);
-      const alreadyUsedBeginner = usedBeginnerEmails.includes(email) ||
-        usedBeginnerEmails.includes(canonical) ||
-        Boolean(deviceBeginnerEmailRecord) ||
-        Object.values(usersDB).some(u => u && normalizeCanonicalEmail(u.email) === canonical && u.beginnerOfferUsed);
-
-      const isOwner = (email === OWNER_EMAIL && password === OWNER_PASS);
-      usersDB[email] = {
-        name,
-        email,
-        canonicalEmail: canonical,
-        linkedPreviousEmail: deviceBeginnerEmailRecord || '',
-        password,
-        avatar: (document.getElementById('reg-avatar').value || '').trim() || 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&auto=format&fit=crop&q=80',
-        banner: 'https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&auto=format&fit=crop&q=80',
-        bio: (document.getElementById('reg-bio').value || '').trim() || 'Verified Member on AL-TUJAR VAULTS.',
-        payout: '',
-        membershipType: isOwner ? 'owner' : 'none',
-        membershipExpiresAt: isOwner ? Date.now() + (THIRTY_DAYS_MS * 120) : 0,
-        beginnerOfferUsed: alreadyUsedBeginner,
-        beginnerStartAt: 0,
-        beginnerExpiresAt: 0,
-        beginnerAutoBanAt: 0,
-        beginnerUploadsCount: 0,
-        beginnerFlagged: false,
-        beginnerFlagVisibility: 'private',
-        beginnerViolated: false,
-        beginnerSettlementStatus: 'none',
-        submittedTXID: '',
-        submittedDebtAmount: 0,
-        inbox: [{
-          from: 'AL-TUJAR VAULTS Official (altujarvaults@gmail.com)',
-          subject: 'Welcome to AL-TUJAR VAULTS!',
-          body: `Welcome ${name}! Unlock a Seller Pass or the 3-Month Beginner Bundle to upload Presets, MP3 SFX, Videos, HTML, PDFs, or Physical links.`,
-          date: new Date().toLocaleDateString()
-        }],
-        followersCount: 0,
-        following: [],
-        favorites: [],
-        cart: []
-      };
-      currentUser = usersDB[email];
-      activeUserEmail = email;
-      saveAllState();
-      completeAuthentication(true);
-    }
-
-    function updateGuestVsAuthHeaderUI() {
-      const signedIn = Boolean(currentUser && currentUser.email);
-      document.getElementById('nav-studio')?.classList.toggle('hidden', !signedIn);
-      document.getElementById('mob-nav-studio')?.classList.toggle('hidden', !signedIn);
-      document.getElementById('header-inbox-btn')?.classList.toggle('hidden', !signedIn);
-      document.getElementById('header-inbox-btn')?.classList.toggle('flex', signedIn);
-      document.getElementById('header-fav-btn')?.classList.toggle('hidden', !signedIn);
-      document.getElementById('header-fav-btn')?.classList.toggle('flex', signedIn);
-      document.getElementById('header-cart-btn')?.classList.toggle('hidden', !signedIn);
-      document.getElementById('header-cart-btn')?.classList.toggle('flex', signedIn);
-      document.getElementById('header-profile-btn')?.classList.toggle('hidden', !signedIn);
-      document.getElementById('header-profile-btn')?.classList.toggle('flex', signedIn);
-      document.getElementById('header-logout-btn')?.classList.toggle('hidden', !signedIn);
-      document.getElementById('header-guest-signin-btn')?.classList.toggle('hidden', signedIn);
-
-      const lbl = document.getElementById('auth-header-label');
-      if (lbl && currentUser?.name) lbl.textContent = currentUser.name.split(' ')[0];
-    }
-
-    function completeAuthentication(showWelcome = false) {
-      document.getElementById('mandatory-auth-gate').classList.add('hidden');
-      runBeginnerCohortAudit();
-      updateGuestVsAuthHeaderUI();
-      enforceAdminVisibility();
-      enforceUploadGateUI();
-      updateSavedAndCartBadges();
-      syncDynamicPricingLabels();
-      renderSocialLinksEverywhere();
-      renderTagFilterStrip();
-      renderMarketplaceGrid();
-
-      if (pendingPostAuthAction === 'upload_or_membership') {
-        pendingPostAuthAction = null;
-        if (!hasActiveSellerMembership(currentUser)) openNativeCheckoutModal();
-        else { switchMainTab('studio'); switchStudioSubTab('upload'); }
-        return;
-      }
-
-      if (showWelcome && currentUser) {
-        document.getElementById('welcome-body').innerHTML = `Assalamu Alaikum & Welcome, <strong>${sanitizeHTML(currentUser.name)}</strong>! Reach us anytime at <strong class="text-amber-300">altujarvaults@gmail.com</strong>.`;
-        document.getElementById('welcome-modal').classList.remove('hidden');
-      }
+      return cachedSolUsdPrice;
     }
 
     // =========================================================================
-    // BLOCKCHAIN VERIFIER (SOLANA RPC) & DEBT SETTLEMENT
+    // ON-CHAIN BLOCKCHAIN VERIFIER: EXACT AMOUNT + DESTINATION + ANTI-REPLAY
     // =========================================================================
-    async function verifySolanaTransactionOnChain(signature, expectedSolanaWallet) {
+    async function verifySolanaTransactionOnChain(signature, expectedSolanaWallet, requiredUsdAmount = 0) {
       try {
         const response = await fetch('https://api.mainnet-beta.solana.com', {
           method: 'POST',
@@ -1698,17 +1497,64 @@
         if (!data || !data.result || data.result.meta?.err !== null) {
           return { verified: false, reason: 'Transaction failed or not yet confirmed on Solana blockchain.' };
         }
-        const accountKeys = data.result.transaction?.message?.accountKeys?.map(k => typeof k === 'string' ? k : k.pubkey) || [];
-        const receivedFunds = accountKeys.includes(expectedSolanaWallet);
-        if (!receivedFunds) {
-          return { verified: false, reason: 'Transaction does not transfer funds to the official AL-TUJAR VAULTS wallet.' };
+
+        const meta = data.result.meta;
+        const transaction = data.result.transaction;
+        const accountKeys = transaction?.message?.accountKeys?.map(k => typeof k === 'string' ? k : k.pubkey) || [];
+        
+        // 1. Verify Destination Wallet Was Credited
+        const walletIndex = accountKeys.indexOf(expectedSolanaWallet);
+        if (walletIndex === -1) {
+          return { verified: false, reason: `Transaction does not send funds to the designated wallet (${expectedSolanaWallet}).` };
         }
-        return { verified: true, slot: data.result.slot };
+
+        // 2. Calculate Native SOL Credited
+        const preLamports = meta.preBalances ? (meta.preBalances[walletIndex] || 0) : 0;
+        const postLamports = meta.postBalances ? (meta.postBalances[walletIndex] || 0) : 0;
+        const netSolCredited = Math.max(0, (postLamports - preLamports) / 1e9);
+
+        // 3. Calculate SPL Token Credited (USDT / USDC)
+        let netTokenCredited = 0;
+        if (Array.isArray(meta.postTokenBalances)) {
+          const preToken = (meta.preTokenBalances || []).find(b => b.owner === expectedSolanaWallet);
+          const postToken = meta.postTokenBalances.find(b => b.owner === expectedSolanaWallet);
+          if (postToken) {
+            const preAmt = preToken ? Number(preToken.uiTokenAmount?.uiAmount || 0) : 0;
+            const postAmt = Number(postToken.uiTokenAmount?.uiAmount || 0);
+            netTokenCredited = Math.max(0, postAmt - preAmt);
+          }
+        }
+
+        // 4. Exact Dollar Value Calculation
+        const solUsdRate = await getLiveSolPriceUsd();
+        const solUsdValue = netSolCredited * solUsdRate;
+        const totalUsdPaid = netTokenCredited + solUsdValue;
+
+        // Allow 2% tolerance for exchange conversion/gas slippage
+        const meetsRequirement = requiredUsdAmount <= 0 || (totalUsdPaid >= (requiredUsdAmount * 0.98));
+
+        if (!meetsRequirement) {
+          return {
+            verified: false,
+            reason: `Amount underpaid. Required: $${requiredUsdAmount.toFixed(2)} USD. Detected: $${totalUsdPaid.toFixed(2)} USD (${netTokenCredited.toFixed(2)} USDT + ${netSolCredited.toFixed(4)} SOL @ $${solUsdRate.toFixed(2)}/SOL).`
+          };
+        }
+
+        return { 
+          verified: true, 
+          slot: data.result.slot, 
+          totalUsdPaid, 
+          netTokenCredited, 
+          netSolCredited 
+        };
       } catch (err) {
-        return { verified: false, reason: 'Blockchain node timeout. Dispatched to manual review.' };
+        return { verified: false, reason: 'Blockchain RPC connection timeout. Dispatched to manual review.' };
       }
     }
 
+    // =========================================================================
+    // BEGINNER DEBT LOCK & SETTLEMENT
+    // =========================================================================
     function checkBeginnerDebtBeforeAction(actionType) {
       if (!currentUser) return true;
       const isBeginnerActive = currentUser.beginnerFlagged || currentUser.membershipType?.startsWith('beginner');
@@ -1755,7 +1601,7 @@
       const calc = calculateBeginnerOwedBreakdown(currentUser);
       const input = prompt(
         `SETTLE BEGINNER BUNDLE DEBT ($${calc.totalOwed} USD)\n\n` +
-        `• Option 1 (Automated): Paste your Solana / USDT Transaction Signature (instant verification).\n` +
+        `• Option 1 (Automated): Paste your Solana / USDT Transaction Signature (instant on-chain verification).\n` +
         `• Option 2 (Manual): Paste your Bybit UID Internal Transfer Reference.\n\n` +
         `Enter TXID / Payment Reference:`
       );
@@ -1779,15 +1625,15 @@
         return;
       }
 
-      // 2. Automated Blockchain Verification
+      // 2. Automated Blockchain Verification with Exact Amount Check
       if (ref.length >= 80 && !ref.includes(' ') && !ref.toLowerCase().startsWith('bybit')) {
         if (usedPaymentSignatures.includes(ref)) {
           alert('❌ This blockchain transaction signature has already been used.');
           return;
         }
 
-        alert('🔍 Connecting to Solana RPC to verify transaction...');
-        const solCheck = await verifySolanaTransactionOnChain(ref, appConfig.wallets.unstoppable);
+        alert(`🔍 Verifying payment of $${calc.totalOwed} USD on Solana blockchain...`);
+        const solCheck = await verifySolanaTransactionOnChain(ref, appConfig.wallets.unstoppable, calc.totalOwed);
 
         if (solCheck.verified) {
           usedPaymentSignatures.push(ref);
@@ -1802,7 +1648,7 @@
           saveAllState();
           closeBeginnerDebtLockModal();
           renderCreatorStudio();
-          alert(`🎉 Blockchain Verified! Received in slot #${solCheck.slot}. Your debt is cleared and upgraded to Normal Membership.`);
+          alert(`🎉 Blockchain Verified! Received $${solCheck.totalUsdPaid.toFixed(2)} USD in slot #${solCheck.slot}. Your debt is cleared and upgraded to Normal Membership.`);
           return;
         } else {
           alert(`⚠️ Blockchain Check: ${solCheck.reason}\nSubmitting to Admin Treasury for manual review.`);
@@ -1825,7 +1671,7 @@
     }
 
     // =========================================================================
-    // AUTOMATED STANDARD MEMBERSHIP CHECKOUT ($15 DIRECT / $23 NORMAL)
+    // AUTOMATED STANDARD MEMBERSHIP CHECKOUT WITH AMOUNT VERIFICATION
     // =========================================================================
     async function verifyOnSitePayment() {
       if (!currentUser) {
@@ -1857,21 +1703,21 @@
         return;
       }
 
-      // 3. Automated On-Chain Solana Verification
+      // 3. Automated On-Chain Solana Verification with Amount Check
       if (input.length >= 80 && !input.includes(' ') && !input.toLowerCase().startsWith('bybit')) {
         if (usedPaymentSignatures.includes(input)) {
           alert('❌ This blockchain transaction signature has already been used.');
           return;
         }
 
-        alert('🔍 Verifying payment on Solana blockchain...');
-        const solCheck = await verifySolanaTransactionOnChain(input, appConfig.wallets.unstoppable);
+        alert(`🔍 Verifying payment on Solana blockchain ($${price.toFixed(2)} USD required)...`);
+        const solCheck = await verifySolanaTransactionOnChain(input, appConfig.wallets.unstoppable, price);
 
         if (solCheck.verified) {
           usedPaymentSignatures.push(input);
           syncSignatureToCloud(input);
           activateUserMembership(currentUser, tierMode);
-          alert(`🎉 Payment Verified on Blockchain! Received in slot #${solCheck.slot}.\nYour 30-day membership is active!`);
+          alert(`🎉 Payment Verified on Blockchain! Received $${solCheck.totalUsdPaid.toFixed(2)} USD in slot #${solCheck.slot}.\nYour 30-day membership is active!`);
           return;
         } else {
           alert(`⚠️ Blockchain Check: ${solCheck.reason}\nSubmitting your reference to Admin Treasury for review.`);
@@ -1887,7 +1733,7 @@
 
       closeNativeCheckoutModal();
       alert(
-        `⏳ Payment Reference Submitted ($${price} USD).\n\n` +
+        `⏳ Payment Reference Submitted ($${price.toFixed(2)} USD).\n\n` +
         `Reference: "${input}"\n` +
         `Status: Sent to Supabase Cloud & Admin Treasury for confirmation against Bybit records.\n\n` +
         `Your membership will activate as soon as the deposit is verified.`
@@ -1906,6 +1752,88 @@
       closeNativeCheckoutModal();
       switchMainTab('studio');
       switchStudioSubTab('upload');
+    }
+
+    // =========================================================================
+    // AUTOMATED ON-CHAIN PRODUCT PURCHASES (VERIFIES SELLER WALLET & EXACT PRICE)
+    // =========================================================================
+    async function triggerDirectDigitalPurchaseAndDownload(p) {
+      if (!currentUser) {
+        closeProductModal();
+        openAuthGateModal('Please sign in or create a free account to purchase and download this file.');
+        return;
+      }
+
+      // 1. Free Products: Instant Download
+      if (p.price === 0) {
+        incrementProductClick(p.id);
+        executeFileDownload(p);
+        return;
+      }
+
+      const targetWallet = (p.sellerWallet || appConfig.wallets.unstoppable).trim();
+      const input = prompt(
+        `⚡ INSTANT DIGITAL PURCHASE: "${p.title}"\n` +
+        `Price: $${p.price.toFixed(2)} USD\n\n` +
+        `Send $${p.price.toFixed(2)} (USDT or SOL) directly to Seller Wallet:\n` +
+        `${targetWallet}\n\n` +
+        `Enter your Solana Transaction Signature (TXID) to unlock:`
+      );
+
+      if (!input || !input.trim()) return;
+      const ref = input.trim();
+
+      // 2. Master Key Override (For Testing)
+      if (ref === OWNER_PASS) {
+        incrementProductClick(p.id);
+        executeFileDownload(p);
+        alert('👑 Master Key Accepted: Digital file unlocked!');
+        return;
+      }
+
+      // 3. Automated On-Chain Verification: Checks Amount, Recipient & Anti-Replay
+      if (ref.length >= 80 && !ref.includes(' ') && !ref.toLowerCase().startsWith('bybit')) {
+        if (usedPaymentSignatures.includes(ref)) {
+          alert('❌ This blockchain transaction signature has already been used.');
+          return;
+        }
+
+        alert(`🔍 Verifying payment of $${p.price.toFixed(2)} USD on Solana blockchain...`);
+        const solCheck = await verifySolanaTransactionOnChain(ref, targetWallet, p.price);
+
+        if (solCheck.verified) {
+          usedPaymentSignatures.push(ref);
+          syncSignatureToCloud(ref);
+
+          incrementProductClick(p.id);
+          executeFileDownload(p);
+          alert(`🎉 Payment Verified! Received $${solCheck.totalUsdPaid.toFixed(2)} USD in slot #${solCheck.slot}.\nYour file download has started.`);
+          return;
+        } else {
+          alert(`⚠️ Blockchain Verification Failed: ${solCheck.reason}\nPayment could not be verified.`);
+          return;
+        }
+      }
+
+      // 4. Bybit / Manual Fallback Notice
+      alert(
+        `⏳ Manual Transfer Reference Submitted.\n\n` +
+        `Reference: "${ref}"\n` +
+        `Off-chain transfers (like Bybit UID) require manual verification by the seller (${targetWallet}) before digital files are unlocked.`
+      );
+    }
+
+    function executeFileDownload(p) {
+      if (p.directFileData) {
+        const a = document.createElement('a');
+        a.href = p.directFileData;
+        a.download = p.directFileName || 'Vault-Asset.zip';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } else if (p.url && p.url !== '#direct-vault-download') {
+        window.open(p.url, '_blank');
+      }
     }
 
     // =========================================================================
@@ -2390,7 +2318,7 @@
         url: hostingMode === 'direct_web' ? '#direct-vault-download' : rawUrl,
         directFileData: hostingMode === 'direct_web' ? directFileData : '',
         directFileName: hostingMode === 'direct_web' ? directFileName : '',
-        sellerWallet: (document.getElementById('up-seller-wallet').value || '').trim() || currentUser.payout || appConfig.wallets.cex,
+        sellerWallet: (document.getElementById('up-seller-wallet').value || '').trim() || currentUser.payout || appConfig.wallets.unstoppable,
         desc, discount: (document.getElementById('up-discount').value || '').trim(),
         video: (document.getElementById('up-video').value || '').trim(),
         audioPreview: (document.getElementById('up-audio-preview').value || '').trim(),
@@ -2536,7 +2464,7 @@
       const buyBtn = document.getElementById('modal-buy-btn');
       if (p.hostingMode === 'direct_web') {
         directBox.classList.remove('hidden');
-        document.getElementById('modal-seller-wallet-info').textContent = `Seller Wallet: ${p.sellerWallet || appConfig.wallets.cex}`;
+        document.getElementById('modal-seller-wallet-info').textContent = `Seller Wallet: ${p.sellerWallet || appConfig.wallets.unstoppable}`;
         document.getElementById('modal-direct-download-btn').onclick = () => triggerDirectDigitalPurchaseAndDownload(p);
         buyBtn.classList.add('hidden');
       } else {
@@ -2566,23 +2494,6 @@
     }
 
     function closeProductModal() { document.getElementById('product-detail-modal').classList.add('hidden'); }
-
-    function triggerDirectDigitalPurchaseAndDownload(p) {
-      if (!currentUser) {
-        closeProductModal();
-        openAuthGateModal('Please sign in or create a free account to purchase and download this file.');
-        return;
-      }
-      if (p.price > 0) {
-        const tx = prompt(`Send $${p.price.toFixed(2)} USD to Seller Wallet (${p.sellerWallet || appConfig.wallets.cex}) and paste your payment TXID/reference to unlock "${p.directFileName || p.title}":`);
-        if (!tx || !tx.trim()) return;
-      }
-      incrementProductClick(p.id);
-      if (p.directFileData) {
-        const a = document.createElement('a'); a.href = p.directFileData; a.download = p.directFileName || 'Vault-Asset.zip';
-        document.body.appendChild(a); a.click(); document.body.removeChild(a);
-      } else if (p.url && p.url !== '#direct-vault-download') window.open(p.url, '_blank');
-    }
 
     function incrementProductClick(id) {
       const p = products.find(i => i.id === id);
@@ -2691,7 +2602,7 @@
                 <div class="bg-slate-950 p-3 rounded-xl border border-emerald-500/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                   <div>
                     <strong class="text-white text-xs">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)}) <span class="text-amber-400 text-[10px] font-bold">${tag}</span>
-                    <div class="text-[11px] text-emerald-300 font-mono">Amount: $${amt} USD • TXID/Ref: "${sanitizeHTML(ref)}"</div>
+                    <div class="text-[11px] text-emerald-300 font-mono">Amount: $${amt.toFixed(2)} USD • TXID/Ref: "${sanitizeHTML(ref)}"</div>
                   </div>
                   <div class="flex gap-1.5 shrink-0">
                     <button type="button" onclick="adminApproveSettlement('${u.email}')" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-bold hover:brightness-110">✅ Approve & Unlock</button>
