@@ -3,11 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>AL-TUJAR VAULTS | Global Digital & Physical Marketplace</title>
+  <title>AL-TUJAR VAULTS | Global Digital & Physical Marketplace for Presets, SFX Audio, Code & Gear</title>
+  <meta name="description" content="Buy and sell digital presets (.cube, .xmp), SFX audio (.mp3, .wav), HTML templates, PDF guides, video assets, and physical gear on AL-TUJAR VAULTS. Merit-first discovery where product quality beats follower count.">
+  <meta name="keywords" content="AL-TUJAR VAULTS, digital marketplace, video editing presets, LUTs, SFX audio packs, MP3 sound effects, HTML templates, digital downloads, creator marketplace">
+  <meta name="robots" content="index, follow">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Dynamic Google Search Product Schema Mount -->
+  <script id="dynamic-seo-schema" type="application/ld+json"></script>
+
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -24,7 +31,6 @@
     html.light { color-scheme: light; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; top: 0 !important; }
     .font-royal { font-family: 'Cinzel', serif; }
-    /* Single-Line 3D Embossed Gold Font for AL-TUJAR VAULTS */
     .brand-gold-3d {
       font-family: 'Cinzel', serif;
       font-weight: 900;
@@ -60,24 +66,27 @@
   <div id="google_translate_element" class="hidden"></div>
 
   <!-- ===================================================================== -->
-  <!-- 1. MANDATORY SIGN-IN, LANGUAGE FIRST & SMART EMAIL DETECTION GATEWAY  -->
+  <!-- 1. SIGN-IN / CREATE ACCOUNT MODAL (OPENS WHEN BUYING/SELLING/UPLOADING)-->
   <!-- ===================================================================== -->
-  <div id="mandatory-auth-gate" class="fixed inset-0 z-[100] bg-obsidian flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
-    <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-lg w-full p-5 sm:p-7 space-y-4 shadow-2xl my-auto">
+  <div id="mandatory-auth-gate" class="fixed inset-0 z-[100] hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-lg w-full p-5 sm:p-7 space-y-4 shadow-2xl my-auto relative">
       
-      <!-- STEP 1: CHOOSE LANGUAGE FIRST + 1-CLICK ENGLISH RESET -->
-      <div class="bg-slate-950/90 border border-amber-500/40 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-2">
+      <!-- Close Button for Guests (Hidden if locked by unpaid Beginner Bundle Debt) -->
+      <button type="button" id="auth-gate-close-btn" onclick="closeAuthGateModal()" class="absolute top-4 right-4 px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 hover:text-white text-xs font-bold">
+        ✕ Continue Browsing
+      </button>
+
+      <!-- STEP 1: CHOOSE LANGUAGE FIRST -->
+      <div class="bg-slate-950/90 border border-amber-500/40 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-2 mt-4">
         <div class="flex items-center gap-2">
           <span class="text-base">🌐</span>
           <div>
-            <span data-i18n="choose_lang_lbl" class="text-[11px] font-bold text-amber-300 block">Step 1: Choose Your Language First</span>
+            <span data-i18n="choose_lang_lbl" class="text-[11px] font-bold text-amber-300 block">Choose Your Language</span>
             <span class="text-[10px] text-slate-400 block">Instant multi-language switcher</span>
           </div>
         </div>
         <div class="flex items-center gap-1.5">
-          <button type="button" onclick="resetToEnglish()" class="notranslate px-2.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/50 text-amber-200 text-[11px] font-bold hover:bg-amber-500/30">
-            🇺🇸 Reset EN
-          </button>
+          <button type="button" onclick="resetToEnglish()" class="notranslate px-2.5 py-1.5 rounded-xl bg-amber-500/20 border border-amber-400/50 text-amber-200 text-[11px] font-bold">🇺🇸 Reset EN</button>
           <select id="gate-lang-select" onchange="changeLanguage(this.value)" class="notranslate bg-slate-900 border border-amber-400/50 rounded-xl px-2.5 py-1.5 text-xs text-amber-200 font-bold outline-none cursor-pointer">
             <option value="en">🌐 English</option>
             <option value="zh-CN">🇨🇳 中文 (简体)</option>
@@ -103,23 +112,28 @@
 
       <!-- Brand Crest & Single-Line 3D Gold Title -->
       <div class="text-center space-y-1.5 pt-1">
-        <div class="w-16 h-16 rounded-full bg-[#FAF6EE] p-1 mx-auto shadow-lg border-2 border-[#D4AF37] flex items-center justify-center">
+        <div class="w-14 h-14 rounded-full bg-[#FAF6EE] p-1 mx-auto shadow-lg border-2 border-[#D4AF37] flex items-center justify-center">
           <svg viewBox="0 0 120 120" class="w-full h-full">
             <circle cx="60" cy="60" r="56" fill="#FAF6EE" stroke="#B3831E" stroke-width="4"/>
             <path fill="#B3831E" d="M 22 44 C 20 42, 21 38, 25 37 C 29 36, 33 34, 37 34 C 39 31, 42 31, 43 34 C 44 36, 42 40, 43 45 C 44 51, 48 55, 53 51 C 58 45, 63 35, 71 35 C 79 35, 85 46, 94 53 C 99 56, 105 56, 108 53 C 104 59, 97 61, 90 59 C 97 63, 103 63, 107 61 C 102 67, 94 68, 86 65 C 93 70, 100 71, 105 69 C 98 75, 87 75, 77 69 C 71 65, 67 73, 69 84 C 62 79, 57 69, 54 63 C 45 63, 38 59, 35 49 C 33 44, 30 45, 25 46 Z"/>
           </svg>
         </div>
-        <h1 class="brand-gold-3d text-2xl sm:text-3xl notranslate">AL-TUJAR VAULTS</h1>
-        <p class="text-xs text-slate-400">Official Contact & Promos: <strong class="text-amber-300 notranslate">altujarvaults@gmail.com</strong></p>
+        <h2 class="brand-gold-3d text-2xl sm:text-3xl notranslate">AL-TUJAR VAULTS</h2>
+        <p id="auth-gate-prompt-msg" class="text-xs text-amber-300 font-semibold">Sign in or create a free account to buy, sell, or upload products.</p>
+      </div>
+
+      <!-- UNPAID BEGINNER ACCOUNT LOCK NOTICE -->
+      <div id="gate-debt-lock-banner" class="hidden bg-rose-950/80 border border-rose-500 rounded-2xl p-3 text-[11px] text-rose-200 font-semibold leading-relaxed">
+        🔒 <strong>Active Beginner Bundle Debt Lock:</strong> Your session is locked to your existing Beginner Bundle account (<span id="gate-locked-email-lbl" class="text-amber-300 font-mono underline"></span>). You cannot create a new account or sign out until you log in to this account and pay off your accrued bundle balance.
       </div>
 
       <!-- Mode Switch -->
-      <div class="grid grid-cols-2 gap-2 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-bold">
+      <div id="gate-mode-switch-bar" class="grid grid-cols-2 gap-2 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-bold">
         <button type="button" id="gate-tab-login" onclick="switchGateTab('login')" data-i18n="sign_in_tab" class="py-2.5 rounded-lg bg-amber-500 text-slate-950 cursor-pointer">Sign In / Login</button>
         <button type="button" id="gate-tab-register" onclick="switchGateTab('register')" data-i18n="create_acc_tab" class="py-2.5 rounded-lg text-slate-400 hover:text-white cursor-pointer">Create New Account</button>
       </div>
 
-      <!-- LOGIN PANEL (EMAIL DETECTION ONLY — NO PHONE NEEDED) -->
+      <!-- LOGIN PANEL -->
       <div id="gate-login-form" class="space-y-3 text-xs">
         <div>
           <label class="block text-slate-300 font-semibold mb-1">Email Address *</label>
@@ -128,10 +142,6 @@
         <div>
           <label class="block text-slate-300 font-semibold mb-1">Password *</label>
           <input type="password" id="login-password" placeholder="Enter your password" class="w-full bg-slate-950 border border-slate-700 focus:border-amber-400 rounded-xl px-3.5 py-2.5 text-white outline-none">
-        </div>
-        <div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-[11px] text-slate-300 leading-relaxed max-h-24 overflow-y-auto">
-          <strong class="text-amber-300 block">Legal Agreement & Smart Email Detection Charter:</strong>
-          Link Membership ($<span class="dyn-link-sub-lbl">23</span>/mo), Direct Digital File Upload Membership ($<span class="dyn-direct-sub-lbl">15</span>/mo), or the one-time 3-Month Beginner Offer (95% info completeness, 5 uploads/week, and <span class="dyn-beg-pct-lbl">23</span>% per-sale bundle settlement). Smart Email Detection prevents closing unpaid accounts to re-use the Beginner Offer.
         </div>
         <label class="flex items-start gap-2 cursor-pointer text-slate-300">
           <input type="checkbox" id="login-agree-cb" checked class="mt-0.5 accent-amber-400">
@@ -143,7 +153,7 @@
         </button>
       </div>
 
-      <!-- REGISTER PANEL (SMART EMAIL DETECTION) -->
+      <!-- REGISTER PANEL -->
       <div id="gate-register-form" class="hidden space-y-3 text-xs">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
@@ -151,11 +161,10 @@
             <input type="text" id="reg-name" placeholder="e.g., Horizon Studio" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
           </div>
           <div>
-            <label class="block text-slate-300 font-semibold mb-1">Email Address (Auto-Verified) *</label>
+            <label class="block text-slate-300 font-semibold mb-1">Email Address *</label>
             <input type="email" id="reg-email" placeholder="you@example.com" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white outline-none">
           </div>
         </div>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
             <label class="block text-slate-300 font-semibold mb-1">Create Password *</label>
@@ -172,11 +181,34 @@
         </div>
         <label class="flex items-start gap-2 cursor-pointer text-slate-300">
           <input type="checkbox" id="reg-agree-cb" checked class="mt-0.5 accent-amber-400">
-          <span>I agree to the <strong>AL-TUJAR VAULTS Legal Terms, Beginner Cohort Rules & Email Anti-Fraud Policy</strong>.</span>
+          <span>I agree to the <strong>AL-TUJAR VAULTS Legal Terms, Beginner Bundle Rules & Privacy Policy</strong>.</span>
         </label>
         <p id="reg-error-msg" class="text-rose-400 text-[11px] font-bold hidden"></p>
         <button type="button" onclick="handleGateRegister()" class="w-full gold-btn py-3 rounded-xl font-extrabold text-xs sm:text-sm">
-          ✨ Verify Email & Create Account
+          ✨ Create Account & Continue
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BEGINNER BUNDLE LOGOUT / DELETE ACCOUNT DEBT LOCKOUT MODAL -->
+  <div id="beginner-logout-lock-modal" class="fixed inset-0 z-[120] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-obsidianCard border-2 border-rose-500 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl text-xs">
+      <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl">🛑</span>
+          <h3 class="font-royal text-base sm:text-lg font-extrabold text-rose-300">Sign-Out & Deletion Locked: Unpaid Bundle Debt</h3>
+        </div>
+        <button type="button" onclick="closeBeginnerDebtLockModal()" class="p-1.5 rounded-xl bg-slate-900 text-slate-400 hover:text-white">✕</button>
+      </div>
+      <p id="debt-lock-reason-text" class="text-slate-200 leading-relaxed"></p>
+      <div id="debt-lock-calculation-box" class="bg-slate-950 border border-amber-500/40 rounded-2xl p-4 space-y-2"></div>
+      <div class="space-y-2 pt-1">
+        <button type="button" onclick="payDebtToUnlockLogoutOrDelete()" class="gold-btn w-full py-3 rounded-xl font-extrabold text-xs sm:text-sm">
+          💳 Pay Total Debt Now & Switch to Normal $<span class="dyn-link-sub-lbl">23</span> Membership
+        </button>
+        <button type="button" onclick="closeBeginnerDebtLockModal()" class="w-full py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 font-bold">
+          ← Stay Signed In & Continue Uploading/Selling
         </button>
       </div>
     </div>
@@ -192,7 +224,7 @@
         <div>📩 Official Contact & Promos: <a href="mailto:altujarvaults@gmail.com" class="text-white underline font-mono font-bold notranslate">altujarvaults@gmail.com</a></div>
         <div id="welcome-social-links" class="flex flex-wrap justify-center gap-1.5 pt-1"></div>
       </div>
-      <button type="button" onclick="document.getElementById('welcome-modal').classList.add('hidden')" class="gold-btn w-full py-2.5 rounded-xl text-xs font-bold">🚀 Enter Marketplace</button>
+      <button type="button" onclick="document.getElementById('welcome-modal').classList.add('hidden')" class="gold-btn w-full py-2.5 rounded-xl text-xs font-bold">🚀 Continue</button>
     </div>
   </div>
 
@@ -220,11 +252,12 @@
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
         <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span><strong>Contact & Promos:</strong> <a href="mailto:altujarvaults@gmail.com" class="underline font-bold notranslate">altujarvaults@gmail.com</a> • Multi-Format Vault (Presets, MP3 SFX, MP4, HTML, PDF, PNG)</span>
+        <span><strong>Contact & Promos:</strong> <a href="mailto:altujarvaults@gmail.com" class="underline font-bold notranslate">altujarvaults@gmail.com</a> • Multi-Format Vault (Presets, MP3 SFX, MP4, HTML, PDF, PNG & Links)</span>
       </div>
       <div class="flex items-center gap-2 text-[11px]">
-        <span id="top-fee-indicator" class="bg-black/40 px-2.5 py-0.5 rounded-full border border-amber-400/30 text-amber-200 font-semibold">Link Pass: $23/mo | Direct Upload: $15/mo</span>
+        <span id="top-fee-indicator" class="bg-black/40 px-2.5 py-0.5 rounded-full border border-amber-400/30 text-amber-200 font-semibold">Normal Pass: $23/mo | Direct Pass: $15/mo</span>
         <button type="button" onclick="resetToEnglish()" class="notranslate bg-amber-500/20 border border-amber-400/40 px-2 py-0.5 rounded text-amber-200 font-bold">🇺🇸 Reset EN</button>
+        <button type="button" onclick="switchMainTab('guide')" class="underline text-amber-300 font-bold">📖 How It Works</button>
       </div>
     </div>
   </div>
@@ -244,9 +277,11 @@
 
       <nav class="hidden lg:flex items-center gap-1.5 bg-slate-900/90 p-1.5 rounded-xl border border-slate-800">
         <button type="button" onclick="switchMainTab('shop')" id="nav-shop" data-i18n="nav_shop" class="px-3.5 py-2 rounded-lg text-xs font-semibold bg-amber-500 text-slate-950">🛍️ Shop Marketplace</button>
-        <button type="button" onclick="switchMainTab('studio')" id="nav-studio" data-i18n="nav_studio" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white">✨ My Profile, Inbox & Studio</button>
+        <button type="button" onclick="switchMainTab('guide')" id="nav-guide" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white">📖 How It Works & Why Us</button>
+        <button type="button" onclick="switchMainTab('studio')" id="nav-studio" data-i18n="nav_studio" class="hidden px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white">✨ My Profile, Inbox & Studio</button>
         <button type="button" onclick="switchMainTab('rules')" id="nav-rules" data-i18n="nav_rules" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white">⚖️ Legal & Privacy</button>
-        <button type="button" onclick="switchMainTab('admin')" id="nav-admin" class="hidden px-3.5 py-2 rounded-lg text-xs font-semibold text-amber-300 border border-amber-500/40">🔐 Admin Treasury</button>
+        <!-- Strictly hidden unless owner is signed in -->
+        <button type="button" onclick="switchMainTab('admin')" id="nav-admin" class="hidden px-3.5 py-2 rounded-lg text-xs font-semibold text-amber-300 border border-amber-500/40">🔐 Treasury</button>
       </nav>
 
       <div class="flex items-center gap-1.5">
@@ -270,24 +305,37 @@
           <option value="am">🇪🇹 አማርኛ</option>
           <option value="it">🇮🇹 Italiano</option>
         </select>
-        <button type="button" onclick="switchMainTab('studio'); switchStudioSubTab('inbox');" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold flex items-center gap-1"><span>📩</span><span id="inbox-count-badge" class="bg-rose-500 text-white font-bold text-[10px] px-1.5 rounded-full">0</span></button>
-        <button type="button" onclick="openSavedVaultModal('favs')" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold flex items-center gap-1"><span>❤️</span><span id="saved-count-badge" class="bg-amber-500 text-slate-950 font-bold text-[10px] px-1.5 rounded-full">0</span></button>
-        <button type="button" onclick="openSavedVaultModal('cart')" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold flex items-center gap-1"><span>🛒</span><span id="cart-count-badge" class="bg-emerald-500 text-slate-950 font-bold text-[10px] px-1.5 rounded-full">0</span></button>
+
+        <!-- Auth-Only Header Buttons (Hidden for Guests!) -->
+        <button type="button" id="header-inbox-btn" onclick="switchMainTab('studio'); switchStudioSubTab('inbox');" class="hidden px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1"><span>📩</span><span id="inbox-count-badge" class="bg-rose-500 text-white font-bold text-[10px] px-1.5 rounded-full">0</span></button>
+        <button type="button" id="header-fav-btn" onclick="openSavedVaultModal('favs')" class="hidden px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1"><span>❤️</span><span id="saved-count-badge" class="bg-amber-500 text-slate-950 font-bold text-[10px] px-1.5 rounded-full">0</span></button>
+        <button type="button" id="header-cart-btn" onclick="openSavedVaultModal('cart')" class="hidden px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1"><span>🛒</span><span id="cart-count-badge" class="bg-emerald-500 text-slate-950 font-bold text-[10px] px-1.5 rounded-full">0</span></button>
+
         <button type="button" onclick="toggleThemeMode()" id="theme-toggle-btn" class="p-2 rounded-xl bg-slate-900 border border-slate-700 text-xs">☀️</button>
-        <button type="button" onclick="switchMainTab('studio'); switchStudioSubTab('profile');" class="gold-btn px-2.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1"><span>👤</span><span id="auth-header-label" class="hidden sm:inline">Profile</span></button>
-        <button type="button" onclick="handleLogout()" class="px-2.5 py-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold">🚪</button>
+
+        <!-- Shown to Guests when NOT signed in -->
+        <button type="button" id="header-guest-signin-btn" onclick="openAuthGateModal('Sign in or create a free account to access your profile, buy products, or start selling.')" class="gold-btn px-3.5 py-2 rounded-xl text-xs font-extrabold">
+          🔐 Sign In / Join
+        </button>
+
+        <!-- Shown ONLY when signed in -->
+        <button type="button" id="header-profile-btn" onclick="switchMainTab('studio'); switchStudioSubTab('profile');" class="hidden gold-btn px-2.5 py-2 rounded-xl text-xs font-bold items-center gap-1"><span>👤</span><span id="auth-header-label" class="hidden sm:inline">Profile</span></button>
+        <button type="button" id="header-logout-btn" onclick="handleLogout()" class="hidden px-2.5 py-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold" title="Sign Out">🚪</button>
       </div>
     </div>
 
     <div class="flex lg:hidden items-center justify-around border-t border-slate-800/80 bg-slate-950/95 py-1.5 px-2 text-[11px] font-semibold">
       <button type="button" onclick="switchMainTab('shop')" class="flex-1 py-1.5 rounded-lg text-center text-amber-400">🛍️ Shop</button>
-      <button type="button" onclick="switchMainTab('studio')" class="flex-1 py-1.5 rounded-lg text-center text-slate-300">✨ Profile & Inbox</button>
+      <button type="button" onclick="switchMainTab('guide')" class="flex-1 py-1.5 rounded-lg text-center text-slate-300">📖 How It Works</button>
+      <button type="button" onclick="switchMainTab('studio')" id="mob-nav-studio" class="hidden flex-1 py-1.5 rounded-lg text-center text-slate-300">✨ Profile</button>
       <button type="button" onclick="switchMainTab('rules')" class="flex-1 py-1.5 rounded-lg text-center text-slate-300">⚖️ Legal</button>
-      <button type="button" onclick="switchMainTab('admin')" id="mob-nav-admin" class="hidden flex-1 py-1.5 rounded-lg text-center text-amber-400">🔐 Admin</button>
+      <button type="button" onclick="switchMainTab('admin')" id="mob-nav-admin" class="hidden flex-1 py-1.5 rounded-lg text-center text-amber-400">🔐 Treasury</button>
     </div>
   </header>
 
-  <!-- MAIN VIEW 1: SHOP & MARKETPLACE -->
+  <!-- ===================================================================== -->
+  <!-- MAIN VIEW 1: SHOP & MARKETPLACE                                       -->
+  <!-- ===================================================================== -->
   <main id="view-shop" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-8">
     <section class="relative rounded-3xl overflow-hidden border border-amber-500/30 bg-gradient-to-br from-slate-900 via-[#0d1326] to-amber-950/30 p-5 sm:p-8 shadow-2xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
@@ -299,16 +347,18 @@
             Where Product Quality Beats <span class="gold-gradient-text">Follower Count.</span>
           </h1>
           <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
-            <strong>Direct Web Digital Vault ($<span class="dyn-direct-sub-lbl">15</span>/mo):</strong> Upload <strong>Presets (.cube/.xmp/.dng), Audio SFX (.mp3/.wav), Videos (.mp4), HTML, PNG, PDF, or ZIP</strong> directly onto AL-TUJAR VAULTS with live audio & video previews!<br>
-            <strong>External Link Pass ($<span class="dyn-link-sub-lbl">23</span>/mo):</strong> List physical or digital products via external links.<br>
-            <strong>🌱 Beginner Seller Offer:</strong> Unlock a <strong>3-Month Free Upload Pass</strong> and pay from your sales!
+            <strong>Normal Full Membership ($<span class="dyn-link-sub-lbl">23</span>/mo) & Direct Upload Pass ($<span class="dyn-direct-sub-lbl">15</span>/mo):</strong> Upload <strong>Presets (.cube/.xmp/.dng), Audio SFX (.mp3/.wav), Videos (.mp4), HTML, PNG, PDF, ZIP</strong> or connect indirect external product links!<br>
+            <strong>🌱 Special 3-Month Beginner Bundle:</strong> Upload both direct files and external links for 3 months starting from $0 upfront ($<span class="dyn-beg-base-lbl">23</span> × 3 months + <span class="dyn-beg-pct-lbl">23</span>% per product uploaded), then settle from your earnings!
           </p>
-          <div class="flex flex-wrap gap-3 pt-1">
-            <button type="button" onclick="openNativeCheckoutModal()" class="gold-btn px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
+          <div class="flex flex-wrap gap-2.5 pt-1">
+            <button type="button" onclick="requireSellerAuthAndOpenMembership()" class="gold-btn px-5 py-3 rounded-xl text-xs sm:text-sm font-extrabold">
               🚀 Unlock Seller Membership ($<span class="dyn-direct-sub-lbl">15</span> / $<span class="dyn-link-sub-lbl">23</span> or Beginner Pass)
             </button>
-            <button type="button" onclick="attemptOpenUploadTab()" class="px-4 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-amber-500/30 text-xs sm:text-sm font-semibold text-amber-200">
-              ➕ Upload Preset / Audio / File
+            <button type="button" onclick="attemptOpenUploadTab()" class="px-5 py-3 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-amber-500/30 text-xs sm:text-sm font-semibold text-amber-200 cursor-pointer">
+              ➕ Upload File
+            </button>
+            <button type="button" onclick="switchMainTab('guide')" class="px-4 py-3 rounded-xl bg-slate-900/90 hover:bg-slate-800 border border-slate-700 text-xs sm:text-sm font-semibold text-slate-200 cursor-pointer">
+              📖 How to Use & Why Us
             </button>
           </div>
         </div>
@@ -365,6 +415,84 @@
     <section id="marketplace-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></section>
   </main>
 
+  <!-- ===================================================================== -->
+  <!-- PUBLIC GUIDE VIEW: HOW TO USE AL-TUJAR VAULTS & PLATFORM ADVANTAGES   -->
+  <!-- ===================================================================== -->
+  <section id="view-guide" class="hidden flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6 text-xs sm:text-sm">
+    <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
+      <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+        <div>
+          <span class="text-amber-400 font-bold text-xs uppercase tracking-wider block">Official Platform Guide</span>
+          <h2 class="brand-gold-3d text-xl sm:text-3xl mt-1">HOW TO USE AL-TUJAR VAULTS</h2>
+        </div>
+        <button type="button" onclick="switchMainTab('shop')" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-amber-300 font-bold text-xs">← Back to Marketplace</button>
+      </div>
+
+      <!-- 3-Column Step-by-Step Guide -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-lg">🛍️</div>
+          <h3 class="font-royal text-base font-bold text-amber-300">1. How to Browse & Buy</h3>
+          <ul class="space-y-2 text-slate-300 text-xs leading-relaxed list-disc pl-4">
+            <li><strong>Browse Freely:</strong> Explore all digital and physical listings, filter by category, and sort by Information Completeness or Price without signing in.</li>
+            <li><strong>Test Before You Buy:</strong> Listen to live <strong>🔊 MP3/WAV Audio SFX Previews</strong> directly on product cards and watch <strong>🎬 MP4 Video Before/After Demos</strong> for color grading presets.</li>
+            <li><strong>Instant Purchase:</strong> Click <strong>Buy / Preview</strong>, sign in to your account, and either unlock the direct digital file download immediately or proceed to the verified external checkout link.</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-lg">➕</div>
+          <h3 class="font-royal text-base font-bold text-emerald-300">2. How to Upload & Sell</h3>
+          <ul class="space-y-2 text-slate-300 text-xs leading-relaxed list-disc pl-4">
+            <li><strong>Step 1 (Create Account & Unlock Pass):</strong> Click <strong>➕ Upload File</strong>, sign in, and select your seller plan:
+              <br>• <strong>$<span class="dyn-direct-sub-lbl">15</span>/mo Direct Pass:</strong> Host digital files directly on our web vault.
+              <br>• <strong>$<span class="dyn-link-sub-lbl">23</span>/mo Normal Full Pass:</strong> Upload both direct digital files and external links (Physical or Digital).
+              <br>• <strong>🌱 3-Month Beginner Bundle:</strong> Start with <strong>$0 upfront</strong> for 90 days!</li>
+            <li><strong>Step 2 (Choose Format):</strong> Select <strong>Physical</strong> or <strong>Digital</strong>. Upload Presets (<code>.cube</code>, <code>.xmp</code>), Audio SFX (<code>.mp3</code>, <code>.wav</code>), Videos (<code>.mp4</code>), HTML, PNG, PDF, or ZIP files—and attach your receiving wallet!</li>
+            <li><strong>Step 3 (Publish):</strong> Provide complete product specifications (95%+ Info Score for Beginner Bundle sellers) and publish instantly.</li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-lg">🌱</div>
+          <h3 class="font-royal text-base font-bold text-purple-300">3. How the Beginner Bundle Works</h3>
+          <ul class="space-y-2 text-slate-300 text-xs leading-relaxed list-disc pl-4">
+            <li><strong>Launch With $0 Today:</strong> Designed for new creators who cannot afford upfront monthly fees. Get 3 full months (90 days) to upload both direct files and external product links.</li>
+            <li><strong>Simple Per-Upload Bundle Math:</strong> Your deferred balance is calculated as <strong>$<span class="dyn-beg-base-lbl">23</span> × 3 months + <span class="dyn-beg-pct-lbl">23</span>% of the monthly membership added for each product you upload</strong>.</li>
+            <li><strong>Quality Standards:</strong> Upload at least <strong>5 working products per week</strong> with <strong>95%+ Info Completeness</strong>, then settle your accrued bundle from the sales you make!</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Why AL-TUJAR VAULTS Beats Other Platforms -->
+      <div class="bg-gradient-to-r from-amber-950/40 via-slate-950 to-emerald-950/40 border border-amber-500/30 rounded-2xl p-5 sm:p-6 space-y-4">
+        <h3 class="font-royal text-lg font-extrabold text-white">🏆 Why AL-TUJAR VAULTS Beats Traditional Marketplaces (Gumroad, Etsy & Affiliates)</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-slate-300">
+          <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800">
+            <strong class="text-amber-300 block mb-1">1. Merit-First Ranking (Quality Over Follower Count)</strong>
+            On traditional platforms, only famous creators get traffic. On AL-TUJAR VAULTS, products with <strong>95%–100% Information Completeness</strong>, working demos, and buyer bonuses rank at the top automatically—giving new sellers instant visibility.
+          </div>
+          <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800">
+            <strong class="text-emerald-300 block mb-1">2. Direct Wallet-to-Wallet Payouts & Multi-Format Hosting</strong>
+            Sell digital files directly on the web without needing an external store, or connect your existing Amazon/external links—all while receiving payments directly to your own wallet or payment account.
+          </div>
+          <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800">
+            <strong class="text-sky-300 block mb-1">3. Built-In Interactive Audio SFX & Video Preset Players</strong>
+            Buyers don't have to guess what they are buying. SFX creators can attach live MP3 samples and LUT/Preset creators can attach MP4 video comparisons right on the product card.
+          </div>
+          <div class="bg-slate-950/90 p-4 rounded-xl border border-slate-800">
+            <strong class="text-purple-300 block mb-1">4. Industry-First 3-Month Beginner Launchpad</strong>
+            No other marketplace gives new creators a 90-day head start to upload products, build a storefront, and pay their membership after they start earning.
+          </div>
+        </div>
+        <div class="flex flex-wrap gap-3 pt-2">
+          <button type="button" onclick="attemptOpenUploadTab()" class="gold-btn px-6 py-3 rounded-xl text-xs font-extrabold">🚀 Start Selling on AL-TUJAR VAULTS</button>
+          <button type="button" onclick="switchMainTab('shop')" class="px-5 py-3 rounded-xl bg-slate-900 border border-slate-700 text-xs font-bold text-slate-200">🛍️ Explore Products</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PUBLIC CREATOR PROFILE VIEW -->
   <section id="view-public-profile" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <button type="button" onclick="switchMainTab('shop')" class="px-4 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold text-amber-300">← Back to Marketplace</button>
@@ -395,7 +523,7 @@
     <div id="public-profile-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></div>
   </section>
 
-  <!-- MAIN VIEW 2: PROFILE, INBOX, PAYMENTS & CREATOR STUDIO -->
+  <!-- MAIN VIEW 2: PROFILE, INBOX, PAYMENTS & CREATOR STUDIO (HIDDEN UNTIL SIGNED IN) -->
   <section id="view-studio" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl overflow-hidden shadow-xl">
       <div id="studio-banner-preview" class="h-28 bg-gradient-to-r from-slate-900 via-amber-950/50 to-slate-900 bg-cover bg-center"></div>
@@ -420,7 +548,7 @@
 
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar mt-5 pt-4 border-t border-slate-800 text-xs font-semibold">
           <button type="button" onclick="switchStudioSubTab('analytics')" id="st-tab-analytics" class="px-4 py-2 rounded-xl bg-amber-500 text-slate-950 font-bold shrink-0">📊 Analytics & Products</button>
-          <button type="button" onclick="attemptOpenUploadTab()" id="st-tab-upload" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0">➕ Upload Multi-Format Product</button>
+          <button type="button" onclick="attemptOpenUploadTab()" id="st-tab-upload" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0">➕ Upload File</button>
           <button type="button" onclick="switchStudioSubTab('inbox')" id="st-tab-inbox" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0">📩 My Inbox & Warnings</button>
           <button type="button" onclick="switchStudioSubTab('payments')" id="st-tab-payments" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0">💰 Payment & Beginner Settlement</button>
           <button type="button" onclick="switchStudioSubTab('profile')" id="st-tab-profile" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0">⚙️ Manage Account & Flag Privacy</button>
@@ -436,25 +564,28 @@
         <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-4"><span class="text-[11px] text-slate-400 uppercase">Pass Status</span><div id="stat-my-pass-days" class="text-base font-extrabold text-amber-300 mt-1">Locked</div><span id="stat-my-pass-type" class="text-[11px] text-slate-400">None</span></div>
       </div>
       <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-4">
-        <h3 class="font-bold text-sm text-white">My Uploaded Products</h3>
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-sm text-white">My Uploaded Products</h3>
+          <button type="button" onclick="attemptOpenUploadTab()" class="gold-btn px-3.5 py-1.5 rounded-lg text-xs">➕ Upload File</button>
+        </div>
         <div id="seller-products-table" class="space-y-3"></div>
       </div>
     </div>
 
     <!-- MULTI-FORMAT UPLOAD WIZARD -->
     <div id="studio-sub-upload" class="hidden bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-5">
-      <div id="upload-locked-gate" class="hidden text-center py-8 px-4 max-w-lg mx-auto space-y-4">
+      <div id="upload-locked-gate" class="text-center py-8 px-4 max-w-lg mx-auto space-y-4">
         <div class="text-3xl">🔒</div>
         <h3 class="font-royal text-xl font-extrabold text-white">Seller Membership Required to Upload</h3>
-        <p class="text-xs text-slate-300">Choose the <strong>$<span class="dyn-direct-sub-lbl">15</span>/mo Direct Digital Upload Pass</strong>, the <strong>$<span class="dyn-link-sub-lbl">23</span>/mo Link Pass</strong>, or the one-time <strong>3-Month Beginner Offer</strong>.</p>
+        <p class="text-xs text-slate-300">You must activate either the <strong>$<span class="dyn-link-sub-lbl">23</span>/mo Normal Membership</strong>, the <strong>$<span class="dyn-direct-sub-lbl">15</span>/mo Direct Upload Pass</strong>, or the one-time <strong>3-Month Beginner Bundle</strong> before uploading.</p>
         <button type="button" onclick="openNativeCheckoutModal()" class="gold-btn px-6 py-3 rounded-xl text-xs font-extrabold">🚀 Open Membership & Beginner Offer Window</button>
       </div>
 
       <div id="upload-unlocked-container" class="hidden space-y-4 text-xs">
         <div class="flex items-center justify-between border-b border-slate-800 pb-3">
           <div>
-            <h3 class="font-royal text-lg font-bold text-amber-300">Publish Multi-Format Product to AL-TUJAR VAULTS</h3>
-            <p class="text-slate-400">Beginner Cohort requires 95%+ Info Completeness & 5 uploads/week.</p>
+            <h3 class="font-royal text-lg font-bold text-amber-300">Publish File or Product Link to AL-TUJAR VAULTS</h3>
+            <p class="text-slate-400">Normal ($<span class="dyn-link-sub-lbl">23</span>) & Beginner Bundle allow both Direct File Uploads and Indirect Links. Beginner Bundle adds <span class="dyn-beg-pct-lbl">23</span>% of monthly membership per upload (requires 95%+ Info Score & 5 uploads/week).</p>
           </div>
           <div class="bg-slate-950 border border-amber-500/40 rounded-xl px-4 py-2 text-right">
             <span class="text-[10px] uppercase text-slate-400 block">Info Score</span>
@@ -466,15 +597,15 @@
           <div class="bg-slate-950 p-3 rounded-xl border border-slate-800">
             <label class="font-bold text-amber-300 block mb-1">Step 1: Physical or Digital Product? *</label>
             <select id="up-nature" onchange="handleUploadNatureChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold">
-              <option value="Digital">💻 Digital Product (Presets, MP3 SFX, HTML, PDF, PNG, MP4, ZIP)</option>
-              <option value="Physical">📦 Physical Product (Amazon, Electronics, Gym Gear)</option>
+              <option value="Digital">💻 Digital Product (Presets, MP3 SFX, HTML, PDF, PNG, MP4, ZIP or Link)</option>
+              <option value="Physical">📦 Physical Product (Amazon, Electronics, Gym Gear via Link)</option>
             </select>
           </div>
           <div id="up-hosting-mode-box" class="bg-slate-950 p-3 rounded-xl border border-slate-800">
-            <label class="font-bold text-emerald-300 block mb-1">Step 2 (Digital): Selling Method *</label>
+            <label class="font-bold text-emerald-300 block mb-1">Step 2 (Digital): Upload Method *</label>
             <select id="up-hosting-mode" onchange="handleUploadNatureChange()" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold">
-              <option value="direct_web">📥 Upload File Directly on AL-TUJAR VAULTS ($15 Pass)</option>
-              <option value="external_link">🔗 Connect via External Product Link ($23 Pass)</option>
+              <option value="direct_web">📥 Upload File Directly on AL-TUJAR VAULTS</option>
+              <option value="external_link">🔗 Upload Indirectly with External Product Link</option>
             </select>
           </div>
         </div>
@@ -518,7 +649,7 @@
             </div>
             <div>
               <label class="block text-slate-300 font-semibold mb-1">Your Receiving Wallet / Payment Instructions *</label>
-              <input type="text" id="up-seller-wallet" oninput="calculateLiveUploadScore()" placeholder="e.g., Bybit UID: 587086948 or USDT Wallet" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
+              <input type="text" id="up-seller-wallet" oninput="calculateLiveUploadScore()" placeholder="e.g., Bybit UID or USDT Wallet Address" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
             </div>
           </div>
 
@@ -550,7 +681,7 @@
     <div id="studio-sub-inbox" class="hidden bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-4 text-xs">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
         <h3 class="font-royal text-lg font-bold text-amber-300">📩 My Profile Inbox & System Warnings</h3>
-        <button type="button" onclick="promptSendMessageToAdmin()" class="gold-btn px-4 py-2 rounded-xl font-bold">✉️ Message Admin</button>
+        <button type="button" onclick="promptSendMessageToAdmin()" class="gold-btn px-4 py-2 rounded-xl font-bold">✉️ Contact Support</button>
       </div>
       <div id="user-inbox-list" class="space-y-2.5 max-h-96 overflow-y-auto"></div>
     </div>
@@ -569,11 +700,14 @@
         <input type="text" id="prof-banner" placeholder="Banner URL" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
         <input type="text" id="prof-payout" placeholder="My Receiving Wallet / Payout Info" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
         <select id="prof-flag-visibility" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-amber-300 font-bold">
-          <option value="private">🔒 Private Flag (Only Admin & I see my Beginner Flag)</option>
+          <option value="private">🔒 Private Flag (Only I see my Beginner Flag)</option>
           <option value="public">🌱 Public Flag (Show "Rising New Seller" badge on my profile)</option>
         </select>
         <textarea id="prof-bio" rows="2" placeholder="Storefront Bio" class="md:col-span-2 bg-slate-950 border border-slate-700 rounded-xl p-3 text-white"></textarea>
-        <button type="button" onclick="saveUserProfileSettings()" class="md:col-span-2 gold-btn py-2.5 rounded-xl font-bold">💾 Save Account Settings</button>
+        <div class="md:col-span-2 flex flex-wrap justify-between gap-3 pt-2 border-t border-slate-800">
+          <button type="button" onclick="attemptSelfDeleteAccount()" class="px-4 py-2.5 rounded-xl bg-rose-500/15 border border-rose-500/40 text-rose-300 font-bold">🗑️ Delete My Account</button>
+          <button type="button" onclick="saveUserProfileSettings()" class="gold-btn px-6 py-2.5 rounded-xl font-bold">💾 Save Account Settings</button>
+        </div>
       </div>
     </div>
   </section>
@@ -582,23 +716,23 @@
   <section id="view-rules" class="hidden flex-1 max-w-5xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6 text-xs sm:text-sm">
     <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl p-6 space-y-4 text-slate-300">
       <h2 class="brand-gold-3d text-xl sm:text-2xl">AL-TUJAR VAULTS LEGAL CHARTER</h2>
-      <p><strong>1. Membership Tiers:</strong> Link Membership ($<span class="dyn-link-sub-lbl">23</span>/mo) for external links & physical items; Direct Digital Upload Pass ($<span class="dyn-direct-sub-lbl">15</span>/mo) for hosting digital files directly on AL-TUJAR VAULTS.</p>
-      <p><strong>2. One-Time 3-Month Beginner Offer & Smart Email Detection:</strong> 90 days upload access where <span class="dyn-beg-pct-lbl">23</span>% of the monthly membership is added per sale. Requires 100% working products, 95%+ info completeness, and 5 uploads/week (Day-6 warning). Breaking rules stops the offer (<span class="dyn-restart-pct-lbl">15</span>% fee to restart). Must be paid within 3 days after expiry or automatically banned/erased after 7 days. Smart Email Detection blocks re-registering with new or alias emails if a previous Beginner balance is unpaid.</p>
+      <p><strong>1. Membership Tiers:</strong> Normal Full Membership ($<span class="dyn-link-sub-lbl">23</span>/mo) supports both direct digital file uploads and indirect external product links; Direct Digital Upload Pass ($<span class="dyn-direct-sub-lbl">15</span>/mo) supports hosting digital files directly on the web.</p>
+      <p><strong>2. One-Time 3-Month Beginner Bundle ($<span class="dyn-beg-base-lbl">23</span> × 3 Months + <span class="dyn-beg-pct-lbl">23</span>% Per Upload):</strong> Grants 90 days upload access for <strong>both direct files and indirect external product links</strong> starting from $0 upfront. Every product uploaded adds <span class="dyn-beg-pct-lbl">23</span>% of the monthly membership to the bundle debt. Requires 100% working products, 95%+ info completeness, and 5 uploads/week (Day-6 warning). Sellers enrolled in the Beginner Bundle cannot sign out, delete their account, or create a new account until they settle their accrued debt, after which the Beginner Offer disappears forever and they continue on the normal $<span class="dyn-link-sub-lbl">23</span>/mo membership.</p>
     </div>
   </section>
 
-  <!-- MAIN VIEW 4: ADMIN TREASURY -->
+  <!-- MAIN VIEW 4: PRIVATE TREASURY (STRICTLY HIDDEN FROM ALL PUBLIC USERS) -->
   <section id="view-admin" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <div id="admin-lock-screen" class="max-w-md mx-auto bg-obsidianCard border border-amber-500/40 rounded-3xl p-6 text-center space-y-4 my-10">
-      <h2 class="font-royal text-xl font-bold text-white">🔐 Owner Admin Vault Locked</h2>
-      <input type="password" id="admin-pin-input" placeholder="Enter Admin Password" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-center text-sm text-amber-300 outline-none">
-      <button type="button" onclick="unlockAdminConsole()" class="w-full gold-btn py-3 rounded-xl text-xs font-extrabold">Unlock Admin Control Room</button>
+      <h2 class="font-royal text-xl font-bold text-white">🔐 Vault Security Gate</h2>
+      <input type="password" id="admin-pin-input" placeholder="Enter Master Key" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-center text-sm text-amber-300 outline-none">
+      <button type="button" onclick="unlockAdminConsole()" class="w-full gold-btn py-3 rounded-xl text-xs font-extrabold">Unlock Control Room</button>
       <p id="admin-lock-error" class="text-xs text-rose-400 hidden"></p>
     </div>
 
     <div id="admin-unlocked-content" class="hidden space-y-6 text-xs">
       <div class="flex items-center justify-between bg-obsidianCard border border-amber-500/40 rounded-2xl p-4">
-        <h2 class="brand-gold-3d text-lg sm:text-xl">AL-TUJAR VAULTS ADMIN TREASURY</h2>
+        <h2 class="brand-gold-3d text-lg sm:text-xl">AL-TUJAR VAULTS TREASURY</h2>
         <button type="button" onclick="lockAdminConsole()" class="px-4 py-2 rounded-xl bg-rose-500/20 text-rose-300 font-bold">🔒 Lock</button>
       </div>
 
@@ -628,7 +762,7 @@
       <div class="bg-obsidianCard border border-emerald-500/40 rounded-2xl p-5 grid grid-cols-1 md:grid-cols-5 gap-3 items-end">
         <input type="email" id="adm-member-email" oninput="generateMemberKeyForEmail()" placeholder="seller@gmail.com" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono">
         <select id="adm-member-tier" onchange="generateMemberKeyForEmail()" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-300 font-bold">
-          <option value="link">🔗 $23 Link Pass</option>
+          <option value="link">🔗 $23 Normal Full Pass</option>
           <option value="direct">📥 $15 Direct Upload Pass</option>
         </select>
         <input type="text" id="adm-generated-pass" readonly placeholder="PASS-XXXX" class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-emerald-400 font-mono font-bold">
@@ -637,20 +771,20 @@
       </div>
 
       <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 grid grid-cols-2 sm:grid-cols-5 gap-3">
-        <div><label class="text-slate-400 block mb-1">Link Pass ($)</label><input type="number" id="admin-link-price" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-300 font-bold"></div>
+        <div><label class="text-slate-400 block mb-1">Normal Pass ($)</label><input type="number" id="admin-link-price" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-300 font-bold"></div>
         <div><label class="text-slate-400 block mb-1">Direct Upload ($)</label><input type="number" id="admin-direct-price" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-300 font-bold"></div>
-        <div><label class="text-slate-400 block mb-1">Beginner Base ($)</label><input type="number" id="admin-beg-base" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold"></div>
-        <div><label class="text-slate-400 block mb-1">Beginner Sale (%)</label><input type="number" id="admin-beg-pct" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-rose-300 font-bold"></div>
+        <div><label class="text-slate-400 block mb-1">Beginner Base ($/mo)</label><input type="number" id="admin-beg-base" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-bold"></div>
+        <div><label class="text-slate-400 block mb-1">Per-Upload Add (%)</label><input type="number" id="admin-beg-pct" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-rose-300 font-bold"></div>
         <div><label class="text-slate-400 block mb-1">Restart Fee (%)</label><input type="number" id="admin-restart-pct" oninput="updateAdminPricingSliders()" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-200 font-bold"></div>
         <input type="text" id="adm-wallet-cex" placeholder="Bybit UID" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-amber-200 font-mono">
         <input type="text" id="adm-wallet-unstoppable" placeholder="Solana Wallet" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-emerald-300 font-mono">
         <input type="text" id="adm-wallet-cake" placeholder="BTC Wallet" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono">
-        <button type="button" onclick="saveAdminTreasurySettings()" class="sm:col-span-2 gold-btn rounded-xl font-bold py-2">💾 Save All Admin Settings</button>
+        <button type="button" onclick="saveAdminTreasurySettings()" class="sm:col-span-2 gold-btn rounded-xl font-bold py-2">💾 Save Settings</button>
       </div>
     </div>
   </section>
 
-  <!-- PRODUCT DETAIL MODAL (WITH AUDIO SFX PLAYER & VIDEO DEMO) -->
+  <!-- PRODUCT DETAIL MODAL -->
   <div id="product-detail-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
     <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-3xl w-full p-5 space-y-4 max-h-[92vh] overflow-y-auto shadow-2xl text-xs">
       <div class="flex items-start justify-between border-b border-slate-800 pb-3">
@@ -690,7 +824,7 @@
             </div>
             <div class="flex flex-wrap gap-2">
               <button type="button" id="modal-cart-btn" class="px-3 py-2.5 rounded-xl bg-slate-800 text-amber-300 font-bold">🛒 Cart</button>
-              <a id="modal-buy-btn" href="#" target="_blank" rel="noopener noreferrer" onclick="recordOutboundClick()" class="flex-1 gold-btn py-2.5 rounded-xl text-center font-extrabold">⚡ Buy Now ↗</a>
+              <button type="button" id="modal-buy-btn" class="flex-1 gold-btn py-2.5 rounded-xl text-center font-extrabold">⚡ Buy Now ↗</button>
               <button type="button" id="modal-report-btn" class="px-3 py-2.5 rounded-xl bg-rose-500/20 text-rose-300 font-bold">🚩 Report</button>
               <button type="button" id="modal-delete-btn" class="hidden px-3 py-2.5 rounded-xl bg-rose-950 text-rose-300 font-bold">🗑️</button>
             </div>
@@ -709,17 +843,17 @@
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div onclick="selectCheckoutTier('direct')" id="tier-card-direct" class="cursor-pointer bg-slate-950 border-2 border-emerald-500 rounded-2xl p-3.5 space-y-1">
-          <div class="flex justify-between"><span class="font-bold text-emerald-300">📥 Direct File Upload</span><span class="text-lg font-extrabold text-white">$<span class="dyn-direct-sub-lbl">15</span>/mo</span></div>
+          <div class="flex justify-between"><span class="font-bold text-emerald-300">📥 Direct Upload Pass</span><span class="text-lg font-extrabold text-white">$<span class="dyn-direct-sub-lbl">15</span>/mo</span></div>
           <p class="text-[11px] text-slate-400">Upload Presets, MP3 Audio, HTML, PNG, MP4, or PDF directly on the web.</p>
         </div>
         <div onclick="selectCheckoutTier('link')" id="tier-card-link" class="cursor-pointer bg-slate-950 border-2 border-amber-500/40 rounded-2xl p-3.5 space-y-1">
-          <div class="flex justify-between"><span class="font-bold text-amber-300">🔗 Link Membership</span><span class="text-lg font-extrabold text-white">$<span class="dyn-link-sub-lbl">23</span>/mo</span></div>
-          <p class="text-[11px] text-slate-400">List Physical & Digital products using external checkout links.</p>
+          <div class="flex justify-between"><span class="font-bold text-amber-300">🔗 Normal Full Membership</span><span class="text-lg font-extrabold text-white">$<span class="dyn-link-sub-lbl">23</span>/mo</span></div>
+          <p class="text-[11px] text-slate-400">Upload BOTH direct digital files AND indirect external product links (Physical or Digital).</p>
         </div>
       </div>
       <div id="checkout-rail-details" class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 space-y-2"></div>
       <div class="flex gap-2">
-        <input type="text" id="checkout-pass-key-input" placeholder="Enter Admin Key (PASS-XXXXXX)" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-amber-300 font-mono uppercase">
+        <input type="text" id="checkout-pass-key-input" placeholder="Enter Activation Key (PASS-XXXXXX)" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-amber-300 font-mono uppercase">
         <button type="button" onclick="verifyOnSitePayment()" class="gold-btn px-4 py-2 rounded-xl font-extrabold">Unlock Pass</button>
       </div>
 
@@ -728,8 +862,8 @@
           🌱 Unable to afford it?, are you a beginner? Click for our 3-Month Free Upload Offer!
         </button>
         <div id="beginner-offer-terms-panel" class="hidden bg-slate-950 border border-amber-500/50 rounded-2xl p-4 space-y-2.5 text-[11px] text-slate-300">
-          <p><strong class="text-amber-300">One-Time 3-Month Beginner Bundle Rules:</strong> Get 3 months free upload access. For every sale made, <strong><span class="dyn-beg-pct-lbl">23</span>% of the monthly membership</strong> is added to your bundle, payable at the end of 3 months (or mid-way) within <strong>3 days</strong>. Must upload <strong>100% working products</strong>, <strong>5 products/week</strong>, and <strong>95%+ Info Completeness</strong>.</p>
-          <label class="flex items-start gap-2 cursor-pointer text-amber-200 font-semibold"><input type="checkbox" id="beginner-agree-cb" class="mt-0.5 accent-amber-400"><span>I agree to all 3-Month Beginner Offer rules, 5 uploads/week, 95% info score, and 3-day payment window.</span></label>
+          <p><strong class="text-amber-300">One-Time 3-Month Beginner Bundle Rules ($<span class="dyn-beg-base-lbl">23</span> × 3 Months + <span class="dyn-beg-pct-lbl">23</span>% Per Upload):</strong> Get 3 months free upload access for <strong>BOTH Direct Web Files and Indirect External Product Links</strong> starting from $0 today. For <strong>every product you upload</strong> on the web, <strong><span class="dyn-beg-pct-lbl">23</span>% of the monthly membership</strong> is added to your 3-month bundle ($<span class="dyn-beg-base-lbl">23</span> × 3 months + <span class="dyn-beg-pct-lbl">23</span>% per upload), payable from your earnings when the 3 months end (or pro-rated mid-way) within <strong>3 days</strong>. After payment, this offer disappears forever and you continue on the normal $<span class="dyn-link-sub-lbl">23</span>/mo membership. Must upload <strong>100% working products</strong>, <strong>5 products/week</strong>, and <strong>95%+ Info Completeness</strong>. <strong>Lockout Rule:</strong> You cannot sign out, delete your account, or create a new account until your accrued bundle debt is paid.</p>
+          <label class="flex items-start gap-2 cursor-pointer text-amber-200 font-semibold"><input type="checkbox" id="beginner-agree-cb" class="mt-0.5 accent-amber-400"><span>I agree to the 3-Month Beginner Bundle math ($<span class="dyn-beg-base-lbl">23</span> × 3mo + <span class="dyn-beg-pct-lbl">23</span>% per upload), 5 uploads/week, 95% info score, and the Sign-Out / Re-Entry Debt Lockout rule.</span></label>
           <button type="button" onclick="activateBeginnerThreeMonthOffer()" class="gold-btn w-full py-2.5 rounded-xl font-extrabold text-xs">🌱 Agree & Unlock 3-Month Beginner Membership</button>
         </div>
       </div>
@@ -751,12 +885,17 @@
     <div class="max-w-7xl mx-auto space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-4">
         <span class="brand-gold-3d text-sm notranslate">AL-TUJAR VAULTS</span>
+        <div class="flex flex-wrap gap-4">
+          <button type="button" onclick="switchMainTab('shop')" class="hover:text-amber-300">Marketplace</button>
+          <button type="button" onclick="switchMainTab('guide')" class="hover:text-amber-300 font-bold text-amber-200">How It Works & Why Us</button>
+          <button type="button" onclick="switchMainTab('rules')" class="hover:text-amber-300">Legal & Privacy</button>
+        </div>
         <span>Official Contact & Promos: <a href="mailto:altujarvaults@gmail.com" class="text-amber-300 underline font-bold notranslate">altujarvaults@gmail.com</a></span>
       </div>
       <div id="footer-social-strip" class="flex flex-wrap gap-2 pt-3 border-t border-slate-900"></div>
     </div>
-  </footer>
-    <script>
+          </footer>
+          <script>
     const OWNER_EMAIL = 'anshansheron@gmail.com';
     const OWNER_PASS = 'anshan00';
     const CONTACT_EMAIL = 'altujarvaults@gmail.com';
@@ -776,24 +915,21 @@
       } catch (e) { return fallback; }
     }
 
-    // SMART EMAIL DETECTION: Normalizes Gmail dots & +aliases so users cannot spoof a new email
     function normalizeCanonicalEmail(rawEmail) {
       const clean = (rawEmail || '').trim().toLowerCase();
       if (!clean.includes('@')) return clean;
       let [local, domain] = clean.split('@');
       if (domain === 'googlemail.com') domain = 'gmail.com';
       local = local.split('+')[0];
-      if (domain === 'gmail.com') {
-        local = local.replace(/\./g, '');
-      }
+      if (domain === 'gmail.com') local = local.replace(/\./g, '');
       return `${local}@${domain}`;
     }
 
     const DEFAULT_CONFIG = {
       subPrice: 23,
       directUploadPrice: 15,
-      beginnerBasePrice: 15,
-      beginnerSalePct: 23,
+      beginnerBasePrice: 23, // $23 x 3 months base
+      beginnerSalePct: 23,   // 23% of monthly membership added per upload
       restartPenaltyPct: 15,
       commissionRate: 3,
       wallets: {
@@ -914,7 +1050,7 @@
         membershipExpiresAt: 0,
         beginnerOfferUsed: false,
         beginnerFlagVisibility: 'private',
-        beginnerSalesCount: 0,
+        beginnerUploadsCount: 0,
         inbox: [],
         followersCount: 142,
         following: [],
@@ -930,7 +1066,7 @@
         ...savedCfg,
         subPrice: Number(savedCfg.subPrice || 23),
         directUploadPrice: Number(savedCfg.directUploadPrice || 15),
-        beginnerBasePrice: Number(savedCfg.beginnerBasePrice || 15),
+        beginnerBasePrice: Number(savedCfg.beginnerBasePrice || 23),
         beginnerSalePct: Number(savedCfg.beginnerSalePct || 23),
         restartPenaltyPct: Number(savedCfg.restartPenaltyPct || 15),
         socials: { ...DEFAULT_CONFIG.socials, ...(savedCfg.socials || {}) }
@@ -963,6 +1099,7 @@
 
     let activeUserEmail = localStorage.getItem('altujar_master_active_email') || null;
     let currentUser = activeUserEmail && usersDB[activeUserEmail] ? usersDB[activeUserEmail] : null;
+    let pendingPostAuthAction = null;
     let selectedCheckoutTierMode = 'direct';
     let activeTagFilter = 'All';
     let currentModalProduct = null;
@@ -979,18 +1116,50 @@
         localStorage.setItem('altujar_master_banned', JSON.stringify(bannedEmails));
         localStorage.setItem('altujar_master_beg_emails', JSON.stringify(usedBeginnerEmails));
         if (deviceBeginnerEmailRecord) localStorage.setItem('altujar_device_beginner_email', deviceBeginnerEmailRecord);
+        else localStorage.removeItem('altujar_device_beginner_email');
         if (activeUserEmail) localStorage.setItem('altujar_master_active_email', activeUserEmail);
         else localStorage.removeItem('altujar_master_active_email');
+        updateGoogleSEOSchema();
       } catch (err) {}
+    }
+
+    // GOOGLE SEARCH ENGINE STRUCTURED DATA (JSON-LD FOR GOOGLEBOT INDEXING)
+    function updateGoogleSEOSchema() {
+      const el = document.getElementById('dynamic-seo-schema');
+      if (!el) return;
+      const itemList = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "AL-TUJAR VAULTS Global Digital & Physical Marketplace",
+        "itemListElement": products.filter(p => !p.frozen).map((p, idx) => ({
+          "@type": "ListItem",
+          "position": idx + 1,
+          "item": {
+            "@type": "Product",
+            "name": p.title,
+            "description": p.desc,
+            "image": p.thumb,
+            "category": p.type,
+            "brand": { "@type": "Brand", "name": p.creator },
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "USD",
+              "price": p.price.toFixed(2),
+              "availability": "https://schema.org/InStock"
+            }
+          }
+        }))
+      };
+      el.textContent = JSON.stringify(itemList);
     }
 
     // MULTI-LANGUAGE & GUARANTEED ENGLISH RESET
     const I18N_DICT = {
-      'en': { choose_lang_lbl: 'Step 1: Choose Your Language First', brand_sub: 'Merit-First Hybrid Marketplace', nav_shop: '🛍️ Shop Marketplace', nav_studio: '✨ My Profile, Inbox & Studio', nav_rules: '⚖️ Legal & Privacy', contact_hub_title: 'Official Contact & Community Hub', sign_in_tab: 'Sign In / Login', create_acc_tab: 'Create New Account', sign_in_btn: '🔐 Sign In to AL-TUJAR VAULTS' },
-      'zh-CN': { choose_lang_lbl: '第1步：请先选择您的语言', brand_sub: '品质优先的全球数字与实体交易市场', nav_shop: '🛍️ 逛市场', nav_studio: '✨ 我的主页与收件箱', nav_rules: '⚖️ 法律与隐私', contact_hub_title: '官方联系与社区中心', sign_in_tab: '登录账户', create_acc_tab: '注册新账户', sign_in_btn: '🔐 登录 AL-TUJAR VAULTS' },
-      'id': { choose_lang_lbl: 'Langkah 1: Pilih Bahasa Anda', brand_sub: 'Marketplace Hibrida Berbasis Kualitas', nav_shop: '🛍️ Belanja Marketplace', nav_studio: '✨ Profil & Kotak Masuk', nav_rules: '⚖️ Aturan & Privasi', contact_hub_title: 'Kontak Resmi & Komunitas', sign_in_tab: 'Masuk / Login', create_acc_tab: 'Buat Akun Baru', sign_in_btn: '🔐 Masuk ke AL-TUJAR VAULTS' },
-      'ja': { choose_lang_lbl: 'ステップ1：言語を選択してください', brand_sub: '品質重視のデジタル＆物理マーケットプレイス', nav_shop: '🛍️ マーケットを見る', nav_studio: '✨ マイプロフィール＆受信箱', nav_rules: '⚖️ 利用規約とプライバシー', contact_hub_title: '公式連絡先＆コミュニティ', sign_in_tab: 'ログイン', create_acc_tab: '新規アカウント作成', sign_in_btn: '🔐 ログインする' },
-      'ar': { choose_lang_lbl: 'الخطوة 1: اختر لغتك أولاً', brand_sub: 'سوق التجار الرقمي والمادي القائم على الجودة', nav_shop: '🛍️ تسوق في المتجر', nav_studio: '✨ ملفي الشخصي وصندوق الوارد', nav_rules: '⚖️ القوانين والخصوصية', contact_hub_title: 'التواصل الرسمي والمجتمع', sign_in_tab: 'تسجيل الدخول', create_acc_tab: 'إنشاء حساب جديد', sign_in_btn: '🔐 دخول إلى المتجر' }
+      'en': { choose_lang_lbl: 'Choose Your Language', brand_sub: 'Merit-First Hybrid Marketplace', nav_shop: '🛍️ Shop Marketplace', nav_studio: '✨ My Profile, Inbox & Studio', nav_rules: '⚖️ Legal & Privacy', contact_hub_title: 'Official Contact & Community Hub', sign_in_tab: 'Sign In / Login', create_acc_tab: 'Create New Account', sign_in_btn: '🔐 Sign In to AL-TUJAR VAULTS' },
+      'zh-CN': { choose_lang_lbl: '请选择您的语言', brand_sub: '品质优先的全球数字与实体交易市场', nav_shop: '🛍️ 逛市场', nav_studio: '✨ 我的主页与收件箱', nav_rules: '⚖️ 法律与隐私', contact_hub_title: '官方联系与社区中心', sign_in_tab: '登录账户', create_acc_tab: '注册新账户', sign_in_btn: '🔐 登录 AL-TUJAR VAULTS' },
+      'id': { choose_lang_lbl: 'Pilih Bahasa Anda', brand_sub: 'Marketplace Hibrida Berbasis Kualitas', nav_shop: '🛍️ Belanja Marketplace', nav_studio: '✨ Profil & Kotak Masuk', nav_rules: '⚖️ Aturan & Privasi', contact_hub_title: 'Kontak Resmi & Komunitas', sign_in_tab: 'Masuk / Login', create_acc_tab: 'Buat Akun Baru', sign_in_btn: '🔐 Masuk ke AL-TUJAR VAULTS' },
+      'ja': { choose_lang_lbl: '言語を選択してください', brand_sub: '品質重視のデジタル＆物理マーケットプレイス', nav_shop: '🛍️ マーケットを見る', nav_studio: '✨ マイプロフィール＆受信箱', nav_rules: '⚖️ 利用規約とプライバシー', contact_hub_title: '公式連絡先＆コミュニティ', sign_in_tab: 'ログイン', create_acc_tab: '新規アカウント作成', sign_in_btn: '🔐 ログインする' },
+      'ar': { choose_lang_lbl: 'اختر لغتك', brand_sub: 'سوق التجار الرقمي والمادي القائم على الجودة', nav_shop: '🛍️ تسوق في المتجر', nav_studio: '✨ ملفي الشخصي وصندوق الوارد', nav_rules: '⚖️ القوانين والخصوصية', contact_hub_title: 'التواصل الرسمي والمجتمع', sign_in_tab: 'تسجيل الدخول', create_acc_tab: 'إنشاء حساب جديد', sign_in_btn: '🔐 دخول إلى المتجر' }
     };
 
     function resetToEnglish() {
@@ -1055,8 +1224,58 @@
       if (footerStrip) footerStrip.innerHTML = `<span class="text-slate-500 font-semibold mr-1">Official Communities:</span>` + items.map(i => `<a href="${sanitizeHTML(i.url)}" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-amber-300 font-semibold text-[11px]">${i.icon} ${i.label}</a>`).join('');
     }
 
-    // AUTHENTICATION WITH SMART EMAIL DETECTION (NO PHONE NUMBER NEEDED)
+    // =========================================================================
+    // GUEST BROWSING + AUTH GATEWAY + UNPAID BEGINNER TAB RE-ENTRY LOCK
+    // =========================================================================
+    function hasUnpaidBeginnerDeviceLock() {
+      if (!deviceBeginnerEmailRecord || !usersDB[deviceBeginnerEmailRecord]) return false;
+      const u = usersDB[deviceBeginnerEmailRecord];
+      const isBeginnerActive = u.beginnerFlagged || u.membershipType?.startsWith('beginner');
+      return Boolean(isBeginnerActive && !u.beginnerPaidSettled);
+    }
+
+    function openAuthGateModal(promptText, postAction = null) {
+      pendingPostAuthAction = postAction;
+      const msgEl = document.getElementById('auth-gate-prompt-msg');
+      if (msgEl && promptText) msgEl.textContent = promptText;
+
+      const isLockedByDebt = hasUnpaidBeginnerDeviceLock();
+      const closeBtn = document.getElementById('auth-gate-close-btn');
+      const banner = document.getElementById('gate-debt-lock-banner');
+      const switchBar = document.getElementById('gate-mode-switch-bar');
+      const lockedLbl = document.getElementById('gate-locked-email-lbl');
+      const emailInp = document.getElementById('login-email');
+
+      if (isLockedByDebt) {
+        if (closeBtn) closeBtn.classList.add('hidden');
+        if (banner) banner.classList.remove('hidden');
+        if (lockedLbl) lockedLbl.textContent = deviceBeginnerEmailRecord;
+        if (switchBar) switchBar.classList.add('hidden');
+        switchGateTab('login');
+        if (emailInp) {
+          emailInp.value = deviceBeginnerEmailRecord;
+          emailInp.readOnly = true;
+        }
+      } else {
+        if (closeBtn) closeBtn.classList.remove('hidden');
+        if (banner) banner.classList.add('hidden');
+        if (switchBar) switchBar.classList.remove('hidden');
+        if (emailInp) emailInp.readOnly = false;
+      }
+
+      document.getElementById('mandatory-auth-gate').classList.remove('hidden');
+    }
+
+    function closeAuthGateModal() {
+      if (hasUnpaidBeginnerDeviceLock() && !currentUser) {
+        alert('🔒 Your session is locked to your unpaid 3-Month Beginner Bundle account. Please sign in to that account and settle your balance.');
+        return;
+      }
+      document.getElementById('mandatory-auth-gate').classList.add('hidden');
+    }
+
     function switchGateTab(mode) {
+      if (hasUnpaidBeginnerDeviceLock()) mode = 'login';
       document.getElementById('gate-login-form').classList.toggle('hidden', mode !== 'login');
       document.getElementById('gate-register-form').classList.toggle('hidden', mode !== 'register');
       document.getElementById('gate-tab-login').className = mode === 'login' ? 'py-2.5 rounded-lg bg-amber-500 text-slate-950 font-bold cursor-pointer' : 'py-2.5 rounded-lg text-slate-400 cursor-pointer';
@@ -1080,7 +1299,12 @@
       if (!email || !pass) { err.textContent = 'Please enter both Email and Password.'; err.classList.remove('hidden'); return; }
       if (!agreed) { err.textContent = 'Please check the box to agree to the Legal Terms.'; err.classList.remove('hidden'); return; }
       if (isEmailBannedByDetector(email)) {
-        err.textContent = '🚫 Smart Email Detector: This account (or a linked unpaid Beginner email) has been permanently banned.';
+        err.textContent = '🚫 Smart Email Detector: This account has been permanently banned.';
+        err.classList.remove('hidden');
+        return;
+      }
+      if (hasUnpaidBeginnerDeviceLock() && email !== deviceBeginnerEmailRecord && email !== OWNER_EMAIL) {
+        err.textContent = `🔒 You must log in to "${deviceBeginnerEmailRecord}" and pay off your Beginner Bundle debt before switching accounts.`;
         err.classList.remove('hidden');
         return;
       }
@@ -1091,9 +1315,9 @@
             name: 'CareerVault Official', email: OWNER_EMAIL, canonicalEmail: OWNER_EMAIL, password: OWNER_PASS,
             avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80',
             banner: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&auto=format&fit=crop&q=80',
-            bio: 'Platform Owner & Verified Studio.', payout: appConfig.wallets.cex,
+            bio: 'Verified Digital Studio.', payout: appConfig.wallets.cex,
             membershipType: 'owner', membershipExpiresAt: Date.now() + (THIRTY_DAYS_MS * 120),
-            beginnerOfferUsed: true, beginnerFlagVisibility: 'private', inbox: [], followersCount: 310, following: [], favorites: [], cart: []
+            beginnerOfferUsed: true, beginnerFlagVisibility: 'private', beginnerUploadsCount: 0, inbox: [], followersCount: 310, following: [], favorites: [], cart: []
           };
         }
         currentUser = usersDB[OWNER_EMAIL];
@@ -1118,11 +1342,18 @@
     }
 
     function handleGateRegister() {
+      const err = document.getElementById('reg-error-msg');
+      if (hasUnpaidBeginnerDeviceLock()) {
+        err.textContent = `🔒 You cannot create a new account while "${deviceBeginnerEmailRecord}" has an unpaid 3-Month Beginner Bundle.`;
+        err.classList.remove('hidden');
+        switchGateTab('login');
+        return;
+      }
+
       const name = (document.getElementById('reg-name').value || '').trim();
       const email = (document.getElementById('reg-email').value || '').trim().toLowerCase();
       const password = document.getElementById('reg-password').value || '';
       const agreed = document.getElementById('reg-agree-cb').checked;
-      const err = document.getElementById('reg-error-msg');
 
       if (!name || !email || !password) { err.textContent = 'Please fill in Name, Email Address, and Password.'; err.classList.remove('hidden'); return; }
       if (!email.includes('@') || email.length < 5) { err.textContent = 'Please enter a valid email address.'; err.classList.remove('hidden'); return; }
@@ -1132,24 +1363,9 @@
         err.classList.remove('hidden');
         return;
       }
-      if (email === OWNER_EMAIL && password !== OWNER_PASS) { err.textContent = 'Reserved for Platform Owner.'; err.classList.remove('hidden'); return; }
+      if (email === OWNER_EMAIL && password !== OWNER_PASS) { err.textContent = 'Reserved email address.'; err.classList.remove('hidden'); return; }
 
       const canonical = normalizeCanonicalEmail(email);
-
-      // Check if this user has an unpaid Beginner account on this device or under a canonical email alias
-      const unpaidPreviousAccount = Object.values(usersDB).find(u =>
-        u && u.email !== OWNER_EMAIL &&
-        (u.canonicalEmail === canonical || (deviceBeginnerEmailRecord && u.email === deviceBeginnerEmailRecord)) &&
-        (u.membershipType === 'beginner_3m' || u.membershipType === 'beginner_expired_unpaid' || u.membershipType === 'beginner_stopped') &&
-        !u.beginnerPaidSettled
-      );
-
-      if (unpaidPreviousAccount && unpaidPreviousAccount.email !== email) {
-        err.textContent = `⚠️ Smart Email Detector: You have an unsettled Beginner Bundle on "${unpaidPreviousAccount.email}". Please sign in to that email and settle your balance first!`;
-        err.classList.remove('hidden');
-        return;
-      }
-
       const alreadyUsedBeginner = usedBeginnerEmails.includes(email) ||
         usedBeginnerEmails.includes(canonical) ||
         Boolean(deviceBeginnerEmailRecord) ||
@@ -1172,14 +1388,14 @@
         beginnerStartAt: 0,
         beginnerExpiresAt: 0,
         beginnerAutoBanAt: 0,
-        beginnerSalesCount: 0,
+        beginnerUploadsCount: 0,
         beginnerFlagged: false,
         beginnerFlagVisibility: 'private',
         beginnerViolated: false,
         inbox: [{
           from: 'AL-TUJAR VAULTS Official (altujarvaults@gmail.com)',
           subject: 'Welcome to AL-TUJAR VAULTS!',
-          body: `Welcome ${name}! Upload Presets (.cube/.xmp), MP3 SFX Audio, Videos (.mp4), HTML, PDFs, or Physical links.`,
+          body: `Welcome ${name}! Unlock a Seller Pass or the 3-Month Beginner Bundle to upload Presets (.cube/.xmp), MP3 SFX Audio, Videos (.mp4), HTML, PDFs, or Physical links.`,
           date: new Date().toLocaleDateString()
         }],
         followersCount: 0,
@@ -1193,10 +1409,29 @@
       completeAuthentication(true);
     }
 
+    function updateGuestVsAuthHeaderUI() {
+      const signedIn = Boolean(currentUser && currentUser.email);
+      document.getElementById('nav-studio')?.classList.toggle('hidden', !signedIn);
+      document.getElementById('mob-nav-studio')?.classList.toggle('hidden', !signedIn);
+      document.getElementById('header-inbox-btn')?.classList.toggle('hidden', !signedIn);
+      document.getElementById('header-inbox-btn')?.classList.toggle('flex', signedIn);
+      document.getElementById('header-fav-btn')?.classList.toggle('hidden', !signedIn);
+      document.getElementById('header-fav-btn')?.classList.toggle('flex', signedIn);
+      document.getElementById('header-cart-btn')?.classList.toggle('hidden', !signedIn);
+      document.getElementById('header-cart-btn')?.classList.toggle('flex', signedIn);
+      document.getElementById('header-profile-btn')?.classList.toggle('hidden', !signedIn);
+      document.getElementById('header-profile-btn')?.classList.toggle('flex', signedIn);
+      document.getElementById('header-logout-btn')?.classList.toggle('hidden', !signedIn);
+      document.getElementById('header-guest-signin-btn')?.classList.toggle('hidden', signedIn);
+
+      const lbl = document.getElementById('auth-header-label');
+      if (lbl && currentUser?.name) lbl.textContent = currentUser.name.split(' ')[0];
+    }
+
     function completeAuthentication(showWelcome = false) {
       document.getElementById('mandatory-auth-gate').classList.add('hidden');
       runBeginnerCohortAudit();
-      updateHeaderAuthUI();
+      updateGuestVsAuthHeaderUI();
       enforceAdminVisibility();
       enforceUploadGateUI();
       updateSavedAndCartBadges();
@@ -1204,19 +1439,102 @@
       renderSocialLinksEverywhere();
       renderTagFilterStrip();
       renderMarketplaceGrid();
+
+      if (pendingPostAuthAction === 'upload_or_membership') {
+        pendingPostAuthAction = null;
+        if (!hasActiveSellerMembership(currentUser)) {
+          openNativeCheckoutModal();
+        } else {
+          switchMainTab('studio');
+          switchStudioSubTab('upload');
+        }
+        return;
+      }
+
       if (showWelcome && currentUser) {
         document.getElementById('welcome-body').innerHTML = `Assalamu Alaikum & Welcome, <strong>${sanitizeHTML(currentUser.name)}</strong>! Reach us anytime at <strong class="text-amber-300">altujarvaults@gmail.com</strong>.`;
         document.getElementById('welcome-modal').classList.remove('hidden');
       }
     }
 
+    // =========================================================================
+    // SIGN-OUT & DELETE ACCOUNT DEBT LOCKOUT ENFORCEMENT (PER-UPLOAD MATH)
+    // =========================================================================
+    function checkBeginnerDebtBeforeAction(actionType) {
+      if (!currentUser) return true;
+      const isBeginnerActive = currentUser.beginnerFlagged || currentUser.membershipType?.startsWith('beginner');
+      if (!isBeginnerActive || currentUser.beginnerPaidSettled) return true;
+
+      const calc = calculateBeginnerOwedBreakdown(currentUser);
+      if (calc.totalOwed <= 0) return true;
+
+      const modal = document.getElementById('beginner-logout-lock-modal');
+      const reasonEl = document.getElementById('debt-lock-reason-text');
+      const box = document.getElementById('debt-lock-calculation-box');
+
+      reasonEl.textContent = actionType === 'logout'
+        ? `You attempted to sign out, but your account is enrolled in the 3-Month Beginner Bundle. You cannot sign out, log out, or create a new account until you pay off your accrued Beginner Bundle debt.`
+        : `You attempted to delete your account, but you have an unpaid 3-Month Beginner Bundle debt. You must pay your total accrued balance before deleting or closing your account.`;
+
+      box.innerHTML = `
+        <div class="space-y-1.5 text-slate-300">
+          <div class="flex justify-between"><span>3-Month Base ($${calc.monthlyBase} × 3 mo):</span> <strong class="text-white">$${calc.fullThreeMonthBase} USD</strong></div>
+          <div class="flex justify-between"><span>Pro-Rated Elapsed (${calc.elapsedDays}d / ${calc.elapsedMonths} mo):</span> <strong class="text-white">$${calc.baseOwed} USD</strong></div>
+          <div class="flex justify-between"><span>Uploads Made (${calc.uploadsCount} uploads × ${appConfig.beginnerSalePct}% = $${calc.perUploadAddition}/upload):</span> <strong class="text-emerald-300">+$${calc.uploadFeeOwed} USD</strong></div>
+          <div class="flex justify-between border-t border-slate-800 pt-1.5 text-sm"><span>Total Debt Due to Unlock:</span> <strong class="gold-gradient-text text-base">$${calc.totalOwed} USD</strong></div>
+          <div class="text-[10px] text-amber-300 pt-1">Official Receiving Wallet: ${sanitizeHTML(appConfig.wallets.cex)}</div>
+        </div>`;
+
+      modal.classList.remove('hidden');
+      return false;
+    }
+
+    function closeBeginnerDebtLockModal() {
+      document.getElementById('beginner-logout-lock-modal').classList.add('hidden');
+    }
+
+    function payDebtToUnlockLogoutOrDelete() {
+      const calc = calculateBeginnerOwedBreakdown(currentUser);
+      const tx = prompt(`Send $${calc.totalOwed} USD to ${appConfig.wallets.cex} and paste your payment TXID / Reference to settle your Beginner Bundle debt and switch to the Normal $${appConfig.subPrice} Membership:`);
+      if (!tx || !tx.trim()) return;
+
+      currentUser.beginnerPaidSettled = true;
+      currentUser.beginnerFlagged = false;
+      currentUser.beginnerOfferUsed = true;
+      currentUser.membershipType = 'link_23';
+      currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+      deviceBeginnerEmailRecord = '';
+      saveAllState();
+      closeBeginnerDebtLockModal();
+      renderCreatorStudio();
+      alert(`🎉 Debt settled! The special Beginner Offer has been permanently removed from your page, and your account is now upgraded to the Normal $${appConfig.subPrice} Membership.`);
+    }
+
     function handleLogout() {
+      if (!checkBeginnerDebtBeforeAction('logout')) return;
       activeUserEmail = null;
       currentUser = null;
       localStorage.removeItem('altujar_master_active_email');
       lockAdminConsole();
+      updateGuestVsAuthHeaderUI();
+      enforceAdminVisibility();
       switchMainTab('shop');
-      document.getElementById('mandatory-auth-gate').classList.remove('hidden');
+    }
+
+    function attemptSelfDeleteAccount() {
+      if (!currentUser) return;
+      if (!checkBeginnerDebtBeforeAction('delete')) return;
+      if (!confirm('Are you sure you want to permanently delete your account and all your products?')) return;
+      const email = currentUser.email.toLowerCase();
+      delete usersDB[email];
+      products = products.filter(p => (p.creatorEmail || '').toLowerCase() !== email);
+      activeUserEmail = null;
+      currentUser = null;
+      saveAllState();
+      updateGuestVsAuthHeaderUI();
+      switchMainTab('shop');
+      renderMarketplaceGrid();
+      alert('Your account has been deleted.');
     }
 
     function isOwnerLoggedIn() {
@@ -1230,9 +1548,9 @@
 
     function enforceAdminVisibility() {
       const show = isOwnerLoggedIn();
-      document.getElementById('nav-admin').classList.toggle('hidden', !show);
-      document.getElementById('mob-nav-admin').classList.toggle('hidden', !show);
-      if (!show) document.getElementById('view-admin').classList.add('hidden');
+      document.getElementById('nav-admin')?.classList.toggle('hidden', !show);
+      document.getElementById('mob-nav-admin')?.classList.toggle('hidden', !show);
+      if (!show) document.getElementById('view-admin')?.classList.add('hidden');
     }
 
     function unlockAdminConsole() {
@@ -1244,7 +1562,7 @@
         loadAdminInputs();
       } else {
         const err = document.getElementById('admin-lock-error');
-        err.textContent = 'Invalid Master Password.';
+        err.textContent = 'Invalid Master Key.';
         err.classList.remove('hidden');
       }
     }
@@ -1252,16 +1570,18 @@
     function lockAdminConsole() {
       const pinEl = document.getElementById('admin-pin-input');
       if (pinEl) pinEl.value = '';
-      document.getElementById('admin-lock-screen').classList.remove('hidden');
-      document.getElementById('admin-unlocked-content').classList.add('hidden');
+      document.getElementById('admin-lock-screen')?.classList.remove('hidden');
+      document.getElementById('admin-unlocked-content')?.classList.add('hidden');
     }
 
-    // 3-MONTH BEGINNER COHORT & SMART EMAIL DETECTION ENGINE
+    // =========================================================================
+    // 3-MONTH BEGINNER BUNDLE ENGINE ($23 × 3 MO + 23% PER UPLOAD)
+    // =========================================================================
     function canUserSeeBeginnerOffer(userObj) {
       if (!userObj || isOwnerLoggedIn()) return false;
       const email = userObj.email.toLowerCase();
       const canonical = normalizeCanonicalEmail(email);
-      if (userObj.beginnerOfferUsed || userObj.beginnerViolated) return false;
+      if (userObj.beginnerOfferUsed || userObj.beginnerViolated || userObj.beginnerPaidSettled) return false;
       if (usedBeginnerEmails.includes(email) || usedBeginnerEmails.includes(canonical)) return false;
       if (deviceBeginnerEmailRecord && deviceBeginnerEmailRecord !== email) return false;
       if (hasActiveSellerMembership(userObj)) return false;
@@ -1273,8 +1593,13 @@
     }
 
     function activateBeginnerThreeMonthOffer() {
-      if (!currentUser || !canUserSeeBeginnerOffer(currentUser)) {
-        alert('🚫 Smart Email Detector: This account is not eligible for the one-time 3-Month Beginner Offer.');
+      if (!currentUser) {
+        closeNativeCheckoutModal();
+        openAuthGateModal('Please sign in or create an account first to unlock the 3-Month Beginner Bundle.', 'upload_or_membership');
+        return;
+      }
+      if (!canUserSeeBeginnerOffer(currentUser)) {
+        alert('🚫 This account has already used or is not eligible for the one-time 3-Month Beginner Offer.');
         return;
       }
       if (!document.getElementById('beginner-agree-cb').checked) { alert('Please check the agreement box first.'); return; }
@@ -1286,10 +1611,11 @@
       currentUser.membershipExpiresAt = now + NINETY_DAYS_MS;
       currentUser.beginnerOfferUsed = true;
       currentUser.beginnerFlagged = true;
+      currentUser.beginnerPaidSettled = false;
       currentUser.beginnerStartAt = now;
       currentUser.beginnerExpiresAt = now + NINETY_DAYS_MS;
       currentUser.beginnerAutoBanAt = now + NINETY_DAYS_MS + (ONE_DAY_MS * 10);
-      currentUser.beginnerSalesCount = 0;
+      currentUser.beginnerUploadsCount = 0;
       currentUser.beginnerViolated = false;
 
       if (!usedBeginnerEmails.includes(cleanEmail)) usedBeginnerEmails.push(cleanEmail);
@@ -1299,8 +1625,8 @@
       currentUser.inbox = currentUser.inbox || [];
       currentUser.inbox.unshift({
         from: 'AL-TUJAR VAULTS Cohort Monitor',
-        subject: '🌱 3-Month Beginner Seller Pass Activated (Flagged Account)',
-        body: `Your one-time 90-day Beginner Pass is active! Mandatory rules: (1) Upload at least 5 working products/week, (2) Maintain 95%+ Info Completeness on every upload, and (3) ${appConfig.beginnerSalePct}% of the monthly membership is added per sale.`,
+        subject: '🌱 3-Month Beginner Bundle Activated (Flagged Account)',
+        body: `Your one-time 90-day Beginner Pass is active! You can upload BOTH direct web files and indirect external links. Formula: $${appConfig.beginnerBasePrice} × 3 months + ${appConfig.beginnerSalePct}% added for each product uploaded. Mandatory rules: (1) Upload at least 5 working products/week, (2) Maintain 95%+ Info Completeness. Note: Sign-out and account deletion are locked until your bundle debt is paid.`,
         date: new Date().toLocaleDateString()
       });
       saveAllState();
@@ -1308,24 +1634,34 @@
       closeNativeCheckoutModal();
       switchMainTab('studio');
       switchStudioSubTab('upload');
-      alert('🌱 3-Month Beginner Membership Unlocked! Upload at least 5 working products per week with 95%+ info completeness.');
+      alert('🌱 3-Month Beginner Bundle Activated! You can now upload both direct files and external product links.');
     }
 
     function calculateBeginnerOwedBreakdown(userObj) {
-      if (!userObj || !userObj.beginnerStartAt) return { elapsedDays: 0, elapsedMonths: 0, baseOwed: 0, salesFeeOwed: 0, totalOwed: 0, daysLeft: 0, salesCount: 0, perSaleAddition: 0 };
+      if (!userObj || !userObj.beginnerStartAt) {
+        return { elapsedDays: 0, elapsedMonths: 0, monthlyBase: 23, fullThreeMonthBase: 69, perUploadAddition: 5.29, uploadsCount: 0, baseOwed: 0, uploadFeeOwed: 0, fullEndTotalOwed: 0, totalOwed: 0, daysLeft: 0 };
+      }
       const now = Date.now();
       const elapsedMs = Math.max(0, Math.min(now - userObj.beginnerStartAt, NINETY_DAYS_MS));
       const elapsedDays = Math.max(1, Math.ceil(elapsedMs / ONE_DAY_MS));
       const elapsedMonths = +(elapsedDays / 30).toFixed(2);
-      const monthlyBase = Number(appConfig.beginnerBasePrice || 15);
-      const salePct = Number(appConfig.beginnerSalePct || 23) / 100;
-      const baseOwed = +(elapsedMonths * monthlyBase).toFixed(2);
-      const perSaleAddition = +(monthlyBase * salePct).toFixed(2);
-      const salesCount = Number(userObj.beginnerSalesCount || 0);
-      const salesFeeOwed = +(salesCount * perSaleAddition).toFixed(2);
-      const totalOwed = +(baseOwed + salesFeeOwed).toFixed(2);
+      const monthlyBase = Number(appConfig.beginnerBasePrice || 23);
+      const fullThreeMonthBase = +(monthlyBase * 3).toFixed(2);
+      const uploadPct = Number(appConfig.beginnerSalePct || 23) / 100;
+
+      // If 3 months expired, owe full 3 months ($23 x 3 = $69); if mid-way, pro-rate elapsed months (or at least 1st month base if trying to log out immediately)
+      const isExpired = now >= userObj.beginnerExpiresAt;
+      const baseOwed = isExpired ? fullThreeMonthBase : +(Math.max(0.5, elapsedMonths) * monthlyBase).toFixed(2);
+      const perUploadAddition = +(monthlyBase * uploadPct).toFixed(2);
+
+      const userUploadedProductsCount = products.filter(p => (p.creatorEmail || '').toLowerCase() === userObj.email.toLowerCase()).length;
+      const uploadsCount = Math.max(Number(userObj.beginnerUploadsCount || 0), userUploadedProductsCount);
+      const uploadFeeOwed = +(uploadsCount * perUploadAddition).toFixed(2);
+      const totalOwed = +(baseOwed + uploadFeeOwed).toFixed(2);
+      const fullEndTotalOwed = +(fullThreeMonthBase + uploadFeeOwed).toFixed(2);
       const daysLeft = Math.max(0, Math.ceil((userObj.beginnerExpiresAt - now) / ONE_DAY_MS));
-      return { elapsedDays, elapsedMonths, monthlyBase, perSaleAddition, salesCount, baseOwed, salesFeeOwed, totalOwed, daysLeft };
+
+      return { elapsedDays, elapsedMonths, monthlyBase, fullThreeMonthBase, perUploadAddition, uploadsCount, baseOwed, uploadFeeOwed, fullEndTotalOwed, totalOwed, daysLeft };
     }
 
     function getWeeklyUploadCountForUser(email) {
@@ -1361,7 +1697,7 @@
             u.inbox.unshift({
               from: '🛑 AL-TUJAR VAULTS Rule Enforcement',
               subject: 'Beginner Offer Stopped: Missed Weekly Upload Rule',
-              body: `Your 3-Month Beginner Offer has been stopped because fewer than 5 products were uploaded this week. Pay the ${appConfig.restartPenaltyPct}% restart fee in your Payment tab to restart from zero, or switch to the normal membership.`,
+              body: `Your 3-Month Beginner Offer has been stopped because fewer than 5 products were uploaded this week. Pay the ${appConfig.restartPenaltyPct}% restart fee in your Payment tab to restart from zero, or settle and switch to the normal $${appConfig.subPrice} membership.`,
               date: new Date().toLocaleDateString()
             });
           }
@@ -1370,7 +1706,6 @@
             u.membershipExpiresAt = 0;
           }
         }
-        // Auto-ban after 7 days of finishing the 3 days of waiting (10 days total post-expiry)
         if (u.membershipType === 'beginner_expired_unpaid' && !u.beginnerPaidSettled && u.beginnerAutoBanAt && now >= u.beginnerAutoBanAt) {
           const canonical = normalizeCanonicalEmail(email);
           if (!bannedEmails.includes(email)) bannedEmails.push(email);
@@ -1385,6 +1720,7 @@
     function hasActiveSellerMembership(userObj) {
       if (!userObj || !userObj.email) return false;
       if (userObj.email.toLowerCase() === OWNER_EMAIL) return true;
+      if (!userObj.membershipType || userObj.membershipType === 'none') return false;
       if (userObj.membershipType === 'beginner_stopped' || userObj.membershipType === 'beginner_expired_unpaid') return false;
       return Number(userObj.membershipExpiresAt || 0) > Date.now();
     }
@@ -1396,12 +1732,20 @@
       if (active) handleUploadNatureChange();
     }
 
+    function requireSellerAuthAndOpenMembership() {
+      if (!currentUser) {
+        openAuthGateModal('Please sign in or create an account first to unlock a Seller Membership or the 3-Month Beginner Bundle.', 'upload_or_membership');
+        return;
+      }
+      openNativeCheckoutModal();
+    }
+
     function selectCheckoutTier(tier) {
       selectedCheckoutTierMode = tier;
       document.getElementById('tier-card-direct').className = tier === 'direct' ? 'cursor-pointer bg-slate-950 border-2 border-emerald-500 rounded-2xl p-3.5 space-y-1' : 'cursor-pointer bg-slate-950 border-2 border-slate-800 rounded-2xl p-3.5 space-y-1 opacity-75';
       document.getElementById('tier-card-link').className = tier === 'link' ? 'cursor-pointer bg-slate-950 border-2 border-amber-500 rounded-2xl p-3.5 space-y-1' : 'cursor-pointer bg-slate-950 border-2 border-slate-800 rounded-2xl p-3.5 space-y-1 opacity-75';
       const price = tier === 'direct' ? appConfig.directUploadPrice : appConfig.subPrice;
-      const label = tier === 'direct' ? 'Direct Multi-Format File Upload Pass (30 Days)' : 'External Link Membership Pass (30 Days)';
+      const label = tier === 'direct' ? 'Direct Multi-Format File Upload Pass (30 Days)' : 'Normal Full Membership — Direct Files & External Links (30 Days)';
       document.getElementById('checkout-rail-details').innerHTML = `
         <div class="space-y-1.5 text-[11px]">
           <div class="flex justify-between font-bold text-amber-300 border-b border-slate-800 pb-1"><span>${label}</span><span class="text-white">$${Number(price).toFixed(2)} USD</span></div>
@@ -1412,6 +1756,10 @@
     }
 
     function openNativeCheckoutModal() {
+      if (!currentUser) {
+        openAuthGateModal('Please sign in or create an account first to choose a Seller Membership.', 'upload_or_membership');
+        return;
+      }
       selectCheckoutTier(selectedCheckoutTierMode);
       document.getElementById('beginner-offer-box')?.classList.toggle('hidden', !canUserSeeBeginnerOffer(currentUser));
       document.getElementById('native-checkout-modal').classList.remove('hidden');
@@ -1445,6 +1793,8 @@
       usersDB[email].membershipType = tier === 'direct' ? 'direct_15' : 'link_23';
       usersDB[email].membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
       usersDB[email].beginnerFlagged = false;
+      usersDB[email].beginnerPaidSettled = true;
+      if (deviceBeginnerEmailRecord === email) deviceBeginnerEmailRecord = '';
       if (currentUser && currentUser.email.toLowerCase() === email) currentUser = usersDB[email];
       saveAllState(); enforceUploadGateUI(); loadAdminInputs();
       alert(`✅ Activated Pass for ${email}!`);
@@ -1462,6 +1812,7 @@
     }
 
     function verifyOnSitePayment() {
+      if (!currentUser) return;
       const enteredKey = (document.getElementById('checkout-pass-key-input').value || '').trim().toUpperCase();
       const expectedDirect = compute30DayKeyForEmail(currentUser.email, 'direct');
       const expectedLink = compute30DayKeyForEmail(currentUser.email, 'link');
@@ -1469,20 +1820,29 @@
         currentUser.membershipType = enteredKey === expectedDirect ? 'direct_15' : 'link_23';
         currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
         currentUser.beginnerFlagged = false;
+        currentUser.beginnerPaidSettled = true;
+        if (deviceBeginnerEmailRecord === currentUser.email.toLowerCase()) deviceBeginnerEmailRecord = '';
         saveAllState(); enforceUploadGateUI(); closeNativeCheckoutModal();
         switchMainTab('studio'); switchStudioSubTab('upload');
         alert('🎉 30-Day Seller Pass Activated!');
-      } else alert(`❌ Invalid Pass Key. Email your receipt to ${CONTACT_EMAIL}.`);
+      } else alert(`❌ Invalid Pass Key. Email your payment receipt to ${CONTACT_EMAIL}.`);
     }
 
-    // MULTI-FORMAT UPLOAD ENGINE (PRESETS, MP3 SFX, VIDEO MP4, HTML, PNG, PDF)
+    // =========================================================================
+    // MULTI-FORMAT UPLOAD ENGINE (BOTH DIRECT & LINKS FOR NORMAL + BEGINNER)
+    // =========================================================================
     function handleUploadNatureChange() {
       const nature = document.getElementById('up-nature')?.value || 'Digital';
       const hostingBox = document.getElementById('up-hosting-mode-box');
       const hostingSelect = document.getElementById('up-hosting-mode');
       const directSection = document.getElementById('direct-digital-file-section');
       const linkSection = document.getElementById('external-link-section');
-      if (currentUser && currentUser.membershipType === 'direct_15') hostingSelect.value = 'direct_web';
+
+      // Only the $15 Direct Upload Pass is restricted to direct_web only; Normal ($23) and Beginner Bundle can use BOTH!
+      if (currentUser && currentUser.membershipType === 'direct_15') {
+        hostingSelect.value = 'direct_web';
+      }
+
       if (nature === 'Physical') {
         hostingBox.classList.add('hidden'); directSection.classList.add('hidden'); linkSection.classList.remove('hidden');
       } else {
@@ -1550,7 +1910,14 @@
     }
 
     function handleProductUpload() {
-      if (!hasActiveSellerMembership(currentUser)) { openNativeCheckoutModal(); return; }
+      if (!currentUser) {
+        openAuthGateModal('Please sign in or create an account first to upload products.', 'upload_or_membership');
+        return;
+      }
+      if (!hasActiveSellerMembership(currentUser)) {
+        openNativeCheckoutModal();
+        return;
+      }
       const title = (document.getElementById('up-title').value || '').trim();
       const price = parseFloat(document.getElementById('up-price').value) || 0;
       const thumb = (document.getElementById('up-thumb').value || '').trim();
@@ -1560,7 +1927,7 @@
       const nature = document.getElementById('up-nature').value;
       const hostingMode = nature === 'Physical' ? 'external_link' : document.getElementById('up-hosting-mode').value;
       if (currentUser.membershipType === 'direct_15' && hostingMode === 'external_link') {
-        alert('🔒 Your $15 Direct Upload Membership is for uploading digital files directly. Upgrade to the $23 Link Pass for external links.'); return;
+        alert('🔒 Your $15 Direct Upload Pass is for uploading digital files directly. Upgrade to the Normal $23 Membership to post external links.'); return;
       }
       const infoScore = calculateLiveUploadScore();
       if (currentUser.membershipType === 'beginner_3m' && infoScore < 95) {
@@ -1589,6 +1956,12 @@
         tags: selectedTags, creator: currentUser.name, creatorEmail: currentUser.email.toLowerCase(),
         postedAt: Date.now(), infoScore, rating: 5.0, views: 1, clicks: 0, frozen: false, reports: []
       });
+
+      // Add 23% of monthly membership to the Beginner Bundle for every product uploaded!
+      if (currentUser.membershipType === 'beginner_3m' || currentUser.beginnerFlagged) {
+        currentUser.beginnerUploadsCount = (currentUser.beginnerUploadsCount || 0) + 1;
+      }
+
       saveAllState();
       alert(`🚀 Published "${title}" to AL-TUJAR VAULTS!`);
       switchMainTab('shop');
@@ -1721,13 +2094,21 @@
       } else {
         directBox.classList.add('hidden');
         buyBtn.classList.remove('hidden');
-        buyBtn.href = buildMonetizedUrl(p.url);
+        buyBtn.onclick = () => {
+          if (!currentUser) {
+            closeProductModal();
+            openAuthGateModal('Please sign in or create a free account to buy this product.');
+            return;
+          }
+          incrementProductClick(p.id);
+          window.open(buildMonetizedUrl(p.url), '_blank');
+        };
       }
 
       document.getElementById('modal-creator-name').textContent = p.creator;
       document.getElementById('modal-creator-name').onclick = () => openPublicCreatorProfile(p.creatorEmail || p.creator);
       document.getElementById('modal-follow-btn').onclick = () => openPublicCreatorProfile(p.creatorEmail || p.creator);
-      document.getElementById('modal-cart-btn').onclick = () => { toggleCartProduct(p.id); alert('Added to Cart!'); };
+      document.getElementById('modal-cart-btn').onclick = () => toggleCartProduct(p.id);
       document.getElementById('modal-report-btn').onclick = () => openReportModal(p.id);
 
       const delBtn = document.getElementById('modal-delete-btn');
@@ -1739,6 +2120,11 @@
     function closeProductModal() { document.getElementById('product-detail-modal').classList.add('hidden'); }
 
     function triggerDirectDigitalPurchaseAndDownload(p) {
+      if (!currentUser) {
+        closeProductModal();
+        openAuthGateModal('Please sign in or create a free account to purchase and download this file.');
+        return;
+      }
       if (p.price > 0) {
         const tx = prompt(`Send $${p.price.toFixed(2)} USD to Seller Wallet (${p.sellerWallet || appConfig.wallets.cex}) and paste your payment TXID/reference to unlock "${p.directFileName || p.title}":`);
         if (!tx || !tx.trim()) return;
@@ -1754,8 +2140,6 @@
       const p = products.find(i => i.id === id);
       if (p) {
         p.clicks += 1;
-        const seller = usersDB[(p.creatorEmail || '').toLowerCase()];
-        if (seller && seller.membershipType === 'beginner_3m') seller.beginnerSalesCount = (seller.beginnerSalesCount || 0) + 1;
         saveAllState();
       }
     }
@@ -1773,7 +2157,8 @@
     }
 
     function promptSendDirectMessageToCreator() {
-      if (!currentUser || !currentViewedProfileEmail) return;
+      if (!currentUser) { openAuthGateModal('Please sign in to message this seller.'); return; }
+      if (!currentViewedProfileEmail) return;
       const text = prompt(`Write message to ${currentViewedProfileEmail}:`);
       if (!text || !text.trim()) return;
       if (usersDB[currentViewedProfileEmail]) {
@@ -1784,7 +2169,8 @@
     }
 
     function promptSendMessageToAdmin() {
-      const text = prompt('Write your message to Admin (altujarvaults@gmail.com):');
+      if (!currentUser) { openAuthGateModal('Please sign in first.'); return; }
+      const text = prompt('Write your message to Support (altujarvaults@gmail.com):');
       if (!text || !text.trim()) return;
       window.open(`mailto:${CONTACT_EMAIL}?subject=Inquiry from ${currentUser.email}&body=${encodeURIComponent(text)}`, '_blank');
     }
@@ -1792,16 +2178,16 @@
     function renderPaymentAndBeginnerSettlementCenter() {
       const box = document.getElementById('payment-center-details');
       if (!box || !currentUser) return;
-      if (currentUser.beginnerFlagged || currentUser.membershipType?.startsWith('beginner')) {
+      if ((currentUser.beginnerFlagged || currentUser.membershipType?.startsWith('beginner')) && !currentUser.beginnerPaidSettled) {
         const calc = calculateBeginnerOwedBreakdown(currentUser);
         const restartFee = +((appConfig.beginnerBasePrice * 3) * (appConfig.restartPenaltyPct / 100)).toFixed(2);
         box.innerHTML = `
           <div class="bg-slate-950 border border-amber-500/40 rounded-2xl p-4 space-y-3">
-            <div class="flex justify-between font-bold text-amber-300"><span>🌱 3-Month Beginner Bundle Calculator</span><span>${calc.daysLeft} Days Left</span></div>
-            <p class="text-slate-300">Elapsed: <strong>${calc.elapsedDays} days (${calc.elapsedMonths} mo)</strong> • Base Owed: <strong>$${calc.baseOwed}</strong> • Sales (${calc.salesCount}): <strong>+$${calc.salesFeeOwed}</strong> • Total Due: <strong class="text-amber-300">$${calc.totalOwed} USD</strong></p>
+            <div class="flex justify-between font-bold text-amber-300"><span>🌱 3-Month Beginner Bundle Calculator ($${calc.monthlyBase} × 3mo + ${appConfig.beginnerSalePct}%/Upload)</span><span>${calc.daysLeft} Days Left</span></div>
+            <p class="text-slate-300">Full 3-Month Base: <strong>$${calc.fullThreeMonthBase}</strong> • Pro-Rated Elapsed (${calc.elapsedDays}d / ${calc.elapsedMonths} mo): <strong>$${calc.baseOwed}</strong> • Uploads (${calc.uploadsCount} × $${calc.perUploadAddition}): <strong>+$${calc.uploadFeeOwed}</strong> • Current Payoff Due: <strong class="text-amber-300">$${calc.totalOwed} USD</strong> (Full 3-Mo End Total: <strong>$${calc.fullEndTotalOwed} USD</strong>)</p>
             <div class="flex flex-wrap gap-2">
-              <button type="button" onclick="settleBeginnerBalanceNow('continue')" class="gold-btn px-4 py-2 rounded-xl font-bold">💳 Pay $${calc.totalOwed} Mid-Way & Continue</button>
-              <button type="button" onclick="settleBeginnerBalanceNow('switch_normal')" class="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 font-bold">🔄 Pay $${calc.totalOwed} & Switch to Normal $23 Pass</button>
+              <button type="button" onclick="settleBeginnerBalanceNow('continue')" class="gold-btn px-4 py-2 rounded-xl font-bold">💳 Pay $${calc.totalOwed} Mid-Way & Continue Session</button>
+              <button type="button" onclick="settleBeginnerBalanceNow('switch_normal')" class="px-4 py-2 rounded-xl bg-emerald-500/20 text-emerald-300 font-bold">🔄 Pay $${calc.totalOwed} & Switch to Normal $${appConfig.subPrice} Membership</button>
               ${currentUser.membershipType === 'beginner_stopped' ? `<button type="button" onclick="payBeginnerRestartPenalty(${restartFee})" class="px-4 py-2 rounded-xl bg-rose-500/20 border border-rose-500/40 text-rose-300 font-bold">⚠️ Pay ${appConfig.restartPenaltyPct}% ($${restartFee}) Fee to Restart from Zero</button>` : ''}
             </div>
           </div>`;
@@ -1813,11 +2199,24 @@
     function settleBeginnerBalanceNow(choice) {
       const calc = calculateBeginnerOwedBreakdown(currentUser);
       const tx = prompt(`Send $${calc.totalOwed} USD to ${appConfig.wallets.cex} and enter your TXID:`);
-      if (!tx) return;
-      currentUser.beginnerSalesCount = 0; currentUser.beginnerStartAt = Date.now();
+      if (!tx || !tx.trim()) return;
+      currentUser.beginnerUploadsCount = 0;
+      currentUser.beginnerStartAt = Date.now();
       currentUser.beginnerPaidSettled = true;
-      if (choice === 'switch_normal') { currentUser.beginnerFlagged = false; currentUser.membershipType = 'none'; currentUser.membershipExpiresAt = 0; saveAllState(); openNativeCheckoutModal(); }
-      else { saveAllState(); renderPaymentAndBeginnerSettlementCenter(); alert('✅ Payment recorded!'); }
+      currentUser.beginnerOfferUsed = true;
+      deviceBeginnerEmailRecord = '';
+      if (choice === 'switch_normal') {
+        currentUser.beginnerFlagged = false;
+        currentUser.membershipType = 'link_23';
+        currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+        saveAllState();
+        renderCreatorStudio();
+        alert(`✅ Beginner Bundle settled! The Beginner Offer has been permanently removed from your account, and you are now on the Normal $${appConfig.subPrice} Membership.`);
+      } else {
+        saveAllState();
+        renderPaymentAndBeginnerSettlementCenter();
+        alert('✅ Mid-way payment recorded! You may continue your session.');
+      }
     }
 
     function payBeginnerRestartPenalty(feeAmount) {
@@ -1834,6 +2233,7 @@
     }
 
     function loadAdminInputs() {
+      if (!isOwnerLoggedIn()) return;
       document.getElementById('adm-wallet-cex').value = appConfig.wallets.cex || '';
       document.getElementById('adm-wallet-unstoppable').value = appConfig.wallets.unstoppable || '';
       document.getElementById('adm-wallet-cake').value = appConfig.wallets.cake || '';
@@ -1844,9 +2244,8 @@
       if (document.getElementById('admin-restart-pct')) document.getElementById('admin-restart-pct').value = appConfig.restartPenaltyPct;
       syncDynamicPricingLabels();
 
-      // Ascending Days Left Beginner Cohort Table
       const cohort = Object.values(usersDB).filter(u => u && (u.beginnerFlagged || u.membershipType?.startsWith('beginner'))).map(u => ({ u, calc: calculateBeginnerOwedBreakdown(u), w: getWeeklyUploadCountForUser(u.email) })).sort((a, b) => a.calc.daysLeft - b.calc.daysLeft);
-      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Sales: ${calc.salesCount} • Owed: $${calc.totalOwed}</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold">Ban</button></div></div>`).join('');
+      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Total Uploads: ${calc.uploadsCount} • Owed: $${calc.totalOwed} (3-Mo End: $${calc.fullEndTotalOwed})</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold">Ban</button></div></div>`).join('');
 
       const overdue = Object.values(usersDB).filter(u => u && u.membershipType === 'beginner_expired_unpaid');
       document.getElementById('admin-overdue-ban-queue').innerHTML = overdue.length === 0 ? `<p class="text-slate-400">No expired unpaid accounts in ban queue.</p>` : overdue.map(u => `<div class="bg-slate-950 p-3 rounded-xl border border-rose-500 flex justify-between"><span>${sanitizeHTML(u.email)} (Canonical: ${sanitizeHTML(u.canonicalEmail || u.email)})</span><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-3 py-1 rounded bg-rose-600 text-white font-bold">Ban & Erase</button></div>`).join('');
@@ -1855,8 +2254,7 @@
       document.getElementById('admin-users-count').textContent = emails.length;
       document.getElementById('admin-users-table').innerHTML = emails.map(em => {
         const u = usersDB[em];
-        const linkedNote = u.linkedPreviousEmail && u.linkedPreviousEmail !== em ? ` • 🔗 Linked Email: ${sanitizeHTML(u.linkedPreviousEmail)}` : '';
-        return `<div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center"><span><strong>${sanitizeHTML(u.name)}</strong> • ${sanitizeHTML(u.email)} (${sanitizeHTML(u.membershipType)})${linkedNote}</span>${em !== OWNER_EMAIL ? `<button type="button" onclick="adminDeleteUserAccount('${em}')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-bold">🚫 Ban Email</button>` : '<span class="text-emerald-400 font-bold">👑 Owner</span>'}</div>`;
+        return `<div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center"><span><strong>${sanitizeHTML(u.name)}</strong> • ${sanitizeHTML(u.email)} (${sanitizeHTML(u.membershipType)})</span>${em !== OWNER_EMAIL ? `<button type="button" onclick="adminDeleteUserAccount('${em}')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-bold">🚫 Ban Email</button>` : '<span class="text-emerald-400 font-bold">👑 Verified</span>'}</div>`;
       }).join('');
 
       const frozenList = products.filter(p => p.frozen || (p.reports && p.reports.length > 0));
@@ -1867,7 +2265,7 @@
       const u = usersDB[email]; if (!u) return;
       const calc = calculateBeginnerOwedBreakdown(u);
       u.inbox = u.inbox || [];
-      u.inbox.unshift({ from: '🚨 Admin Treasury', subject: 'Pay Within 3 Days or Account Will Be Erased', body: `Please settle your $${calc.totalOwed} USD beginner bundle within 3 days to avoid permanent ban.`, date: new Date().toLocaleDateString() });
+      u.inbox.unshift({ from: '🚨 Compliance Notice', subject: 'Pay Within 3 Days or Account Will Be Erased', body: `Please settle your $${calc.totalOwed} USD beginner bundle within 3 days to avoid permanent ban.`, date: new Date().toLocaleDateString() });
       saveAllState(); alert(`⚠️ Sent 3-day payment warning to ${email}!`);
     }
 
@@ -1876,6 +2274,7 @@
       const canonical = normalizeCanonicalEmail(email);
       if (!bannedEmails.includes(email)) bannedEmails.push(email);
       if (!bannedEmails.includes(canonical)) bannedEmails.push(canonical);
+      if (deviceBeginnerEmailRecord === email) deviceBeginnerEmailRecord = '';
       delete usersDB[email];
       products = products.filter(p => (p.creatorEmail || '').toLowerCase() !== email);
       saveAllState(); loadAdminInputs(); renderMarketplaceGrid();
@@ -1890,7 +2289,7 @@
       if (!isOwnerLoggedIn()) return;
       appConfig.subPrice = parseFloat(document.getElementById('admin-link-price').value) || 23;
       appConfig.directUploadPrice = parseFloat(document.getElementById('admin-direct-price').value) || 15;
-      appConfig.beginnerBasePrice = parseFloat(document.getElementById('admin-beg-base').value) || 15;
+      appConfig.beginnerBasePrice = parseFloat(document.getElementById('admin-beg-base').value) || 23;
       appConfig.beginnerSalePct = parseFloat(document.getElementById('admin-beg-pct').value) || 23;
       if (document.getElementById('admin-restart-pct')) appConfig.restartPenaltyPct = parseFloat(document.getElementById('admin-restart-pct').value) || 15;
       saveAllState(); syncDynamicPricingLabels();
@@ -1901,29 +2300,37 @@
       appConfig.wallets.cex = document.getElementById('adm-wallet-cex').value.trim();
       appConfig.wallets.unstoppable = document.getElementById('adm-wallet-unstoppable').value.trim();
       appConfig.wallets.cake = document.getElementById('adm-wallet-cake').value.trim();
-      saveAllState(); alert('✅ Admin Settings Saved!');
+      saveAllState(); alert('✅ Settings Saved!');
     }
 
     function syncDynamicPricingLabels() {
-      document.getElementById('top-fee-indicator').textContent = `Link Pass: $${appConfig.subPrice}/mo | Direct Upload: $${appConfig.directUploadPrice}/mo`;
+      document.getElementById('top-fee-indicator').textContent = `Normal Pass: $${appConfig.subPrice}/mo | Direct Pass: $${appConfig.directUploadPrice}/mo`;
       document.querySelectorAll('.dyn-link-sub-lbl').forEach(el => el.textContent = appConfig.subPrice);
       document.querySelectorAll('.dyn-direct-sub-lbl').forEach(el => el.textContent = appConfig.directUploadPrice);
+      document.querySelectorAll('.dyn-beg-base-lbl').forEach(el => el.textContent = appConfig.beginnerBasePrice);
       document.querySelectorAll('.dyn-beg-pct-lbl').forEach(el => el.textContent = appConfig.beginnerSalePct);
       document.querySelectorAll('.dyn-restart-pct-lbl').forEach(el => el.textContent = appConfig.restartPenaltyPct);
     }
 
     function switchMainTab(tab) {
       if (tab === 'admin' && !isOwnerLoggedIn()) return;
-      document.getElementById('view-public-profile').classList.add('hidden');
-      ['shop', 'studio', 'rules', 'admin'].forEach(v => document.getElementById(`view-${v}`)?.classList.toggle('hidden', v !== tab));
+      if (tab === 'studio' && !currentUser) {
+        openAuthGateModal('Please sign in or create a free account to access your Profile, Inbox & Studio.');
+        return;
+      }
+      document.getElementById('view-public-profile')?.classList.add('hidden');
+      ['shop', 'guide', 'studio', 'rules', 'admin'].forEach(v => {
+        document.getElementById(`view-${v}`)?.classList.toggle('hidden', v !== tab);
+      });
       if (tab === 'studio') renderCreatorStudio();
       if (tab === 'admin') loadAdminInputs();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function switchStudioSubTab(sub) {
+      if (!currentUser) { openAuthGateModal('Please sign in first.'); return; }
       enforceUploadGateUI();
-      if (sub === 'upload' && !hasActiveSellerMembership(currentUser)) openNativeCheckoutModal();
+      if (sub === 'upload' && !hasActiveSellerMembership(currentUser)) { openNativeCheckoutModal(); return; }
       ['analytics', 'upload', 'inbox', 'payments', 'profile'].forEach(s => {
         document.getElementById(`studio-sub-${s}`)?.classList.toggle('hidden', s !== sub);
         const btn = document.getElementById(`st-tab-${s}`);
@@ -1942,7 +2349,7 @@
       document.getElementById('studio-private-flag-badge').classList.toggle('hidden', !currentUser.beginnerFlagged);
       const activePass = hasActiveSellerMembership(currentUser);
       const daysLeft = activePass ? Math.max(1, Math.ceil((currentUser.membershipExpiresAt - Date.now()) / ONE_DAY_MS)) : 0;
-      document.getElementById('studio-membership-badge').textContent = isOwnerLoggedIn() ? '👑 Owner' : activePass ? `✅ Active (${daysLeft}d)` : '🔒 Locked';
+      document.getElementById('studio-membership-badge').textContent = isOwnerLoggedIn() ? '👑 Verified' : activePass ? `✅ Active (${daysLeft}d)` : '🔒 Locked';
       document.getElementById('stat-my-pass-days').textContent = isOwnerLoggedIn() ? 'Lifetime' : activePass ? `${daysLeft}d Left` : 'Locked';
       document.getElementById('stat-my-pass-type').textContent = currentUser.membershipType || 'None';
       document.getElementById('stat-my-weekly-uploads').textContent = `Weekly uploads: ${getWeeklyUploadCountForUser(currentUser.email)} / 5`;
@@ -1970,7 +2377,7 @@
       currentUser.payout = document.getElementById('prof-payout').value.trim();
       currentUser.beginnerFlagVisibility = document.getElementById('prof-flag-visibility').value;
       currentUser.bio = document.getElementById('prof-bio').value.trim();
-      saveAllState(); updateHeaderAuthUI(); renderCreatorStudio(); renderMarketplaceGrid();
+      saveAllState(); updateGuestVsAuthHeaderUI(); renderCreatorStudio(); renderMarketplaceGrid();
       alert('✅ Profile & Flag Visibility Saved!');
     }
 
@@ -1987,12 +2394,13 @@
       const showFlag = targetUser.beginnerFlagged && (isOwnerLoggedIn() || (currentUser && currentUser.email.toLowerCase() === currentViewedProfileEmail) || targetUser.beginnerFlagVisibility === 'public');
       document.getElementById('pub-prof-beginner-flag').classList.toggle('hidden', !showFlag);
       document.getElementById('public-profile-products-grid').innerHTML = creatorProducts.map(p => renderProductCardHTML(p)).join('');
-      ['shop', 'studio', 'rules', 'admin'].forEach(v => document.getElementById(`view-${v}`)?.classList.add('hidden'));
+      ['shop', 'guide', 'studio', 'rules', 'admin'].forEach(v => document.getElementById(`view-${v}`)?.classList.add('hidden'));
       document.getElementById('view-public-profile').classList.remove('hidden');
     }
 
     function toggleFollowCreatorFromProfile() {
-      if (!currentUser || !currentViewedProfileEmail) return;
+      if (!currentUser) { openAuthGateModal('Please sign in to follow creators.'); return; }
+      if (!currentViewedProfileEmail) return;
       currentUser.following = currentUser.following || [];
       const target = usersDB[currentViewedProfileEmail];
       if (currentUser.following.includes(currentViewedProfileEmail)) {
@@ -2007,9 +2415,17 @@
     }
 
     function attemptOpenUploadTab() {
+      if (!currentUser) {
+        openAuthGateModal('Sign in or create an account first—then unlock a Seller Membership or the 3-Month Beginner Bundle to upload files.', 'upload_or_membership');
+        return;
+      }
       enforceUploadGateUI();
-      if (!hasActiveSellerMembership(currentUser)) { openNativeCheckoutModal(); return; }
-      switchMainTab('studio'); switchStudioSubTab('upload');
+      if (!hasActiveSellerMembership(currentUser)) {
+        openNativeCheckoutModal();
+        return;
+      }
+      switchMainTab('studio');
+      switchStudioSubTab('upload');
     }
 
     function deleteListing(id) {
@@ -2041,14 +2457,14 @@
     }
 
     function toggleFavoriteProduct(id) {
-      if (!currentUser) return;
+      if (!currentUser) { openAuthGateModal('Please sign in or create an account to save favorites.'); return; }
       currentUser.favorites = currentUser.favorites || [];
       currentUser.favorites = currentUser.favorites.includes(id) ? currentUser.favorites.filter(i => i !== id) : [...currentUser.favorites, id];
       saveAllState(); updateSavedAndCartBadges(); renderMarketplaceGrid();
     }
 
     function toggleCartProduct(id) {
-      if (!currentUser) return;
+      if (!currentUser) { openAuthGateModal('Please sign in or create an account to add products to your cart.'); return; }
       currentUser.cart = currentUser.cart || [];
       currentUser.cart = currentUser.cart.includes(id) ? currentUser.cart.filter(i => i !== id) : [...currentUser.cart, id];
       saveAllState(); updateSavedAndCartBadges(); renderMarketplaceGrid();
@@ -2062,7 +2478,7 @@
     }
 
     function openSavedVaultModal(mode = 'favs') {
-      if (!currentUser) return;
+      if (!currentUser) { openAuthGateModal('Please sign in first.'); return; }
       const idList = mode === 'favs' ? (currentUser.favorites || []) : (currentUser.cart || []);
       const items = products.filter(p => idList.includes(p.id));
       document.getElementById('saved-vault-items').innerHTML = items.length === 0 ? `<p class="text-slate-400 text-center py-6">Empty.</p>` : items.map(p => `<div class="flex justify-between items-center bg-slate-950 p-3 rounded-xl border border-slate-800"><span>${sanitizeHTML(p.title)} ($${p.price.toFixed(2)})</span><button type="button" onclick="handleProductCardClick('${p.id}'); closeSavedVaultModal();" class="gold-btn px-3 py-1 rounded-lg">Open</button></div>`).join('');
@@ -2077,11 +2493,6 @@
         if (u.hostname.toLowerCase().includes('amazon.')) u.searchParams.set('tag', appConfig.amazonTag || 'altujarvaults-20');
         return u.toString();
       } catch (e) { return rawUrl; }
-    }
-
-    function updateHeaderAuthUI() {
-      const lbl = document.getElementById('auth-header-label');
-      if (lbl && currentUser?.name) lbl.textContent = currentUser.name.split(' ')[0];
     }
 
     function toggleThemeMode() {
@@ -2101,12 +2512,25 @@
     window.addEventListener('DOMContentLoaded', () => {
       syncDynamicPricingLabels();
       renderSocialLinksEverywhere();
+      renderTagFilterStrip();
+      renderMarketplaceGrid();
+      updateGoogleSEOSchema();
+
       const savedLang = localStorage.getItem('altujar_master_lang') || 'en';
       if (savedLang !== 'en') changeLanguage(savedLang);
+
+      // If this device has an unpaid Beginner Bundle account, automatically restore and lock their session so they cannot evade payment!
+      if (hasUnpaidBeginnerDeviceLock()) {
+        activeUserEmail = deviceBeginnerEmailRecord;
+        currentUser = usersDB[deviceBeginnerEmailRecord];
+        saveAllState();
+      }
+
       if (currentUser && activeUserEmail && !isEmailBannedByDetector(activeUserEmail)) {
         completeAuthentication(false);
       } else {
-        document.getElementById('mandatory-auth-gate').classList.remove('hidden');
+        // Guest browsing mode! Profile & Studio stay hidden until they sign in
+        updateGuestVsAuthHeaderUI();
       }
     });
   </script>
