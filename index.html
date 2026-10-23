@@ -65,13 +65,11 @@
 <body class="bg-obsidian text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
   <div id="google_translate_element" class="hidden"></div>
 
-  <!-- ===================================================================== -->
-  <!-- 1. SIGN-IN / CREATE ACCOUNT MODAL (OPENS WHEN BUYING/SELLING/UPLOADING)-->
-  <!-- ===================================================================== -->
+  <!-- 1. SIGN-IN / CREATE ACCOUNT MODAL (OPENS ON INTERACTION) -->
   <div id="mandatory-auth-gate" class="fixed inset-0 z-[100] hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-lg w-full p-5 sm:p-7 space-y-4 shadow-2xl my-auto relative">
       
-      <!-- Close Button for Guests (Hidden if locked by unpaid Beginner Bundle Debt) -->
+      <!-- Close Button for Guests -->
       <button type="button" id="auth-gate-close-btn" onclick="closeAuthGateModal()" class="absolute top-4 right-4 px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 hover:text-white text-xs font-bold">
         ✕ Continue Browsing
       </button>
@@ -191,9 +189,7 @@
     </div>
   </div>
 
-  <!-- ===================================================================== -->
-  <!-- BEGINNER BUNDLE LOGOUT / DELETE DEBT LOCKOUT MODAL (WITH STATUS BADGE)-->
-  <!-- ===================================================================== -->
+  <!-- BEGINNER BUNDLE LOGOUT / DELETE DEBT LOCKOUT MODAL -->
   <div id="beginner-logout-lock-modal" class="fixed inset-0 z-[120] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
     <div class="bg-obsidianCard border-2 border-rose-500 rounded-3xl max-w-md w-full p-6 space-y-4 shadow-2xl text-xs">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
@@ -205,10 +201,8 @@
       </div>
       <p id="debt-lock-reason-text" class="text-slate-200 leading-relaxed"></p>
       
-      <!-- Live Calculation Box -->
       <div id="debt-lock-calculation-box" class="bg-slate-950 border border-amber-500/40 rounded-2xl p-4 space-y-2"></div>
       
-      <!-- Submission & Pending Feedback Banner -->
       <div id="debt-lock-pending-alert" class="hidden bg-amber-950/60 border border-amber-500/60 rounded-xl p-3 text-amber-200 text-[11px] space-y-1">
         <div class="font-bold flex items-center gap-1.5"><span>⏳</span><span>Verification Pending with Admin</span></div>
         <p id="debt-lock-pending-txid" class="text-[10px] text-slate-300 font-mono break-all"></p>
@@ -344,9 +338,7 @@
     </div>
   </header>
 
-  <!-- ===================================================================== -->
-  <!-- MAIN VIEW 1: SHOP & MARKETPLACE                                       -->
-  <!-- ===================================================================== -->
+  <!-- MAIN VIEW 1: SHOP & MARKETPLACE -->
   <main id="view-shop" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-8">
     <section class="relative rounded-3xl overflow-hidden border border-amber-500/30 bg-gradient-to-br from-slate-900 via-[#0d1326] to-amber-950/30 p-5 sm:p-8 shadow-2xl">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
@@ -426,9 +418,7 @@
     <section id="marketplace-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"></section>
   </main>
 
-  <!-- ===================================================================== -->
-  <!-- PUBLIC GUIDE VIEW: HOW TO USE AL-TUJAR VAULTS & PLATFORM ADVANTAGES   -->
-  <!-- ===================================================================== -->
+  <!-- PUBLIC GUIDE VIEW -->
   <section id="view-guide" class="hidden flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6 text-xs sm:text-sm">
     <div class="bg-obsidianCard border border-amber-500/30 rounded-3xl p-6 sm:p-8 space-y-6 shadow-2xl">
       <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
@@ -622,7 +612,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <input type="text" id="up-title" oninput="calculateLiveUploadScore()" placeholder="Product Title (e.g., Cinematic LUT Preset Pack or Trap SFX Kit) *" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
           <div class="grid grid-cols-2 gap-2">
-            <input type="number" step="0.01" min="0" id="up-price" oninput="calculateLiveUploadScore()" placeholder="Price USD (15.00) *" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white">
+            <input type="number" step="0.01" min="0" id="up-price" oninput="calculateLiveUploadScore()" placeholder="Price USD (15.00) *" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
             <select id="up-type" onchange="calculateLiveUploadScore()" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2.5 text-white">
               <option value="Presets">🎨 Video / Photo Presets (.cube, .xmp, .dng)</option>
               <option value="Audio & SFX">🔊 Audio, SFX & Beats (.mp3, .wav)</option>
@@ -730,9 +720,7 @@
     </div>
   </section>
 
-  <!-- ===================================================================== -->
-  <!-- MAIN VIEW 4: TREASURY (WITH NEW PENDING SETTLEMENT APPROVAL QUEUE)    -->
-  <!-- ===================================================================== -->
+  <!-- MAIN VIEW 4: TREASURY (WITH PENDING SETTLEMENT APPROVAL QUEUE) -->
   <section id="view-admin" class="hidden flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <div id="admin-lock-screen" class="max-w-md mx-auto bg-obsidianCard border border-amber-500/40 rounded-3xl p-6 text-center space-y-4 my-10">
       <h2 class="font-royal text-xl font-bold text-white">🔐 Vault Security Gate</h2>
@@ -747,10 +735,10 @@
         <button type="button" onclick="lockAdminConsole()" class="px-4 py-2 rounded-xl bg-rose-500/20 text-rose-300 font-bold">🔒 Lock</button>
       </div>
 
-      <!-- NEW: PENDING DEBT SETTLEMENT APPROVAL QUEUE -->
+      <!-- PENDING DEBT SETTLEMENT & MEMBERSHIP APPROVAL QUEUE -->
       <div class="bg-obsidianCard border border-emerald-500/50 rounded-2xl p-5 space-y-3">
         <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-          <h3 class="font-bold text-emerald-300 text-sm">💳 Pending Debt Settlement Approvals (Manual Review Queue)</h3>
+          <h3 class="font-bold text-emerald-300 text-sm">💳 Pending Debt Settlement & Membership Approvals</h3>
           <span class="text-[10px] text-slate-400">Verify transfers before unlocking accounts</span>
         </div>
         <div id="admin-pending-settlements-table" class="space-y-2 max-h-60 overflow-y-auto"></div>
@@ -855,13 +843,17 @@
     </div>
   </div>
 
-  <!-- MEMBERSHIP CHECKOUT & ONE-TIME BEGINNER OFFER MODAL -->
+  <!-- MEMBERSHIP CHECKOUT (WITH AUTOMATED SOLANA & BYBIT MANUAL OPTIONS) -->
   <div id="native-checkout-modal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-md flex items-center justify-center p-3 overflow-y-auto">
     <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-xl w-full p-5 space-y-4 shadow-2xl text-xs my-auto max-h-[94vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-800 pb-3">
-        <h3 class="font-royal text-lg font-extrabold text-white">Select Your Seller Membership Plan</h3>
+        <div>
+          <h3 class="font-royal text-lg font-extrabold text-white">Select Your Seller Membership Plan</h3>
+          <p class="text-[11px] text-slate-400">⚡ Instant on-chain Solana verification or Bybit transfer</p>
+        </div>
         <button type="button" onclick="closeNativeCheckoutModal()" class="p-2 rounded-xl bg-slate-900 text-slate-400">✕</button>
       </div>
+
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div onclick="selectCheckoutTier('direct')" id="tier-card-direct" class="cursor-pointer bg-slate-950 border-2 border-emerald-500 rounded-2xl p-3.5 space-y-1">
           <div class="flex justify-between"><span class="font-bold text-emerald-300">📥 Direct Upload Pass</span><span class="text-lg font-extrabold text-white">$<span class="dyn-direct-sub-lbl">15</span>/mo</span></div>
@@ -872,10 +864,24 @@
           <p class="text-[11px] text-slate-400">Upload BOTH direct digital files AND indirect external product links (Physical or Digital)[cite: 7, 11].</p>
         </div>
       </div>
+
       <div id="checkout-rail-details" class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 space-y-2"></div>
-      <div class="flex gap-2">
-        <input type="text" id="checkout-pass-key-input" placeholder="Enter Activation Key (PASS-XXXXXX)" class="flex-1 bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2 text-amber-300 font-mono uppercase">
-        <button type="button" onclick="verifyOnSitePayment()" class="gold-btn px-4 py-2 rounded-xl font-extrabold">Unlock Pass</button>
+
+      <!-- Automated vs Manual Payment Input Box -->
+      <div class="space-y-1.5 bg-slate-950/80 border border-amber-500/30 p-3 rounded-2xl">
+        <label class="block text-amber-300 font-bold text-[11px]">
+          Enter Payment Verification:
+        </label>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input type="text" id="checkout-pass-key-input" placeholder="Paste Solana TX Signature (~88 chars), Bybit Ref, or Pass Key" class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono text-xs outline-none focus:border-amber-400">
+          <button type="button" onclick="verifyOnSitePayment()" class="gold-btn px-4 py-2 rounded-xl font-extrabold whitespace-nowrap">
+            ⚡ Verify & Unlock
+          </button>
+        </div>
+        <p class="text-[10px] text-slate-400">
+          • <strong>Solana / USDT on Solana:</strong> Automatically verified on the blockchain in seconds.<br>
+          • <strong>Bybit UID:</strong> Dispatched to Treasury for owner confirmation.
+        </p>
       </div>
 
       <div id="beginner-offer-box" class="pt-3 border-t border-amber-500/30 space-y-3">
@@ -1123,6 +1129,7 @@
     let usersDB = masterState.users;
     let bannedEmails = safeJSONParse('altujar_master_banned', []);
     let usedBeginnerEmails = safeJSONParse('altujar_master_beg_emails', []);
+    let usedPaymentSignatures = safeJSONParse('altujar_master_used_txids', []);
     let deviceBeginnerEmailRecord = localStorage.getItem('altujar_device_beginner_email') || '';
 
     let activeUserEmail = localStorage.getItem('altujar_master_active_email') || null;
@@ -1143,6 +1150,7 @@
         localStorage.setItem('altujar_master_users', JSON.stringify(usersDB));
         localStorage.setItem('altujar_master_banned', JSON.stringify(bannedEmails));
         localStorage.setItem('altujar_master_beg_emails', JSON.stringify(usedBeginnerEmails));
+        localStorage.setItem('altujar_master_used_txids', JSON.stringify(usedPaymentSignatures));
         if (deviceBeginnerEmailRecord) localStorage.setItem('altujar_device_beginner_email', deviceBeginnerEmailRecord);
         else localStorage.removeItem('altujar_device_beginner_email');
         if (activeUserEmail) localStorage.setItem('altujar_master_active_email', activeUserEmail);
@@ -1151,7 +1159,6 @@
       } catch (err) {}
     }
 
-    // GOOGLE SEARCH ENGINE STRUCTURED DATA (JSON-LD)
     function updateGoogleSEOSchema() {
       const el = document.getElementById('dynamic-seo-schema');
       if (!el) return;
@@ -1181,7 +1188,6 @@
       el.textContent = JSON.stringify(itemList);
     }
 
-    // MULTI-LANGUAGE ENGINE & RESET
     const I18N_DICT = {
       'en': { choose_lang_lbl: 'Choose Your Language', brand_sub: 'Merit-First Hybrid Marketplace', nav_shop: '🛍️ Shop Marketplace', nav_studio: '✨ My Profile, Inbox & Studio', nav_rules: '⚖️ Legal & Privacy', contact_hub_title: 'Official Contact & Community Hub', sign_in_tab: 'Sign In / Login', create_acc_tab: 'Create New Account', sign_in_btn: '🔐 Sign In to AL-TUJAR VAULTS' },
       'zh-CN': { choose_lang_lbl: '请选择您的语言', brand_sub: '品质优先的全球数字与实体交易市场', nav_shop: '🛍️ 逛市场', nav_studio: '✨ 我的主页与收件箱', nav_rules: '⚖️ 法律与隐私', contact_hub_title: '官方联系与社区中心', sign_in_tab: '登录账户', create_acc_tab: '注册新账户', sign_in_btn: '🔐 登录 AL-TUJAR VAULTS' },
@@ -1487,7 +1493,7 @@
     }
 
     // =========================================================================
-    // PHASE 1: AUTOMATED SOLANA VERIFICATION & ANTI-CHEAT SETTLEMENT ENGINE
+    // AUTOMATED BLOCKCHAIN VERIFIER (SOLANA RPC) & SETTLEMENT ENGINE
     // =========================================================================
     async function verifySolanaTransactionOnChain(signature, expectedSolanaWallet) {
       try {
@@ -1570,7 +1576,7 @@
       if (!input || !input.trim()) return;
       const ref = input.trim();
 
-      // 1. MASTER ADMIN BYPASS (Owner can wipe testing device immediately)
+      // 1. MASTER ADMIN BYPASS (Owner test override)
       if (ref === OWNER_PASS) {
         currentUser.beginnerPaidSettled = true;
         currentUser.beginnerFlagged = false;
@@ -1588,10 +1594,16 @@
 
       // 2. AUTOMATED BLOCKCHAIN VERIFICATION (Solana Signature ~88 chars)
       if (ref.length >= 80 && !ref.includes(' ') && !ref.toLowerCase().startsWith('bybit')) {
+        if (usedPaymentSignatures.includes(ref)) {
+          alert('❌ This blockchain transaction signature has already been used.');
+          return;
+        }
+
         alert('🔍 Connecting to Solana RPC to verify transaction...');
         const solCheck = await verifySolanaTransactionOnChain(ref, appConfig.wallets.unstoppable);
 
         if (solCheck.verified) {
+          usedPaymentSignatures.push(ref);
           currentUser.beginnerPaidSettled = true;
           currentUser.beginnerFlagged = false;
           currentUser.beginnerOfferUsed = true;
@@ -1624,31 +1636,121 @@
       );
     }
 
-    // ADMIN TREASURY MANUAL APPROVAL/REJECTION ACTIONS
+    // =========================================================================
+    // AUTOMATED STANDARD MEMBERSHIP CHECKOUT ($15 DIRECT / $23 NORMAL)
+    // =========================================================================
+    async function verifyOnSitePayment() {
+      if (!currentUser) {
+        openAuthGateModal('Please sign in or create an account first.');
+        return;
+      }
+
+      const input = (document.getElementById('checkout-pass-key-input')?.value || '').trim();
+      if (!input) {
+        alert('Please enter your Solana Transaction Signature, Bybit Reference, or Admin Pass Key.');
+        return;
+      }
+
+      const tierMode = selectedCheckoutTierMode; // 'direct' ($15) or 'link' ($23)
+      const price = tierMode === 'direct' ? appConfig.directUploadPrice : appConfig.subPrice;
+      const expectedPassKey = compute30DayKeyForEmail(currentUser.email, tierMode);
+
+      // 1. MASTER KEY OVERRIDE
+      if (input === OWNER_PASS) {
+        activateUserMembership(currentUser, tierMode);
+        alert(`👑 Master Override: Activated 30-Day ${tierMode === 'direct' ? '$15 Direct Pass' : '$23 Normal Pass'}!`);
+        return;
+      }
+
+      // 2. ADMIN GENERATED PASS KEY
+      if (input.toUpperCase() === expectedPassKey) {
+        activateUserMembership(currentUser, tierMode);
+        alert(`🎉 Activation Key Accepted! 30-Day membership unlocked.`);
+        return;
+      }
+
+      // 3. AUTOMATED ON-CHAIN SOLANA VERIFICATION
+      if (input.length >= 80 && !input.includes(' ') && !input.toLowerCase().startsWith('bybit')) {
+        if (usedPaymentSignatures.includes(input)) {
+          alert('❌ This blockchain transaction signature has already been used.');
+          return;
+        }
+
+        alert('🔍 Verifying payment on Solana blockchain...');
+        const solCheck = await verifySolanaTransactionOnChain(input, appConfig.wallets.unstoppable);
+
+        if (solCheck.verified) {
+          usedPaymentSignatures.push(input);
+          activateUserMembership(currentUser, tierMode);
+          alert(`🎉 Payment Verified on Blockchain! Received in slot #${solCheck.slot}.\nYour 30-day membership is active!`);
+          return;
+        } else {
+          alert(`⚠️ Blockchain Check: ${solCheck.reason}\nSubmitting your reference to Admin Treasury for review.`);
+        }
+      }
+
+      // 4. MANUAL BYBIT UID / TRANSFER SUBMISSION
+      currentUser.membershipSettlementStatus = 'pending_review';
+      currentUser.submittedMembershipRef = input;
+      currentUser.submittedMembershipTier = tierMode;
+      currentUser.submittedMembershipAmount = price;
+      saveAllState();
+
+      closeNativeCheckoutModal();
+      alert(
+        `⏳ Payment Reference Submitted ($${price} USD).\n\n` +
+        `Reference: "${input}"\n` +
+        `Status: Sent to Admin Treasury for confirmation against Bybit records.\n\n` +
+        `Your membership will activate as soon as the deposit is verified.`
+      );
+    }
+
+    function activateUserMembership(userObj, tierMode) {
+      userObj.membershipType = tierMode === 'direct' ? 'direct_15' : 'link_23';
+      userObj.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+      userObj.beginnerFlagged = false;
+      userObj.beginnerPaidSettled = true;
+      userObj.membershipSettlementStatus = 'active';
+      if (deviceBeginnerEmailRecord === userObj.email.toLowerCase()) deviceBeginnerEmailRecord = '';
+      saveAllState();
+      enforceUploadGateUI();
+      closeNativeCheckoutModal();
+      switchMainTab('studio');
+      switchStudioSubTab('upload');
+    }
+
+    // =========================================================================
+    // ADMIN MANUAL APPROVAL / REJECTION ACTIONS
+    // =========================================================================
     function adminApproveSettlement(userEmail) {
       if (!isOwnerLoggedIn()) return;
       const u = usersDB[userEmail.toLowerCase()];
       if (!u) return;
 
-      u.beginnerPaidSettled = true;
-      u.beginnerFlagged = false;
-      u.beginnerOfferUsed = true;
-      u.membershipType = 'link_23';
-      u.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
-      u.beginnerSettlementStatus = 'approved';
-      if (deviceBeginnerEmailRecord === u.email) deviceBeginnerEmailRecord = '';
+      if (u.membershipSettlementStatus === 'pending_review') {
+        const tier = u.submittedMembershipTier || 'link';
+        activateUserMembership(u, tier);
+      } else {
+        u.beginnerPaidSettled = true;
+        u.beginnerFlagged = false;
+        u.beginnerOfferUsed = true;
+        u.membershipType = 'link_23';
+        u.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
+        u.beginnerSettlementStatus = 'approved';
+        if (deviceBeginnerEmailRecord === u.email) deviceBeginnerEmailRecord = '';
+      }
 
       u.inbox = u.inbox || [];
       u.inbox.unshift({
         from: 'AL-TUJAR VAULTS Treasury',
-        subject: '✅ Settlement Approved: Account Unlocked',
-        body: `Your payment of $${u.submittedDebtAmount || 0} USD (Ref: ${u.submittedTXID || 'N/A'}) has been verified. Your Beginner Bundle is settled, and your account is upgraded to Normal Membership.`,
+        subject: '✅ Payment Verified: Account Unlocked',
+        body: `Your payment reference has been verified by the platform owner. Your membership is now active.`,
         date: new Date().toLocaleDateString()
       });
 
       saveAllState();
       loadAdminInputs();
-      alert(`✅ Approved settlement for ${u.email}. Account unlocked and upgraded.`);
+      alert(`✅ Approved and activated account for ${u.email}.`);
     }
 
     function adminRejectSettlement(userEmail) {
@@ -1657,17 +1759,18 @@
       if (!u) return;
 
       u.beginnerSettlementStatus = 'rejected';
+      u.membershipSettlementStatus = 'rejected';
       u.inbox = u.inbox || [];
       u.inbox.unshift({
         from: 'AL-TUJAR VAULTS Treasury',
         subject: '❌ Payment Reference Rejected',
-        body: `Your submitted reference "${u.submittedTXID}" could not be verified on our Bybit or wallet records. Please contact support or resubmit.`,
+        body: `Your submitted reference "${u.submittedTXID || u.submittedMembershipRef}" could not be verified on our records. Please contact support or resubmit.`,
         date: new Date().toLocaleDateString()
       });
 
       saveAllState();
       loadAdminInputs();
-      alert(`❌ Rejected settlement reference for ${u.email}.`);
+      alert(`❌ Rejected payment reference for ${u.email}.`);
     }
 
     function handleLogout() {
@@ -1735,7 +1838,7 @@
     }
 
     // =========================================================================
-    // BEGINNER BUNDLE ENGINE ($23 × 3 MO + 23% PER UPLOAD)
+    // 3-MONTH BEGINNER BUNDLE ENGINE ($23 × 3 MO + 23% PER UPLOAD)
     // =========================================================================
     function canUserSeeBeginnerOffer(userObj) {
       if (!userObj || isOwnerLoggedIn()) return false;
@@ -1971,23 +2074,6 @@
       }
     }
 
-    function verifyOnSitePayment() {
-      if (!currentUser) return;
-      const enteredKey = (document.getElementById('checkout-pass-key-input').value || '').trim().toUpperCase();
-      const expectedDirect = compute30DayKeyForEmail(currentUser.email, 'direct');
-      const expectedLink = compute30DayKeyForEmail(currentUser.email, 'link');
-      if (enteredKey === expectedDirect || enteredKey === expectedLink) {
-        currentUser.membershipType = enteredKey === expectedDirect ? 'direct_15' : 'link_23';
-        currentUser.membershipExpiresAt = Date.now() + THIRTY_DAYS_MS;
-        currentUser.beginnerFlagged = false;
-        currentUser.beginnerPaidSettled = true;
-        if (deviceBeginnerEmailRecord === currentUser.email.toLowerCase()) deviceBeginnerEmailRecord = '';
-        saveAllState(); enforceUploadGateUI(); closeNativeCheckoutModal();
-        switchMainTab('studio'); switchStudioSubTab('upload');
-        alert('🎉 30-Day Seller Pass Activated!');
-      } else alert(`❌ Invalid Pass Key. Email your payment receipt to ${CONTACT_EMAIL}.`);
-    }
-
     // =========================================================================
     // MULTI-FORMAT UPLOAD ENGINE
     // =========================================================================
@@ -2126,7 +2212,9 @@
       renderMarketplaceGrid();
     }
 
+    // =========================================================================
     // MARKETPLACE RENDERING, AUDIO SFX & VIDEO PLAYERS
+    // =========================================================================
     function renderTagFilterStrip() {
       const strip = document.getElementById('tag-filter-strip');
       if (!strip) return;
@@ -2301,7 +2389,9 @@
 
     function recordOutboundClick() { if (currentModalProduct) incrementProductClick(currentModalProduct.id); }
 
+    // =========================================================================
     // INBOX & SETTLEMENT
+    // =========================================================================
     function renderUserInbox() {
       if (!currentUser) return;
       const list = currentUser.inbox || [];
@@ -2380,28 +2470,34 @@
       syncDynamicPricingLabels();
 
       // 1. Pending Debt Settlements Review Queue
-      const pendingUsers = Object.values(usersDB).filter(u => u && u.beginnerSettlementStatus === 'pending_review');
+      const pendingUsers = Object.values(usersDB).filter(u => u && (u.beginnerSettlementStatus === 'pending_review' || u.membershipSettlementStatus === 'pending_review'));
       const pendingBox = document.getElementById('admin-pending-settlements-table');
       if (pendingBox) {
         pendingBox.innerHTML = pendingUsers.length === 0
           ? `<p class="text-slate-400">No pending debt settlements to review.</p>`
-          : pendingUsers.map(u => `
-              <div class="bg-slate-950 p-3 rounded-xl border border-emerald-500/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                <div>
-                  <strong class="text-white text-xs">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})
-                  <div class="text-[11px] text-emerald-300 font-mono">Amount: $${u.submittedDebtAmount || 0} USD • TXID/Ref: "${sanitizeHTML(u.submittedTXID || '')}"</div>
+          : pendingUsers.map(u => {
+              const isMembership = u.membershipSettlementStatus === 'pending_review';
+              const amt = isMembership ? (u.submittedMembershipAmount || 0) : (u.submittedDebtAmount || 0);
+              const ref = isMembership ? (u.submittedMembershipRef || '') : (u.submittedTXID || '');
+              const tag = isMembership ? `[Pass Tier: ${u.submittedMembershipTier || 'link'}]` : `[Beginner Debt]`;
+              return `
+                <div class="bg-slate-950 p-3 rounded-xl border border-emerald-500/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                  <div>
+                    <strong class="text-white text-xs">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)}) <span class="text-amber-400 text-[10px] font-bold">${tag}</span>
+                    <div class="text-[11px] text-emerald-300 font-mono">Amount: $${amt} USD • TXID/Ref: "${sanitizeHTML(ref)}"</div>
+                  </div>
+                  <div class="flex gap-1.5 shrink-0">
+                    <button type="button" onclick="adminApproveSettlement('${u.email}')" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-bold hover:brightness-110">✅ Approve & Unlock</button>
+                    <button type="button" onclick="adminRejectSettlement('${u.email}')" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 text-rose-300 font-bold">✕ Reject</button>
+                  </div>
                 </div>
-                <div class="flex gap-1.5 shrink-0">
-                  <button type="button" onclick="adminApproveSettlement('${u.email}')" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-bold hover:brightness-110">✅ Approve & Unlock</button>
-                  <button type="button" onclick="adminRejectSettlement('${u.email}')" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 text-rose-300 font-bold">✕ Reject</button>
-                </div>
-              </div>
-            `).join('');
+              `;
+            }).join('');
       }
 
       // 2. Beginner Cohort Table (Ascending Days Left)
       const cohort = Object.values(usersDB).filter(u => u && (u.beginnerFlagged || u.membershipType?.startsWith('beginner'))).map(u => ({ u, calc: calculateBeginnerOwedBreakdown(u), w: getWeeklyUploadCountForUser(u.email) })).sort((a, b) => a.calc.daysLeft - b.calc.daysLeft);
-      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Total Uploads: ${calc.uploadsCount} • Owed: $${calc.totalOwed}</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold">Ban</button></div></div>`).join('');
+      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Total Uploads: ${calc.uploadsCount} • Owed: $${calc.totalOwed} (3-Mo End: $${calc.fullEndTotalOwed})</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold">Ban</button></div></div>`).join('');
 
       // 3. Overdue Ban Queue
       const overdue = Object.values(usersDB).filter(u => u && u.membershipType === 'beginner_expired_unpaid');
