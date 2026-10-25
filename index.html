@@ -74,12 +74,10 @@
   <div id="mandatory-auth-gate" style="display: none;" class="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md items-center justify-center p-3 sm:p-4 overflow-y-auto">
     <div class="bg-obsidianCard border border-amber-500/40 rounded-3xl max-w-lg w-full p-5 sm:p-7 space-y-4 shadow-2xl my-auto relative">
       
-      <!-- Close Button for Guests -->
       <button type="button" id="auth-gate-close-btn" onclick="closeAuthGateModal()" class="absolute top-4 right-4 px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 hover:text-white text-xs font-bold cursor-pointer">
         ✕ Continue Browsing
       </button>
 
-      <!-- Language Selector -->
       <div class="bg-slate-950/90 border border-amber-500/40 rounded-2xl p-3 flex flex-wrap items-center justify-between gap-2 mt-4">
         <div class="flex items-center gap-2">
           <span class="text-base">🌐</span>
@@ -113,7 +111,6 @@
         </div>
       </div>
 
-      <!-- Brand Logo -->
       <div class="text-center space-y-1.5 pt-1">
         <div class="w-14 h-14 rounded-full bg-[#FAF6EE] p-1 mx-auto shadow-lg border-2 border-[#D4AF37] flex items-center justify-center">
           <svg viewBox="0 0 120 120" class="w-full h-full">
@@ -125,18 +122,15 @@
         <p id="auth-gate-prompt-msg" class="text-xs text-amber-300 font-semibold">Sign in or create a free account to continue.</p>
       </div>
 
-      <!-- Cloud-Verified Debt Lock Banner -->
       <div id="gate-debt-lock-banner" style="display: none;" class="bg-rose-950/80 border border-rose-500 rounded-2xl p-3 text-[11px] text-rose-200 font-semibold leading-relaxed">
         🔒 <strong>Cloud-Verified Debt Lock:</strong> Your account (<span id="gate-locked-email-lbl" class="text-amber-300 font-mono underline"></span>) has an active 3-Month Beginner Bundle balance. You cannot create a new account or sign out until you settle your accrued bundle balance.
       </div>
 
-      <!-- Mode Switch -->
       <div id="gate-mode-switch-bar" class="grid grid-cols-2 gap-2 bg-slate-950 p-1 rounded-xl border border-slate-800 text-xs font-bold">
         <button type="button" id="gate-tab-login" onclick="switchGateTab('login')" data-i18n="sign_in_tab" class="py-2.5 rounded-lg bg-amber-500 text-slate-950 cursor-pointer">Sign In / Login</button>
         <button type="button" id="gate-tab-register" onclick="switchGateTab('register')" data-i18n="create_acc_tab" class="py-2.5 rounded-lg text-slate-400 hover:text-white cursor-pointer">Create New Account</button>
       </div>
 
-      <!-- Login Form -->
       <div id="gate-login-form" class="space-y-3 text-xs">
         <div>
           <label class="block text-slate-300 font-semibold mb-1">Email Address *</label>
@@ -156,7 +150,6 @@
         </button>
       </div>
 
-      <!-- Register Form -->
       <div id="gate-register-form" style="display: none;" class="space-y-3 text-xs">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
           <div>
@@ -258,7 +251,7 @@
     </div>
   </div>
 
-  <!-- TOP BANNER WITH PAYMENT & SYNC NOTICE -->
+  <!-- TOP BANNER -->
   <div class="bg-gradient-to-r from-amber-950/90 via-yellow-900/70 to-amber-950/90 border-b border-amber-500/30 text-amber-100 text-xs py-2 px-3">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
@@ -291,7 +284,10 @@
         <button type="button" onclick="switchMainTab('guide')" id="nav-guide" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white cursor-pointer">📖 How It Works & Why Us</button>
         <button type="button" onclick="switchMainTab('studio')" id="nav-studio" data-i18n="nav_studio" style="display: none;" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white cursor-pointer">✨ My Profile, Inbox & Studio</button>
         <button type="button" onclick="switchMainTab('rules')" id="nav-rules" data-i18n="nav_rules" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-slate-300 hover:text-white cursor-pointer">⚖️ Legal & Privacy</button>
-        <button type="button" onclick="switchMainTab('admin')" id="nav-admin" style="display: none;" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-amber-300 border border-amber-500/40 cursor-pointer">🔐 Treasury</button>
+        <button type="button" onclick="switchMainTab('admin')" id="nav-admin" style="display: none;" class="px-3.5 py-2 rounded-lg text-xs font-semibold text-amber-300 border border-amber-500/40 cursor-pointer flex items-center gap-1.5">
+          <span>🔐 Treasury</span>
+          <span id="admin-pending-count-badge" class="bg-rose-500 text-white font-extrabold text-[10px] px-1.5 rounded-full" style="display: none;">0</span>
+        </button>
       </nav>
 
       <div class="flex items-center gap-1.5">
@@ -322,12 +318,10 @@
 
         <button type="button" onclick="toggleThemeMode()" id="theme-toggle-btn" class="p-2 rounded-xl bg-slate-900 border border-slate-700 text-xs cursor-pointer">☀️</button>
 
-        <!-- Guest sign-in button -->
         <button type="button" id="header-guest-signin-btn" onclick="openAuthGateModal('Sign in or create a free account to access your profile, buy products, or start selling.')" class="gold-btn px-3.5 py-2 rounded-xl text-xs font-extrabold cursor-pointer">
           🔐 Sign In / Join
         </button>
 
-        <!-- Authenticated Buttons -->
         <button type="button" id="header-profile-btn" onclick="switchMainTab('studio'); switchStudioSubTab('profile');" style="display: none;" class="gold-btn px-2.5 py-2 rounded-xl text-xs font-bold items-center gap-1 cursor-pointer"><span>👤</span><span id="auth-header-label" class="hidden sm:inline">Profile</span></button>
         <button type="button" id="header-logout-btn" onclick="handleLogout()" style="display: none;" class="px-2.5 py-2 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-300 text-xs font-bold cursor-pointer" title="Sign Out">🚪</button>
       </div>
@@ -652,7 +646,9 @@
           </div>
 
           <div class="md:col-span-2 flex justify-end">
-            <button type="button" onclick="handleProductUpload()" class="gold-btn px-6 py-3 rounded-xl font-extrabold cursor-pointer">🚀 Verify 95%+ Info & Publish Product</button>
+            <button type="button" onclick="handleProductUpload()" class="gold-btn px-6 py-3 rounded-xl font-extrabold cursor-pointer">
+              🚀 Verify 95%+ Info & Publish Product
+            </button>
           </div>
         </div>
       </div>
@@ -673,9 +669,14 @@
       <div id="payment-center-details"></div>
     </div>
 
-    <!-- Manage Profile -->
+    <!-- Manage Profile with Instant Reset to Unpaid for Testing -->
     <div id="studio-sub-profile" style="display: none;" class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-4 text-xs">
-      <h3 class="font-royal text-lg font-bold text-amber-300">⚙️ Manage Account & Beginner Flag Privacy</h3>
+      <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+        <h3 class="font-royal text-lg font-bold text-amber-300">⚙️ Manage Account & Membership Testing</h3>
+        <button type="button" onclick="resetMyAccountToUnpaidFree()" class="px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/40 text-amber-300 font-bold hover:bg-amber-500/30 cursor-pointer" title="Reset your account to unpaid to test payment gates">
+          🔄 Reset My Account to Unpaid Free User (Test Lock)
+        </button>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input type="text" id="prof-name" placeholder="Storefront Name" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
         <input type="text" id="prof-email" disabled class="bg-slate-900 border border-slate-800 rounded-xl px-3.5 py-2.5 text-slate-400">
@@ -704,7 +705,7 @@
     </div>
   </section>
 
-  <!-- MAIN VIEW 4: TREASURY -->
+  <!-- MAIN VIEW 4: TREASURY (WITH NOTIFICATION & REPLY WORKFLOW) -->
   <section id="view-admin" style="display: none;" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <div id="admin-lock-screen" class="max-w-md mx-auto bg-obsidianCard border border-amber-500/40 rounded-3xl p-6 text-center space-y-4 my-10">
       <h2 class="font-royal text-xl font-bold text-white">🔐 Vault Security Gate</h2>
@@ -715,17 +716,23 @@
 
     <div id="admin-unlocked-content" style="display: none;" class="space-y-6 text-xs">
       <div class="flex items-center justify-between bg-obsidianCard border border-amber-500/40 rounded-2xl p-4">
-        <h2 class="brand-gold-3d text-lg sm:text-xl">AL-TUJAR VAULTS TREASURY</h2>
+        <div>
+          <h2 class="brand-gold-3d text-lg sm:text-xl">AL-TUJAR VAULTS TREASURY & OWNER CONTROL</h2>
+          <p class="text-[11px] text-slate-400">Review Bybit & Wallet queues, dispatch instant approvals, and reply to user inboxes.</p>
+        </div>
         <button type="button" onclick="lockAdminConsole()" class="px-4 py-2 rounded-xl bg-rose-500/20 text-rose-300 font-bold cursor-pointer">🔒 Lock</button>
       </div>
 
-      <!-- Pending Queue -->
+      <!-- Pending Queue with Custom Inbox Reply -->
       <div class="bg-obsidianCard border border-emerald-500/50 rounded-2xl p-5 space-y-3">
         <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-          <h3 class="font-bold text-emerald-300 text-sm">💳 Pending Debt Settlement & Membership Approvals (Waiting Queue)</h3>
+          <div class="flex items-center gap-2">
+            <span class="text-lg">⏳</span>
+            <h3 class="font-bold text-emerald-300 text-sm">Pending Verification & Waiting Queue (<span id="treasury-queue-count">0</span> Submissions)</h3>
+          </div>
           <span class="text-[10px] text-slate-400">Synced to Supabase Cloud Database</span>
         </div>
-        <div id="admin-pending-settlements-table" class="space-y-2 max-h-60 overflow-y-auto"></div>
+        <div id="admin-pending-settlements-table" class="space-y-3 max-h-80 overflow-y-auto"></div>
       </div>
 
       <!-- Beginner Cohort -->
@@ -851,7 +858,6 @@
 
       <div id="checkout-rail-details" class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 space-y-2"></div>
 
-      <!-- Payment Verification Box with Method Explanations -->
       <div class="space-y-2 bg-slate-950/80 border border-amber-500/30 p-3.5 rounded-2xl">
         <label class="block text-amber-300 font-bold text-[11px]">
           Enter Payment Verification (Solana TXID or Bybit Reference):
@@ -966,7 +972,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // VERIFIED PLATFORM CONFIGURATION & AUDITED WALLETS
+    // AUDITED & VERIFIED PLATFORM CONFIGURATION
     // -------------------------------------------------------------------------
     const DEFAULT_CONFIG = {
       subPrice: 23,
@@ -1328,6 +1334,7 @@
         renderMarketplaceGrid();
         updateGoogleSEOSchema();
         updateGuestVsAuthHeaderUI();
+        updateTreasuryNotificationBadges();
       } catch (err) {}
     }
 
@@ -1348,6 +1355,7 @@
         if (activeUserEmail) localStorage.setItem('altujar_master_active_email', activeUserEmail);
         else localStorage.removeItem('altujar_master_active_email');
         updateGoogleSEOSchema();
+        updateTreasuryNotificationBadges();
       } catch (err) {}
     }
 
@@ -1675,6 +1683,33 @@
       completeAuthentication(true);
     }
 
+    // -------------------------------------------------------------------------
+    // TESTING TOOL: RESET ACCOUNT TO UNPAID FREE USER
+    // -------------------------------------------------------------------------
+    function resetMyAccountToUnpaidFree() {
+      if (!currentUser) return;
+      if (currentUser.email === OWNER_EMAIL) {
+        if (!confirm('You are logged in as the platform Owner. Do you want to strip your active status and test as an unpaid free user?')) return;
+      }
+      currentUser.membershipType = 'none';
+      currentUser.membershipExpiresAt = 0;
+      currentUser.beginnerFlagged = false;
+      currentUser.beginnerPaidSettled = false;
+      currentUser.beginnerStartAt = 0;
+      currentUser.beginnerExpiresAt = 0;
+      currentUser.beginnerAutoBanAt = 0;
+      currentUser.beginnerUploadsCount = 0;
+      currentUser.beginnerSettlementStatus = 'none';
+      currentUser.membershipSettlementStatus = 'none';
+      currentUser.submittedTXID = '';
+      currentUser.submittedMembershipRef = '';
+      deviceBeginnerEmailRecord = '';
+      saveAllState();
+      enforceUploadGateUI();
+      renderCreatorStudio();
+      alert('🔄 Your account has been reset to an UNPAID FREE account! All upload gates and payment blocks are now armed.');
+    }
+
     function updateGuestVsAuthHeaderUI() {
       const signedIn = Boolean(currentUser && currentUser.email);
       const setDisplay = (id, displayStyle) => {
@@ -1693,6 +1728,22 @@
 
       const lbl = document.getElementById('auth-header-label');
       if (lbl && currentUser?.name) lbl.textContent = currentUser.name.split(' ')[0];
+      updateTreasuryNotificationBadges();
+    }
+
+    function updateTreasuryNotificationBadges() {
+      const pendingUsers = Object.values(usersDB).filter(u => u && (u.beginnerSettlementStatus === 'pending_review' || u.membershipSettlementStatus === 'pending_review'));
+      const badge = document.getElementById('admin-pending-count-badge');
+      if (badge) {
+        if (pendingUsers.length > 0 && isOwnerLoggedIn()) {
+          badge.style.display = 'inline-block';
+          badge.textContent = `🚨 ${pendingUsers.length}`;
+        } else {
+          badge.style.display = 'none';
+        }
+      }
+      const qCount = document.getElementById('treasury-queue-count');
+      if (qCount) qCount.textContent = pendingUsers.length;
     }
 
     function completeAuthentication(showWelcome = false) {
@@ -1747,7 +1798,7 @@
         // 1. Verify Destination Wallet Was Credited
         const walletIndex = accountKeys.indexOf(expectedSolanaWallet);
         if (walletIndex === -1) {
-          return { verified: false, reason: `Transaction does not transfer funds to the designated wallet (${expectedSolanaWallet}).` };
+          return { verified: false, reason: `Transaction does not transfer funds to designated wallet (${expectedSolanaWallet}).` };
         }
 
         // 2. Calculate Native SOL Credited
@@ -1772,7 +1823,6 @@
         const solUsdValue = netSolCredited * solUsdRate;
         const totalUsdPaid = netTokenCredited + solUsdValue;
 
-        // Allow 2% tolerance for gas or minor exchange rate movements
         const meetsRequirement = requiredUsdAmount <= 0 || (totalUsdPaid >= (requiredUsdAmount * 0.98));
 
         if (!meetsRequirement) {
@@ -1850,7 +1900,6 @@
       if (!input || !input.trim()) return;
       const ref = input.trim();
 
-      // 1. Master Key Override
       if (ref === OWNER_PASS) {
         currentUser.beginnerPaidSettled = true;
         currentUser.beginnerFlagged = false;
@@ -1866,7 +1915,6 @@
         return;
       }
 
-      // 2. Automated Blockchain Verification with Exact Amount Check
       if (ref.length >= 80 && !ref.includes(' ') && !ref.toLowerCase().startsWith('bybit')) {
         if (usedPaymentSignatures.includes(ref)) {
           alert('❌ This blockchain transaction signature has already been used.');
@@ -1896,7 +1944,6 @@
         }
       }
 
-      // 3. Manual Fallback: Bybit UID / Off-chain
       currentUser.beginnerSettlementStatus = 'pending_review';
       currentUser.submittedTXID = ref;
       currentUser.submittedDebtAmount = calc.totalOwed;
@@ -1907,7 +1954,7 @@
         `⏳ Payment Reference Submitted ($${calc.totalOwed} USD).\n\n` +
         `Reference: "${ref}"\n` +
         `Status: Placed in the Pending Waiting Queue.\n\n` +
-        `Bybit internal transfers run off-chain. The platform owner must confirm your deposit from the Treasury before your lockout is released.`
+        `Bybit transfers run off-chain. The platform owner must confirm your deposit from the Treasury before your lockout is released.`
       );
     }
 
@@ -1931,22 +1978,19 @@
       const price = tierMode === 'direct' ? appConfig.directUploadPrice : appConfig.subPrice;
       const expectedPassKey = compute30DayKeyForEmail(currentUser.email, tierMode);
 
-      // 1. Master Key Override
       if (input === OWNER_PASS) {
         activateUserMembership(currentUser, tierMode);
         alert(`👑 Master Override: Activated 30-Day ${tierMode === 'direct' ? '$15 Direct Pass' : '$23 Normal Pass'}!`);
         return;
       }
 
-      // 2. Admin Generated Pass Key
       if (input.toUpperCase() === expectedPassKey) {
         activateUserMembership(currentUser, tierMode);
         alert(`🎉 Activation Key Accepted! 30-Day membership unlocked.`);
         return;
       }
 
-      // 3. Automated Solana On-Chain Verification with Amount Check
-      if (input.length >= 80 && !input.includes(' ') && !input.toLowerCase().startsWith('bybit')) {
+      if (input.length >= 80 && !input.includes(' ') && !refStartsWithBybit(input)) {
         if (usedPaymentSignatures.includes(input)) {
           alert('❌ This blockchain transaction signature has already been used.');
           return;
@@ -1966,7 +2010,6 @@
         }
       }
 
-      // 4. Manual Bybit UID / Off-chain Fallback
       currentUser.membershipSettlementStatus = 'pending_review';
       currentUser.submittedMembershipRef = input;
       currentUser.submittedMembershipTier = tierMode;
@@ -1980,6 +2023,10 @@
         `Status: Placed in the Pending Waiting Queue.\n\n` +
         `Bybit transfers require owner confirmation against internal Bybit account records. Your membership will activate as soon as approved in the Treasury.`
       );
+    }
+
+    function refStartsWithBybit(str) {
+      return (str || '').toLowerCase().startsWith('bybit');
     }
 
     function activateUserMembership(userObj, tierMode) {
@@ -2006,7 +2053,6 @@
         return;
       }
 
-      // 1. Free Products: Instant Download
       if (p.price === 0) {
         incrementProductClick(p.id);
         executeFileDownload(p);
@@ -2025,7 +2071,6 @@
       if (!input || !input.trim()) return;
       const ref = input.trim();
 
-      // 2. Master Key Override (For Testing)
       if (ref === OWNER_PASS) {
         incrementProductClick(p.id);
         executeFileDownload(p);
@@ -2033,8 +2078,7 @@
         return;
       }
 
-      // 3. Automated On-Chain Verification: Checks Amount, Recipient & Anti-Replay
-      if (ref.length >= 80 && !ref.includes(' ') && !ref.toLowerCase().startsWith('bybit')) {
+      if (ref.length >= 80 && !ref.includes(' ') && !refStartsWithBybit(ref)) {
         if (usedPaymentSignatures.includes(ref)) {
           alert('❌ This blockchain transaction signature has already been used.');
           return;
@@ -2057,7 +2101,6 @@
         }
       }
 
-      // 4. Bybit / Manual Fallback Notice
       alert(
         `⏳ Manual Transfer Reference Submitted.\n\n` +
         `Reference: "${ref}"\n` +
@@ -2079,12 +2122,17 @@
     }
 
     // -------------------------------------------------------------------------
-    // ADMIN MANUAL APPROVAL / REJECTION ACTIONS
+    // OWNER TREASURY & INTERACTIVE REPLY WORKFLOW
     // -------------------------------------------------------------------------
-    function adminApproveSettlement(userEmail) {
+    function adminApproveSettlement(userEmail, cleanEmailId) {
       if (!isOwnerLoggedIn()) return;
       const u = usersDB[userEmail.toLowerCase()];
       if (!u) return;
+
+      const customInput = document.getElementById(`admin-reply-input-${cleanEmailId}`);
+      const customMsg = customInput && customInput.value.trim() 
+        ? customInput.value.trim() 
+        : 'Your payment reference has been verified by the platform owner. Your membership is now active!';
 
       if (u.membershipSettlementStatus === 'pending_review') {
         const tier = u.submittedMembershipTier || 'link';
@@ -2101,35 +2149,42 @@
 
       u.inbox = u.inbox || [];
       u.inbox.unshift({
-        from: 'AL-TUJAR VAULTS Treasury',
-        subject: '✅ Payment Verified: Account Unlocked',
-        body: `Your payment reference has been verified by the platform owner. Your membership is now active.`,
+        from: 'AL-TUJAR VAULTS Treasury (altujarvaults@gmail.com)',
+        subject: '✅ Payment Verified & Approved!',
+        body: customMsg,
         date: new Date().toLocaleDateString()
       });
 
       saveAllState();
       loadAdminInputs();
-      alert(`✅ Approved and activated account for ${u.email}.`);
+      updateTreasuryNotificationBadges();
+      alert(`✅ Approved and sent reply to ${u.email}!`);
     }
 
-    function adminRejectSettlement(userEmail) {
+    function adminRejectSettlement(userEmail, cleanEmailId) {
       if (!isOwnerLoggedIn()) return;
       const u = usersDB[userEmail.toLowerCase()];
       if (!u) return;
+
+      const customInput = document.getElementById(`admin-reply-input-${cleanEmailId}`);
+      const customMsg = customInput && customInput.value.trim() 
+        ? customInput.value.trim() 
+        : `Your submitted reference "${u.submittedTXID || u.submittedMembershipRef}" could not be verified in our records. Please contact support or resubmit.`;
 
       u.beginnerSettlementStatus = 'rejected';
       u.membershipSettlementStatus = 'rejected';
       u.inbox = u.inbox || [];
       u.inbox.unshift({
-        from: 'AL-TUJAR VAULTS Treasury',
-        subject: '❌ Payment Reference Rejected',
-        body: `Your submitted reference "${u.submittedTXID || u.submittedMembershipRef}" could not be verified on our records. Please contact support or resubmit.`,
+        from: 'AL-TUJAR VAULTS Treasury (altujarvaults@gmail.com)',
+        subject: '❌ Payment Verification Issue',
+        body: customMsg,
         date: new Date().toLocaleDateString()
       });
 
       saveAllState();
       loadAdminInputs();
-      alert(`❌ Rejected payment reference for ${u.email}.`);
+      updateTreasuryNotificationBadges();
+      alert(`❌ Sent rejection note to ${u.email}.`);
     }
 
     function handleLogout() {
@@ -2176,12 +2231,13 @@
       const show = isOwnerLoggedIn();
       const admNav = document.getElementById('nav-admin');
       const admMob = document.getElementById('mob-nav-admin');
-      if (admNav) admNav.style.display = show ? 'block' : 'none';
+      if (admNav) admNav.style.display = show ? 'inline-flex' : 'none';
       if (admMob) admMob.style.display = show ? 'block' : 'none';
       if (!show) {
         const v = document.getElementById('view-admin');
         if (v) v.style.display = 'none';
       }
+      updateTreasuryNotificationBadges();
     }
 
     function unlockAdminConsole() {
@@ -2454,7 +2510,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // MULTI-FORMAT UPLOAD ENGINE
+    // MULTI-FORMAT UPLOAD ENGINE (WITH STRICT PRE-FLIGHT MEMBERSHIP CHECK)
     // -------------------------------------------------------------------------
     function handleUploadNatureChange() {
       const nature = document.getElementById('up-nature')?.value || 'Digital';
@@ -2541,9 +2597,12 @@
         return;
       }
       if (!hasActiveSellerMembership(currentUser)) {
+        alert('⛔ Access Denied: You do not have an active seller membership. Please unlock a plan before publishing products.');
+        enforceUploadGateUI();
         openNativeCheckoutModal();
         return;
       }
+
       const title = (document.getElementById('up-title').value || '').trim();
       const price = parseFloat(document.getElementById('up-price').value) || 0;
       const thumb = (document.getElementById('up-thumb').value || '').trim();
@@ -2829,7 +2888,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // ADMIN CONTROL ROOM RENDERING (WITH BYBIT / MANUAL WAITING QUEUE)
+    // ADMIN CONTROL ROOM RENDERING (WITH INTERACTIVE INBOX REPLY WORKFLOW)
     // -------------------------------------------------------------------------
     function loadAdminInputs() {
       if (!isOwnerLoggedIn()) return;
@@ -2843,7 +2902,7 @@
       if (document.getElementById('admin-restart-pct')) document.getElementById('admin-restart-pct').value = appConfig.restartPenaltyPct;
       syncDynamicPricingLabels();
 
-      // 1. Pending Queue (Bybit / Off-chain Submissions)
+      // 1. Pending Queue (Bybit / Off-chain Submissions with Interactive Reply System)
       const pendingUsers = Object.values(usersDB).filter(u => u && (u.beginnerSettlementStatus === 'pending_review' || u.membershipSettlementStatus === 'pending_review'));
       const pendingBox = document.getElementById('admin-pending-settlements-table');
       if (pendingBox) {
@@ -2854,15 +2913,27 @@
               const amt = isMembership ? (u.submittedMembershipAmount || 0) : (u.submittedDebtAmount || 0);
               const ref = isMembership ? (u.submittedMembershipRef || '') : (u.submittedTXID || '');
               const tag = isMembership ? `[Pass Tier: ${u.submittedMembershipTier || 'link'}]` : `[Beginner Debt]`;
+              const safeEmail = sanitizeHTML(u.email);
+              const cleanEmailId = u.email.replace(/[^a-zA-Z0-9]/g, '_');
               return `
-                <div class="bg-slate-950 p-3 rounded-xl border border-emerald-500/50 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-                  <div>
-                    <strong class="text-white text-xs">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)}) <span class="text-amber-400 text-[10px] font-bold">${tag}</span>
-                    <div class="text-[11px] text-emerald-300 font-mono">Amount: $${amt.toFixed(2)} USD • Ref/UID: "${sanitizeHTML(ref)}"</div>
+                <div class="bg-slate-950 p-4 rounded-xl border border-emerald-500/50 space-y-3">
+                  <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                    <div>
+                      <strong class="text-white text-xs">${sanitizeHTML(u.name)}</strong> (${safeEmail}) <span class="text-amber-400 text-[10px] font-bold">${tag}</span>
+                      <div class="text-[11px] text-emerald-300 font-mono">Amount: $${amt.toFixed(2)} USD • Ref/UID: "${sanitizeHTML(ref)}"</div>
+                    </div>
                   </div>
-                  <div class="flex gap-1.5 shrink-0">
-                    <button type="button" onclick="adminApproveSettlement('${u.email}')" class="px-3 py-1.5 rounded-lg bg-emerald-500 text-slate-950 font-bold hover:brightness-110 cursor-pointer">✅ Approve & Unlock</button>
-                    <button type="button" onclick="adminRejectSettlement('${u.email}')" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 text-rose-300 font-bold cursor-pointer">✕ Reject</button>
+                  <div class="space-y-1.5">
+                    <label class="text-[10px] text-slate-400 font-bold block">📩 Custom Reply Message to ${safeEmail}'s Inbox:</label>
+                    <input type="text" id="admin-reply-input-${cleanEmailId}" placeholder="e.g., Bybit transfer confirmed! Your 30-day pass is now active. Welcome!" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs outline-none focus:border-amber-400">
+                  </div>
+                  <div class="flex gap-2">
+                    <button type="button" onclick="adminApproveSettlement('${safeEmail}', '${cleanEmailId}')" class="flex-1 py-2 rounded-lg bg-emerald-500 text-slate-950 font-bold hover:brightness-110 cursor-pointer text-xs">
+                      ✅ Approve & Send Reply
+                    </button>
+                    <button type="button" onclick="adminRejectSettlement('${safeEmail}', '${cleanEmailId}')" class="px-4 py-2 rounded-lg bg-rose-500/20 text-rose-300 font-bold hover:bg-rose-500/30 cursor-pointer text-xs">
+                      ✕ Reject with Note
+                    </button>
                   </div>
                 </div>
               `;
