@@ -378,7 +378,7 @@
       </div>
     </section>
 
-    <!-- Search & Filters -->
+    <!-- Search, Filter & Top 100 Best Sellers Switcher -->
     <section class="bg-obsidianCard border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl">
       <div class="flex flex-col lg:flex-row gap-3 items-stretch lg:items-center justify-between">
         <div class="relative flex-1">
@@ -388,7 +388,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
           <select id="sort-select" onchange="renderMarketplaceGrid()" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-amber-200 font-semibold outline-none cursor-pointer">
             <option value="newest">🕒 Date: Newest First</option>
-            <option value="oldest">⏳ Date: Oldest First</option>
+            <option value="top100_month">🏆 Top 100 Best Sellers (This Month)</option>
             <option value="popular_views">🔥 Popular Views</option>
             <option value="popular_clicks">⚡ Most Sold / Clicked</option>
             <option value="info_score">📋 100% Info Score First</option>
@@ -412,7 +412,10 @@
         </div>
       </div>
       <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pt-1" id="tag-filter-strip"></div>
-      <div id="results-counter" class="text-xs text-slate-400 pt-2 border-t border-slate-800/80">Showing verified listings</div>
+      <div id="results-counter" class="text-xs text-slate-400 pt-2 border-t border-slate-800/80 flex items-center justify-between">
+        <span>Showing verified listings</span>
+        <span id="top-month-status-pill" style="display: none;" class="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-300 font-bold text-[11px]">🏆 Monthly Top 100 Leaderboard</span>
+      </div>
     </section>
 
     <!-- Product Grid -->
@@ -525,7 +528,7 @@
           <button type="button" onclick="attemptOpenUploadTab()" id="st-tab-upload" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0 cursor-pointer">➕ Upload File</button>
           <button type="button" onclick="switchStudioSubTab('inbox')" id="st-tab-inbox" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0 cursor-pointer">📩 My Inbox & Warnings</button>
           <button type="button" onclick="switchStudioSubTab('payments')" id="st-tab-payments" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0 cursor-pointer">💰 Payment & Beginner Settlement</button>
-          <button type="button" onclick="switchStudioSubTab('profile')" id="st-tab-profile" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0 cursor-pointer">⚙️ Manage Account & Flag Privacy</button>
+          <button type="button" onclick="switchStudioSubTab('profile')" id="st-tab-profile" class="px-4 py-2 rounded-xl bg-slate-900 text-slate-300 shrink-0 cursor-pointer">⚙️ Manage Account</button>
         </div>
       </div>
     </div>
@@ -623,7 +626,7 @@
             </div>
             <div>
               <label class="block text-slate-300 font-semibold mb-1">Your Receiving Wallet / Payment Instructions *</label>
-              <input type="text" id="up-seller-wallet" oninput="calculateLiveUploadScore()" placeholder="e.g., Solana Address or Bybit UID" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
+              <input type="text" id="up-seller-wallet" oninput="calculateLiveUploadScore()" placeholder="e.g., Solana Address (for Instant Buyer Auto-Downloads)" class="w-full bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
             </div>
           </div>
 
@@ -669,13 +672,11 @@
       <div id="payment-center-details"></div>
     </div>
 
-    <!-- Manage Profile with Instant Reset to Unpaid for Testing -->
+    <!-- Manage Profile (Cleaned - Seller cannot reset own account) -->
     <div id="studio-sub-profile" style="display: none;" class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-4 text-xs">
       <div class="flex items-center justify-between border-b border-slate-800 pb-2">
-        <h3 class="font-royal text-lg font-bold text-amber-300">⚙️ Manage Account & Membership Testing</h3>
-        <button type="button" onclick="resetMyAccountToUnpaidFree()" class="px-3 py-1.5 rounded-xl bg-amber-500/15 border border-amber-500/40 text-amber-300 font-bold hover:bg-amber-500/30 cursor-pointer" title="Reset your account to unpaid to test payment gates">
-          🔄 Reset My Account to Unpaid Free User (Test Lock)
-        </button>
+        <h3 class="font-royal text-lg font-bold text-amber-300">⚙️ Storefront & Profile Settings</h3>
+        <span class="text-[11px] text-slate-400">Account status & plan management handled via Treasury</span>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <input type="text" id="prof-name" placeholder="Storefront Name" class="bg-slate-950 border border-slate-700 rounded-xl px-3.5 py-2.5 text-white">
@@ -705,7 +706,7 @@
     </div>
   </section>
 
-  <!-- MAIN VIEW 4: TREASURY (WITH NOTIFICATION & REPLY WORKFLOW) -->
+  <!-- MAIN VIEW 4: TREASURY (WITH EXECUTIVE AUDIT & RESET CONTROLS) -->
   <section id="view-admin" style="display: none;" class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <div id="admin-lock-screen" class="max-w-md mx-auto bg-obsidianCard border border-amber-500/40 rounded-3xl p-6 text-center space-y-4 my-10">
       <h2 class="font-royal text-xl font-bold text-white">🔐 Vault Security Gate</h2>
@@ -718,12 +719,12 @@
       <div class="flex items-center justify-between bg-obsidianCard border border-amber-500/40 rounded-2xl p-4">
         <div>
           <h2 class="brand-gold-3d text-lg sm:text-xl">AL-TUJAR VAULTS TREASURY & OWNER CONTROL</h2>
-          <p class="text-[11px] text-slate-400">Review Bybit & Wallet queues, dispatch instant approvals, and reply to user inboxes.</p>
+          <p class="text-[11px] text-slate-400">Manage member accounts, review Bybit payments, and audit monthly product income.</p>
         </div>
         <button type="button" onclick="lockAdminConsole()" class="px-4 py-2 rounded-xl bg-rose-500/20 text-rose-300 font-bold cursor-pointer">🔒 Lock</button>
       </div>
 
-      <!-- Pending Queue with Custom Inbox Reply -->
+      <!-- Pending Queue with Interactive Reply System -->
       <div class="bg-obsidianCard border border-emerald-500/50 rounded-2xl p-5 space-y-3">
         <div class="flex justify-between items-center border-b border-slate-800 pb-2">
           <div class="flex items-center gap-2">
@@ -733,6 +734,43 @@
           <span class="text-[10px] text-slate-400">Synced to Supabase Cloud Database</span>
         </div>
         <div id="admin-pending-settlements-table" class="space-y-3 max-h-80 overflow-y-auto"></div>
+      </div>
+
+      <!-- Top 100 Best Selling Products Executive Revenue Audit -->
+      <div class="bg-obsidianCard border border-amber-500/40 rounded-2xl p-5 space-y-3">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+          <div class="flex items-center gap-2">
+            <span class="text-lg">📈</span>
+            <h3 class="font-bold text-amber-300 text-sm">Top 100 Best Selling Products & Revenue Audit (This Month)</h3>
+          </div>
+          <span class="text-[10px] text-slate-400">Calculated from verified downloads & clicks</span>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-[11px]">
+            <thead>
+              <tr class="border-b border-slate-800 text-slate-400">
+                <th class="py-2 px-2">Rank</th>
+                <th class="py-2 px-2">Product</th>
+                <th class="py-2 px-2">Seller</th>
+                <th class="py-2 px-2 text-center">Units Sold</th>
+                <th class="py-2 px-2 text-right">Price</th>
+                <th class="py-2 px-2 text-right text-white">Est. Gross Revenue</th>
+                <th class="py-2 px-2 text-right text-amber-300">Platform Cut (3%)</th>
+                <th class="py-2 px-2 text-right text-emerald-300">Seller Net (97%)</th>
+              </tr>
+            </thead>
+            <tbody id="admin-top100-audit-tbody" class="divide-y divide-slate-800/60"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- All Users Table with Remaining Days & Admin Reset Feature -->
+      <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-3">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+          <h3 class="font-bold text-emerald-300">👥 All Registered Sellers & Members (<span id="admin-users-count">0</span> Total)</h3>
+          <span class="text-[10px] text-slate-400">Owner can reset any seller to unpaid or ban account</span>
+        </div>
+        <div id="admin-users-table" class="space-y-2 max-h-72 overflow-y-auto"></div>
       </div>
 
       <!-- Beginner Cohort -->
@@ -747,11 +785,6 @@
       <div class="bg-obsidianCard border border-rose-500/40 rounded-2xl p-5 space-y-3">
         <h3 class="font-bold text-rose-300">⏳ Expired Unpaid Beginner Profiles to Ban (3-Day Grace + 7-Day Auto-Ban)</h3>
         <div id="admin-overdue-ban-queue" class="space-y-2 max-h-60 overflow-y-auto"></div>
-      </div>
-
-      <div class="bg-obsidianCard border border-slate-800 rounded-2xl p-5 space-y-3">
-        <h3 class="font-bold text-emerald-300">👥 All Joined Sign-Up Accounts (<span id="admin-users-count">0</span> Total Joined)</h3>
-        <div id="admin-users-table" class="space-y-2 max-h-64 overflow-y-auto"></div>
       </div>
 
       <div class="bg-obsidianCard border border-rose-500/30 rounded-2xl p-5 space-y-3">
@@ -850,7 +883,7 @@
           <div class="flex justify-between"><span class="font-bold text-emerald-300">📥 Direct Upload Pass</span><span class="text-lg font-extrabold text-white">$<span class="dyn-direct-sub-lbl">15</span>/mo</span></div>
           <p class="text-[11px] text-slate-400">Upload Presets, MP3 Audio, HTML, PNG, MP4, or PDF directly on the web.</p>
         </div>
-        <div onclick="selectCheckoutTier('link')" id="tier-card-link" class="cursor-pointer bg-slate-950 border-2 border-amber-500/40 rounded-2xl p-3.5 space-y-1">
+        <div onclick="selectCheckoutTier('link')" id="tier-card-link" class="cursor-pointer bg-slate-950 border-2 border-amber-500 rounded-2xl p-3.5 space-y-1">
           <div class="flex justify-between"><span class="font-bold text-amber-300">🔗 Normal Full Membership</span><span class="text-lg font-extrabold text-white">$<span class="dyn-link-sub-lbl">23</span>/mo</span></div>
           <p class="text-[11px] text-slate-400">Upload BOTH direct digital files AND indirect external product links (Physical or Digital).</p>
         </div>
@@ -913,8 +946,8 @@
       </div>
       <div id="footer-social-strip" class="flex flex-wrap gap-2 pt-3 border-t border-slate-900"></div>
     </div>
-  </footer>
-    <script>
+        </footer>
+          <script>
     // -------------------------------------------------------------------------
     // SUPABASE CLIENT INITIALIZATION (SAFE INITIALIZATION)
     // -------------------------------------------------------------------------
@@ -1684,30 +1717,52 @@
     }
 
     // -------------------------------------------------------------------------
-    // TESTING TOOL: RESET ACCOUNT TO UNPAID FREE USER
+    // ADMIN-ONLY RESET ACCOUNT CONTROLS
     // -------------------------------------------------------------------------
-    function resetMyAccountToUnpaidFree() {
-      if (!currentUser) return;
-      if (currentUser.email === OWNER_EMAIL) {
-        if (!confirm('You are logged in as the platform Owner. Do you want to strip your active status and test as an unpaid free user?')) return;
+    function adminResetUserToUnpaid(targetEmail) {
+      if (!isOwnerLoggedIn()) return;
+      const cleanEmail = (targetEmail || '').trim().toLowerCase();
+      const u = usersDB[cleanEmail];
+      if (!u) return;
+
+      if (!confirm(`Are you sure you want to RESET "${u.name}" (${cleanEmail}) to UNPAID / FREE?\n\nThis will strip their membership, set days left to 0, and re-arm all upload locks.`)) {
+        return;
       }
-      currentUser.membershipType = 'none';
-      currentUser.membershipExpiresAt = 0;
-      currentUser.beginnerFlagged = false;
-      currentUser.beginnerPaidSettled = false;
-      currentUser.beginnerStartAt = 0;
-      currentUser.beginnerExpiresAt = 0;
-      currentUser.beginnerAutoBanAt = 0;
-      currentUser.beginnerUploadsCount = 0;
-      currentUser.beginnerSettlementStatus = 'none';
-      currentUser.membershipSettlementStatus = 'none';
-      currentUser.submittedTXID = '';
-      currentUser.submittedMembershipRef = '';
-      deviceBeginnerEmailRecord = '';
+
+      u.membershipType = 'none';
+      u.membershipExpiresAt = 0;
+      u.beginnerFlagged = false;
+      u.beginnerPaidSettled = false;
+      u.beginnerStartAt = 0;
+      u.beginnerExpiresAt = 0;
+      u.beginnerAutoBanAt = 0;
+      u.beginnerUploadsCount = 0;
+      u.beginnerSettlementStatus = 'none';
+      u.membershipSettlementStatus = 'none';
+      u.submittedTXID = '';
+      u.submittedMembershipRef = '';
+
+      if (deviceBeginnerEmailRecord === cleanEmail) {
+        deviceBeginnerEmailRecord = '';
+      }
+
+      u.inbox = u.inbox || [];
+      u.inbox.unshift({
+        from: 'AL-TUJAR VAULTS Administration',
+        subject: '🔒 Seller Pass Status Notice: Reset to Unpaid',
+        body: 'Your seller membership has expired or been reset to Unpaid Free status by administration. To upload or publish new products, please renew your membership.',
+        date: new Date().toLocaleDateString()
+      });
+
+      if (currentUser && currentUser.email.toLowerCase() === cleanEmail) {
+        currentUser = u;
+        enforceUploadGateUI();
+        renderCreatorStudio();
+      }
+
       saveAllState();
-      enforceUploadGateUI();
-      renderCreatorStudio();
-      alert('🔄 Your account has been reset to an UNPAID FREE account! All upload gates and payment blocks are now armed.');
+      loadAdminInputs();
+      alert(`✅ Account for ${cleanEmail} has been reset to UNPAID / FREE status.`);
     }
 
     function updateGuestVsAuthHeaderUI() {
@@ -1795,18 +1850,15 @@
         const transaction = data.result.transaction;
         const accountKeys = transaction?.message?.accountKeys?.map(k => typeof k === 'string' ? k : k.pubkey) || [];
         
-        // 1. Verify Destination Wallet Was Credited
         const walletIndex = accountKeys.indexOf(expectedSolanaWallet);
         if (walletIndex === -1) {
           return { verified: false, reason: `Transaction does not transfer funds to designated wallet (${expectedSolanaWallet}).` };
         }
 
-        // 2. Calculate Native SOL Credited
         const preLamports = meta.preBalances ? (meta.preBalances[walletIndex] || 0) : 0;
         const postLamports = meta.postBalances ? (meta.postBalances[walletIndex] || 0) : 0;
         const netSolCredited = Math.max(0, (postLamports - preLamports) / 1e9);
 
-        // 3. Calculate SPL Token Credited (USDT / USDC)
         let netTokenCredited = 0;
         if (Array.isArray(meta.postTokenBalances)) {
           const preToken = (meta.preTokenBalances || []).find(b => b.owner === expectedSolanaWallet);
@@ -1818,7 +1870,6 @@
           }
         }
 
-        // 4. Exact Dollar Value Calculation
         const solUsdRate = await getLiveSolPriceUsd();
         const solUsdValue = netSolCredited * solUsdRate;
         const totalUsdPaid = netTokenCredited + solUsdValue;
@@ -2044,7 +2095,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // AUTOMATED ON-CHAIN PRODUCT PURCHASES (EXACT AMOUNT TO SELLER WALLET)
+    // AUTOMATED DIRECT DOWNLOAD PURCHASES (BUYER SENDS DIRECTLY TO SELLER WALLET)
     // -------------------------------------------------------------------------
     async function triggerDirectDigitalPurchaseAndDownload(p) {
       if (!currentUser) {
@@ -2084,7 +2135,7 @@
           return;
         }
 
-        alert(`🔍 Verifying payment of $${p.price.toFixed(2)} USD on Solana blockchain...`);
+        alert(`🔍 Verifying payment of $${p.price.toFixed(2)} USD directly to seller wallet on Solana blockchain...`);
         const solCheck = await verifySolanaTransactionOnChain(ref, targetWallet, p.price);
 
         if (solCheck.verified) {
@@ -2656,7 +2707,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // MARKETPLACE RENDERING & CARDS
+    // MARKETPLACE RENDERING & TOP 100 BEST SELLERS LEADERBOARD
     // -------------------------------------------------------------------------
     function renderTagFilterStrip() {
       const strip = document.getElementById('tag-filter-strip');
@@ -2666,17 +2717,18 @@
 
     function setTagFilter(tag) { activeTagFilter = tag; renderTagFilterStrip(); renderMarketplaceGrid(); }
 
-    function renderProductCardHTML(p) {
+    function renderProductCardHTML(p, rankBadge = null) {
       const isFav = (currentUser?.favorites || []).includes(p.id);
       const inCart = (currentUser?.cart || []).includes(p.id);
       const allowDelete = canUserDeleteProduct(p);
       const isDirect = p.hostingMode === 'direct_web';
       return `
-        <article class="bg-obsidianCard border ${p.frozen ? 'border-rose-500/60' : 'border-slate-800'} hover:border-amber-500/50 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg group">
+        <article class="bg-obsidianCard border ${p.frozen ? 'border-rose-500/60' : 'border-slate-800'} hover:border-amber-500/50 rounded-2xl overflow-hidden flex flex-col justify-between shadow-lg group relative">
           <div>
             <div class="relative h-48 overflow-hidden bg-slate-950">
               <img src="${sanitizeHTML(p.thumb)}" alt="${sanitizeHTML(p.title)}" class="w-full h-full object-cover ${p.frozen ? 'opacity-35 grayscale' : ''}" />
               <div class="absolute top-2.5 left-2.5 flex flex-wrap gap-1">
+                ${rankBadge ? `<span class="px-2 py-0.5 rounded-lg text-[10px] font-extrabold bg-amber-500 text-slate-950 shadow-md">${rankBadge}</span>` : ''}
                 <span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-slate-950/90 text-amber-300 border border-amber-400/30">${sanitizeHTML(p.type)}</span>
                 ${isDirect ? '<span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-emerald-950/90 text-emerald-300">📥 Direct File</span>' : ''}
                 ${p.audioPreview ? '<span class="px-2 py-0.5 rounded-lg text-[10px] font-bold bg-sky-950/90 text-sky-300">🔊 Audio Preview</span>' : ''}
@@ -2732,18 +2784,34 @@
       if (infoMode === 'has_video') filtered = filtered.filter(p => Boolean(p.video));
       if (infoMode === 'full_info') filtered = filtered.filter(p => p.infoScore >= 95);
 
-      filtered.sort((a, b) => {
-        if (sortMode === 'newest') return b.postedAt - a.postedAt;
-        if (sortMode === 'oldest') return a.postedAt - b.postedAt;
-        if (sortMode === 'popular_views') return b.views - a.views;
-        if (sortMode === 'popular_clicks') return b.clicks - a.clicks;
-        if (sortMode === 'info_score') return b.infoScore - a.infoScore;
-        if (sortMode === 'price_asc') return a.price - b.price;
-        if (sortMode === 'price_desc') return b.price - a.price;
-        return 0;
-      });
-      document.getElementById('results-counter').innerHTML = `Showing <strong class="text-amber-300">${filtered.length}</strong> verified listings`;
-      grid.innerHTML = filtered.map(p => renderProductCardHTML(p)).join('');
+      const isTop100Mode = (sortMode === 'top100_month');
+      const topPill = document.getElementById('top-month-status-pill');
+      if (topPill) topPill.style.display = isTop100Mode ? 'inline-block' : 'none';
+
+      if (isTop100Mode) {
+        filtered.sort((a, b) => b.clicks - a.clicks);
+        filtered = filtered.slice(0, 100);
+      } else {
+        filtered.sort((a, b) => {
+          if (sortMode === 'newest') return b.postedAt - a.postedAt;
+          if (sortMode === 'oldest') return a.postedAt - b.postedAt;
+          if (sortMode === 'popular_views') return b.views - a.views;
+          if (sortMode === 'popular_clicks') return b.clicks - a.clicks;
+          if (sortMode === 'info_score') return b.infoScore - a.infoScore;
+          if (sortMode === 'price_asc') return a.price - b.price;
+          if (sortMode === 'price_desc') return b.price - a.price;
+          return 0;
+        });
+      }
+
+      document.getElementById('results-counter').querySelector('span').innerHTML = isTop100Mode 
+        ? `Showing Top <strong class="text-amber-300">${filtered.length}</strong> Most Sold Listings This Month` 
+        : `Showing <strong class="text-amber-300">${filtered.length}</strong> verified listings`;
+
+      grid.innerHTML = filtered.map((p, idx) => {
+        const badge = isTop100Mode ? `🏆 #${idx + 1}` : null;
+        return renderProductCardHTML(p, badge);
+      }).join('');
     }
 
     function handleProductCardClick(id) {
@@ -2888,7 +2956,7 @@
     }
 
     // -------------------------------------------------------------------------
-    // ADMIN CONTROL ROOM RENDERING (WITH INTERACTIVE INBOX REPLY WORKFLOW)
+    // ADMIN TREASURY AUDIT & MANAGEMENT CONTROLS
     // -------------------------------------------------------------------------
     function loadAdminInputs() {
       if (!isOwnerLoggedIn()) return;
@@ -2940,23 +3008,83 @@
             }).join('');
       }
 
-      // 2. Beginner Cohort Table
-      const cohort = Object.values(usersDB).filter(u => u && (u.beginnerFlagged || u.membershipType?.startsWith('beginner'))).map(u => ({ u, calc: calculateBeginnerOwedBreakdown(u), w: getWeeklyUploadCountForUser(u.email) })).sort((a, b) => a.calc.daysLeft - b.calc.daysLeft);
-      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Total Uploads: ${calc.uploadsCount} • Owed: $${calc.totalOwed} (3-Mo End: $${calc.fullEndTotalOwed})</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold cursor-pointer">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold cursor-pointer">Ban</button></div></div>`).join('');
+      // 2. Top 100 Best Selling Products Executive Revenue Audit Table
+      const auditTbody = document.getElementById('admin-top100-audit-tbody');
+      if (auditTbody) {
+        const sortedProducts = [...products].filter(p => !p.frozen).sort((a, b) => b.clicks - a.clicks).slice(0, 100);
+        auditTbody.innerHTML = sortedProducts.length === 0
+          ? `<tr><td colspan="8" class="text-center py-4 text-slate-400">No product sales recorded yet.</td></tr>`
+          : sortedProducts.map((p, idx) => {
+              const units = Number(p.clicks || 0);
+              const price = Number(p.price || 0);
+              const estGross = units * price;
+              const platformCut = estGross * 0.03;
+              const sellerNet = estGross * 0.97;
+              return `
+                <tr class="hover:bg-slate-900/60">
+                  <td class="py-2.5 px-2 font-bold text-amber-300">#${idx + 1}</td>
+                  <td class="py-2.5 px-2 font-semibold text-white">
+                    <div class="line-clamp-1">${sanitizeHTML(p.title)}</div>
+                    <div class="text-[9px] text-slate-400">${sanitizeHTML(p.type)} • ${sanitizeHTML(p.hostingMode === 'direct_web' ? 'Direct File' : 'External Link')}</div>
+                  </td>
+                  <td class="py-2.5 px-2 text-slate-300">
+                    <div>${sanitizeHTML(p.creator)}</div>
+                    <div class="text-[9px] font-mono text-slate-400 truncate max-w-[120px]">${sanitizeHTML(p.sellerWallet || 'Platform Wallet')}</div>
+                  </td>
+                  <td class="py-2.5 px-2 text-center font-bold text-white">${units}</td>
+                  <td class="py-2.5 px-2 text-right font-mono text-slate-300">$${price.toFixed(2)}</td>
+                  <td class="py-2.5 px-2 text-right font-mono font-bold text-white">$${estGross.toFixed(2)}</td>
+                  <td class="py-2.5 px-2 text-right font-mono font-bold text-amber-300">+$${platformCut.toFixed(2)}</td>
+                  <td class="py-2.5 px-2 text-right font-mono font-bold text-emerald-300">$${sellerNet.toFixed(2)}</td>
+                </tr>
+              `;
+            }).join('');
+      }
 
-      // 3. Overdue Ban Queue
-      const overdue = Object.values(usersDB).filter(u => u && u.membershipType === 'beginner_expired_unpaid');
-      document.getElementById('admin-overdue-ban-queue').innerHTML = overdue.length === 0 ? `<p class="text-slate-400">No expired unpaid accounts in ban queue.</p>` : overdue.map(u => `<div class="bg-slate-950 p-3 rounded-xl border border-rose-500 flex justify-between"><span>${sanitizeHTML(u.email)} (Canonical: ${sanitizeHTML(u.canonicalEmail || u.email)})</span><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-3 py-1 rounded bg-rose-600 text-white font-bold cursor-pointer">Ban & Erase</button></div>`).join('');
-
-      // 4. Users Table
+      // 3. Registered Sellers Table with Exact Remaining Days & Admin Reset Feature
       const emails = Object.keys(usersDB);
       document.getElementById('admin-users-count').textContent = emails.length;
       document.getElementById('admin-users-table').innerHTML = emails.map(em => {
         const u = usersDB[em];
-        return `<div class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 flex justify-between items-center"><span><strong>${sanitizeHTML(u.name)}</strong> • ${sanitizeHTML(u.email)} (${sanitizeHTML(u.membershipType)})</span>${em !== OWNER_EMAIL ? `<button type="button" onclick="adminDeleteUserAccount('${em}')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-bold cursor-pointer">🚫 Ban Email</button>` : '<span class="text-emerald-400 font-bold">👑 Verified</span>'}</div>`;
+        const isOwner = (em === OWNER_EMAIL);
+        const isActive = hasActiveSellerMembership(u);
+        const daysLeft = isActive 
+          ? (isOwner ? 'Lifetime' : `${Math.max(1, Math.ceil((u.membershipExpiresAt - Date.now()) / ONE_DAY_MS))}d left`) 
+          : '0d left (Locked / Free)';
+        const statusBadge = isOwner 
+          ? `<span class="text-amber-400 font-bold">👑 Platform Owner</span>` 
+          : isActive 
+            ? `<span class="text-emerald-400 font-bold">✔ Active (${daysLeft})</span>` 
+            : `<span class="text-slate-400 font-semibold">🔒 Unpaid / Free (${daysLeft})</span>`;
+        return `
+          <div class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div>
+              <strong class="text-white">${sanitizeHTML(u.name)}</strong> • <span class="text-slate-400">${sanitizeHTML(u.email)}</span>
+              <div class="text-[10px] text-slate-300 mt-0.5">Tier: <strong>${sanitizeHTML(u.membershipType || 'none')}</strong> • Status: ${statusBadge}</div>
+            </div>
+            ${!isOwner ? `
+              <div class="flex items-center gap-1.5 shrink-0">
+                <button type="button" onclick="adminResetUserToUnpaid('${sanitizeHTML(u.email)}')" class="px-2.5 py-1 rounded bg-amber-500/15 border border-amber-500/40 text-amber-300 font-bold hover:bg-amber-500/30 text-[10px] cursor-pointer" title="Reset this account back to unpaid free user">
+                  🔄 Reset to Free/Unpaid
+                </button>
+                <button type="button" onclick="adminDeleteUserAccount('${sanitizeHTML(u.email)}')" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-bold text-[10px] cursor-pointer">
+                  🚫 Ban Email
+                </button>
+              </div>
+            ` : ''}
+          </div>
+        `;
       }).join('');
 
-      // 5. Frozen Listings Table
+      // 4. Beginner Cohort Table
+      const cohort = Object.values(usersDB).filter(u => u && (u.beginnerFlagged || u.membershipType?.startsWith('beginner'))).map(u => ({ u, calc: calculateBeginnerOwedBreakdown(u), w: getWeeklyUploadCountForUser(u.email) })).sort((a, b) => a.calc.daysLeft - b.calc.daysLeft);
+      document.getElementById('admin-beginner-cohort-table').innerHTML = cohort.length === 0 ? `<p class="text-slate-400">No active beginner cohort accounts.</p>` : cohort.map(({ u, calc, w }) => `<div class="bg-slate-950 p-3 rounded-xl border border-amber-500/40 flex justify-between items-center"><div><strong class="text-white">${sanitizeHTML(u.name)}</strong> (${sanitizeHTML(u.email)})<div class="text-[11px] text-amber-300">⏳ ${calc.daysLeft}d left • Weekly Uploads: ${w}/5 • Total Uploads: ${calc.uploadsCount} • Owed: $${calc.totalOwed} (3-Mo End: $${calc.fullEndTotalOwed})</div></div><div class="flex gap-1.5"><button type="button" onclick="adminSendWarningToUser('${u.email}')" class="px-2.5 py-1 rounded bg-amber-500/20 text-amber-300 font-bold cursor-pointer">Warn (3d)</button><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-2.5 py-1 rounded bg-rose-600 text-white font-bold cursor-pointer">Ban</button></div></div>`).join('');
+
+      // 5. Overdue Ban Queue
+      const overdue = Object.values(usersDB).filter(u => u && u.membershipType === 'beginner_expired_unpaid');
+      document.getElementById('admin-overdue-ban-queue').innerHTML = overdue.length === 0 ? `<p class="text-slate-400">No expired unpaid accounts in ban queue.</p>` : overdue.map(u => `<div class="bg-slate-950 p-3 rounded-xl border border-rose-500 flex justify-between"><span>${sanitizeHTML(u.email)} (Canonical: ${sanitizeHTML(u.canonicalEmail || u.email)})</span><button type="button" onclick="adminDeleteUserAccount('${u.email}')" class="px-3 py-1 rounded bg-rose-600 text-white font-bold cursor-pointer">Ban & Erase</button></div>`).join('');
+
+      // 6. Frozen Listings Table
       const frozenList = products.filter(p => p.frozen || (p.reports && p.reports.length > 0));
       document.getElementById('admin-frozen-products-table').innerHTML = frozenList.length === 0 ? `<p class="text-slate-400">No reported products.</p>` : frozenList.map(p => `<div class="bg-slate-950 p-2.5 rounded-xl border border-rose-500 flex justify-between items-center"><span>${sanitizeHTML(p.title)} (Reports: ${(p.reports || []).length}/5)</span><div class="flex gap-1.5"><button type="button" onclick="adminUnfreezeProduct('${p.id}')" class="px-2.5 py-1 rounded bg-emerald-500/20 text-emerald-300 font-bold cursor-pointer">Unfreeze</button><button type="button" onclick="deleteListing('${p.id}'); loadAdminInputs();" class="px-2.5 py-1 rounded bg-rose-500/20 text-rose-300 font-bold cursor-pointer">Delete</button></div></div>`).join('');
     }
@@ -3267,4 +3395,4 @@
   </script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-</html>
+  </html>
