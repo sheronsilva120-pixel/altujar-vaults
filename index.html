@@ -312,7 +312,11 @@
           <option value="it">🇮🇹 Italiano</option>
         </select>
 
-        <button type="button" id="header-inbox-btn" onclick="switchMainTab('studio'); switchStudioSubTab('inbox');" style="display: none;" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1 cursor-pointer"><span>📩</span><span id="inbox-count-badge" class="bg-rose-500 text-white font-bold text-[10px] px-1.5 rounded-full">0</span></button>
+        <!-- Inbox button with dynamic unread hiding -->
+        <button type="button" id="header-inbox-btn" onclick="switchMainTab('studio'); switchStudioSubTab('inbox');" style="display: none;" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1 cursor-pointer">
+          <span>📩</span>
+          <span id="inbox-count-badge" class="bg-rose-500 text-white font-bold text-[10px] px-1.5 rounded-full" style="display: none;">0</span>
+        </button>
         <button type="button" id="header-fav-btn" onclick="openSavedVaultModal('favs')" style="display: none;" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1 cursor-pointer"><span>❤️</span><span id="saved-count-badge" class="bg-amber-500 text-slate-950 font-bold text-[10px] px-1.5 rounded-full">0</span></button>
         <button type="button" id="header-cart-btn" onclick="openSavedVaultModal('cart')" style="display: none;" class="px-2.5 py-2 rounded-xl bg-slate-900 border border-slate-700 text-xs font-semibold items-center gap-1 cursor-pointer"><span>🛒</span><span id="cart-count-badge" class="bg-emerald-500 text-slate-950 font-bold text-[10px] px-1.5 rounded-full">0</span></button>
 
@@ -345,9 +349,12 @@
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-400/30 text-amber-300 text-xs font-semibold">
             <span>📧 Official Contact & Promos: altujarvaults@gmail.com</span>
           </div>
-          <h1 data-i18n="hero_title" class="font-royal text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight">
+          
+          <!-- FIX 2 APPLIED: Explicit text-white ensures high contrast in both Dark and Bright/Light mode -->
+          <h1 data-i18n="hero_title" class="font-royal text-2xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-white">
             Where Product Quality Beats <span class="gold-gradient-text">Follower Count.</span>
           </h1>
+          
           <p class="text-slate-300 text-xs sm:text-sm leading-relaxed max-w-2xl">
             <strong>Normal Full Membership ($<span class="dyn-link-sub-lbl">23</span>/mo) & Direct Upload Pass ($<span class="dyn-direct-sub-lbl">15</span>/mo):</strong> Upload <strong>Presets (.cube/.xmp/.dng), Audio SFX (.mp3/.wav), Videos (.mp4), HTML, PNG, PDF, ZIP</strong> or connect indirect external product links!<br>
             <strong>🌱 Special 3-Month Beginner Bundle:</strong> Upload both direct files and external links for 3 months starting from $0 upfront ($<span class="dyn-beg-base-lbl">23</span> × 3 months + <span class="dyn-beg-pct-lbl">23</span>% per product uploaded), then settle from your earnings!
@@ -946,8 +953,8 @@
       </div>
       <div id="footer-social-strip" class="flex flex-wrap gap-2 pt-3 border-t border-slate-900"></div>
     </div>
-        </footer>
-          <script>
+  </footer>
+    <script>
     // -------------------------------------------------------------------------
     // SUPABASE CLIENT INITIALIZATION (SAFE INITIALIZATION)
     // -------------------------------------------------------------------------
@@ -1144,8 +1151,11 @@
       }
     };
 
+    // Permanent Deletion Registry (Prevents deleted products from reappearing)
+    let deletedProductIds = safeJSONParse('altujar_master_deleted_prods', []);
+
     function loadMergedPersistentData() {
-      const savedCfg = safeJSONParse('altujar_master_config', null) || safeJSONParse('altujar_v8_config', null) || {};
+      const savedCfg = safeJSONParse('altujar_master_config', null) || {};
       const mergedConfig = {
         ...DEFAULT_CONFIG,
         ...savedCfg,
@@ -1156,25 +1166,32 @@
         restartPenaltyPct: Number(savedCfg.restartPenaltyPct || 15),
         socials: { ...DEFAULT_CONFIG.socials, ...(savedCfg.socials || {}) }
       };
+
       const prodMap = new Map();
-      INITIAL_PRODUCTS.forEach(p => prodMap.set(p.id, p));
-      ['altujar_master_products', 'altujar_v8_products', 'altujar_v7_products'].forEach(k => {
-        const arr = safeJSONParse(k, null);
-        if (Array.isArray(arr)) arr.forEach(item => { if (item && item.id) prodMap.set(item.id, item); });
+      INITIAL_PRODUCTS.forEach(p => {
+        if (!deletedProductIds.includes(p.id)) prodMap.set(p.id, p);
       });
+
+      const localProds = safeJSONParse('altujar_master_products', null);
+      if (Array.isArray(localProds)) {
+        localProds.forEach(item => {
+          if (item && item.id && !deletedProductIds.includes(item.id)) {
+            prodMap.set(item.id, item);
+          }
+        });
+      }
+
       const mergedUsers = { ...DEFAULT_USERS_DB };
-      ['altujar_master_users', 'altujar_v8_users', 'altujar_v7_users'].forEach(k => {
-        const obj = safeJSONParse(k, null);
-        if (obj && typeof obj === 'object') {
-          Object.keys(obj).forEach(em => {
-            mergedUsers[em.toLowerCase()] = {
-              inbox: [], following: [], favorites: [], cart: [],
-              beginnerSettlementStatus: 'none', submittedTXID: '', submittedDebtAmount: 0,
-              ...(mergedUsers[em.toLowerCase()] || {}), ...obj[em]
-            };
-          });
-        }
-      });
+      const localUsers = safeJSONParse('altujar_master_users', null);
+      if (localUsers && typeof localUsers === 'object') {
+        Object.keys(localUsers).forEach(em => {
+          mergedUsers[em.toLowerCase()] = {
+            inbox: [], following: [], favorites: [], cart: [],
+            beginnerSettlementStatus: 'none', submittedTXID: '', submittedDebtAmount: 0,
+            ...(mergedUsers[em.toLowerCase()] || {}), ...localUsers[em]
+          };
+        });
+      }
       return { config: mergedConfig, products: Array.from(prodMap.values()), users: mergedUsers };
     }
 
@@ -1236,7 +1253,7 @@
     }
 
     async function syncProductToCloud(prod) {
-      if (!supabaseClient || !prod || !prod.id) return;
+      if (!supabaseClient || !prod || !prod.id || deletedProductIds.includes(prod.id)) return;
       try {
         const payload = {
           id: prod.id,
@@ -1322,36 +1339,43 @@
         if (cloudProducts && Array.isArray(cloudProducts) && cloudProducts.length > 0) {
           const map = new Map();
           cloudProducts.forEach(p => {
-            map.set(p.id, {
-              id: p.id,
-              title: p.title,
-              price: Number(p.price || 0),
-              type: p.type,
-              nature: p.nature,
-              hostingMode: p.hosting_mode,
-              thumb: p.thumb,
-              url: p.url,
-              directFileData: p.direct_file_data,
-              directFileName: p.direct_file_name,
-              sellerWallet: p.seller_wallet,
-              desc: p.description,
-              discount: p.discount,
-              video: p.video,
-              audioPreview: p.audio_preview,
-              hasSandbox: Boolean(p.has_sandbox),
-              tags: Array.isArray(p.tags) ? p.tags : [],
-              creator: p.creator,
-              creatorEmail: p.creator_email,
-              postedAt: Number(p.posted_at || Date.now()),
-              infoScore: Number(p.info_score || 100),
-              rating: Number(p.rating || 5.0),
-              views: Number(p.views || 0),
-              clicks: Number(p.clicks || 0),
-              frozen: Boolean(p.frozen),
-              reports: Array.isArray(p.reports) ? p.reports : []
-            });
+            // Strictly reject deleted products from loading from the cloud
+            if (!deletedProductIds.includes(p.id)) {
+              map.set(p.id, {
+                id: p.id,
+                title: p.title,
+                price: Number(p.price || 0),
+                type: p.type,
+                nature: p.nature,
+                hostingMode: p.hosting_mode,
+                thumb: p.thumb,
+                url: p.url,
+                directFileData: p.direct_file_data,
+                directFileName: p.direct_file_name,
+                sellerWallet: p.seller_wallet,
+                desc: p.description,
+                discount: p.discount,
+                video: p.video,
+                audioPreview: p.audio_preview,
+                hasSandbox: Boolean(p.has_sandbox),
+                tags: Array.isArray(p.tags) ? p.tags : [],
+                creator: p.creator,
+                creatorEmail: p.creator_email,
+                postedAt: Number(p.posted_at || Date.now()),
+                infoScore: Number(p.info_score || 100),
+                rating: Number(p.rating || 5.0),
+                views: Number(p.views || 0),
+                clicks: Number(p.clicks || 0),
+                frozen: Boolean(p.frozen),
+                reports: Array.isArray(p.reports) ? p.reports : []
+              });
+            }
           });
-          products.forEach(localP => { if (!map.has(localP.id)) map.set(localP.id, localP); });
+          products.forEach(localP => {
+            if (!deletedProductIds.includes(localP.id) && !map.has(localP.id)) {
+              map.set(localP.id, localP);
+            }
+          });
           products = Array.from(map.values());
         }
 
@@ -1378,15 +1402,18 @@
           syncUserToCloud(currentUser);
         }
         localStorage.setItem('altujar_master_config', JSON.stringify(appConfig));
-        localStorage.setItem('altujar_master_products', JSON.stringify(products));
+        localStorage.setItem('altujar_master_products', JSON.stringify(products.filter(p => !deletedProductIds.includes(p.id))));
         localStorage.setItem('altujar_master_users', JSON.stringify(usersDB));
         localStorage.setItem('altujar_master_banned', JSON.stringify(bannedEmails));
         localStorage.setItem('altujar_master_beg_emails', JSON.stringify(usedBeginnerEmails));
         localStorage.setItem('altujar_master_used_txids', JSON.stringify(usedPaymentSignatures));
+        localStorage.setItem('altujar_master_deleted_prods', JSON.stringify(deletedProductIds));
+        
         if (deviceBeginnerEmailRecord) localStorage.setItem('altujar_device_beginner_email', deviceBeginnerEmailRecord);
         else localStorage.removeItem('altujar_device_beginner_email');
         if (activeUserEmail) localStorage.setItem('altujar_master_active_email', activeUserEmail);
         else localStorage.removeItem('altujar_master_active_email');
+        
         updateGoogleSEOSchema();
         updateTreasuryNotificationBadges();
       } catch (err) {}
@@ -1399,7 +1426,7 @@
         "@context": "https://schema.org",
         "@type": "ItemList",
         "name": "AL-TUJAR VAULTS Global Digital & Physical Marketplace",
-        "itemListElement": products.filter(p => !p.frozen).map((p, idx) => ({
+        "itemListElement": products.filter(p => !p.frozen && !deletedProductIds.includes(p.id)).map((p, idx) => ({
           "@type": "ListItem",
           "position": idx + 1,
           "item": {
@@ -1703,7 +1730,8 @@
           from: 'AL-TUJAR VAULTS Official (altujarvaults@gmail.com)',
           subject: 'Welcome to AL-TUJAR VAULTS!',
           body: `Welcome ${name}! To buy products, you are ready to go. To sell, unlock a Seller Pass or the 3-Month Beginner Bundle.`,
-          date: new Date().toLocaleDateString()
+          date: new Date().toLocaleDateString(),
+          read: false
         }],
         followersCount: 0,
         following: [],
@@ -1751,7 +1779,8 @@
         from: 'AL-TUJAR VAULTS Administration',
         subject: '🔒 Seller Pass Status Notice: Reset to Unpaid',
         body: 'Your seller membership has expired or been reset to Unpaid Free status by administration. To upload or publish new products, please renew your membership.',
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleDateString(),
+        read: false
       });
 
       if (currentUser && currentUser.email.toLowerCase() === cleanEmail) {
@@ -1783,6 +1812,8 @@
 
       const lbl = document.getElementById('auth-header-label');
       if (lbl && currentUser?.name) lbl.textContent = currentUser.name.split(' ')[0];
+      
+      updateSavedAndCartBadges();
       updateTreasuryNotificationBadges();
     }
 
@@ -2203,7 +2234,8 @@
         from: 'AL-TUJAR VAULTS Treasury (altujarvaults@gmail.com)',
         subject: '✅ Payment Verified & Approved!',
         body: customMsg,
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleDateString(),
+        read: false
       });
 
       saveAllState();
@@ -2229,7 +2261,8 @@
         from: 'AL-TUJAR VAULTS Treasury (altujarvaults@gmail.com)',
         subject: '❌ Payment Verification Issue',
         body: customMsg,
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleDateString(),
+        read: false
       });
 
       saveAllState();
@@ -2255,7 +2288,14 @@
       if (!confirm('Are you sure you want to permanently delete your account and all your products?')) return;
       const email = currentUser.email.toLowerCase();
       delete usersDB[email];
+      
+      // Blacklist and delete products permanently
+      const myProds = products.filter(p => (p.creatorEmail || '').toLowerCase() === email);
+      myProds.forEach(p => {
+        if (!deletedProductIds.includes(p.id)) deletedProductIds.push(p.id);
+      });
       products = products.filter(p => (p.creatorEmail || '').toLowerCase() !== email);
+      
       if (supabaseClient) {
         supabaseClient.from('users').delete().eq('email', email);
         supabaseClient.from('products').delete().eq('creator_email', email);
@@ -2273,9 +2313,12 @@
       return Boolean(currentUser && currentUser.email && currentUser.email.toLowerCase() === OWNER_EMAIL);
     }
 
+    // FIX 1 APPLIED: Deletion is strictly reserved for the original creator or the platform owner
     function canUserDeleteProduct(prod) {
       if (!currentUser || !prod) return false;
-      return isOwnerLoggedIn() || (prod.creatorEmail || '').toLowerCase() === currentUser.email.toLowerCase();
+      const userEmail = (currentUser.email || '').toLowerCase();
+      const creatorEmail = (prod.creatorEmail || '').toLowerCase();
+      return isOwnerLoggedIn() || (creatorEmail && userEmail === creatorEmail);
     }
 
     function enforceAdminVisibility() {
@@ -2370,7 +2413,8 @@
         from: 'AL-TUJAR VAULTS Cohort Monitor',
         subject: '🌱 3-Month Beginner Bundle Activated (Flagged Account)',
         body: `Your one-time 90-day Beginner Pass is active! You can upload BOTH direct web files and indirect external links. Formula: $${appConfig.beginnerBasePrice} × 3 months + ${appConfig.beginnerSalePct}% added for each product uploaded. Mandatory rules: (1) Upload at least 5 working products/week, (2) Maintain 95%+ Info Completeness. Note: Sign-out and account deletion are locked until your bundle debt is paid.`,
-        date: new Date().toLocaleDateString()
+        date: new Date().toLocaleDateString(),
+        read: false
       });
       saveAllState();
       enforceUploadGateUI();
@@ -2396,7 +2440,7 @@
       const baseOwed = isExpired ? fullThreeMonthBase : +(Math.max(0.5, elapsedMonths) * monthlyBase).toFixed(2);
       const perUploadAddition = +(monthlyBase * uploadPct).toFixed(2);
 
-      const userUploadedProductsCount = products.filter(p => (p.creatorEmail || '').toLowerCase() === userObj.email.toLowerCase()).length;
+      const userUploadedProductsCount = products.filter(p => (p.creatorEmail || '').toLowerCase() === userObj.email.toLowerCase() && !deletedProductIds.includes(p.id)).length;
       const uploadsCount = Math.max(Number(userObj.beginnerUploadsCount || 0), userUploadedProductsCount);
       const uploadFeeOwed = +(uploadsCount * perUploadAddition).toFixed(2);
       const totalOwed = +(baseOwed + uploadFeeOwed).toFixed(2);
@@ -2408,7 +2452,7 @@
 
     function getWeeklyUploadCountForUser(email) {
       const oneWeekAgo = Date.now() - (ONE_DAY_MS * 7);
-      return products.filter(p => (p.creatorEmail || '').toLowerCase() === email.toLowerCase() && p.postedAt >= oneWeekAgo).length;
+      return products.filter(p => (p.creatorEmail || '').toLowerCase() === email.toLowerCase() && p.postedAt >= oneWeekAgo && !deletedProductIds.includes(p.id)).length;
     }
 
     function runBeginnerCohortAudit() {
@@ -2427,7 +2471,8 @@
               from: '⚠️ AL-TUJAR VAULTS Compliance Warning',
               subject: 'URGENT: Day 6 Reminder — Upload 5 Products Before Day 7!',
               body: `You have uploaded ${weeklyUploads}/5 required products this week. Upload at least 5 working products (95%+ info) before Day 7 ends!`,
-              date: new Date().toLocaleDateString()
+              date: new Date().toLocaleDateString(),
+              read: false
             });
           } else if (dayInCurrentWeek < 6) u.day6WarnedThisWeek = false;
 
@@ -2440,7 +2485,8 @@
               from: '🛑 AL-TUJAR VAULTS Rule Enforcement',
               subject: 'Beginner Offer Stopped: Missed Weekly Upload Rule',
               body: `Your 3-Month Beginner Offer has been stopped because fewer than 5 products were uploaded this week. Pay the ${appConfig.restartPenaltyPct}% restart fee in your Payment tab to restart from zero, or settle and switch to the normal $${appConfig.subPrice} membership.`,
-              date: new Date().toLocaleDateString()
+              date: new Date().toLocaleDateString(),
+              read: false
             });
           }
           if (now >= u.beginnerExpiresAt && !u.beginnerPaidSettled) {
@@ -2452,7 +2498,11 @@
           const canonical = normalizeCanonicalEmail(email);
           if (!bannedEmails.includes(email)) bannedEmails.push(email);
           if (!bannedEmails.includes(canonical)) bannedEmails.push(canonical);
+          
+          const myProds = products.filter(p => (p.creatorEmail || '').toLowerCase() === email);
+          myProds.forEach(p => { if (!deletedProductIds.includes(p.id)) deletedProductIds.push(p.id); });
           products = products.filter(p => (p.creatorEmail || '').toLowerCase() !== email);
+          
           if (supabaseClient) {
             supabaseClient.from('users').delete().eq('email', email);
             supabaseClient.from('products').delete().eq('creator_email', email);
@@ -2737,7 +2787,7 @@
               <div class="absolute top-2.5 right-2.5 flex gap-1">
                 <button type="button" onclick="toggleFavoriteProduct('${p.id}')" class="w-8 h-8 rounded-full bg-slate-950/85 border border-slate-700 text-xs cursor-pointer">${isFav ? '❤️' : '🤍'}</button>
                 <button type="button" onclick="toggleCartProduct('${p.id}')" class="w-8 h-8 rounded-full ${inCart ? 'bg-emerald-500 text-slate-950' : 'bg-slate-950/85 text-white'} border border-slate-700 text-xs cursor-pointer">🛒</button>
-                ${allowDelete ? `<button type="button" onclick="deleteListing('${p.id}')" class="w-8 h-8 rounded-full bg-rose-950 text-rose-300 text-xs cursor-pointer">🗑️</button>` : ''}
+                ${allowDelete ? `<button type="button" onclick="deleteListing('${p.id}')" class="w-8 h-8 rounded-full bg-rose-950 text-rose-300 text-xs cursor-pointer" title="Delete Product">🗑️</button>` : ''}
               </div>
               <div class="absolute bottom-2 left-2.5 right-2.5 flex justify-between text-[10px] bg-slate-950/85 px-2.5 py-1 rounded-lg">
                 <span class="text-slate-300">📋 ${p.infoScore}% Info</span>
@@ -2772,7 +2822,9 @@
       const priceMode = document.getElementById('price-filter')?.value || 'all';
       const infoMode = document.getElementById('info-filter')?.value || 'all';
 
-      let filtered = [...products];
+      // Strictly exclude deleted products
+      let filtered = [...products].filter(p => !deletedProductIds.includes(p.id));
+
       if (activeTagFilter !== 'All') filtered = filtered.filter(p => p.tags.includes(activeTagFilter) || p.type === activeTagFilter);
       if (query) filtered = filtered.filter(p => p.title.toLowerCase().includes(query) || p.desc.toLowerCase().includes(query) || p.creator.toLowerCase().includes(query));
       if (priceMode === 'free') filtered = filtered.filter(p => p.price === 0);
@@ -2804,9 +2856,12 @@
         });
       }
 
-      document.getElementById('results-counter').querySelector('span').innerHTML = isTop100Mode 
-        ? `Showing Top <strong class="text-amber-300">${filtered.length}</strong> Most Sold Listings This Month` 
-        : `Showing <strong class="text-amber-300">${filtered.length}</strong> verified listings`;
+      const counterSpan = document.getElementById('results-counter')?.querySelector('span');
+      if (counterSpan) {
+        counterSpan.innerHTML = isTop100Mode 
+          ? `Showing Top <strong class="text-amber-300">${filtered.length}</strong> Most Sold Listings This Month` 
+          : `Showing <strong class="text-amber-300">${filtered.length}</strong> verified listings`;
+      }
 
       grid.innerHTML = filtered.map((p, idx) => {
         const badge = isTop100Mode ? `🏆 #${idx + 1}` : null;
@@ -2816,14 +2871,14 @@
 
     function handleProductCardClick(id) {
       const p = products.find(i => i.id === id);
-      if (!p) return;
+      if (!p || deletedProductIds.includes(p.id)) return;
       if (p.frozen && !isOwnerLoggedIn() && !canUserDeleteProduct(p)) { alert('❄️ This product is under review, please return later.'); return; }
       openProductModal(id);
     }
 
     function openProductModal(id) {
       const p = products.find(i => i.id === id);
-      if (!p) return;
+      if (!p || deletedProductIds.includes(p.id)) return;
       currentModalProduct = p;
       p.views += 1;
       saveAllState();
@@ -2890,15 +2945,75 @@
     }
 
     // -------------------------------------------------------------------------
-    // INBOX & SETTLEMENT
+    // PERMANENT DELETION LOGIC (OWNER & CREATOR ONLY - CANNOT RETURN)
+    // -------------------------------------------------------------------------
+    function deleteListing(id) {
+      const p = products.find(i => i.id === id);
+      if (!p) return;
+      if (!canUserDeleteProduct(p)) {
+        alert('⛔ Unauthorized: Only the verified creator of this product or the platform owner can delete it.');
+        return;
+      }
+
+      if (!confirm(`Are you sure you want to PERMANENTLY delete "${p.title}"?\n\nThis product will be permanently purged from cloud and local storage and cannot return.`)) {
+        return;
+      }
+
+      // Add to permanent deletion blacklist
+      if (!deletedProductIds.includes(id)) {
+        deletedProductIds.push(id);
+      }
+
+      // Remove from current memory array
+      products = products.filter(i => i.id !== id);
+
+      // Clean Supabase database
+      if (supabaseClient) {
+        supabaseClient.from('products').delete().eq('id', id).then(() => {});
+      }
+
+      saveAllState();
+      closeProductModal();
+      renderCreatorStudio();
+      renderMarketplaceGrid();
+      if (isOwnerLoggedIn()) loadAdminInputs();
+      alert(`🗑️ "${p.title}" was permanently deleted.`);
+    }
+
+    // -------------------------------------------------------------------------
+    // INBOX SYSTEM WITH READ AUTO-CLEARING (FIX 3)
     // -------------------------------------------------------------------------
     function renderUserInbox() {
       if (!currentUser) return;
       const list = currentUser.inbox || [];
-      document.getElementById('inbox-count-badge').textContent = list.length;
+      
+      // Auto-mark all messages as read upon viewing
+      let newlyRead = false;
+      list.forEach(m => {
+        if (!m.read) {
+          m.read = true;
+          newlyRead = true;
+        }
+      });
+      if (newlyRead) {
+        saveAllState();
+        updateSavedAndCartBadges();
+      }
+
       const box = document.getElementById('user-inbox-list');
       if (!box) return;
-      box.innerHTML = list.length === 0 ? `<p class="text-slate-400 py-4 text-center">No messages yet.</p>` : list.map(m => `<div class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5"><div class="flex justify-between text-[11px] text-amber-300 font-bold"><span>${sanitizeHTML(m.from)}</span><span>${sanitizeHTML(m.date || '')}</span></div><div class="font-bold text-white">${sanitizeHTML(m.subject)}</div><p class="text-slate-300 mt-1">${sanitizeHTML(m.body)}</p></div>`).join('');
+      box.innerHTML = list.length === 0 
+        ? `<p class="text-slate-400 py-4 text-center">No messages yet.</p>` 
+        : list.map(m => `
+            <div class="bg-slate-950 border border-slate-800 rounded-2xl p-3.5 space-y-1">
+              <div class="flex justify-between text-[11px] text-amber-300 font-bold">
+                <span>${sanitizeHTML(m.from)}</span>
+                <span class="text-slate-400">${sanitizeHTML(m.date || '')}</span>
+              </div>
+              <div class="font-bold text-white">${sanitizeHTML(m.subject)}</div>
+              <p class="text-slate-300 mt-1">${sanitizeHTML(m.body)}</p>
+            </div>
+          `).join('');
     }
 
     function promptSendDirectMessageToCreator() {
@@ -2908,7 +3023,13 @@
       if (!text || !text.trim()) return;
       if (usersDB[currentViewedProfileEmail]) {
         usersDB[currentViewedProfileEmail].inbox = usersDB[currentViewedProfileEmail].inbox || [];
-        usersDB[currentViewedProfileEmail].inbox.unshift({ from: `${currentUser.name} (${currentUser.email})`, subject: 'Buyer Message', body: text.trim(), date: new Date().toLocaleDateString() });
+        usersDB[currentViewedProfileEmail].inbox.unshift({ 
+          from: `${currentUser.name} (${currentUser.email})`, 
+          subject: 'Buyer Message', 
+          body: text.trim(), 
+          date: new Date().toLocaleDateString(),
+          read: false 
+        });
         saveAllState();
         alert('✉️ Message sent to seller inbox!');
       }
@@ -3011,7 +3132,7 @@
       // 2. Top 100 Best Selling Products Executive Revenue Audit Table
       const auditTbody = document.getElementById('admin-top100-audit-tbody');
       if (auditTbody) {
-        const sortedProducts = [...products].filter(p => !p.frozen).sort((a, b) => b.clicks - a.clicks).slice(0, 100);
+        const sortedProducts = [...products].filter(p => !p.frozen && !deletedProductIds.includes(p.id)).sort((a, b) => b.clicks - a.clicks).slice(0, 100);
         auditTbody.innerHTML = sortedProducts.length === 0
           ? `<tr><td colspan="8" class="text-center py-4 text-slate-400">No product sales recorded yet.</td></tr>`
           : sortedProducts.map((p, idx) => {
@@ -3093,7 +3214,7 @@
       const u = usersDB[email]; if (!u) return;
       const calc = calculateBeginnerOwedBreakdown(u);
       u.inbox = u.inbox || [];
-      u.inbox.unshift({ from: '🚨 Compliance Notice', subject: 'Pay Within 3 Days or Account Will Be Erased', body: `Please settle your $${calc.totalOwed} USD beginner bundle within 3 days to avoid permanent ban.`, date: new Date().toLocaleDateString() });
+      u.inbox.unshift({ from: '🚨 Compliance Notice', subject: 'Pay Within 3 Days or Account Will Be Erased', body: `Please settle your $${calc.totalOwed} USD beginner bundle within 3 days to avoid permanent ban.`, date: new Date().toLocaleDateString(), read: false });
       saveAllState(); alert(`⚠️ Sent 3-day payment warning to ${email}!`);
     }
 
@@ -3104,7 +3225,11 @@
       if (!bannedEmails.includes(canonical)) bannedEmails.push(canonical);
       if (deviceBeginnerEmailRecord === email) deviceBeginnerEmailRecord = '';
       delete usersDB[email];
+      
+      const myProds = products.filter(p => (p.creatorEmail || '').toLowerCase() === email);
+      myProds.forEach(p => { if (!deletedProductIds.includes(p.id)) deletedProductIds.push(p.id); });
       products = products.filter(p => (p.creatorEmail || '').toLowerCase() !== email);
+      
       if (supabaseClient) {
         supabaseClient.from('users').delete().eq('email', email);
         supabaseClient.from('products').delete().eq('creator_email', email);
@@ -3185,7 +3310,8 @@
 
     function renderCreatorStudio() {
       if (!currentUser) return;
-      enforceUploadGateUI(); renderUserInbox(); renderPaymentAndBeginnerSettlementCenter();
+      enforceUploadGateUI(); 
+      renderPaymentAndBeginnerSettlementCenter();
       document.getElementById('studio-display-name').textContent = currentUser.name;
       document.getElementById('studio-bio-preview').textContent = currentUser.bio;
       document.getElementById('studio-avatar-preview').src = currentUser.avatar;
@@ -3208,7 +3334,7 @@
       document.getElementById('prof-flag-visibility').value = currentUser.beginnerFlagVisibility || 'private';
       document.getElementById('prof-bio').value = currentUser.bio || '';
 
-      const myProds = products.filter(p => (p.creatorEmail || '').toLowerCase() === currentUser.email.toLowerCase());
+      const myProds = products.filter(p => (p.creatorEmail || '').toLowerCase() === currentUser.email.toLowerCase() && !deletedProductIds.includes(p.id));
       document.getElementById('stat-my-views').textContent = myProds.reduce((s, p) => s + p.views, 0);
       document.getElementById('stat-my-clicks').textContent = myProds.reduce((s, p) => s + p.clicks, 0);
       document.getElementById('stat-my-followers').textContent = currentUser.followersCount || 0;
@@ -3224,14 +3350,14 @@
       currentUser.beginnerFlagVisibility = document.getElementById('prof-flag-visibility').value;
       currentUser.bio = document.getElementById('prof-bio').value.trim();
       saveAllState(); updateGuestVsAuthHeaderUI(); renderCreatorStudio(); renderMarketplaceGrid();
-      alert('✅ Profile & Flag Visibility Saved to Cloud!');
+      alert('✅ Profile Settings Saved!');
     }
 
     function openPublicCreatorProfile(creatorEmailOrName) {
       closeProductModal();
       let targetUser = usersDB[creatorEmailOrName?.toLowerCase()] || Object.values(usersDB).find(u => u.name.toLowerCase() === (creatorEmailOrName || '').toLowerCase()) || { name: creatorEmailOrName, email: creatorEmailOrName, avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=200&auto=format&fit=crop&q=80', bio: 'Verified Creator on AL-TUJAR VAULTS.', followersCount: 10 };
       currentViewedProfileEmail = (targetUser.email || '').toLowerCase();
-      const creatorProducts = products.filter(p => (p.creatorEmail || '').toLowerCase() === currentViewedProfileEmail || p.creator === targetUser.name);
+      const creatorProducts = products.filter(p => !deletedProductIds.includes(p.id) && ((p.creatorEmail || '').toLowerCase() === currentViewedProfileEmail || p.creator === targetUser.name));
       document.getElementById('pub-prof-name').textContent = targetUser.name;
       document.getElementById('pub-prof-bio').textContent = targetUser.bio || '';
       document.getElementById('pub-prof-avatar').src = targetUser.avatar;
@@ -3284,14 +3410,6 @@
       switchStudioSubTab('upload');
     }
 
-    function deleteListing(id) {
-      const p = products.find(i => i.id === id);
-      if (!p || !canUserDeleteProduct(p)) return;
-      products = products.filter(i => i.id !== id);
-      if (supabaseClient) supabaseClient.from('products').delete().eq('id', id);
-      saveAllState(); closeProductModal(); renderCreatorStudio(); renderMarketplaceGrid();
-    }
-
     function openReportModal(prodId) {
       document.getElementById('report-prod-id').value = prodId;
       document.getElementById('report-details').value = '';
@@ -3329,17 +3447,31 @@
       saveAllState(); updateSavedAndCartBadges(); renderMarketplaceGrid();
     }
 
+    // FIX 3 APPLIED: Only show badge when there are genuinely UNREAD messages; hide when 0
     function updateSavedAndCartBadges() {
       if (!currentUser) return;
-      document.getElementById('saved-count-badge').textContent = (currentUser.favorites || []).length;
-      document.getElementById('cart-count-badge').textContent = (currentUser.cart || []).length;
-      document.getElementById('inbox-count-badge').textContent = (currentUser.inbox || []).length;
+      const favBadge = document.getElementById('saved-count-badge');
+      if (favBadge) favBadge.textContent = (currentUser.favorites || []).length;
+      
+      const cartBadge = document.getElementById('cart-count-badge');
+      if (cartBadge) cartBadge.textContent = (currentUser.cart || []).length;
+      
+      const unreadCount = (currentUser.inbox || []).filter(m => !m.read).length;
+      const inboxBadge = document.getElementById('inbox-count-badge');
+      if (inboxBadge) {
+        if (unreadCount > 0) {
+          inboxBadge.style.display = 'inline-block';
+          inboxBadge.textContent = unreadCount;
+        } else {
+          inboxBadge.style.display = 'none';
+        }
+      }
     }
 
     function openSavedVaultModal(mode = 'favs') {
       if (!currentUser) { openAuthGateModal('Please sign in first.'); return; }
       const idList = mode === 'favs' ? (currentUser.favorites || []) : (currentUser.cart || []);
-      const items = products.filter(p => idList.includes(p.id));
+      const items = products.filter(p => idList.includes(p.id) && !deletedProductIds.includes(p.id));
       document.getElementById('saved-vault-items').innerHTML = items.length === 0 ? `<p class="text-slate-400 text-center py-6">Empty.</p>` : items.map(p => `<div class="flex justify-between items-center bg-slate-950 p-3 rounded-xl border border-slate-800"><span>${sanitizeHTML(p.title)} ($${p.price.toFixed(2)})</span><button type="button" onclick="handleProductCardClick('${p.id}'); closeSavedVaultModal();" class="gold-btn px-3 py-1 rounded-lg cursor-pointer">Open</button></div>`).join('');
       openModal('saved-vault-modal');
     }
@@ -3395,4 +3527,4 @@
   </script>
   <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
-  </html>
+</html>
