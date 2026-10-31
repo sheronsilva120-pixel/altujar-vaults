@@ -1440,7 +1440,7 @@
       } catch (err) {}
     }
 
-    function updateGoogleSEOSchema() {
+        function updateGoogleSEOSchema() {
       const el = document.getElementById('dynamic-seo-schema');
       if (!el) return;
       const itemList = {
@@ -1461,13 +1461,47 @@
               "@type": "Offer",
               "priceCurrency": "USD",
               "price": p.price.toFixed(2),
-              "availability": "https://schema.org/InStock"
+              "availability": "https://schema.org/InStock",
+              "url": window.location.href,
+              "hasMerchantReturnPolicy": {
+                "@type": "MerchantReturnPolicy",
+                "applicableCountry": "US",
+                "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
+              },
+              "shippingDetails": {
+                "@type": "OfferShippingDetails",
+                "shippingRate": {
+                  "@type": "MonetaryAmount",
+                  "value": "0.00",
+                  "currency": "USD"
+                },
+                "shippingDestination": {
+                  "@type": "DefinedRegion",
+                  "addressCountry": "US"
+                },
+                "deliveryTime": {
+                  "@type": "ShippingDeliveryTime",
+                  "handlingTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 0,
+                    "maxValue": 0,
+                    "unitCode": "DAY"
+                  },
+                  "transitTime": {
+                    "@type": "QuantitativeValue",
+                    "minValue": 0,
+                    "maxValue": 0,
+                    "unitCode": "DAY"
+                  }
+                }
+              }
             }
           }
         }))
       };
       el.textContent = JSON.stringify(itemList);
     }
+
 
     const I18N_DICT = {
       'en': { choose_lang_lbl: 'Choose Your Language', brand_sub: 'Merit-First Hybrid Marketplace', nav_shop: '🛍️ Shop Marketplace', nav_studio: '✨ My Profile, Inbox & Studio', nav_rules: '⚖️ Legal & Privacy', contact_hub_title: 'Official Contact & Community Hub', sign_in_tab: 'Sign In / Login', create_acc_tab: 'Create New Account', sign_in_btn: '🔐 Sign In to AL-TUJAR VAULTS' },
